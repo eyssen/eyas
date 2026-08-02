@@ -1,0 +1,23 @@
+{
+  "research.newResearch": "New Research",
+  "research.topicPlaceholder": "Enter research topic…",
+  "research.depth.shallow": "Shallow (faster)",
+  "research.depth.deep": "Deep (thorough)",
+  "research.submit": "Research",
+  "research.empty": "No research reports yet",
+  "research.status.pending": "Pending",
+  "research.status.searching": "Searching",
+  "research.status.evaluating": "Evaluating",
+  "research.status.synthesizing": "Synthesizing",
+  "research.status.complete": "Complete",
+  "research.status.error": "Error",
+  "research.selectPrompt": "Select a report or start a new research",
+  "research.failedTitle": "Research Failed",
+  "research.researching": "Researching…",
+  "research.depthShort.shallow": "shallow",
+  "research.depthShort.deep": "deep",
+  "research.reportDepth": "{{depth}} depth",
+  "research.sourcesCount": "{{count}} sources",
+  "research.sourcesHeading": "Sources",
+  "research.relevant": "{{percent}}% relevant"
+}

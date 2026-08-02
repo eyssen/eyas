@@ -1,0 +1,22 @@
+{
+  "skills.title": "Skills",
+  "skills.subtitle": "Manage skill templates, trigger patterns, and generated skills",
+  "skills.enabledLabel": "enabled",
+  "skills.createSkill": "Create Skill",
+  "skills.source.bundled": "Bundled",
+  "skills.source.user": "User",
+  "skills.source.generated": "Generated",
+  "skills.category.own": "Own",
+  "skills.filter.all": "All",
+  "skills.filter.own": "Own skills",
+  "skills.filter.bundled": "Bundled",
+  "skills.form.namePlaceholder": "Skill name",
+  "skills.form.triggerPlaceholder": "Trigger patterns (comma separated)",
+  "skills.form.contentPlaceholder": "Skill content / template",
+  "skills.searchPlaceholder": "Search by name or trigger pattern…",
+  "skills.showContent": "Show content",
+  "skills.hideContent": "Hide content",
+  "skills.loading": "Loading skills…",
+  "skills.loadError": "Failed to load skills: {{error}}",
+  "skills.emptyTitle": "No skills found. Create one to get started."
+}

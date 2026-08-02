@@ -1,0 +1,22 @@
+{
+  "skills.title": "Habilidades",
+  "skills.subtitle": "Gestiona plantillas de habilidades, patrones de activación y habilidades generadas",
+  "skills.enabledLabel": "activadas",
+  "skills.createSkill": "Crear habilidad",
+  "skills.source.bundled": "Integrada",
+  "skills.source.user": "Propia",
+  "skills.source.generated": "Generada",
+  "skills.category.own": "Propias",
+  "skills.filter.all": "Todas",
+  "skills.filter.own": "Skills propias",
+  "skills.filter.bundled": "Integradas",
+  "skills.form.namePlaceholder": "Nombre de la habilidad",
+  "skills.form.triggerPlaceholder": "Patrones de activación (separados por comas)",
+  "skills.form.contentPlaceholder": "Contenido de la habilidad / plantilla",
+  "skills.searchPlaceholder": "Buscar por nombre o patrón de activación…",
+  "skills.showContent": "Mostrar contenido",
+  "skills.hideContent": "Ocultar contenido",
+  "skills.loading": "Cargando habilidades…",
+  "skills.loadError": "No se pudieron cargar las habilidades: {{error}}",
+  "skills.emptyTitle": "No hay habilidades. Crea una para empezar."
+}

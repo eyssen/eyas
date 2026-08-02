@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+bun.lockb
+
+# Build output
+dist/
+.astro/
+packages/docs/dist/
+packages/docs/.astro/
+packages/docs/node_modules/
+
+# Data (runtime, not in git)
+data/
+
+# Logs
+logs/
+
+# Environment
+config/.env
+.env
+.env.*
+!config/default.env
+
+# Secrets
+secrets.age
+*.pem
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Test
+coverage/
+
+# Vite
+src/web/dist/
+src/web/.tanstack/tmp/
+.superpowers/
+login-concepts.png
+.playwright-mcp/
+
+# Debug screenshots in repo root (development artifacts only)
+/*.png
+!login-concepts.png
+
+# Private (never publish) — internal architecture/plans live only in eyas-dev
+/docs/
+/.claude/
+/.grok/
+/.superpowers/

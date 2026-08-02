@@ -1,0 +1,71 @@
+{
+  "$schema": "./help-map.schema.json",
+  "version": 1,
+  "basePath": "/docs",
+  "defaultLocale": "en",
+  "locales": ["en", "hu", "de", "es"],
+  "entries": {
+    "getting-started": { "path": "getting-started", "hash": null, "description": "Install and first run" },
+    "setup-wizard": { "path": "setup-wizard", "hash": null, "description": "First-boot wizard" },
+    "concepts": { "path": "concepts", "hash": null, "description": "Core mental model" },
+
+    "daily.dashboard": { "path": "daily/dashboard", "hash": null, "description": "Home dashboard" },
+    "daily.conversations": { "path": "daily/conversations", "hash": null, "description": "Chat with agents" },
+    "daily.board": { "path": "daily/board", "hash": null, "description": "Board / kanban" },
+    "daily.projects": { "path": "daily/projects", "hash": null, "description": "Projects and stages" },
+    "daily.search": { "path": "daily/search", "hash": null, "description": "Unified search" },
+
+    "agents.overview": { "path": "agents/overview", "hash": null, "description": "Agents list and lifecycle" },
+    "agents.configure": { "path": "agents/configure", "hash": null, "description": "Create and configure agents" },
+    "agents.identity": { "path": "agents/identity-workspace", "hash": null, "description": "IDENTITY and workspace files" },
+    "agents.voice": { "path": "agents/voice", "hash": null, "description": "Voice profile overview" },
+    "agents.voice.presets": { "path": "agents/voice", "hash": "presets", "description": "Built-in voice presets" },
+    "agents.voice.dimensions": { "path": "agents/voice", "hash": "dimensions", "description": "Six voice dimensions" },
+    "agents.teams": { "path": "agents/teams", "hash": null, "description": "Teams and delegation" },
+    "agents.runs": { "path": "agents/runs", "hash": null, "description": "Runs and Mission Control" },
+    "agents.forge": { "path": "agents/forge", "hash": null, "description": "Forge soul proposals" },
+    "agents.autonomy": { "path": "agents/autonomy", "hash": null, "description": "Autonomy levels" },
+
+    "automation.skills": { "path": "automation/skills", "hash": null, "description": "Skills catalogue" },
+    "automation.tools": { "path": "automation/tools", "hash": null, "description": "Tools catalogue" },
+    "automation.scheduler": { "path": "automation/scheduler", "hash": null, "description": "Scheduler jobs" },
+    "automation.pipelines": { "path": "automation/pipelines", "hash": null, "description": "Pipelines" },
+    "automation.research": { "path": "automation/research", "hash": null, "description": "Research jobs" },
+    "automation.proactive": { "path": "automation/proactive", "hash": null, "description": "Proactive assistant" },
+    "automation.self-learning": { "path": "automation/self-learning", "hash": null, "description": "Self-learning and skill evolution" },
+
+    "knowledge.memory": { "path": "knowledge/memory", "hash": null, "description": "Five-tier memory" },
+    "knowledge.base": { "path": "knowledge/knowledge-base", "hash": null, "description": "Knowledge wiki" },
+    "knowledge.documents": { "path": "knowledge/documents", "hash": null, "description": "Documents" },
+    "knowledge.client-wiki": { "path": "knowledge/client-wiki", "hash": null, "description": "Client wiki" },
+    "knowledge.meetings": { "path": "knowledge/meetings", "hash": null, "description": "Meetings" },
+
+    "communication.channels": { "path": "communication/channels", "hash": null, "description": "Channels overview" },
+    "communication.telegram": { "path": "communication/telegram", "hash": null, "description": "Telegram bot" },
+    "communication.a2a": { "path": "communication/a2a", "hash": null, "description": "A2A protocol" },
+
+    "ai.providers": { "path": "ai/providers", "hash": null, "description": "AI providers" },
+    "ai.routing": { "path": "ai/routing-budget", "hash": null, "description": "Routing and budget" },
+    "ai.prompts": { "path": "ai/prompts", "hash": null, "description": "Prompt system" },
+    "ai.mcp": { "path": "ai/mcp", "hash": null, "description": "MCP servers" },
+
+    "admin.users": { "path": "admin/users", "hash": null, "description": "Users and permissions" },
+    "admin.secrets": { "path": "admin/secrets", "hash": null, "description": "Secrets and API keys" },
+    "admin.settings": { "path": "admin/settings", "hash": null, "description": "Settings map" },
+    "admin.backup": { "path": "admin/backup", "hash": null, "description": "Backup and restore" },
+    "admin.data-port": { "path": "admin/data-port", "hash": null, "description": "Data import and export" },
+    "admin.security": { "path": "admin/security-privacy", "hash": null, "description": "Security and privacy" },
+    "admin.observability": { "path": "admin/observability", "hash": null, "description": "Observability and ops" },
+
+    "deploy.native": { "path": "deploy/native", "hash": null, "description": "Native install" },
+    "deploy.docker": { "path": "deploy/docker", "hash": null, "description": "Docker" },
+    "deploy.kubernetes": { "path": "deploy/kubernetes", "hash": null, "description": "Kubernetes" },
+    "deploy.multi-instance": { "path": "deploy/multi-instance", "hash": null, "description": "Multiple instances" },
+    "deploy.cli": { "path": "deploy/cli", "hash": null, "description": "CLI reference" },
+    "deploy.configuration": { "path": "deploy/configuration", "hash": null, "description": "Configuration" },
+
+    "reference.glossary": { "path": "reference/glossary", "hash": null, "description": "Glossary" },
+    "reference.faq": { "path": "reference/faq", "hash": null, "description": "FAQ" },
+    "reference.architecture": { "path": "reference/architecture", "hash": null, "description": "Architecture pointer" }
+  }
+}

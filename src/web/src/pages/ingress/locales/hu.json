@@ -1,0 +1,17 @@
+{
+  "ingress.title": "Ingress-alagút",
+  "ingress.subtitle": "Külső hozzáférés kezelése Cloudflare-alagúton keresztül",
+  "ingress.connected": "Kapcsolódva",
+  "ingress.disconnected": "Szétkapcsolva",
+  "ingress.since": "Ekkor óta: {{time}}",
+  "ingress.start": "Indítás",
+  "ingress.stop": "Leállítás",
+  "ingress.startFailed": "Nem sikerült elindítani az alagutat",
+  "ingress.stopFailed": "Nem sikerült leállítani az alagutat",
+  "ingress.configuration": "Konfiguráció",
+  "ingress.tunnelToken": "Alagút-token",
+  "ingress.tokenPlaceholder": "Opcionális — üresen az alapértelmezettet használja",
+  "ingress.hostname": "Hosztnév",
+  "ingress.hostnamePlaceholder": "Opcionális — üresen automatikusan generált",
+  "ingress.configNote": "A konfiguráció az alagút indításakor lép érvénybe."
+}

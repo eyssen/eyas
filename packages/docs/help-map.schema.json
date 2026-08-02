@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eyas.local/docs/help-map.schema.json",
+  "title": "EYAS docs help map",
+  "type": "object",
+  "required": ["version", "basePath", "defaultLocale", "locales", "entries"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "basePath": { "type": "string", "pattern": "^/" },
+    "defaultLocale": { "type": "string", "minLength": 2 },
+    "locales": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 2 },
+      "minItems": 1
+    },
+    "entries": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Doc slug relative to locale root (no leading slash, no locale prefix)"
+          },
+          "hash": {
+            "type": ["string", "null"],
+            "description": "Optional heading anchor (without #)"
+          },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  }
+}
