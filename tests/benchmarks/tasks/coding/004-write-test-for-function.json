@@ -1,0 +1,26 @@
+{
+  "id": "coding-004",
+  "category": "coding",
+  "prompt": "Write Vitest unit tests for `slugify(input: string)`. Cover: basic case, unicode accent removal, collapsing whitespace, trimming, empty string, and excessively long input truncation (> 80 chars).",
+  "promptVariations": [
+    "Please generate a Vitest test suite for `slugify`. Include edge cases.",
+    "Produce comprehensive unit tests for the `slugify` helper using Vitest."
+  ],
+  "context": {
+    "file": "src/shared/slugify.ts",
+    "signature": "export function slugify(input: string, opts?: { maxLength?: number }): string"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["describe", "expect", "vitest"],
+    "mustNotMention": ["jest.config"],
+    "rubric": [
+      "Uses Vitest's describe/it/expect (not jest/mocha)",
+      "Covers all six requested scenarios",
+      "Uses deterministic inputs, no snapshot drift",
+      "Imports from the correct relative path suggestion"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 30
+}
