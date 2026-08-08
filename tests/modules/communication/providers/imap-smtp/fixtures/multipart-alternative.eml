@@ -1,0 +1,25 @@
+From: =?utf-8?B?w4HnXyBCw6lsYQ==?= <bela@example.hu>
+To: support@eyssen.com
+Subject: =?utf-8?Q?Sziasztok_=E2=80=93_teszt?=
+Date: Tue, 14 Apr 2026 11:00:00 +0000
+Message-ID: <multi-alt-1@example.hu>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="BOUNDARY-ABC"
+
+--BOUNDARY-ABC
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Sziasztok,
+
+Ez egy =C3=A1rv=C3=ADzt=C5=B1r=C5=91 t=C3=BCk=C3=B6rf=C3=BAr=C3=B3g=C3=A9p teszt.
+
+=C3=9Cdv,
+B=C3=A9la
+--BOUNDARY-ABC
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGJvZHk+PHA+U3ppYXN6dG9rLDwvcD48cD5FeiBlZ3kgPGI+SFRNTDwvYj4gdmVyemlv
+LjwvcD48L2JvZHk+PC9odG1sPg==
+--BOUNDARY-ABC--

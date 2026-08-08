@@ -1,0 +1,17 @@
+{
+  "ingress.title": "Ingress-Tunnel",
+  "ingress.subtitle": "Externen Zugriff über Cloudflare-Tunnel verwalten",
+  "ingress.connected": "Verbunden",
+  "ingress.disconnected": "Getrennt",
+  "ingress.since": "Seit {{time}}",
+  "ingress.start": "Starten",
+  "ingress.stop": "Stoppen",
+  "ingress.startFailed": "Tunnel konnte nicht gestartet werden",
+  "ingress.stopFailed": "Tunnel konnte nicht gestoppt werden",
+  "ingress.configuration": "Konfiguration",
+  "ingress.tunnelToken": "Tunnel-Token",
+  "ingress.tokenPlaceholder": "Optional — verwendet Standard, wenn leer",
+  "ingress.hostname": "Hostname",
+  "ingress.hostnamePlaceholder": "Optional — automatisch generiert, wenn leer",
+  "ingress.configNote": "Die Konfiguration wird beim Starten des Tunnels angewendet."
+}

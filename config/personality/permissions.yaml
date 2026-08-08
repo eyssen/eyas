@@ -1,0 +1,117 @@
+# EYAS Permission Configuration
+# Defines CASL role-based access control rules
+
+roles:
+  owner:
+    description: Full system control — root user
+    rules:
+      - action: manage
+        subject: all
+
+  admin:
+    description: Manage users, settings, modules
+    rules:
+      # User management
+      - { action: manage, subject: User }
+      - { action: manage, subject: Session }
+      - { action: manage, subject: ApiKey }
+      # Content management
+      - { action: manage, subject: [Conversation, ConversationMessage, Project, ProjectType, Stage] }
+      - { action: manage, subject: [Agent, AgentSession, Skill, Tool] }
+      - { action: manage, subject: [Document, KnowledgeSpace, KnowledgePage] }
+      - { action: manage, subject: [Tag, Activity, ChatterMessage, Scheduler, Prompt, Model] }
+      # Secrets
+      - { action: [read, create, delete], subject: Secret }
+      # Read-only system internals
+      - { action: read, subject: [Module, Audit, Notification, SecurityEvent, SelfLearning] }
+      - { action: [read, update], subject: Notification }
+      - { action: [read, create, update], subject: MemoryEntry }
+      - { action: manage, subject: [SearchSource, ProactiveAssistant] }
+
+  user:
+    description: Standard user access
+    rules:
+      # Own profile
+      - { action: [read, update], subject: User }
+      - { action: [create, read, delete], subject: ApiKey }
+      # Conversations
+      - { action: [create, read, update, delete], subject: Conversation }
+      - { action: [create, read], subject: ConversationMessage }
+      # Board (read-only)
+      - { action: read, subject: [Project, ProjectType, Stage] }
+      # Agents & skills (read-only)
+      - { action: read, subject: [Agent, Skill, Tool] }
+      # Documents (full)
+      - { action: [create, read, update, delete], subject: Document }
+      # Knowledge
+      - { action: read, subject: KnowledgeSpace }
+      - { action: [create, read, update, delete], subject: KnowledgePage }
+      # Tags, activities, chatter
+      - { action: [read, create, update], subject: Tag }
+      - { action: [create, read, update], subject: Activity }
+      - { action: [create, read], subject: ChatterMessage }
+      # Notifications
+      - { action: [read, update], subject: Notification }
+      # Memory
+      - { action: [read, create, update], subject: MemoryEntry }
+      # Search (read-only)
+      - { action: read, subject: SearchSource }
+      # Secrets (own scope)
+      - { action: [read, create, delete], subject: Secret }
+      # Model
+      - { action: [read, use], subject: Model }
+      - { action: read, subject: Prompt }
+
+  agent:
+    description: AI agent — restricted to explicit permissions
+    rules:
+      - { action: [read, update], subject: User }
+      - { action: [create, read, delete], subject: ApiKey }
+      - { action: [create, read, update], subject: Conversation }
+      - { action: [create, read], subject: ConversationMessage }
+      - { action: [execute, read], subject: Tool }
+      - { action: read, subject: [Skill, Agent, AgentSession] }
+      - { action: [read, create], subject: MemoryEntry }
+      - { action: read, subject: [Document, KnowledgePage, KnowledgeSpace] }
+      - { action: read, subject: [SearchSource, Project, ProjectType, Stage] }
+      - { action: [read, create], subject: [ChatterMessage, Activity] }
+      - { action: [read, use], subject: Model }
+
+  guest:
+    description: Read-only access
+    rules:
+      - { action: read, subject: [Conversation, ConversationMessage, Project, ProjectType] }
+      - { action: read, subject: [KnowledgePage, KnowledgeSpace, User] }
+
+# Subjects registered by the permissions module
+subjects:
+  - Conversation
+  - ConversationMessage
+  - Project
+  - ProjectType
+  - Stage
+  - User
+  - Session
+  - ApiKey
+  - Secret
+  - Module
+  - Agent
+  - AgentSession
+  - Tool
+  - Skill
+  - Document
+  - KnowledgePage
+  - KnowledgeSpace
+  - MemoryEntry
+  - SearchSource
+  - Tag
+  - Activity
+  - ChatterMessage
+  - Notification
+  - Audit
+  - Scheduler
+  - Prompt
+  - SecurityEvent
+  - SelfLearning
+  - ProactiveAssistant
+  - Model

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: eyas-data
+  labels:
+    app: eyas
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  # OKE: use storageClassName: oci-bv
+  # storageClassName: oci-bv

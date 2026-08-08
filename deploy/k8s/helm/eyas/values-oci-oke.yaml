@@ -1,0 +1,149 @@
+# ---------------------------------------------------------------------------
+# EYAS — OCI Oracle Kubernetes Engine (OKE) overrides
+# ---------------------------------------------------------------------------
+# Apply on top of values.yaml:
+#   helm install eyas deploy/k8s/helm/eyas \
+#     -f deploy/k8s/helm/eyas/values-oci-oke.yaml \
+#     --set image.repository=<region>.ocir.io/<tenancy>/eyas
+# ---------------------------------------------------------------------------
+
+image:
+  # OCI Container Registry is the default here. Override via --set if needed.
+  # Example: eu-frankfurt-1.ocir.io/<tenancy>/eyas
+  repository: eu-frankfurt-1.ocir.io/tenancy-namespace/eyas
+  pullPolicy: IfNotPresent
+  pullSecrets:
+    - name: eyas-registry
+
+# -----------------------------------------------------------------------------
+# Service — LoadBalancer using the OCI flexible shape
+# -----------------------------------------------------------------------------
+service:
+  type: ClusterIP  # keep ClusterIP + Ingress for TLS termination (recommended)
+  # If you want a direct public LoadBalancer (no Ingress), set type=LoadBalancer
+  # and adjust the annotations below.
+  annotations:
+    # Flexible shape — pay for what you use, scale up to bandwidth limit.
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
+    # Internal-only LB (set to "true" for private cluster internal exposure):
+    service.beta.kubernetes.io/oci-load-balancer-internal: "false"
+    # Pin to a specific OCI subnet (optional — remove if using default)
+    # service.beta.kubernetes.io/oci-load-balancer-subnet1: "ocid1.subnet.oc1..xxx"
+    # Health check
+    service.beta.kubernetes.io/oci-load-balancer-health-check-retries: "3"
+    service.beta.kubernetes.io/oci-load-balancer-health-check-timeout: "3000"
+    service.beta.kubernetes.io/oci-load-balancer-health-check-interval: "10000"
+
+# -----------------------------------------------------------------------------
+# Ingress — OKE Native Ingress Controller (preferred) or nginx
+# -----------------------------------------------------------------------------
+ingress:
+  enabled: true
+  # OKE add-on: oci-native-ingress-controller
+  # Alternative: "nginx" if you installed ingress-nginx manually
+  className: oci-native-ingress-controller
+  annotations:
+    # Native-ingress-controller specific:
+    oci-native-ingress.oraclecloud.com/protocol: HTTP
+    oci-native-ingress.oraclecloud.com/policy: round_robin
+    # Redirect HTTP -> HTTPS
+    oci-native-ingress.oraclecloud.com/http-backend-port: "3100"
+  hosts:
+    - host: eyas.example.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: eyas-tls
+      hosts:
+        - eyas.example.com
+
+# -----------------------------------------------------------------------------
+# Persistence — OCI Block Volume
+# -----------------------------------------------------------------------------
+persistence:
+  data:
+    enabled: true
+    storageClass: oci-bv  # Oracle Block Volume (CSI)
+    accessModes:
+      - ReadWriteOnce
+    # OCI BV minimum is 50Gi; PVC requests below that get rounded up and
+    # billed for 50Gi anyway. We request 50Gi to be explicit.
+    size: 50Gi
+  logs:
+    enabled: false
+    storageClass: oci-bv
+    size: 50Gi
+
+# -----------------------------------------------------------------------------
+# NetworkPolicy — OKE's default ingress controller namespace
+# -----------------------------------------------------------------------------
+networkPolicy:
+  enabled: true
+  # If you use nginx instead: ingress-nginx
+  ingressControllerNamespace: native-ingress-controller-system
+  ingressControllerPodLabels:
+    app.kubernetes.io/name: oci-native-ingress-controller
+
+# -----------------------------------------------------------------------------
+# Scheduling — optional node pool targeting
+# -----------------------------------------------------------------------------
+nodeSelector: {}
+# Example for a dedicated workload node pool:
+# nodeSelector:
+#   node.kubernetes.io/eyas-workload: "true"
+
+tolerations: []
+# Example — GPU node pool (only relevant if running a local LLM sidecar):
+# tolerations:
+#   - key: nvidia.com/gpu
+#     operator: Exists
+#     effect: NoSchedule
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: eyas
+          topologyKey: topology.kubernetes.io/zone
+
+# -----------------------------------------------------------------------------
+# External Secrets Operator + OCI Vault
+# -----------------------------------------------------------------------------
+# Requires ESO installed in the cluster AND a SecretStore/ClusterSecretStore
+# of type `oracle` configured separately. See:
+# https://external-secrets.io/main/provider/oracle-vault/
+externalSecrets:
+  enabled: false
+  secretStoreRef:
+    name: oci-vault
+    kind: ClusterSecretStore
+  refreshInterval: 1h
+  items: []
+  # - name: eyas-master-key
+  #   remoteRefs:
+  #     - secretKey: master-key
+  #       remoteKey: ocid1.vaultsecret.oc1.eu-frankfurt-1.xxx
+
+# -----------------------------------------------------------------------------
+# Autoscaling — safe defaults for OKE
+# -----------------------------------------------------------------------------
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+  # Uncomment when a custom-metrics API (Prometheus adapter) is available:
+  # extraMetrics:
+  #   - type: Pods
+  #     pods:
+  #       metric:
+  #         name: requests_per_second
+  #       target:
+  #         type: AverageValue
+  #         averageValue: "100"

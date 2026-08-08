@@ -1,0 +1,31 @@
+---
+title: Glossary
+description: Product terms.
+---
+
+| Term | Definition |
+|------|------------|
+| Agent | Configured AI actor |
+| Primary | Always-on setup teammates |
+| Skill | Markdown procedure pack |
+| Tool | Invokable capability |
+| Board | Work tracking surface |
+| Conversation | Chat thread |
+| Memory tier | Working→episodic→vault→archive |
+| Memory block | Scoped shared note (company/agent/team/run) agents read/write via tools |
+| Vault | Markdown long-term knowledge |
+| Provider | LLM backend |
+| MCP | Model Context Protocol |
+| Connection | Named external system inventory entry (Odoo, GitHub, MCP, …) with health + vault secrets |
+| Channel | External messaging connector |
+| Grounding | Requiring search/retrieval evidence before claiming facts from indexed sources |
+| Hybrid search | FTS + vector retrieval fused (RRF) |
+| Prompt Enhancer | Iterative coach for conversation draft prompts (model-family aware) |
+| Prompt Coach | Iterative coach for durable project / agent system prompts |
+| Forge | Approved soul/identity changes |
+| Security gate | Pre-action policy |
+| CASL | Authorization library |
+| Orchestration | Solo/Auto/Deep sub-agent policy |
+| Effort | Reasoning depth setting |
+| SLA breach | Proactive signal for overdue or stale work |
+| A2A | Agent-to-agent protocol (card + task execution) |
