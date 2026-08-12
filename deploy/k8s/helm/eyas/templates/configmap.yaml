@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "eyas.fullname" . }}-config
+  namespace: {{ include "eyas.namespace" . }}
+  labels:
+    {{- include "eyas.labels" . | nindent 4 }}
+data:
+  eyas.yaml: |
+    {{- toYaml .Values.config.eyas | nindent 4 }}

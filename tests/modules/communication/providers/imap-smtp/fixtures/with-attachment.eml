@@ -1,0 +1,22 @@
+From: Carol <carol@example.com>
+To: dan@example.com
+Subject: Invoice attached
+Date: Tue, 14 Apr 2026 12:00:00 +0000
+Message-ID: <att-1@example.com>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="MIXED-001"
+
+--MIXED-001
+Content-Type: text/plain; charset=utf-8
+
+Please find attached the invoice.
+
+Regards,
+Carol
+--MIXED-001
+Content-Type: application/pdf; name="invoice.pdf"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="invoice.pdf"
+
+JVBERi0xLjQKJeLjz9MKMSAwIG9iago8PC9Gb28vQmFyPj4KZW5kb2JqCg==
+--MIXED-001--

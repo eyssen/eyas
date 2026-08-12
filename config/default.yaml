@@ -1,0 +1,25 @@
+# eYssen EYAS 1.0 — Default Configuration
+
+server:
+  host: "0.0.0.0"
+  # 3100 — not 3000 (Grafana / CRA / Next.js often bind :3000)
+  port: 3100
+
+database:
+  path: "data/sqlite/eyas.db"
+
+log:
+  level: "info"
+  pretty: true
+
+i18n:
+  defaultLanguage: "en"
+  fallbackLanguage: "en"
+
+modules:
+  disabled: []
+
+autonomy:
+  # When false, agents may not modify their own IDENTITY.md directly;
+  # they must use forge_propose_identity_change instead.
+  identitySelfUpdate: true

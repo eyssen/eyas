@@ -1,0 +1,30 @@
+{
+  "id": "email-triage-002",
+  "category": "email-triage",
+  "prompt": "This email is a weekly industry newsletter. How should the agent handle it?",
+  "promptVariations": [
+    "Triage this incoming newsletter email and decide what to do.",
+    "An industry newsletter just arrived. Classify and propose next action."
+  ],
+  "context": {
+    "email": {
+      "from": "newsletter@erp-weekly.example",
+      "subject": "This week in ERP: Odoo 19 release notes roundup",
+      "body": "Our top picks this week: 1) New accounting-localization modules, 2) OCR improvements in mail.thread, 3) Helm charts for OKE deployments. Read more at our portal..."
+    }
+  },
+  "expectedOutcome": {
+    "action": "archive-or-summarize",
+    "mustMentionKeywords": ["newsletter"],
+    "mustNotMention": ["urgent", "reply immediately"],
+    "rubric": [
+      "Correctly classifies the message as a low-priority newsletter",
+      "Does NOT draft a reply",
+      "Either files to a 'Reading' folder or produces a one-line summary for the inbox digest",
+      "Does not mark it urgent or escalate to a human"
+    ]
+  },
+  "maxTokens": 2000,
+  "maxCostUsd": 0.02,
+  "maxDurationSec": 15
+}

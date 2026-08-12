@@ -1,0 +1,44 @@
+# eYssen EYAS — Disaster Recovery / Backup
+#
+# Local archives always go to data/backups/. Optionally set a primary offsite
+# destination via the Backup UI or data/backups/destinations.json.
+#
+# Destination types: s3 (AWS / Backblaze B2 / R2 / MinIO), ftp, dropbox, ssh
+#
+# Secrets are NOT stored in this file. Use env vars referenced in secretRefs,
+# e.g. BACKUP_S3_ACCESS_KEY, or store them under Settings → Secrets.
+#
+# Example destinations.json fragment:
+# {
+#   "primaryDestinationId": "b2",
+#   "destinations": [{
+#     "id": "b2",
+#     "type": "s3",
+#     "name": "Backblaze B2",
+#     "enabled": true,
+#     "settings": {
+#       "endpoint": "https://s3.us-west-000.backblazeb2.com",
+#       "bucket": "eyas-backups",
+#       "region": "us-west-000",
+#       "prefix": "eyas"
+#     },
+#     "secretRefs": {
+#       "accessKeyId": "BACKUP_S3_ACCESS_KEY",
+#       "secretAccessKey": "BACKUP_S3_SECRET_KEY"
+#     }
+#   }]
+# }
+
+backup:
+  enabled: true
+  provider: local
+  paths:
+    - data
+    - config
+    - .env
+    - docker-compose.override.yml
+    - version.json
+  output_dir: data/backups
+  retention:
+    max_count: 10
+    max_age_days: 30
