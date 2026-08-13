@@ -1,0 +1,17 @@
+{
+  "ingress.title": "Túnel de entrada",
+  "ingress.subtitle": "Gestiona el acceso externo mediante el túnel de Cloudflare",
+  "ingress.connected": "Conectado",
+  "ingress.disconnected": "Desconectado",
+  "ingress.since": "Desde {{time}}",
+  "ingress.start": "Iniciar",
+  "ingress.stop": "Detener",
+  "ingress.startFailed": "No se pudo iniciar el túnel",
+  "ingress.stopFailed": "No se pudo detener el túnel",
+  "ingress.configuration": "Configuración",
+  "ingress.tunnelToken": "Token del túnel",
+  "ingress.tokenPlaceholder": "Opcional — usa el predeterminado si está vacío",
+  "ingress.hostname": "Nombre de host",
+  "ingress.hostnamePlaceholder": "Opcional — se genera automáticamente si está vacío",
+  "ingress.configNote": "La configuración se aplica al iniciar el túnel."
+}

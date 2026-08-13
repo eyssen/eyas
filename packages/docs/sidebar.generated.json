@@ -1,0 +1,579 @@
+[
+  {
+    "label": "Start",
+    "translations": {
+      "hu": "Kezdés",
+      "de": "Start",
+      "es": "Inicio"
+    },
+    "items": [
+      {
+        "label": "Welcome",
+        "translations": {
+          "hu": "Üdvözlet",
+          "de": "Willkommen",
+          "es": "Bienvenida"
+        },
+        "slug": "index"
+      },
+      {
+        "label": "Getting started",
+        "translations": {
+          "hu": "Első lépések",
+          "de": "Erste Schritte",
+          "es": "Primeros pasos"
+        },
+        "slug": "getting-started"
+      },
+      {
+        "label": "Setup wizard",
+        "translations": {
+          "hu": "Setup varázsló",
+          "de": "Setup-Assistent",
+          "es": "Asistente de configuración"
+        },
+        "slug": "setup-wizard"
+      },
+      {
+        "label": "Core concepts",
+        "translations": {
+          "hu": "Alapfogalmak",
+          "de": "Grundkonzepte",
+          "es": "Conceptos básicos"
+        },
+        "slug": "concepts"
+      }
+    ]
+  },
+  {
+    "label": "Daily work",
+    "translations": {
+      "hu": "Napi munka",
+      "de": "Tägliche Arbeit",
+      "es": "Trabajo diario"
+    },
+    "items": [
+      {
+        "label": "Dashboard",
+        "translations": {
+          "hu": "Irányítópult",
+          "de": "Dashboard",
+          "es": "Panel"
+        },
+        "slug": "daily/dashboard"
+      },
+      {
+        "label": "Conversations",
+        "translations": {
+          "hu": "Beszélgetések",
+          "de": "Gespräche",
+          "es": "Conversaciones"
+        },
+        "slug": "daily/conversations"
+      },
+      {
+        "label": "Board",
+        "translations": {
+          "hu": "Tábla",
+          "de": "Board",
+          "es": "Tablero"
+        },
+        "slug": "daily/board"
+      },
+      {
+        "label": "Projects",
+        "translations": {
+          "hu": "Projektek",
+          "de": "Projekte",
+          "es": "Proyectos"
+        },
+        "slug": "daily/projects"
+      },
+      {
+        "label": "Search",
+        "translations": {
+          "hu": "Keresés",
+          "de": "Suche",
+          "es": "Búsqueda"
+        },
+        "slug": "daily/search"
+      }
+    ]
+  },
+  {
+    "label": "Agents",
+    "translations": {
+      "hu": "Ágensek",
+      "de": "Agenten",
+      "es": "Agentes"
+    },
+    "items": [
+      {
+        "label": "Agents overview",
+        "translations": {
+          "hu": "Ágensek áttekintés",
+          "de": "Agenten-Übersicht",
+          "es": "Resumen de agentes"
+        },
+        "slug": "agents/overview"
+      },
+      {
+        "label": "Create & configure",
+        "translations": {
+          "hu": "Létrehozás és beállítás",
+          "de": "Erstellen & konfigurieren",
+          "es": "Crear y configurar"
+        },
+        "slug": "agents/configure"
+      },
+      {
+        "label": "Identity & workspace",
+        "translations": {
+          "hu": "Identitás és workspace",
+          "de": "Identität & Workspace",
+          "es": "Identidad y workspace"
+        },
+        "slug": "agents/identity-workspace"
+      },
+      {
+        "label": "Voice profiles",
+        "translations": {
+          "hu": "Hangprofilok",
+          "de": "Stimmprofile",
+          "es": "Perfiles de voz"
+        },
+        "slug": "agents/voice"
+      },
+      {
+        "label": "Teams & delegation",
+        "translations": {
+          "hu": "Csapatok és delegálás",
+          "de": "Teams & Delegation",
+          "es": "Equipos y delegación"
+        },
+        "slug": "agents/teams"
+      },
+      {
+        "label": "Runs & Mission Control",
+        "translations": {
+          "hu": "Futtatások és Mission Control",
+          "de": "Läufe & Mission Control",
+          "es": "Ejecuciones y Mission Control"
+        },
+        "slug": "agents/runs"
+      },
+      {
+        "label": "Forge",
+        "translations": {
+          "hu": "Forge",
+          "de": "Forge",
+          "es": "Forge"
+        },
+        "slug": "agents/forge"
+      },
+      {
+        "label": "Autonomy",
+        "translations": {
+          "hu": "Autonómia",
+          "de": "Autonomie",
+          "es": "Autonomía"
+        },
+        "slug": "agents/autonomy"
+      }
+    ]
+  },
+  {
+    "label": "Skills & automation",
+    "translations": {
+      "hu": "Skillek és automatizálás",
+      "de": "Skills & Automatisierung",
+      "es": "Skills y automatización"
+    },
+    "items": [
+      {
+        "label": "Skills",
+        "translations": {
+          "hu": "Skillek",
+          "de": "Skills",
+          "es": "Skills"
+        },
+        "slug": "automation/skills"
+      },
+      {
+        "label": "Tools",
+        "translations": {
+          "hu": "Toolok",
+          "de": "Tools",
+          "es": "Tools"
+        },
+        "slug": "automation/tools"
+      },
+      {
+        "label": "Scheduler",
+        "translations": {
+          "hu": "Ütemező",
+          "de": "Scheduler",
+          "es": "Programador"
+        },
+        "slug": "automation/scheduler"
+      },
+      {
+        "label": "Pipelines",
+        "translations": {
+          "hu": "Pipeline-ok",
+          "de": "Pipelines",
+          "es": "Pipelines"
+        },
+        "slug": "automation/pipelines"
+      },
+      {
+        "label": "Research",
+        "translations": {
+          "hu": "Kutatás",
+          "de": "Research",
+          "es": "Investigación"
+        },
+        "slug": "automation/research"
+      },
+      {
+        "label": "Proactive assistant",
+        "translations": {
+          "hu": "Proaktív asszisztens",
+          "de": "Proaktiver Assistent",
+          "es": "Asistente proactivo"
+        },
+        "slug": "automation/proactive"
+      },
+      {
+        "label": "Self-learning & skill evolution",
+        "translations": {
+          "hu": "Öntanulás és skill evolution",
+          "de": "Selbstlernen & Skill-Evolution",
+          "es": "Autoaprendizaje y evolución de skills"
+        },
+        "slug": "automation/self-learning"
+      }
+    ]
+  },
+  {
+    "label": "Knowledge & memory",
+    "translations": {
+      "hu": "Tudás és memória",
+      "de": "Wissen & Speicher",
+      "es": "Conocimiento y memoria"
+    },
+    "items": [
+      {
+        "label": "Memory",
+        "translations": {
+          "hu": "Memória",
+          "de": "Speicher",
+          "es": "Memoria"
+        },
+        "slug": "knowledge/memory"
+      },
+      {
+        "label": "Knowledge base",
+        "translations": {
+          "hu": "Tudásbázis",
+          "de": "Wissensbasis",
+          "es": "Base de conocimiento"
+        },
+        "slug": "knowledge/knowledge-base"
+      },
+      {
+        "label": "Documents",
+        "translations": {
+          "hu": "Dokumentumok",
+          "de": "Dokumente",
+          "es": "Documentos"
+        },
+        "slug": "knowledge/documents"
+      },
+      {
+        "label": "Client wiki",
+        "translations": {
+          "hu": "Ügyfél wiki",
+          "de": "Kunden-Wiki",
+          "es": "Wiki de cliente"
+        },
+        "slug": "knowledge/client-wiki"
+      },
+      {
+        "label": "Meetings",
+        "translations": {
+          "hu": "Meetingek",
+          "de": "Meetings",
+          "es": "Reuniones"
+        },
+        "slug": "knowledge/meetings"
+      }
+    ]
+  },
+  {
+    "label": "Communication",
+    "translations": {
+      "hu": "Kommunikáció",
+      "de": "Kommunikation",
+      "es": "Comunicación"
+    },
+    "items": [
+      {
+        "label": "Channels overview",
+        "translations": {
+          "hu": "Csatornák áttekintés",
+          "de": "Kanäle-Übersicht",
+          "es": "Resumen de canales"
+        },
+        "slug": "communication/channels"
+      },
+      {
+        "label": "Telegram",
+        "translations": {
+          "hu": "Telegram",
+          "de": "Telegram",
+          "es": "Telegram"
+        },
+        "slug": "communication/telegram"
+      },
+      {
+        "label": "A2A & external agents",
+        "translations": {
+          "hu": "A2A és külső ágensek",
+          "de": "A2A & externe Agenten",
+          "es": "A2A y agentes externos"
+        },
+        "slug": "communication/a2a"
+      }
+    ]
+  },
+  {
+    "label": "AI models & prompts",
+    "translations": {
+      "hu": "AI modellek és prompok",
+      "de": "KI-Modelle & Prompts",
+      "es": "Modelos de IA y prompts"
+    },
+    "items": [
+      {
+        "label": "Providers",
+        "translations": {
+          "hu": "Providerek",
+          "de": "Provider",
+          "es": "Proveedores"
+        },
+        "slug": "ai/providers"
+      },
+      {
+        "label": "Routing & budget",
+        "translations": {
+          "hu": "Routing és budget",
+          "de": "Routing & Budget",
+          "es": "Enrutado y presupuesto"
+        },
+        "slug": "ai/routing-budget"
+      },
+      {
+        "label": "Prompts system",
+        "translations": {
+          "hu": "Prompt rendszer",
+          "de": "Prompt-System",
+          "es": "Sistema de prompts"
+        },
+        "slug": "ai/prompts"
+      },
+      {
+        "label": "MCP servers",
+        "translations": {
+          "hu": "MCP szerverek",
+          "de": "MCP-Server",
+          "es": "Servidores MCP"
+        },
+        "slug": "ai/mcp"
+      }
+    ]
+  },
+  {
+    "label": "Administration",
+    "translations": {
+      "hu": "Adminisztráció",
+      "de": "Administration",
+      "es": "Administración"
+    },
+    "items": [
+      {
+        "label": "Users & permissions",
+        "translations": {
+          "hu": "Felhasználók és jogosultságok",
+          "de": "Benutzer & Rechte",
+          "es": "Usuarios y permisos"
+        },
+        "slug": "admin/users"
+      },
+      {
+        "label": "Secrets & API keys",
+        "translations": {
+          "hu": "Secrettek és API kulcsok",
+          "de": "Secrets & API-Schlüssel",
+          "es": "Secretos y claves API"
+        },
+        "slug": "admin/secrets"
+      },
+      {
+        "label": "Connections",
+        "translations": {
+          "hu": "Kapcsolatok",
+          "de": "Verbindungen",
+          "es": "Conexiones"
+        },
+        "slug": "admin/connections"
+      },
+      {
+        "label": "Settings overview",
+        "translations": {
+          "hu": "Beállítások áttekintés",
+          "de": "Einstellungen-Übersicht",
+          "es": "Resumen de ajustes"
+        },
+        "slug": "admin/settings"
+      },
+      {
+        "label": "Backup & restore",
+        "translations": {
+          "hu": "Backup és visszaállítás",
+          "de": "Backup & Wiederherstellung",
+          "es": "Copia y restauración"
+        },
+        "slug": "admin/backup"
+      },
+      {
+        "label": "Data import & export",
+        "translations": {
+          "hu": "Adatimport és -export",
+          "de": "Datenimport & -export",
+          "es": "Importación y exportación de datos"
+        },
+        "slug": "admin/data-port"
+      },
+      {
+        "label": "Security & privacy",
+        "translations": {
+          "hu": "Biztonság és adatvédelem",
+          "de": "Sicherheit & Datenschutz",
+          "es": "Seguridad y privacidad"
+        },
+        "slug": "admin/security-privacy"
+      },
+      {
+        "label": "Observability & ops",
+        "translations": {
+          "hu": "Observability és ops",
+          "de": "Observability & Ops",
+          "es": "Observabilidad y ops"
+        },
+        "slug": "admin/observability"
+      }
+    ]
+  },
+  {
+    "label": "Deploy & CLI",
+    "translations": {
+      "hu": "Üzemeltetés és CLI",
+      "de": "Betrieb & CLI",
+      "es": "Despliegue y CLI"
+    },
+    "items": [
+      {
+        "label": "Native install",
+        "translations": {
+          "hu": "Natív telepítés",
+          "de": "Native Installation",
+          "es": "Instalación nativa"
+        },
+        "slug": "deploy/native"
+      },
+      {
+        "label": "Docker",
+        "translations": {
+          "hu": "Docker",
+          "de": "Docker",
+          "es": "Docker"
+        },
+        "slug": "deploy/docker"
+      },
+      {
+        "label": "Kubernetes",
+        "translations": {
+          "hu": "Kubernetes",
+          "de": "Kubernetes",
+          "es": "Kubernetes"
+        },
+        "slug": "deploy/kubernetes"
+      },
+      {
+        "label": "Multiple instances",
+        "translations": {
+          "hu": "Több példány",
+          "de": "Mehrere Instanzen",
+          "es": "Varias instancias"
+        },
+        "slug": "deploy/multi-instance"
+      },
+      {
+        "label": "CLI reference",
+        "translations": {
+          "hu": "CLI referencia",
+          "de": "CLI-Referenz",
+          "es": "Referencia CLI"
+        },
+        "slug": "deploy/cli"
+      },
+      {
+        "label": "Configuration",
+        "translations": {
+          "hu": "Konfiguráció",
+          "de": "Konfiguration",
+          "es": "Configuración"
+        },
+        "slug": "deploy/configuration"
+      }
+    ]
+  },
+  {
+    "label": "Reference",
+    "translations": {
+      "hu": "Referencia",
+      "de": "Referenz",
+      "es": "Referencia"
+    },
+    "items": [
+      {
+        "label": "Glossary",
+        "translations": {
+          "hu": "Szójegyzék",
+          "de": "Glossar",
+          "es": "Glosario"
+        },
+        "slug": "reference/glossary"
+      },
+      {
+        "label": "FAQ",
+        "translations": {
+          "hu": "GYIK",
+          "de": "FAQ",
+          "es": "FAQ"
+        },
+        "slug": "reference/faq"
+      },
+      {
+        "label": "Architecture (pointer)",
+        "translations": {
+          "hu": "Architektúra (mutató)",
+          "de": "Architektur (Verweis)",
+          "es": "Arquitectura (enlace)"
+        },
+        "slug": "reference/architecture"
+      }
+    ]
+  }
+]

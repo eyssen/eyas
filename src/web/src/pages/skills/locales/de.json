@@ -1,0 +1,22 @@
+{
+  "skills.title": "Skills",
+  "skills.subtitle": "Skill-Vorlagen, Trigger-Muster und generierte Skills verwalten",
+  "skills.enabledLabel": "aktiviert",
+  "skills.createSkill": "Skill erstellen",
+  "skills.source.bundled": "Integriert",
+  "skills.source.user": "Eigene",
+  "skills.source.generated": "Generiert",
+  "skills.category.own": "Eigene",
+  "skills.filter.all": "Alle",
+  "skills.filter.own": "Eigene Skills",
+  "skills.filter.bundled": "Integriert",
+  "skills.form.namePlaceholder": "Skill-Name",
+  "skills.form.triggerPlaceholder": "Trigger-Muster (durch Komma getrennt)",
+  "skills.form.contentPlaceholder": "Skill-Inhalt / Vorlage",
+  "skills.searchPlaceholder": "Nach Name oder Trigger-Muster suchen…",
+  "skills.showContent": "Inhalt anzeigen",
+  "skills.hideContent": "Inhalt ausblenden",
+  "skills.loading": "Skills werden geladen…",
+  "skills.loadError": "Skills konnten nicht geladen werden: {{error}}",
+  "skills.emptyTitle": "Keine Skills gefunden. Erstelle einen, um loszulegen."
+}

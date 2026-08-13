@@ -1,0 +1,65 @@
+{
+  "title": "Notifications",
+  "settings": {
+    "title": "Notification Settings",
+    "description": "Choose which events and channels you want to be notified on.",
+    "minSeverity": "Minimum severity",
+    "severity": {
+      "info": "Info",
+      "warning": "Warning",
+      "error": "Error",
+      "critical": "Critical"
+    },
+    "eventPattern": "Event pattern",
+    "eventPatternHelp": "E.g. `budget.*`, `agent.task.completed`, or `*` for all events",
+    "channel": "Channel",
+    "channelOptions": {
+      "web": "In-app (WebSocket)",
+      "email": "Email",
+      "telegram": "Telegram",
+      "webhook": "Webhook (HTTP)"
+    },
+    "deliveryMode": "Delivery mode",
+    "deliveryModes": {
+      "immediate": "Immediate",
+      "batched": "Batched (digest)"
+    },
+    "deliveryHelp": "In batched mode, webhook and email channels group notifications into a 5-minute digest window.",
+    "quietHours": "Quiet hours",
+    "quietFrom": "From",
+    "quietTo": "To",
+    "quietHelp": "Critical-severity notifications bypass quiet hours.",
+    "save": "Save",
+    "delete": "Delete",
+    "addPreference": "Add preference"
+  },
+  "webhook": {
+    "title": "Webhook target",
+    "url": "URL",
+    "urlHelp": "Only http(s) URLs. Loopback and metadata (169.254.x.x) hosts are blocked.",
+    "secret": "Shared secret (HMAC)",
+    "secretHelp": "When set, every payload receives an `X-EYAS-Signature: sha256=...` header.",
+    "headers": "Custom headers",
+    "enabled": "Enabled",
+    "test": "Send test",
+    "saved": "Webhook saved",
+    "deleted": "Webhook deleted",
+    "invalidUrl": "Invalid or blocked URL"
+  },
+  "retry": {
+    "title": "Retry queue",
+    "pending": "Pending",
+    "failed": "Failed (dead letter)",
+    "disabled": "Not active"
+  },
+  "list": {
+    "empty": "No notifications",
+    "markAllRead": "Mark all as read",
+    "markRead": "Read",
+    "unreadCount": "{{count}} unread"
+  },
+  "errors": {
+    "saveFailed": "Failed to save preference",
+    "rateLimited": "Too many notifications sent this hour"
+  }
+}

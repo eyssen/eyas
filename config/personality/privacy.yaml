@@ -1,0 +1,24 @@
+# EYAS Privacy Configuration
+# PII scanner chain and policy rules
+
+privacy:
+  enabled: true
+  scanners: [regex, custom]  # ner is auto-detected via Ollama availability
+
+  rules:
+    - pattern: "personal_id|tax_number|iban"
+      action: block
+    - pattern: "email|phone"
+      action: sanitize
+    - pattern: "credit_card|ssn"
+      action: block
+    - pattern: "custom"
+      action: warn
+
+  custom_patterns:
+    - name: "internal_project"
+      regex: "PROJECT-[A-Z]{3}-\\d+"
+      type: "custom"
+      confidence: 0.9
+
+  audit: true  # Log all PII detections to event bus

@@ -1,0 +1,63 @@
+# EYAS Model Routing Configuration
+# Defines which AI provider+model to use for each task tier.
+# These are defaults — overridable via Settings → Providers → Routing Tiers.
+
+auto_routing: true    # When true, EYAS auto-selects model based on message analysis
+
+tiers:
+  triage:
+    description: "First message analysis — complexity and category detection"
+    provider: ollama
+    model: llama3
+    fallback_provider: anthropic
+    fallback_model: claude-haiku-4-5-20251001
+
+  quick:
+    description: "Simple questions, translations, FAQs"
+    provider: ollama
+    model: llama3
+    fallback_provider: anthropic
+    fallback_model: claude-haiku-4-5-20251001
+
+  standard:
+    description: "Normal tasks — code writing, analysis, planning"
+    provider: anthropic
+    model: claude-sonnet-4-20250514
+    fallback_provider: openrouter
+    fallback_model: anthropic/claude-sonnet-4-5
+
+  complex:
+    description: "Deep reasoning, architecture, security audit"
+    provider: anthropic
+    model: claude-opus-4-20250514
+    fallback_provider: openrouter
+    fallback_model: anthropic/claude-opus-4
+
+  code:
+    description: "File operations, git, shell execution (Claude Code SDK)"
+    provider: claude-code
+    model: claude-code-sonnet
+    fallback_provider: anthropic
+    fallback_model: claude-sonnet-4-20250514
+
+  heartbeat:
+    description: "Background — proactive checks, self-learning, scheduler"
+    provider: ollama
+    model: llama3
+    fallback_provider: anthropic
+    fallback_model: claude-haiku-4-5-20251001
+
+  embedding:
+    description: "Vector search, semantic indexing"
+    provider: ollama
+    model: nomic-embed-text
+    fallback_provider: openai
+    fallback_model: text-embedding-3-small
+
+budget:
+  daily_limit: null     # null = unlimited
+  weekly_limit: null
+  monthly_limit: null
+  warn_at: 0.8          # 80%
+  downgrade_at: 1.0     # 100%
+  hard_stop_at: 1.2     # 120%
