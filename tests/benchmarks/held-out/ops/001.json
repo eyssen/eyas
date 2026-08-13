@@ -1,0 +1,29 @@
+{
+  "id": "heldout-ops-001",
+  "category": "ops",
+  "prompt": "A HorizontalPodAutoscaler isn't scaling up our `api` deployment even though CPU metrics show 95% sustained. Diagnostic plan?",
+  "promptVariations": [
+    "HPA is stuck; `api` pods are hammered at 95% CPU but no new replicas. Walk through diagnosis."
+  ],
+  "context": {
+    "deployment": "api",
+    "namespace": "eyas-prod",
+    "hpa": "api-hpa",
+    "minReplicas": 2,
+    "maxReplicas": 10,
+    "targetCpuPct": 70
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["metrics-server", "requests"],
+    "mustNotMention": ["kubectl scale", "just set maxReplicas to 100"],
+    "rubric": [
+      "Verifies metrics-server is running and reporting",
+      "Checks CPU resource REQUESTS are set (HPA uses request %, not absolute)",
+      "Inspects HPA events and status conditions",
+      "Does NOT recommend manually kubectl scale as a fix (that masks the issue)"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 25
+}

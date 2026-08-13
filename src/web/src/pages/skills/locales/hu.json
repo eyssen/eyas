@@ -1,0 +1,22 @@
+{
+  "skills.title": "Készségek",
+  "skills.subtitle": "Készségsablonok, trigger-minták és a generált készségek kezelése",
+  "skills.enabledLabel": "engedélyezve",
+  "skills.createSkill": "Új készség",
+  "skills.source.bundled": "Beépített",
+  "skills.source.user": "Saját",
+  "skills.source.generated": "Generált",
+  "skills.category.own": "Saját",
+  "skills.filter.all": "Összes",
+  "skills.filter.own": "Saját skillek",
+  "skills.filter.bundled": "Beépített",
+  "skills.form.namePlaceholder": "Készség neve",
+  "skills.form.triggerPlaceholder": "Trigger minták (vesszővel elválasztva)",
+  "skills.form.contentPlaceholder": "Készség tartalma / sablon",
+  "skills.searchPlaceholder": "Keresés név vagy trigger minta szerint…",
+  "skills.showContent": "Tartalom mutatása",
+  "skills.hideContent": "Tartalom elrejtése",
+  "skills.loading": "Készségek betöltése…",
+  "skills.loadError": "Nem sikerült betölteni a készségeket: {{error}}",
+  "skills.emptyTitle": "Nincs készség. Hozz létre egyet a kezdéshez."
+}

@@ -1,0 +1,28 @@
+apiVersion: v2
+name: eyas
+description: |
+  EYAS — Personal AI Assistant. Modular TypeScript platform combining
+  autonomous agent execution, team orchestration, computer use, and
+  multi-channel communication in a single self-hosted service.
+type: application
+# Chart version — bump on chart changes. Follows SemVer.
+version: 0.1.0
+# App version — should track the EYAS release being deployed.
+appVersion: "0.8.9-beta"
+kubeVersion: ">=1.28.0-0"
+home: https://github.com/eyssen/eyas
+sources:
+  - https://github.com/eyssen/eyas
+maintainers:
+  - name: eYssen
+    url: https://www.eyssen.com
+keywords:
+  - ai
+  - assistant
+  - agent
+  - llm
+  - eyas
+icon: https://www.eyssen.com/favicon.ico
+annotations:
+  category: AI
+  licenses: MIT

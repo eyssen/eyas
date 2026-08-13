@@ -1,0 +1,19 @@
+{
+  "autonomy.title": "Autonomía",
+  "autonomy.subtitlePre": "Cuánto puede actuar el asistente por su cuenta, según la clase de acción. Las acciones irreversibles / salientes están bloqueadas en ",
+  "autonomy.subtitlePost": " y no se pueden aumentar: un límite de seguridad.",
+  "autonomy.level.1.label": "Aviso",
+  "autonomy.level.1.hint": "Preguntar primero",
+  "autonomy.level.2.label": "Aprobar",
+  "autonomy.level.2.hint": "Propuesta + aprobación con un clic",
+  "autonomy.level.3.label": "Auto",
+  "autonomy.level.3.hint": "Autónomo + informe posterior",
+  "autonomy.pendingApprovals": "Aprobaciones pendientes",
+  "autonomy.nothingWaiting": "No hay nada esperando aprobación.",
+  "autonomy.approve": "Aprobar",
+  "autonomy.reject": "Rechazar",
+  "autonomy.group.reversible": "Reversible",
+  "autonomy.group.locked": "Saliente / irreversible (bloqueado)",
+  "autonomy.parkedRun": "Ejecución en espera",
+  "autonomy.resumeFailed": "No se pudo reanudar: {{reason}}"
+}

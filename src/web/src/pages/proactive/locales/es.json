@@ -1,0 +1,19 @@
+{
+  "proactive.title": "Panel proactivo",
+  "proactive.subtitle": "Alertas activas, hallazgos y patrones aprendidos",
+  "proactive.priority.urgent": "Urgente",
+  "proactive.priority.high": "Alta",
+  "proactive.priority.normal": "Normal",
+  "proactive.priority.low": "Baja",
+  "proactive.urgentCount": "{{count}} urgentes",
+  "proactive.checkNow": "Comprobar ahora",
+  "proactive.checking": "Comprobando…",
+  "proactive.activeAlerts": "Alertas activas",
+  "proactive.loadingAlerts": "Cargando alertas…",
+  "proactive.alertsError": "No se pudieron cargar las alertas: {{message}}",
+  "proactive.allClear": "Todo en orden: no hay alertas activas",
+  "proactive.learnedLessons": "Lecciones aprendidas",
+  "proactive.loadingLessons": "Cargando lecciones…",
+  "proactive.noLessons": "Aún no hay lecciones aprendidas.",
+  "proactive.confidence": "{{value}} % de confianza"
+}

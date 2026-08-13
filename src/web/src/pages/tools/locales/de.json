@@ -1,0 +1,17 @@
+{
+  "tools.title": "Werkzeuge",
+  "tools.subtitle": "Registrierte Werkzeuge, die für die Agent-Ausführung verfügbar sind",
+  "tools.countLabel": "Werkzeuge",
+  "tools.requireApproval": "erfordern Freigabe",
+  "tools.searchPlaceholder": "Werkzeuge suchen…",
+  "tools.allCategories": "Alle Kategorien",
+  "tools.allRiskTiers": "Alle Risikostufen",
+  "tools.requiresApproval": "Erfordert Freigabe",
+  "tools.riskSuffix": "Risiko",
+  "tools.approvalRequired": "Freigabe erforderlich",
+  "tools.showSchema": "Schema anzeigen",
+  "tools.hideSchema": "Schema ausblenden",
+  "tools.loading": "Werkzeuge werden geladen…",
+  "tools.loadError": "Werkzeuge konnten nicht geladen werden: {{error}}",
+  "tools.empty": "Noch keine Werkzeuge registriert."
+}

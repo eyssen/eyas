@@ -1,0 +1,9 @@
+{
+  "id": "fixture-urgent-client",
+  "from": "anna.szabo@bigclient.example",
+  "to": ["user@eyas.example"],
+  "subject": "Urgent: production is down for BigClient",
+  "body": "Hi, our production environment has been down since 09:12. Logs show a database connection error. Could you please take a look as soon as possible? This is blocking our sales team.\n\nThanks,\nAnna",
+  "receivedAt": "2026-04-16T09:15:00+02:00",
+  "headers": {}
+}
