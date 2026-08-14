@@ -1,0 +1,27 @@
+# eYssen EYAS 1.0 — Memory Module Configuration
+memory:
+  working:
+    ttl_hours: 24
+    default_blocks:
+      - user_context
+      - current_task
+      - preferences
+    max_tokens_per_block: 500
+  episodic:
+    decay_rate: 0.95
+    promotion_threshold: 0.7
+    promotion_min_access: 3
+    demotion_threshold: 0.2
+    demotion_age_days: 30
+  vault:
+    path: data/vault
+    watch: true
+  consolidation:
+    implicit_extraction: true
+    auto_dream_cron: "0 3 * * *"
+    auto_dream_model: haiku
+  search:
+    context_budget_tokens: 4000
+    rrf_k: 60
+    fts_weight_default: 0.5
+    vector_weight_default: 0.5

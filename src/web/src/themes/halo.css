@@ -1,0 +1,82 @@
+/* HALO — airy spatial depth, visionOS-flavored. Frosted translucent panels
+   floating over an ambient teal/azure/iris glow field, large radii, SF Pro
+   type. Dark (per mockup default) is a deep blue-biased space; light is the
+   same glass system lifted onto a soft, luminous ground. */
+:root[data-template="halo"] {
+  --background: 214 41% 93%;         /* #e7edf5 */
+  --foreground: 217 29% 9%;          /* #10151d */
+  --card: 210 40% 98%;               /* #f8fafc */
+  --card-foreground: 217 29% 9%;
+  --popover: 210 37% 97%;            /* #f4f7fa */
+  --popover-foreground: 217 29% 9%;
+  --primary: 186 74% 63%;            /* #5ad7e6 teal */
+  --primary-foreground: 198 74% 6%;  /* #04141b on-accent ink */
+  --secondary: 214 47% 97%;          /* #f4f7fb */
+  --secondary-foreground: 217 29% 9%;
+  --muted: 214 33% 88%;              /* #d5deea */
+  --muted-foreground: 214 6% 55%;    /* #848a92 */
+  --accent: 217 33% 90%;             /* muted azure wash (tinted --muted), not a vivid fill */
+  --accent-foreground: 217 29% 9%;
+  --destructive: 3 100% 61%;         /* #ff453a spark */
+  --destructive-foreground: 0 0% 100%;
+  --border: 218 19% 83%;             /* #ccd2dc */
+  --input: 218 19% 83%;
+  --ring: 186 74% 63%;
+  --radius: 1.25rem;
+  --border-width: 1px;
+  --shadow-offset: 0 18px 40px -20px rgba(38,170,205,.24);
+  --font-sans: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, 'Helvetica Neue', sans-serif;
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, 'Helvetica Neue', sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, 'Consolas', monospace;
+  --vibrancy-bg: rgba(231,237,245,.55);
+  --vibrancy-border: rgba(20,30,52,.13);
+  --card-glass: rgba(255,255,255,.5);
+  --card-shadow: 0 34px 70px -36px rgba(35,55,95,.42), 0 14px 30px -20px rgba(35,55,95,.30);
+  --nav-active-bg: rgba(38,170,205,.14);
+  --nav-active-color: #26aacd;
+  --nav-active-glow: rgba(38,170,205,.4);
+  --gradient-bg: radial-gradient(120% 100% at 82% -12%, rgba(38,170,205,.30), transparent 52%),
+    radial-gradient(110% 84% at 4% 8%, rgba(92,132,242,.24), transparent 50%),
+    radial-gradient(90% 78% at 60% 118%, rgba(150,110,240,.20), transparent 55%),
+    radial-gradient(58% 60% at 98% 96%, rgba(255,69,58,.14), transparent 60%),
+    linear-gradient(158deg, #f4f7fb, #e7edf5 40%, #d5deea 74%, #c2ccdb);
+}
+:root[data-template="halo"].dark {
+  --background: 218 32% 10%;         /* #111721 */
+  --foreground: 210 50% 96%;         /* #f0f5fa */
+  --card: 216 16% 18%;               /* #262c35 */
+  --card-foreground: 210 50% 96%;
+  --popover: 216 21% 14%;            /* #1d232c */
+  --popover-foreground: 210 50% 96%;
+  --primary: 186 74% 63%;            /* #5ad7e6 teal */
+  --primary-foreground: 198 74% 6%;  /* #04141b on-accent ink */
+  --secondary: 217 25% 14%;          /* #1b222d */
+  --secondary-foreground: 210 50% 96%;
+  --muted: 218 35% 6%;               /* #0a0e15 */
+  --muted-foreground: 212 6% 45%;    /* #6c737b */
+  --accent: 217 22% 18%;             /* muted azure wash (tinted --muted), not a vivid fill */
+  --accent-foreground: 210 50% 96%;
+  --destructive: 3 100% 61%;         /* #ff453a spark */
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 14% 20%;             /* #2b3139 */
+  --input: 214 14% 20%;
+  --ring: 186 74% 63%;
+  --radius: 1.25rem;
+  --border-width: 1px;
+  --shadow-offset: 0 20px 48px -22px rgba(90,215,230,.28);
+  --font-sans: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, 'Helvetica Neue', sans-serif;
+  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, 'Helvetica Neue', sans-serif;
+  --font-mono: 'SF Mono', ui-monospace, Menlo, 'Consolas', monospace;
+  --vibrancy-bg: rgba(17,23,33,.55);
+  --vibrancy-border: rgba(255,255,255,.11);
+  --card-glass: rgba(255,255,255,.06);
+  --card-shadow: 0 34px 80px -34px rgba(0,0,0,.80), 0 14px 34px -20px rgba(0,0,0,.62);
+  --nav-active-bg: rgba(90,215,230,.16);
+  --nav-active-color: #5ad7e6;
+  --nav-active-glow: rgba(90,215,230,.5);
+  --gradient-bg: radial-gradient(120% 100% at 82% -12%, rgba(90,215,230,.24), transparent 52%),
+    radial-gradient(110% 84% at 4% 8%, rgba(110,166,254,.20), transparent 50%),
+    radial-gradient(90% 78% at 60% 118%, rgba(181,139,255,.16), transparent 55%),
+    radial-gradient(58% 60% at 98% 96%, rgba(255,69,58,.10), transparent 60%),
+    linear-gradient(158deg, #1b222d, #111721 40%, #0a0e15 74%, #05070b);
+}

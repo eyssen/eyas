@@ -1,0 +1,11 @@
+{
+  "name": "create-eyas",
+  "version": "0.8.10-beta",
+  "description": "Scaffold a new EYAS project — Personal AI Agent Platform",
+  "type": "module",
+  "bin": { "create-eyas": "./index.ts" },
+  "files": ["index.ts", "templates/"],
+  "license": "MIT",
+  "author": "eYssen",
+  "repository": { "type": "git", "url": "https://github.com/eyssen/eyas" }
+}
