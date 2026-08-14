@@ -1,0 +1,23 @@
+{
+  "research.newResearch": "tej chu'",
+  "research.topicPlaceholder": "tej meq yIghItlh…",
+  "research.depth.shallow": "tej Hom (nom)",
+  "research.depth.deep": "tej tIn (naQ)",
+  "research.submit": "yItej",
+  "research.empty": "tej ghItlh tu'lu'be' wej",
+  "research.status.pending": "loS",
+  "research.status.searching": "nejtaH",
+  "research.status.evaluating": "chovtaH",
+  "research.status.synthesizing": "tay'moHtaH",
+  "research.status.complete": "rIn",
+  "research.status.error": "Qagh",
+  "research.selectPrompt": "tej ghItlh yIwIv pagh tej chu' yItagh",
+  "research.failedTitle": "tej luj",
+  "research.researching": "tejtaH…",
+  "research.depthShort.shallow": "Hom",
+  "research.depthShort.deep": "tIn",
+  "research.reportDepth": "{{depth}} Saw'",
+  "research.sourcesCount": "{{count}} Halmey",
+  "research.sourcesHeading": "Halmey",
+  "research.relevant": "{{percent}}% lI'"
+}

@@ -1,0 +1,22 @@
+{
+  "skills.title": "Compétences",
+  "skills.subtitle": "Gérez les modèles de compétences, les motifs de déclenchement et les compétences générées",
+  "skills.enabledLabel": "activées",
+  "skills.createSkill": "Créer une compétence",
+  "skills.source.bundled": "Intégrée",
+  "skills.source.user": "Utilisateur",
+  "skills.source.generated": "Générée",
+  "skills.category.own": "Propres",
+  "skills.filter.all": "Toutes",
+  "skills.filter.own": "Compétences propres",
+  "skills.filter.bundled": "Intégrées",
+  "skills.form.namePlaceholder": "Nom de la compétence",
+  "skills.form.triggerPlaceholder": "Motifs de déclenchement (séparés par des virgules)",
+  "skills.form.contentPlaceholder": "Contenu / modèle de la compétence",
+  "skills.searchPlaceholder": "Rechercher par nom ou motif de déclenchement…",
+  "skills.showContent": "Afficher le contenu",
+  "skills.hideContent": "Masquer le contenu",
+  "skills.loading": "Chargement des compétences…",
+  "skills.loadError": "Échec du chargement des compétences : {{error}}",
+  "skills.emptyTitle": "Aucune compétence trouvée. Créez-en une pour commencer."
+}

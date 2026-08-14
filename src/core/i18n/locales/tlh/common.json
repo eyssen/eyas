@@ -1,0 +1,47 @@
+{
+  "app": { "name": "eYssen EYAS", "version": "1.0.0" },
+  "server": {
+    "starting": "QapwI' taghlu'taH...",
+    "started": "QapwI' taghlu'ta': {{host}}:{{port}}",
+    "stopping": "QapwI' mevlu'taH...",
+    "stopped": "QapwI' mevlu'ta'."
+  },
+  "module": {
+    "loading": "pat 'ay' taghlu'taH: {{name}}",
+    "loaded": "pat 'ay' taghlu'ta': {{name}}",
+    "disabled": "pat 'ay' Qotlhlu': {{name}}"
+  },
+  "db": {
+    "connected": "De' pa' rarlu': {{path}}",
+    "error": "De' pa' Qagh: {{message}}"
+  },
+  "config": {
+    "loaded": "SeHghItlh taghlu'ta': {{path}}",
+    "invalid": "SeHghItlh lughbe': {{errors}}"
+  },
+  "documents": {
+    "title": "ghItlhmey",
+    "upload": "chel",
+    "dropzone": "naDev ghItlhmey tIlan pagh yIwIv 'ej tIchel",
+    "maxSize": "ghItlh Hoch {{size}} MB 'aqroS",
+    "attachments": "tlhejghItlhmey",
+    "attach": "chel",
+    "detach": "teq",
+    "noDocuments": "wej ghItlhmey tu'lu'",
+    "syncStatus": {
+      "synced": "rapmoHta'",
+      "pending": "rapmoHlu'taH...",
+      "error": "rapmoH Qagh",
+      "notConfigured": "naDev neH"
+    },
+    "viewMode": {
+      "grid": "tut nav",
+      "list": "tetlh"
+    },
+    "errors": {
+      "tooLarge": "ghItlh 'aqroS 'Iq",
+      "typeNotAllowed": "ghItlh Segh chaw'lu'be'",
+      "uploadFailed": "chel luj"
+    }
+  }
+}

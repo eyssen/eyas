@@ -1,0 +1,51 @@
+---
+title: SeHmey Del
+description: pat potlh — qab, Hol, navmey, Hemey.
+---
+
+**He:** `/settings`.
+
+## mI'mey
+
+nobwI'pu' QaptaH/Hoch · patmey chu'lu'/Hoch · pegh mI' · lo'wI' mI'.
+
+## nobwI' Del
+
+nobwI' tetlh, QaptaH cha' 'ej pat mI' tlhej (naQ SeH nobwI' navDaq).
+
+## pat De'
+
+| mIw | Del |
+|-----|-----|
+| **mI'** | EYAS mI' |
+| **Dotlh** | yIn |
+| **QapmeH poH** | Bun |
+| **De' qawHaq** | SQLite (WAL) |
+
+## navvamDaq navmey
+
+| nav | Qu' |
+|-----|-----|
+| **pat chu'choH** | GitHubvo' chu'choH yIchov / yIlo' |
+| **De' lojmIt** | lI' taghwI' ([De' lI'](/docs/tlh/admin/data-port/)) |
+| **qab** | qab pat + wov / Hurgh |
+| **Hol** | en / hu / de / es / fr / tlh |
+| **pat nobmey** | ghoqwI' pat wIvmey |
+| **ghom ghoqwI'pu'** | tejwI' wIv |
+| **nIteb laHmey** | laH wIvmey |
+
+## tlhop SeHmey ghommey
+
+| ghom | Hemey |
+|------|-------|
+| motlh | pat, lo'wI'pu', API peghmey, peghmey |
+| AI 'ej pat | nobwI'pu', mu'tlheghmey, qawHaq, MCP |
+| patHommey | Qu'mey, ghItlhmey, nej Halmey, QInmey, tlhop, 'egh ghoj, chelmey |
+| rarmey | [rarmey](/docs/tlh/admin/connections/) (`/connections`) — Hur pat tetlh |
+| pat chen | Hand, [Ingress](/docs/tlh/admin/ingress/), qachmey, qon, ghommey |
+
+## latlh
+
+- [nobwI'pu'](/docs/tlh/ai/providers/)
+- [nIteb Qap](/docs/tlh/agents/autonomy/)
+- [rarmey](/docs/tlh/admin/connections/)
