@@ -1,0 +1,28 @@
+{
+  "title": "Approbation requise",
+  "mode": {
+    "paranoid": "Paranoïaque",
+    "balanced": "Équilibré",
+    "autopilot": "Pilote automatique"
+  },
+  "riskTier": {
+    "green": "Vert",
+    "yellow": "Jaune",
+    "red": "Rouge"
+  },
+  "action": {
+    "approve": "Approuver",
+    "deny": "Refuser",
+    "preview": "Aperçu"
+  },
+  "reason": {
+    "paranoidAll": "Mode paranoïaque — tous les appels d'outil nécessitent une approbation",
+    "balancedDestructive": "Mode équilibré — une action de niveau {{tier}} nécessite une approbation",
+    "noReviewer": "Approbation requise, mais aucun réviseur configuré — refus par défaut",
+    "humanDenied": "Le réviseur a refusé : {{reason}}"
+  },
+  "preview": {
+    "required": "Aperçu requis pour les actions de niveau rouge",
+    "diff": "Diff / simulation"
+  }
+}

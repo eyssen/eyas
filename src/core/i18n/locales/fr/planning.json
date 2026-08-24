@@ -1,0 +1,49 @@
+{
+  "title": "Planification interactive",
+  "status": {
+    "pendingApproval": "En attente d'approbation",
+    "approved": "Approuvé",
+    "rejected": "Rejeté",
+    "inProgress": "En cours",
+    "completed": "Terminé",
+    "failed": "Échoué"
+  },
+  "section": {
+    "goal": "Objectif",
+    "originalRequest": "Demande initiale",
+    "steps": "Étapes",
+    "risks": "Risques",
+    "rollback": "Retour arrière"
+  },
+  "step": {
+    "title": "Titre",
+    "description": "Description",
+    "successCriteria": "Critères de réussite",
+    "dependsOn": "Dépend de",
+    "status": {
+      "pending": "En attente",
+      "inProgress": "En cours",
+      "done": "Terminé",
+      "skipped": "Ignoré",
+      "failed": "Échoué"
+    }
+  },
+  "risk": {
+    "severity": {
+      "low": "Faible",
+      "medium": "Moyen",
+      "high": "Élevé"
+    },
+    "mitigation": "Atténuation"
+  },
+  "action": {
+    "approve": "Approuver le plan",
+    "reject": "Rejeter le plan",
+    "skipPlanning": "Ignorer la planification",
+    "regenerate": "Régénérer"
+  },
+  "complexity": {
+    "recommended": "Planification recommandée (score : {{score}})",
+    "notNeeded": "Tâche simple — planification non requise"
+  }
+}

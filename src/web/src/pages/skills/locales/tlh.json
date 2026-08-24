@@ -1,0 +1,22 @@
+{
+  "skills.title": "laHmey",
+  "skills.subtitle": "laH chenmoH, tagh pabmey, chenmoHlu' laHmey je yISeH",
+  "skills.enabledLabel": "chu'",
+  "skills.createSkill": "laH yIchu'",
+  "skills.source.bundled": "chellu'",
+  "skills.source.user": "lo'wI'",
+  "skills.source.generated": "chenmoHlu'",
+  "skills.category.own": "lo'wI'",
+  "skills.filter.all": "Hoch",
+  "skills.filter.own": "lo'wI' laHmey",
+  "skills.filter.bundled": "chellu'",
+  "skills.form.namePlaceholder": "laH pong",
+  "skills.form.triggerPlaceholder": "tagh pabmey (tlhegh vegh)",
+  "skills.form.contentPlaceholder": "laH ghItlh / chenmoH",
+  "skills.searchPlaceholder": "pong ghap tagh pab yInej…",
+  "skills.showContent": "ghItlh yI'ang",
+  "skills.hideContent": "ghItlh yISo'",
+  "skills.loading": "laHmey tagh…",
+  "skills.loadError": "laHmey luj: {{error}}",
+  "skills.emptyTitle": "laH tu'lu'be'. taghmeH wa' yIchu'."
+}

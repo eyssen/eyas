@@ -1,0 +1,26 @@
+{
+  "id": "coding-003",
+  "category": "coding",
+  "prompt": "Refactor `loadConfig(callback)` from a node-style callback API to an async/Promise API. Preserve semantics and update callers.",
+  "promptVariations": [
+    "Convert `loadConfig` to return a Promise instead of calling a callback.",
+    "Please migrate `loadConfig(cb)` to an async function and adjust call sites."
+  ],
+  "context": {
+    "file": "src/config/loader.ts",
+    "snippet": "export function loadConfig(cb: (err: Error | null, cfg?: Config) => void): void {\n  fs.readFile('config.yaml', 'utf-8', (err, raw) => {\n    if (err) return cb(err)\n    try { cb(null, parse(raw)) } catch (e) { cb(e as Error) }\n  })\n}"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["async", "promise"],
+    "mustNotMention": ["promisify callback wrapper"],
+    "rubric": [
+      "New signature returns Promise<Config>",
+      "Uses fs/promises or a cleanly awaited equivalent",
+      "Error branch rejects the Promise instead of invoking cb(err)",
+      "Mentions that call sites must be updated (await or .then)"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 30
+}

@@ -1,0 +1,28 @@
+{
+  "title": "Approval required",
+  "mode": {
+    "paranoid": "Paranoid",
+    "balanced": "Balanced",
+    "autopilot": "Autopilot"
+  },
+  "riskTier": {
+    "green": "Green",
+    "yellow": "Yellow",
+    "red": "Red"
+  },
+  "action": {
+    "approve": "Approve",
+    "deny": "Deny",
+    "preview": "Preview"
+  },
+  "reason": {
+    "paranoidAll": "Paranoid mode — all tool calls require approval",
+    "balancedDestructive": "Balanced mode — {{tier}} tier action requires approval",
+    "noReviewer": "Approval required but no reviewer configured — fail closed",
+    "humanDenied": "Reviewer denied: {{reason}}"
+  },
+  "preview": {
+    "required": "Preview required for red-tier actions",
+    "diff": "Diff / dry-run"
+  }
+}
