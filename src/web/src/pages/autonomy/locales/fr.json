@@ -1,0 +1,19 @@
+{
+  "autonomy.title": "Autonomie",
+  "autonomy.subtitlePre": "Dans quelle mesure l'assistant peut agir de lui-même, selon la classe d'action. Les actions irréversibles / sortantes sont verrouillées sur ",
+  "autonomy.subtitlePost": " et ne peuvent pas être relevées — un plancher de sécurité.",
+  "autonomy.level.1.label": "Avis",
+  "autonomy.level.1.hint": "Demander d'abord",
+  "autonomy.level.2.label": "Approuver",
+  "autonomy.level.2.hint": "Proposition + approbation en un clic",
+  "autonomy.level.3.label": "Auto",
+  "autonomy.level.3.hint": "Autonome + compte-rendu ensuite",
+  "autonomy.pendingApprovals": "Approbations en attente",
+  "autonomy.nothingWaiting": "Rien n'attend d'approbation.",
+  "autonomy.approve": "Approuver",
+  "autonomy.reject": "Rejeter",
+  "autonomy.group.reversible": "Réversible",
+  "autonomy.group.locked": "Sortant / irréversible (verrouillé)",
+  "autonomy.parkedRun": "Exécution en attente",
+  "autonomy.resumeFailed": "Reprise impossible : {{reason}}"
+}

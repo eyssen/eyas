@@ -1,0 +1,19 @@
+{
+  "autonomy.title": "Autonomie",
+  "autonomy.subtitlePre": "Wie eigenständig der Assistent je Aktionsklasse handeln darf. Unumkehrbare / ausgehende Aktionen sind auf ",
+  "autonomy.subtitlePost": " gesperrt und können nicht erhöht werden — eine Sicherheitsuntergrenze.",
+  "autonomy.level.1.label": "Hinweis",
+  "autonomy.level.1.hint": "Erst fragen",
+  "autonomy.level.2.label": "Freigeben",
+  "autonomy.level.2.hint": "Vorschlag + Freigabe mit einem Klick",
+  "autonomy.level.3.label": "Auto",
+  "autonomy.level.3.hint": "Autonom + Bericht danach",
+  "autonomy.pendingApprovals": "Ausstehende Freigaben",
+  "autonomy.nothingWaiting": "Nichts wartet auf Freigabe.",
+  "autonomy.approve": "Freigeben",
+  "autonomy.reject": "Ablehnen",
+  "autonomy.group.reversible": "Umkehrbar",
+  "autonomy.group.locked": "Ausgehend / unumkehrbar (gesperrt)",
+  "autonomy.parkedRun": "Wartender Lauf",
+  "autonomy.resumeFailed": "Fortsetzen fehlgeschlagen: {{reason}}"
+}

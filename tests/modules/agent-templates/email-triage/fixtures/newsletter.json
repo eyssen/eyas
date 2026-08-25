@@ -1,0 +1,12 @@
+{
+  "id": "fixture-newsletter",
+  "from": "weekly@devnews.example",
+  "to": ["user@eyas.example"],
+  "subject": "DevNews Weekly #482 — React 20 roadmap, new Bun features",
+  "body": "This week in JavaScript: React 20 roadmap, Bun 2.0 plans, and more.\n\nUnsubscribe: https://devnews.example/unsubscribe?u=abc",
+  "receivedAt": "2026-04-16T07:00:00+02:00",
+  "headers": {
+    "List-Unsubscribe": "<mailto:unsubscribe@devnews.example>, <https://devnews.example/unsubscribe?u=abc>",
+    "Precedence": "bulk"
+  }
+}

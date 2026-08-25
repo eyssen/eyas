@@ -1,0 +1,9 @@
+{
+  "id": "fixture-phishing",
+  "from": "security-alerts@paypa1-support.example",
+  "to": ["user@eyas.example"],
+  "subject": "URGENT: Verify your account password or we will suspend access",
+  "body": "Dear customer, we have detected a suspicious login on your account. Please click the link below to verify your password immediately:\n\nhttps://paypa1-support.example/verify?u=abc",
+  "receivedAt": "2026-04-16T03:14:00+02:00",
+  "headers": {}
+}

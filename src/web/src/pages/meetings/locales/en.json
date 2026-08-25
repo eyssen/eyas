@@ -1,0 +1,13 @@
+{
+  "meetings.title": "Meetings",
+  "meetings.subtitle": "Meeting recordings, transcripts, and action items",
+  "meetings.comingSoon": "Coming Soon",
+  "meetings.planned": "Planned",
+  "meetings.developmentNote": "Meeting integration is under development. Connect your meeting provider in a future update.",
+  "meetings.colTitle": "Title",
+  "meetings.colDate": "Date",
+  "meetings.colDuration": "Duration",
+  "meetings.colParticipants": "Participants",
+  "meetings.durationMinutes": "{{n}} min",
+  "meetings.empty": "No meetings recorded yet"
+}

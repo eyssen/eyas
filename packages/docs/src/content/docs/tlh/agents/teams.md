@@ -1,0 +1,56 @@
+---
+title: ghommey 'ej nobHa'ghach
+description: ghom chenwI', mIwmey, nobHa', 'ej law' ghoqwI'pu' jeS.
+---
+
+ghoqwI'pu' **nobHa'ghach**, ja'chuqmeyDaq **ghom ja'chuq**, 'ej poQbe' **ghom SeH** UI mo' jeS.
+
+## qechmey
+
+| qech | QIj |
+|------|-----|
+| **potlh** | jajjaj Qu' SeH; nobHa'laH |
+| **ghom / laHwI'** | yoSDajDaq nobHa'lu'bogh Qu'mey Hev |
+| **nobHa'** | Qu' latlh ghoqwI'vaD nob (pIj chenmoHlu' tlhej) |
+| **ghom ja'chuq** | law' ghoqwI' Qu', bIng ja'chuqmey rur |
+| **ghom chup** | lo'wI' chaw'nISbogh nab, woDpa' |
+
+## ghom chenwI' (ghoqwI' nav)
+
+| SeHwI' | QIj |
+|--------|-----|
+| **ghom chenwI'** | law' mIw ghom nabmey yISeH |
+| **N mIwmey** | SeH mIw mI' |
+| **pIH ~N tokens** | nabvaD tokens pIH |
+
+mIw mIwmey (ja'chuqDaq ghom chupmeyDaq je):
+
+| mIw | QIj |
+|-----|-----|
+| **rap** | mIwDaq ghoqwI'pu' rap vang |
+| **tlhegh** | pab mIwmey |
+
+### worktreemey 'ej chov
+
+| Qap | ghorgh |
+|-----|--------|
+| **Git worktrees** | **Qatlh** 'ej **'aqroS** Qu'vaD ghom chupmey ghoqwI'pu' `.eyas-worktrees/` bIngDaq nIH (rap choHtaHvIS nav Suvmey bot) |
+| **chov ra'mey** | YAMLDaq poQbe' `agent.verifyCommands` Qu' ret lint/test Qap, naQ pIchwI' pa' — [SeH](/docs/tlh/deploy/configuration/) yIbej |
+
+## ja'chuqmeyDaq
+
+[ja'chuqmey — ghom laHmey](/docs/tlh/daily/conversations/) yIbej:
+
+- bIng ja'chuq qorDu'  
+- ghom jIH Daq (tu', wuq, mev)  
+- ghom chup **yIchaw' / yIjum / Hutlh laHwI'pu' yIchu'**  
+
+## tagh He
+
+[tagh chenwI'](/docs/tlh/setup-wizard/)Daq poQbe' **ghom ghoqwI'pu'** mIw laHwI' chovnatlhmey wIv. retlh: ghoqwI'pu' / SeHmeyDaq yIchoH.
+
+## latlh
+
+- [ja'chuqmey](/docs/tlh/daily/conversations/)
+- [Qu'mey 'ej Mission Control](/docs/tlh/agents/runs/)
+- [ghoqwI'pu' Del](/docs/tlh/agents/overview/)
