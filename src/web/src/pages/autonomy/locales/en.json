@@ -1,0 +1,19 @@
+{
+  "autonomy.title": "Autonomy",
+  "autonomy.subtitlePre": "How much the assistant may act on its own, per class of action. Irreversible / outbound actions are locked at ",
+  "autonomy.subtitlePost": " and cannot be raised — a safety floor.",
+  "autonomy.level.1.label": "Notice",
+  "autonomy.level.1.hint": "Ask first",
+  "autonomy.level.2.label": "Approve",
+  "autonomy.level.2.hint": "Propose + one-click approval",
+  "autonomy.level.3.label": "Auto",
+  "autonomy.level.3.hint": "Autonomous + report after",
+  "autonomy.pendingApprovals": "Pending approvals",
+  "autonomy.nothingWaiting": "Nothing waiting for approval.",
+  "autonomy.approve": "Approve",
+  "autonomy.reject": "Reject",
+  "autonomy.group.reversible": "Reversible",
+  "autonomy.group.locked": "Outbound / irreversible (locked)",
+  "autonomy.parkedRun": "Run waiting on this",
+  "autonomy.resumeFailed": "Could not resume: {{reason}}"
+}

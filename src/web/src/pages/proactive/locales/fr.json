@@ -1,0 +1,19 @@
+{
+  "proactive.title": "Tableau de bord proactif",
+  "proactive.subtitle": "Alertes actives, analyses et modèles appris",
+  "proactive.priority.urgent": "Urgent",
+  "proactive.priority.high": "Élevée",
+  "proactive.priority.normal": "Normale",
+  "proactive.priority.low": "Faible",
+  "proactive.urgentCount": "{{count}} urgentes",
+  "proactive.checkNow": "Vérifier maintenant",
+  "proactive.checking": "Vérification…",
+  "proactive.activeAlerts": "Alertes actives",
+  "proactive.loadingAlerts": "Chargement des alertes…",
+  "proactive.alertsError": "Impossible de charger les alertes : {{message}}",
+  "proactive.allClear": "Tout est en ordre — aucune alerte active",
+  "proactive.learnedLessons": "Leçons apprises",
+  "proactive.loadingLessons": "Chargement des leçons…",
+  "proactive.noLessons": "Aucune leçon apprise pour le moment.",
+  "proactive.confidence": "{{value}} % de confiance"
+}

@@ -1,0 +1,18 @@
+{
+  "artifacts.loading": "Artefakt betöltése…",
+  "artifacts.producedBy": "Készítette:",
+  "artifacts.session": "Munkamenet:",
+  "artifacts.created": "Létrehozva:",
+  "artifacts.updated": "Frissítve:",
+  "artifacts.consumedBy": "Felhasználja:",
+  "artifacts.versions": "Verziók:",
+  "artifacts.payload": "Tartalom (v{{version}})",
+  "artifacts.referencedBy": "Hivatkozik rá ({{count}})",
+
+  "artifacts.kind.prd": "PRD",
+  "artifacts.kind.design-doc": "Tervdokumentum",
+  "artifacts.kind.task-list": "Feladatlista",
+  "artifacts.kind.code-diff": "Kód-diff",
+  "artifacts.kind.test-plan": "Tesztterv",
+  "artifacts.kind.deploy-manifest": "Telepítési manifest"
+}
