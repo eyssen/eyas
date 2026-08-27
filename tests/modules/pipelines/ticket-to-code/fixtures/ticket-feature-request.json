@@ -1,0 +1,12 @@
+{
+  "source": "board",
+  "id": "task-4201",
+  "title": "Add bulk CSV import to the partners screen",
+  "body": "As an admin, I want to upload a CSV of partner records so I can onboard new customers in bulk without clicking through the UI. The upload should validate VAT numbers and flag duplicates before committing.",
+  "tags": ["feature", "customer-ux"],
+  "priority": "normal",
+  "reporter": "admin@example.com",
+  "url": "https://example.internal/board/task-4201",
+  "customer": "Acme Corp",
+  "createdAt": 1744816800000
+}

@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eyas
+  labels:
+    app: eyas
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eyas
+  template:
+    metadata:
+      labels:
+        app: eyas
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        fsGroup: 1000
+      containers:
+        - name: eyas
+          image: eyas:latest
+          ports:
+            - containerPort: 3100
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: eyas-secrets
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: EYAS_SECRET_PROVIDER
+              value: "env"
+          resources:
+            requests:
+              cpu: 200m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+          readinessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 3100
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /api/v1/health
+              port: 3100
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            timeoutSeconds: 3
+            failureThreshold: 3
+          securityContext:
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+            - name: config
+              mountPath: /app/config
+              readOnly: true
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: eyas-data
+        - name: config
+          configMap:
+            name: eyas-config
+        - name: tmp
+          emptyDir: {}

@@ -1,0 +1,26 @@
+{
+  "id": "coding-001",
+  "category": "coding",
+  "prompt": "The function `formatUserName(user)` crashes when `user` is null because it accesses `user.firstName` directly. Propose a minimal fix.",
+  "promptVariations": [
+    "There's a NullPointer-style bug in `formatUserName`. It does not handle a null `user`. Suggest the smallest safe change.",
+    "Please patch `formatUserName(user)` so it gracefully handles `user === null`."
+  ],
+  "context": {
+    "file": "src/users/format.ts",
+    "snippet": "export function formatUserName(user: { firstName: string; lastName: string }): string {\n  return `${user.firstName} ${user.lastName}`\n}"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["null", "formatUserName"],
+    "mustNotMention": ["rewrite the module"],
+    "rubric": [
+      "Proposes a minimal diff (guard clause or optional chaining), not a rewrite",
+      "Preserves the existing return type contract or documents the change (e.g. returns '')",
+      "Adds or suggests a unit test for the null branch",
+      "Does not introduce new dependencies"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 30
+}

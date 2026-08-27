@@ -1,0 +1,28 @@
+{
+  "title": "Jóváhagyás szükséges",
+  "mode": {
+    "paranoid": "Paranoid",
+    "balanced": "Kiegyensúlyozott",
+    "autopilot": "Autopilóta"
+  },
+  "riskTier": {
+    "green": "Zöld",
+    "yellow": "Sárga",
+    "red": "Piros"
+  },
+  "action": {
+    "approve": "Jóváhagyás",
+    "deny": "Elutasítás",
+    "preview": "Előnézet"
+  },
+  "reason": {
+    "paranoidAll": "Paranoid mód — minden eszközhívás jóváhagyást igényel",
+    "balancedDestructive": "Kiegyensúlyozott mód — {{tier}} szintű művelet jóváhagyást igényel",
+    "noReviewer": "Jóváhagyás szükséges, de nincs beállított lektor — biztonságos elutasítás",
+    "humanDenied": "A lektor elutasította: {{reason}}"
+  },
+  "preview": {
+    "required": "Előnézet szükséges a piros szintű műveletekhez",
+    "diff": "Diff / próbafutás"
+  }
+}
