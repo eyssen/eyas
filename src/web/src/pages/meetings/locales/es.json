@@ -1,0 +1,13 @@
+{
+  "meetings.title": "Reuniones",
+  "meetings.subtitle": "Grabaciones de reuniones, transcripciones y tareas",
+  "meetings.comingSoon": "Próximamente",
+  "meetings.planned": "Planificado",
+  "meetings.developmentNote": "La integración de reuniones está en desarrollo. Conecta tu proveedor de reuniones en una futura actualización.",
+  "meetings.colTitle": "Título",
+  "meetings.colDate": "Fecha",
+  "meetings.colDuration": "Duración",
+  "meetings.colParticipants": "Participantes",
+  "meetings.durationMinutes": "{{n}} min",
+  "meetings.empty": "Aún no hay reuniones grabadas"
+}

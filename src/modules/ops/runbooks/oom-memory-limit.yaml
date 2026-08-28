@@ -1,0 +1,26 @@
+id: oom-memory-limit
+kind: oom-memory-limit
+matcher:
+  type: k8s-event
+  fields:
+    reason: OOMKilled
+diagnosis_template: |
+  Container in {{namespace}}/{{pod}} was OOMKilled.
+  This usually means memory limits are too low for the observed workload,
+  or there is a runaway allocation (leak, unbounded batch).
+  Suggested next steps:
+    1. Describe the pod to see lastState.terminated.exitCode (137).
+    2. Pull recent Prometheus memory usage.
+    3. If legitimate growth: propose a limit bump via GitOps PR.
+suggested_action:
+  action_type: kubectl
+  command: describe
+  args:
+    - "pod"
+    - "-n"
+    - "{{namespace}}"
+    - "{{pod}}"
+severity: critical
+# Read-only kubectl diagnostic (describe) — auto-runs; the executor's read-only
+# allow-list + arg sanitizer + ops.kubectl.enabled gate are the safety controls.
+requires_approval: false
