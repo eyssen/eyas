@@ -1,0 +1,18 @@
+{
+  "artifacts.loading": "Chargement de l'artefact…",
+  "artifacts.producedBy": "Produit par :",
+  "artifacts.session": "Session :",
+  "artifacts.created": "Créé :",
+  "artifacts.updated": "Mis à jour :",
+  "artifacts.consumedBy": "Consommé par :",
+  "artifacts.versions": "Versions :",
+  "artifacts.payload": "Contenu (v{{version}})",
+  "artifacts.referencedBy": "Référencé par ({{count}})",
+
+  "artifacts.kind.prd": "PRD",
+  "artifacts.kind.design-doc": "Document de conception",
+  "artifacts.kind.task-list": "Liste de tâches",
+  "artifacts.kind.code-diff": "Diff de code",
+  "artifacts.kind.test-plan": "Plan de tests",
+  "artifacts.kind.deploy-manifest": "Manifeste de déploiement"
+}

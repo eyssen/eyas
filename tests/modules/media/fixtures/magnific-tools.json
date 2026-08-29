@@ -1,0 +1,12 @@
+[
+  { "name": "images_generate" },
+  { "name": "images_upscale" },
+  { "name": "video_generate" },
+  { "name": "audio_tts" },
+  { "name": "models3d_generate" },
+  { "name": "images_models_list" },
+  { "name": "video_models_list" },
+  { "name": "creation_status" },
+  { "name": "creations_wait" },
+  { "name": "account_balance" }
+]
