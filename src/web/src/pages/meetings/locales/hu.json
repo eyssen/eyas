@@ -1,0 +1,13 @@
+{
+  "meetings.title": "Megbeszélések",
+  "meetings.subtitle": "Megbeszélés-felvételek, átiratok és teendők",
+  "meetings.comingSoon": "Hamarosan",
+  "meetings.planned": "Tervezett",
+  "meetings.developmentNote": "A megbeszélés-integráció fejlesztés alatt áll. Egy jövőbeli frissítésben kapcsolhatod be a megbeszélés-szolgáltatódat.",
+  "meetings.colTitle": "Cím",
+  "meetings.colDate": "Dátum",
+  "meetings.colDuration": "Időtartam",
+  "meetings.colParticipants": "Résztvevők",
+  "meetings.durationMinutes": "{{n}} perc",
+  "meetings.empty": "Még nincs rögzített megbeszélés"
+}

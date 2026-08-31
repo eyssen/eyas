@@ -1,0 +1,53 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    // src/web itself is excluded below, but widget-registry.ts (imported by
+    // tests/contracts/widgets.contract.test.ts, see the '@/*' path comment)
+    // now imports .tsx widget components directly (Task 10+) — without this,
+    // tsc hits TS6142 ("--jsx is not set") the moment any such import is
+    // type-checked as part of this program.
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "paths": {
+      "@core/*": ["./src/core/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@shared/*": ["./src/shared/*"],
+      // src/web is excluded below, but a contracts test (e.g.
+      // tests/contracts/widgets.contract.test.ts) can still import a src/web
+      // module directly to check it against a backend manifest, which pulls
+      // that file's own '@/...' imports into this program. Mirrors the '@'
+      // alias vitest.config.ts already defines for the same reason.
+      "@/*": ["./src/web/src/*"],
+      // src/web has its OWN nested node_modules/@types/react (a separate
+      // install — see vitest.config.ts's identical 'react'/'react-dom' alias
+      // comment for the runtime-side version of this same problem). A web
+      // file pulled transitively into THIS program (via the widget-registry
+      // import chain) resolves 'react' types from its own nearest
+      // node_modules, while another file in the same program resolves the
+      // root copy — same version, but a different file — so the checker
+      // sees two structurally-identical-but-nominally-distinct instances of
+      // React 19's branded ref-cleanup type and errors on any JSX using
+      // both (TS2322 "Two different types with this name exist, but they
+      // are unrelated"). This is `noEmit: true` (a type-check-only program),
+      // so pointing the bare specifier straight at the @types package (not
+      // the runtime react/ package, which ships no .d.ts of its own) is
+      // sufficient and forces every resolution in this program onto one copy.
+      "react": ["./node_modules/@types/react"]
+    },
+    "types": ["bun-types"]
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  "exclude": ["src/web", "tests/web", "node_modules", "dist"]
+}
