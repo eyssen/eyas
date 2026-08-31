@@ -1,0 +1,51 @@
+# eYssen EYAS 1.0 — Default Configuration
+
+server:
+  host: "0.0.0.0"
+  # 3100 — not 3000 (Grafana / CRA / Next.js often bind :3000)
+  port: 3100
+
+database:
+  path: "data/sqlite/eyas.db"
+
+log:
+  level: "info"
+  pretty: true
+
+i18n:
+  defaultLanguage: "en"
+  fallbackLanguage: "en"
+
+modules:
+  disabled: []
+
+autonomy:
+  # When false, agents may not modify their own IDENTITY.md directly;
+  # they must use forge_propose_identity_change instead.
+  identitySelfUpdate: true
+
+memory:
+  capture:
+    # A durable fact learned in a conversation is written to the vault without
+    # anyone asking. This attaches a SMALL MODEL CALL to turns whose user
+    # message is at least `minUserChars` long — set `enabled: false` to stop it.
+    enabled: true
+    minUserChars: 40
+    maxPerConversation: 20
+
+skills:
+  # OWNER-REVIEWABLE POLICY (see src/modules/skills/classify-skill.ts). Thresholds
+  # for the dead-skill classifier; the *shape* of the rule lives in code.
+  classify:
+    graceDays: 30
+    neverUsedDays: 90
+    dormantDays: 180
+    timeExemptSources: ['user']
+  # Extra markdown skill directories scanned after config/skills. Imported
+  # files win on id collision. Empty here — list paths in local.yaml.
+  importRoots: []
+
+agent:
+  # Extra markdown persona directories (YAML frontmatter + body = prompt).
+  # Empty here — list paths in local.yaml. Content is never in src/.
+  importRoots: []

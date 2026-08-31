@@ -1,0 +1,29 @@
+{
+  "id": "ops-004",
+  "category": "ops",
+  "prompt": "The Let's Encrypt certificate for `app.acme.example` expires in 8 days. Diagnose why cert-manager has not renewed it automatically and propose corrective steps.",
+  "promptVariations": [
+    "Cert-manager has stopped renewing the cert for app.acme.example. Investigate and fix.",
+    "LE cert expiring soon; cert-manager is silent. Walk me through triage and remediation."
+  ],
+  "context": {
+    "domain": "app.acme.example",
+    "certificateResource": "app-acme-tls",
+    "namespace": "eyas-prod",
+    "issuer": "letsencrypt-prod"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["cert-manager", "challenge"],
+    "mustNotMention": ["ignore the expiry"],
+    "rubric": [
+      "Inspects Certificate, CertificateRequest, Order, and Challenge resources",
+      "Checks cert-manager controller logs and issuer status",
+      "Notes common causes (DNS-01 misconfig, rate-limit, CAA record, expired ClusterIssuer)",
+      "Only suggests manual `cmctl renew` AFTER root-cause triage, not as blind first step"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 30,
+  "tags": ["security"]
+}

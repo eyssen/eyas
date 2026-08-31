@@ -1,0 +1,25 @@
+{
+  "id": "research-002",
+  "category": "research",
+  "prompt": "Summarize what's new and potentially breaking in the attached Drizzle ORM 0.35 changelog for a consumer upgrading from 0.32.",
+  "promptVariations": [
+    "Produce an upgrade-focused summary of the Drizzle ORM 0.32 -> 0.35 changelog.",
+    "What are the notable / breaking changes between Drizzle 0.32 and 0.35?"
+  ],
+  "context": {
+    "changelog": "Drizzle 0.33: new relational queries DSL, deprecated `rqb()` factory. Drizzle 0.34: SQLite numeric mode behavior change (strings vs numbers) for columns with mode: 'number'. Drizzle 0.35: migrator CLI requires explicit --dialect flag; renamed `pgTable` default schema lookup; bun:sqlite driver moved to separate entrypoint `drizzle-orm/bun-sqlite/driver`."
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["breaking", "migrator"],
+    "mustNotMention": ["lorem ipsum"],
+    "rubric": [
+      "Identifies all three breaking items (SQLite numeric mode, --dialect flag, bun-sqlite entrypoint move)",
+      "Separates 'new features' from 'breaking changes' clearly",
+      "Mentions action items a consumer must take, not just a recap",
+      "Stays faithful to provided changelog — does not hallucinate unrelated changes"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 25
+}
