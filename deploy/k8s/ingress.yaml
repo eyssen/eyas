@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: eyas
+  labels:
+    app: eyas
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+    # OCI LB: add service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - eyas.example.com
+      secretName: eyas-tls
+  rules:
+    - host: eyas.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: eyas
+                port:
+                  number: 3100

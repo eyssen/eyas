@@ -1,0 +1,66 @@
+# EYAS — Docker Compose
+#
+# Default app port is 3100 (avoids Grafana/CRA on :3000).
+#
+# Single instance:
+#   docker compose up -d
+#
+# Multiple instances on one host — project name + host port:
+#   EYAS_PORT=3200 docker compose -p eyas-dev up -d
+#   docker compose -p eyas-dev down
+#
+# Optional local Ollama:
+#   docker compose --profile gpu up -d
+
+services:
+  eyas:
+    build: .
+    # No fixed container_name — required for multi-project (`-p`) stacks.
+    ports:
+      # Host port is configurable; container listens on DEFAULT_SERVER_PORT (3100).
+      - "${EYAS_PORT:-3100}:3100"
+    volumes:
+      - eyas-data:/app/data
+      - ./config:/app/config:ro
+    environment:
+      - EYAS_SECRET_PROVIDER=env
+      - NODE_ENV=production
+      - EYAS_PORT=3100
+      - EYAS_HOST=0.0.0.0
+    env_file:
+      - path: .env
+        required: false
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "bun",
+          "run",
+          "dist/main.js",
+          "--health-check",
+        ]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    profiles:
+      - gpu
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  eyas-data:
+  ollama-data:

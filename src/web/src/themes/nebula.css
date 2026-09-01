@@ -1,0 +1,82 @@
+/* NEBULA — cosmic dark-first skin. Aurora violet/cyan/magenta mesh over deep
+   space navy, frosted glass panels, Futura-flavored display type. Dark is the
+   primary mode; light is a muted lavender-white variant of the same palette. */
+:root[data-template="nebula"] {
+  --background: 231 62% 96%;         /* #eef0fb muted lavender-white */
+  --foreground: 234 44% 13%;         /* #12152e */
+  --card: 240 60% 99%;               /* #fbfbfe */
+  --card-foreground: 234 44% 13%;
+  --popover: 231 40% 97%;
+  --popover-foreground: 234 44% 13%;
+  --primary: 252 100% 68%;           /* #7c5cff cosmic violet */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 188 86% 53%;          /* #22d3ee cyan */
+  --secondary-foreground: 234 44% 13%;
+  --muted: 237 32% 89%;              /* #dadbec */
+  --muted-foreground: 228 22% 37%;   /* #4a5273 */
+  --accent: 252 30% 90%;             /* muted violet wash (tinted --muted), not a vivid fill */
+  --accent-foreground: 234 44% 13%;
+  --destructive: 350 100% 62%;       /* #ff3b5c brand-spark red */
+  --destructive-foreground: 0 0% 100%;
+  --god: 32 95% 36%;                 /* deep amber — readable as text on lavender paper */
+  --god-foreground: 0 0% 100%;
+  --border: 237 32% 89%;
+  --input: 237 32% 89%;
+  --ring: 252 100% 68%;
+  --radius: 0.75rem;
+  --border-width: 1px;
+  --shadow-offset: 0 16px 36px -18px rgba(124,92,255,.22);
+  --font-sans: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: 'Futura', 'Avenir Next', var(--font-sans);
+  --font-mono: 'SF Mono', 'Menlo', 'Consolas', ui-monospace, monospace;
+  --vibrancy-bg: rgba(255,255,255,.6);
+  --vibrancy-border: rgba(24,28,66,.1);
+  --card-glass: rgba(255,255,255,.76);
+  --card-shadow: 0 30px 60px -32px rgba(40,48,120,.5);
+  --nav-active-bg: rgba(124,92,255,.12);
+  --nav-active-color: #7c5cff;
+  --nav-active-glow: rgba(124,92,255,.35);
+  --gradient-bg: radial-gradient(120% 82% at 50% -12%, #f5f3ff 0%, transparent 56%),
+    linear-gradient(180deg, #eef0fb 0%, #e5e8f6 100%);
+}
+:root[data-template="nebula"].dark {
+  --background: 230 40% 4%;          /* #06070d deep space */
+  --foreground: 235 58% 96%;         /* #f0f1fb */
+  --card: 232 38% 8%;                /* #0d0f1d */
+  --card-foreground: 235 58% 96%;
+  --popover: 235 35% 6%;             /* #0a0b15 */
+  --popover-foreground: 235 58% 96%;
+  --primary: 252 100% 68%;           /* #7c5cff cosmic violet */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 188 86% 53%;          /* #22d3ee cyan */
+  --secondary-foreground: 229 31% 14%;
+  --muted: 230 20% 10%;
+  --muted-foreground: 229 26% 69%;   /* #9aa2c4 */
+  --accent: 252 22% 16%;             /* muted violet wash (tinted --muted), not a vivid fill */
+  --accent-foreground: 235 58% 96%;
+  --destructive: 350 100% 62%;       /* #ff3b5c brand-spark red */
+  --destructive-foreground: 0 0% 100%;
+  --god: 38 96% 60%;                 /* bright amber on deep space */
+  --god-foreground: 30 25% 8%;
+  --border: 230 10% 11%;
+  --input: 230 10% 11%;
+  --ring: 252 100% 68%;
+  --radius: 0.75rem;
+  --border-width: 1px;
+  --shadow-offset: 0 20px 45px -20px rgba(124,92,255,.35);
+  --font-sans: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  --font-display: 'Futura', 'Avenir Next', var(--font-sans);
+  --font-mono: 'SF Mono', 'Menlo', 'Consolas', ui-monospace, monospace;
+  --vibrancy-bg: rgba(15,18,34,.55);
+  --vibrancy-border: rgba(255,255,255,.08);
+  --card-glass: rgba(255,255,255,.04);
+  --card-shadow: 0 30px 72px -30px rgba(0,0,0,.92);
+  --nav-active-bg: rgba(124,92,255,.16);
+  --nav-active-color: #9c85ff;
+  --nav-active-glow: rgba(124,92,255,.55);
+  --gradient-bg: radial-gradient(52% 52% at -9% -15%, rgba(124,92,255,.35), transparent 62%),
+    radial-gradient(46% 46% at 107% 1%, rgba(34,211,238,.28), transparent 60%),
+    radial-gradient(52% 52% at 24% 126%, rgba(255,77,141,.22), transparent 62%),
+    radial-gradient(120% 82% at 50% -12%, rgba(20,24,49,.5), transparent 56%),
+    linear-gradient(180deg, #05060e 0%, #04050b 58%, #070819 100%);
+}
