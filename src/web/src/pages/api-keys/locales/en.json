@@ -1,0 +1,21 @@
+{
+  "apiKeys.title": "API Keys",
+  "apiKeys.subtitle": "Manage API keys for programmatic access",
+  "apiKeys.create": "Create API Key",
+  "apiKeys.createdBanner": "API key created: {{name}}",
+  "apiKeys.copyWarning": "Copy this key now. It will not be shown again.",
+  "apiKeys.dismiss": "Dismiss",
+  "apiKeys.namePlaceholder": "Key name (e.g. CI/CD, CLI tool)",
+  "apiKeys.expiresPlaceholder": "Expires in days (optional, leave empty for no expiry)",
+  "apiKeys.colKeyPrefix": "Key Prefix",
+  "apiKeys.colCreated": "Created",
+  "apiKeys.colLastUsed": "Last Used",
+  "apiKeys.colExpires": "Expires",
+  "apiKeys.empty": "No API keys. Create one to enable programmatic access.",
+  "apiKeys.never": "Never",
+  "apiKeys.noExpiry": "No expiry",
+  "apiKeys.revokeConfirm": "Are you sure you want to revoke this API key? This cannot be undone.",
+  "apiKeys.revokeTitle": "Revoke API key",
+  "apiKeys.loading": "Loading API keys…",
+  "apiKeys.loadFailed": "Failed to load API keys: {{message}}"
+}

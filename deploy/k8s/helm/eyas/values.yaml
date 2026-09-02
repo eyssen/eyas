@@ -1,0 +1,385 @@
+# ---------------------------------------------------------------------------
+# EYAS — default Helm chart values
+# ---------------------------------------------------------------------------
+# Every section is commented. Override by passing a custom values file or
+# --set flags. Cloud-provider annotations and StorageClass names belong in
+# that instance file, not here.
+# ---------------------------------------------------------------------------
+
+# -- Number of replicas. EYAS is single-writer (embedded SQLite), so running
+# more than 1 replica requires a shared/external DB or ReadWriteMany storage.
+# Leave at 1 unless you know what you are doing.
+replicaCount: 1
+
+image:
+  # -- Container image repository (registry + name). Must be set.
+  repository: ghcr.io/eyssen/eyas
+  # -- Image tag. Overrides appVersion from Chart.yaml when set.
+  tag: ""
+  # -- imagePullPolicy. Use IfNotPresent in prod, Always for :latest.
+  pullPolicy: IfNotPresent
+  # -- imagePullSecrets. Example:
+  #    pullSecrets:
+  #      - name: eyas-registry
+  pullSecrets: []
+
+# -- Override the chart name segment. Rarely needed.
+nameOverride: ""
+# -- Override the full resource-name prefix.
+fullnameOverride: ""
+
+# -----------------------------------------------------------------------------
+# ServiceAccount
+# -----------------------------------------------------------------------------
+serviceAccount:
+  # -- Create a dedicated ServiceAccount for the pod.
+  create: true
+  # -- Annotations to add to the ServiceAccount (e.g. IAM role bindings).
+  annotations: {}
+  # -- Explicit name; leave blank to auto-generate.
+  name: ""
+  # -- Automount the SA token? Usually not needed for an app pod.
+  automountServiceAccountToken: false
+
+# -----------------------------------------------------------------------------
+# Pod-level config
+# -----------------------------------------------------------------------------
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "9090"
+  prometheus.io/path: "/metrics"
+
+podLabels: {}
+
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+  fsGroupChangePolicy: "OnRootMismatch"
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  privileged: false
+  capabilities:
+    drop:
+      - ALL
+
+# -- Graceful shutdown window (seconds)
+terminationGracePeriodSeconds: 30
+
+# -- Priority class for the pod (optional, e.g. "system-cluster-critical")
+priorityClassName: ""
+
+# -- Extra top-level pod spec (e.g. topologySpreadConstraints).
+# Rendered verbatim into the PodSpec.
+extraPodSpec: {}
+
+# -----------------------------------------------------------------------------
+# Service
+# -----------------------------------------------------------------------------
+service:
+  # -- One of: ClusterIP, NodePort, LoadBalancer
+  type: ClusterIP
+  # -- Application port (container listens on this port)
+  port: 3100
+  # -- Metrics port (Prometheus scrape target)
+  metricsPort: 9090
+  # -- For LoadBalancer: optional static IP to request
+  loadBalancerIP: ""
+  # -- For LoadBalancer: CIDR allow-list
+  loadBalancerSourceRanges: []
+  # -- Service annotations (cloud-provider LB shape, etc. — instance overlay)
+  annotations: {}
+  # -- Session affinity. Set to ClientIP if WebSockets need sticky sessions.
+  sessionAffinity: None
+
+# -----------------------------------------------------------------------------
+# Ingress
+# -----------------------------------------------------------------------------
+ingress:
+  enabled: false
+  # -- Ingress class name. Common values: "nginx", "traefik"
+  className: nginx
+  annotations: {}
+  hosts:
+    - host: eyas.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+  #   - secretName: eyas-tls
+  #     hosts:
+  #       - eyas.local
+
+# -----------------------------------------------------------------------------
+# Persistence — data volume (SQLite, Orama index, vault markdown)
+# -----------------------------------------------------------------------------
+persistence:
+  data:
+    # -- Create a PVC for /data (strongly recommended for any real use).
+    enabled: true
+    # -- Existing PVC name to reuse. If set, a new PVC is NOT created.
+    existingClaim: ""
+    # -- StorageClass. Empty = cluster default.
+    storageClass: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 10Gi
+    annotations: {}
+  logs:
+    # -- Separate PVC for /logs. Disable if you ship logs elsewhere.
+    enabled: false
+    existingClaim: ""
+    storageClass: ""
+    accessModes:
+      - ReadWriteOnce
+    size: 5Gi
+    annotations: {}
+
+# -----------------------------------------------------------------------------
+# Resources (requests & limits)
+# -----------------------------------------------------------------------------
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi
+
+# -----------------------------------------------------------------------------
+# Horizontal Pod Autoscaler
+# -----------------------------------------------------------------------------
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 70
+  # -- Additional metrics (e.g. custom: requests_per_second)
+  # extraMetrics:
+  #   - type: Pods
+  #     pods:
+  #       metric:
+  #         name: requests_per_second
+  #       target:
+  #         type: AverageValue
+  #         averageValue: "100"
+  extraMetrics: []
+  behavior: {}
+
+# -----------------------------------------------------------------------------
+# Pod Disruption Budget
+# -----------------------------------------------------------------------------
+pdb:
+  enabled: true
+  minAvailable: 1
+  # maxUnavailable: ""  # mutually exclusive with minAvailable
+
+# -----------------------------------------------------------------------------
+# Probes
+# -----------------------------------------------------------------------------
+probes:
+  liveness:
+    enabled: true
+    httpGet:
+      path: /web/health
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 30
+    timeoutSeconds: 5
+    failureThreshold: 3
+  readiness:
+    enabled: true
+    httpGet:
+      path: /web/health
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    timeoutSeconds: 3
+    failureThreshold: 3
+  startup:
+    enabled: true
+    httpGet:
+      path: /web/health
+      port: http
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    failureThreshold: 30  # Allow 150 s for first boot
+
+# -----------------------------------------------------------------------------
+# Rollout strategy
+# -----------------------------------------------------------------------------
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0
+    maxSurge: 1
+revisionHistoryLimit: 3
+minReadySeconds: 10
+
+# -----------------------------------------------------------------------------
+# Configuration (mounted as ConfigMap → /app/config/eyas.yaml)
+# -----------------------------------------------------------------------------
+config:
+  # -- Entire eyas.yaml payload. Rendered verbatim into the ConfigMap.
+  eyas:
+    server:
+      port: 3100
+      host: "0.0.0.0"
+    storage:
+      dataDir: /data
+      logsDir: /data/logs
+    modules:
+      enabled:
+        - core
+        - model
+        - board
+        - memory
+        - scheduler
+        - search
+        - conversations
+        - audit
+        - agent
+        - skills
+        - communication
+        - privacy
+        - security-gate
+        - documents
+        - notifications
+        - observability
+    model:
+      routing:
+        default: anthropic
+      providers:
+        anthropic:
+          enabled: true
+        openai:
+          enabled: false
+        ollama:
+          enabled: false
+
+# -----------------------------------------------------------------------------
+# Environment variables
+# -----------------------------------------------------------------------------
+env:
+  # -- Plain env vars (non-sensitive)
+  plain:
+    NODE_ENV: production
+    LOG_LEVEL: info
+    EYAS_SECRET_PROVIDER: env
+    # OpenTelemetry — uncomment to enable
+    # OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector.observability:4318
+    # OTEL_SERVICE_NAME: eyas
+  # -- Env vars sourced from existing Secret(s). Format:
+  #    - name: ENV_NAME
+  #      secretName: my-secret
+  #      secretKey: key-in-secret
+  fromSecret:
+    - name: EYAS_MASTER_KEY
+      secretName: eyas-master-key
+      secretKey: master-key
+    # - name: ANTHROPIC_API_KEY
+    #   secretName: eyas-provider-keys
+    #   secretKey: anthropic-api-key
+    # - name: OPENAI_API_KEY
+    #   secretName: eyas-provider-keys
+    #   secretKey: openai-api-key
+
+# -----------------------------------------------------------------------------
+# Inline secret (OPTIONAL — prefer pre-created Secret or ExternalSecret)
+# -----------------------------------------------------------------------------
+secret:
+  # -- Render a plaintext Secret from the values file? NOT RECOMMENDED for
+  # production — use `externalSecrets` or a pre-created `Secret` instead.
+  create: false
+  # -- Secret name. Defaults to "<fullname>-secret".
+  name: ""
+  data: {}
+  # Example:
+  # data:
+  #   master-key: "base64-or-plain-ignored-when-stringData"
+
+# -----------------------------------------------------------------------------
+# External Secrets Operator (optional)
+# -----------------------------------------------------------------------------
+externalSecrets:
+  enabled: false
+  # -- Name of an existing ClusterSecretStore / SecretStore.
+  secretStoreRef:
+    name: cluster-secret-store
+    kind: ClusterSecretStore
+  refreshInterval: 1h
+  # -- Each entry renders a single ExternalSecret.
+  items: []
+  # - name: eyas-master-key
+  #   remoteRefs:
+  #     - secretKey: master-key
+  #       remoteKey: path/to/master-key
+  # - name: eyas-provider-keys
+  #   remoteRefs:
+  #     - secretKey: anthropic-api-key
+  #       remoteKey: path/to/anthropic-api-key
+
+# -----------------------------------------------------------------------------
+# NetworkPolicy
+# -----------------------------------------------------------------------------
+networkPolicy:
+  enabled: true
+  # -- Default-deny ingress + explicit allow from ingress-controller ns and
+  # from same-namespace pods.
+  ingressControllerNamespace: ingress-nginx
+  ingressControllerPodLabels:
+    app.kubernetes.io/name: ingress-nginx
+  # -- Extra ingress rules appended as-is to the policy.
+  extraIngress: []
+  # -- Egress: if enabled, traffic to DNS + HTTPS is allowed by default.
+  # Set egress.allowAll=true to skip the default-deny egress.
+  egress:
+    enabled: true
+    allowAll: false
+
+# -----------------------------------------------------------------------------
+# Scheduling
+# -----------------------------------------------------------------------------
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
+# -----------------------------------------------------------------------------
+# Extra resources
+# -----------------------------------------------------------------------------
+# -- Additional volumes. Example for a writable /tmp (needed with
+# readOnlyRootFilesystem: true).
+extraVolumes:
+  - name: tmp
+    emptyDir: {}
+  - name: cache
+    emptyDir: {}
+
+extraVolumeMounts:
+  - name: tmp
+    mountPath: /tmp
+  - name: cache
+    mountPath: /app/.cache
+
+# -- Extra containers (sidecars)
+extraContainers: []
+
+# -- Extra init containers
+initContainers: []
+
+# -----------------------------------------------------------------------------
+# Namespace creation (optional — disabled by default; prefer `kubectl create ns`)
+# -----------------------------------------------------------------------------
+namespace:
+  create: false
+  name: ""
+  labels: {}
+  annotations: {}

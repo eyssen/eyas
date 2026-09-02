@@ -1,0 +1,22 @@
+{
+  "users.title": "Benutzer",
+  "users.subtitle": "Benutzer und KI-Agenten",
+  "users.newAgent": "Neuer Agent",
+  "users.viewActive": "Aktiv",
+  "users.viewArchived": "Archiviert",
+  "users.colUsername": "Benutzername",
+  "users.colDisplayName": "Anzeigename",
+  "users.colRole": "Rolle",
+  "users.colType": "Typ",
+  "users.colCreated": "Erstellt",
+  "users.noUsers": "Keine Benutzer",
+  "users.noArchived": "Keine archivierten Benutzer",
+  "users.typeAgent": "🤖 Agent",
+  "users.typeHuman": "👤 Mensch",
+  "users.aiConfig": "KI-Konfiguration →",
+  "users.status.active": "aktiv",
+  "users.status.archived": "archiviert",
+  "users.archiveConfirm": "Benutzer „{{name}}“ archivieren? Du kannst ihn später wiederherstellen.",
+  "users.restoreTitle": "Benutzer wiederherstellen",
+  "users.archiveTitle": "Benutzer archivieren"
+}
