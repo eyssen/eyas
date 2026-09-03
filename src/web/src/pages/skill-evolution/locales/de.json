@@ -1,0 +1,22 @@
+{
+  "skillEvolution.title": "Skill-Evolution",
+  "skillEvolution.subtitle": "AI-vorgeschlagene Skill-Kandidaten anhand von Nutzungsmustern prüfen",
+  "skillEvolution.status.pending": "Ausstehend",
+  "skillEvolution.status.approved": "Freigegeben",
+  "skillEvolution.status.rejected": "Abgelehnt",
+  "skillEvolution.stat.avgConfidence": "Durchschn. Konfidenz",
+  "skillEvolution.searchPlaceholder": "Kandidaten suchen…",
+  "skillEvolution.filter.all": "Alle",
+  "skillEvolution.sessions": "{{count}} Sitzungen",
+  "skillEvolution.approve": "Freigeben",
+  "skillEvolution.reject": "Ablehnen",
+  "skillEvolution.showDetails": "Details anzeigen",
+  "skillEvolution.hideDetails": "Details ausblenden",
+  "skillEvolution.reasoning": "Begründung",
+  "skillEvolution.suggestedContent": "Vorgeschlagener Skill-Inhalt",
+  "skillEvolution.created": "Erstellt: {{date}}",
+  "skillEvolution.reviewed": "Geprüft: {{date}}",
+  "skillEvolution.loading": "Kandidaten werden geladen…",
+  "skillEvolution.loadError": "Kandidaten konnten nicht geladen werden: {{message}}",
+  "skillEvolution.empty": "Noch keine Skill-Evolution-Kandidaten. Das System schlägt anhand deiner Nutzungsmuster neue Skills vor."
+}

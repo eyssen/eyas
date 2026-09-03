@@ -1,0 +1,9 @@
+{
+  "id": "fixture-invoice",
+  "from": "billing@vendor.example",
+  "to": ["user@eyas.example"],
+  "subject": "Invoice INV-2026-0412 for April services",
+  "body": "Please find attached the invoice for your April services. Total due: €1,240.00. Payment terms: 14 days.",
+  "receivedAt": "2026-04-15T14:00:00+02:00",
+  "headers": {}
+}

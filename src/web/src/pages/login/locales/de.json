@@ -1,0 +1,10 @@
+{
+  "login.signIn": "Anmelden",
+  "login.subtitle": "Gib deine Zugangsdaten ein, um fortzufahren",
+  "login.username": "Benutzername",
+  "login.usernamePlaceholder": "admin",
+  "login.password": "Passwort",
+  "login.signingIn": "Anmeldung läuft…",
+  "login.invalidCredentials": "Ungültige Anmeldedaten",
+  "login.mascotAlt": "EYAS-Assistent"
+}
