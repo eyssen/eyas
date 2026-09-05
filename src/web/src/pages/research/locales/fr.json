@@ -1,0 +1,23 @@
+{
+  "research.newResearch": "Nouvelle recherche",
+  "research.topicPlaceholder": "Saisissez le sujet de recherche…",
+  "research.depth.shallow": "Superficielle (plus rapide)",
+  "research.depth.deep": "Approfondie (exhaustive)",
+  "research.submit": "Rechercher",
+  "research.empty": "Aucun rapport de recherche pour le moment",
+  "research.status.pending": "En attente",
+  "research.status.searching": "Recherche en cours",
+  "research.status.evaluating": "Évaluation",
+  "research.status.synthesizing": "Synthèse",
+  "research.status.complete": "Terminée",
+  "research.status.error": "Erreur",
+  "research.selectPrompt": "Sélectionnez un rapport ou lancez une nouvelle recherche",
+  "research.failedTitle": "La recherche a échoué",
+  "research.researching": "Recherche en cours…",
+  "research.depthShort.shallow": "superficielle",
+  "research.depthShort.deep": "approfondie",
+  "research.reportDepth": "profondeur {{depth}}",
+  "research.sourcesCount": "{{count}} sources",
+  "research.sourcesHeading": "Sources",
+  "research.relevant": "{{percent}} % pertinent"
+}

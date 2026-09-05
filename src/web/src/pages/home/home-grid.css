@@ -1,0 +1,86 @@
+/* Part of eYssen. See LICENSE file for full copyright and licensing details. */
+
+/*
+ * The two libraries whose stylesheets home-page.tsx imports ship THREE
+ * hardcoded colours between them (verified against the installed packages,
+ * not from memory):
+ *   react-grid-layout/css/styles.css:33
+ *     .react-grid-item.react-grid-placeholder { background: red; }
+ *   react-grid-layout/css/styles.css:62-63
+ *     .react-grid-item > .react-resizable-handle::after {
+ *       border-right/border-bottom: 2px solid rgba(0, 0, 0, 0.4);
+ *     }
+ *   react-resizable/css/styles.css:11
+ *     .react-resizable-handle { background-image: url('data:image/svg+xml;base64,...') }
+ *     -- decoded, the payload is:
+ *       <svg viewBox="0 0 6 6" ...><g opacity="0.302"><path d="M 6 6 L 0 6 ..." fill="#000000"/></g></svg>
+ *     a black corner glyph at 30% opacity, invisible against this project's
+ *     dark theme (--background: 230 30% 5% in globals.css — near-black on
+ *     near-black). A data URI cannot reference a CSS variable, so re-encoding
+ *     it with a hardcoded "acceptable in both themes" grey would just trade
+ *     one hardcoded colour for another; dropped instead (below) in favour of
+ *     the already-token-coloured `::after` border icon, which draws the same
+ *     affordance and is the one actually visible on top of it anyway.
+ * Architecture Rule #9 is CSS variables only, never hardcoded colours, and a
+ * literal red drag placeholder in both themes, a black-alpha resize corner
+ * that vanishes on a dark background, and a second black corner icon
+ * (react-grid-layout's own `::after` rule below already draws one, so this
+ * is a redundant hardcoded asset, not just wrong-coloured) would all violate
+ * it. Overridden here (loaded after both libraries' stylesheets, see
+ * home-page.tsx's import order) with the same tokens the rest of the grid
+ * tiles use, scoped to this component rather than globals.css so pages
+ * without a grid never load them.
+ */
+
+.react-grid-item.react-grid-placeholder {
+  background: hsl(var(--primary) / 0.15);
+  border-radius: var(--radius);
+}
+
+.react-grid-item > .react-resizable-handle::after {
+  border-right: 2px solid hsl(var(--muted-foreground) / 0.5);
+  border-bottom: 2px solid hsl(var(--muted-foreground) / 0.5);
+}
+
+.react-grid-item > .react-resizable-handle {
+  background-image: none;
+}
+
+/*
+ * The scroll affordance for a tile's content region (widget-frame.tsx).
+ *
+ * WidgetFrame scrolls its content rather than clipping it, but on macOS the
+ * platform draws OVERLAY scrollbars: nothing is visible until a scroll is
+ * already in progress. A tile whose content did not fit therefore looked
+ * exactly like a broken one — the owner's screenshot showed content cut off
+ * with no hint that anything could be reached. `::-webkit-scrollbar` opts this
+ * one region out of overlay behaviour, so the bar is there as soon as there is
+ * something to scroll to, and absent when there is not (the browser only
+ * reserves the track for an actually-overflowing box).
+ *
+ * Tokens only, per Architecture Rule #9 — the same `--muted-foreground` the
+ * resize handle above uses, at a lower alpha so an idle bar reads as a hint
+ * rather than as a control.
+ */
+.widget-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.35) transparent;
+}
+
+.widget-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.widget-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.widget-scroll::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.35);
+  border-radius: 3px;
+}
+
+.widget-scroll:hover::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--muted-foreground) / 0.6);
+}

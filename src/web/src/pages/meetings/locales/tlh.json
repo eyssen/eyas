@@ -1,0 +1,13 @@
+{
+  "meetings.title": "ghommey",
+  "meetings.subtitle": "ghom qon, mu' qon, 'ej ta'mey",
+  "meetings.comingSoon": "tugh",
+  "meetings.planned": "nab",
+  "meetings.developmentNote": "ghom rar chenmoHlu'taH. tugh ghom nobwI' yIrar.",
+  "meetings.colTitle": "pong",
+  "meetings.colDate": "jaj",
+  "meetings.colDuration": "poH",
+  "meetings.colParticipants": "jeSwI'pu'",
+  "meetings.durationMinutes": "{{n}} tup",
+  "meetings.empty": "ghom qonlu'be' wej"
+}

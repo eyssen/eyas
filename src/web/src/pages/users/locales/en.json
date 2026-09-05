@@ -1,0 +1,22 @@
+{
+  "users.title": "Users",
+  "users.subtitle": "Users and AI agents",
+  "users.newAgent": "New Agent",
+  "users.viewActive": "Active",
+  "users.viewArchived": "Archived",
+  "users.colUsername": "Username",
+  "users.colDisplayName": "Display Name",
+  "users.colRole": "Role",
+  "users.colType": "Type",
+  "users.colCreated": "Created",
+  "users.noUsers": "No users",
+  "users.noArchived": "No archived users",
+  "users.typeAgent": "🤖 Agent",
+  "users.typeHuman": "👤 Human",
+  "users.aiConfig": "AI Config →",
+  "users.status.active": "active",
+  "users.status.archived": "archived",
+  "users.archiveConfirm": "Archive user \"{{name}}\"? You can restore them later.",
+  "users.restoreTitle": "Restore user",
+  "users.archiveTitle": "Archive user"
+}
