@@ -1,0 +1,74 @@
+:root[data-template="terminal"] {
+  --background: 46 20% 92%;
+  --foreground: 51 20% 8%;
+  --card: 47 33% 96%;
+  --card-foreground: 51 20% 8%;
+  --popover: 47 33% 96%;
+  --popover-foreground: 51 20% 8%;
+  --primary: 3 82% 50%;              /* #e5231b eYssen red = signal/action */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 46 15% 86%;
+  --secondary-foreground: 51 20% 8%;
+  --muted: 46 15% 86%;
+  --muted-foreground: 48 8% 38%;
+  --accent: 46 15% 86%;
+  --accent-foreground: 51 20% 8%;
+  --destructive: 3 82% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --god: 38 100% 34%;                /* deep gold — readable as text and fill on cream */
+  --god-foreground: 0 0% 100%;
+  --border: 51 20% 8%;               /* hard ink borders */
+  --input: 51 20% 8%;
+  --ring: 3 82% 50%;
+  --radius: 0px;
+  --border-width: 2px;
+  --shadow-offset: 4px 4px 0 hsl(var(--foreground));
+  --font-sans: 'SF Mono', 'Menlo', 'Consolas', ui-monospace, monospace;
+  --font-display: var(--font-sans);
+  --font-mono: var(--font-sans);
+  --vibrancy-bg: #faf8f2;
+  --vibrancy-border: rgba(22,21,15,.14);
+  --card-glass: #faf8f2;
+  --card-shadow: var(--shadow-offset);
+  --nav-active-bg: rgba(229,35,27,.10);
+  --nav-active-color: #e5231b;
+  --nav-active-glow: transparent;
+  --gradient-bg: #f0ede4;
+}
+:root[data-template="terminal"].dark {
+  --background: 60 6% 6%;
+  --foreground: 80 60% 82%;          /* phosphor green-ish ink */
+  --card: 60 6% 9%;
+  --card-foreground: 80 60% 82%;
+  --popover: 60 6% 9%;
+  --popover-foreground: 80 60% 82%;
+  --primary: 3 90% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 60 6% 14%;
+  --secondary-foreground: 80 60% 82%;
+  --muted: 60 6% 14%;
+  --muted-foreground: 70 15% 55%;
+  --accent: 60 6% 14%;
+  --accent-foreground: 80 60% 82%;
+  --destructive: 3 90% 58%;
+  --destructive-foreground: 0 0% 100%;
+  --god: 46 100% 56%;                /* brighter gold on phosphor dark */
+  --god-foreground: 60 6% 6%;
+  --border: 80 20% 30%;
+  --input: 80 20% 30%;
+  --ring: 3 90% 58%;
+  --radius: 0px;
+  --border-width: 2px;
+  --shadow-offset: 4px 4px 0 hsl(var(--border));
+  --font-sans: 'SF Mono', 'Menlo', 'Consolas', ui-monospace, monospace;
+  --font-display: var(--font-sans);
+  --font-mono: var(--font-sans);
+  --vibrancy-bg: rgba(12,12,10,.85);
+  --vibrancy-border: rgba(180,200,120,.18);
+  --card-glass: #0f0f0c;
+  --card-shadow: var(--shadow-offset);
+  --nav-active-bg: rgba(229,35,27,.16);
+  --nav-active-color: #ff5c4d;
+  --nav-active-glow: transparent;
+  --gradient-bg: #0a0a08;
+}

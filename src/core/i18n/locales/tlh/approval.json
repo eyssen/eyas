@@ -1,0 +1,28 @@
+{
+  "title": "chaw' poQlu'",
+  "mode": {
+    "paranoid": "pIHqu'",
+    "balanced": "jot",
+    "autopilot": "jeSbe' SeHwI'"
+  },
+  "riskTier": {
+    "green": "SuD",
+    "yellow": "SuD Doq",
+    "red": "Doq"
+  },
+  "action": {
+    "approve": "chaw'",
+    "deny": "chaw'Qo'",
+    "preview": "legh"
+  },
+  "reason": {
+    "paranoidAll": "pIHqu' mIw — jan Hoch lo'lu'chugh chaw' poQlu'",
+    "balancedDestructive": "jot mIw — {{tier}} pat ta' chaw' poQlu'",
+    "noReviewer": "chaw' poQlu' 'ach bejwI' tu'lu'be' — chaw'Qo'lu'",
+    "humanDenied": "bejwI' chaw'Qo': {{reason}}"
+  },
+  "preview": {
+    "required": "Doq pat ta'meyvaD legh poQlu'",
+    "diff": "Diff / ngeb qaS"
+  }
+}

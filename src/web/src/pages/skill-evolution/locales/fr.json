@@ -1,0 +1,22 @@
+{
+  "skillEvolution.title": "Évolution des compétences",
+  "skillEvolution.subtitle": "Examinez les candidats de compétences suggérés par l'IA d'après les habitudes d'utilisation",
+  "skillEvolution.status.pending": "En attente",
+  "skillEvolution.status.approved": "Approuvé",
+  "skillEvolution.status.rejected": "Rejeté",
+  "skillEvolution.stat.avgConfidence": "Confiance moyenne",
+  "skillEvolution.searchPlaceholder": "Rechercher des candidats…",
+  "skillEvolution.filter.all": "Tous",
+  "skillEvolution.sessions": "{{count}} sessions",
+  "skillEvolution.approve": "Approuver",
+  "skillEvolution.reject": "Rejeter",
+  "skillEvolution.showDetails": "Afficher les détails",
+  "skillEvolution.hideDetails": "Masquer les détails",
+  "skillEvolution.reasoning": "Raisonnement",
+  "skillEvolution.suggestedContent": "Contenu de compétence suggéré",
+  "skillEvolution.created": "Créé : {{date}}",
+  "skillEvolution.reviewed": "Examiné : {{date}}",
+  "skillEvolution.loading": "Chargement des candidats…",
+  "skillEvolution.loadError": "Échec du chargement des candidats : {{message}}",
+  "skillEvolution.empty": "Aucun candidat d'évolution de compétences pour le moment. Le système suggérera de nouvelles compétences d'après vos habitudes d'utilisation."
+}

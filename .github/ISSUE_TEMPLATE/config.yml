@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Documentation
+    url: https://eyssen.github.io/eyas/docs/en/
+    about: Setup, configuration and day-to-day use, in six languages.
+  - name: Report a security vulnerability
+    url: https://github.com/eyssen/eyas/security/advisories/new
+    about: Private report, visible only to you and the maintainer. Never open a public issue for this.

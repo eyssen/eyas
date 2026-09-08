@@ -1,0 +1,12 @@
+{
+  "nodes.title": "Távoli csomópontok",
+  "nodes.subtitle": "Távoli EYAS-csomópont kapcsolatok kezelése",
+  "nodes.count": "{{count}} csomópont",
+  "nodes.addNode": "Csomópont hozzáadása",
+  "nodes.editNode": "Csomópont szerkesztése",
+  "nodes.empty": "Nincs beállított távoli csomópont",
+  "nodes.lastSeen": "Utoljára látva: {{time}}",
+  "nodes.host": "Kiszolgáló",
+  "nodes.type": "Típus",
+  "nodes.saving": "Mentés…"
+}

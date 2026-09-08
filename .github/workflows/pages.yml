@@ -1,0 +1,68 @@
+name: pages
+
+# Publishes the public site at https://eyssen.github.io/eyas/
+#   /            -> docs/eyas-overview.html (product landing page)
+#   /docs/<lang>/ -> packages/docs Starlight build (en, hu, de, es, fr, tlh)
+#
+# The site is assembled by scripts/build-pages-site.sh, which is the same
+# script used for a local dry run — CI does not carry its own copy of the logic.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/eyas-overview.html"
+      - "packages/docs/**"
+      - "scripts/build-pages-site.sh"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race; queue instead of cancelling a running publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # Pages lives on the public mirror only. eyas-dev has no Pages site, so a
+    # push that matches the paths filter would otherwise build and then 404
+    # at deploy (GitHub Pages is not enabled there).
+    if: github.repository == 'eyssen/eyas'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: latest
+
+      - name: Install docs dependencies
+        working-directory: packages/docs
+        run: bun install --frozen-lockfile
+
+      - name: Build site
+        run: scripts/build-pages-site.sh
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    if: github.repository == 'eyssen/eyas'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

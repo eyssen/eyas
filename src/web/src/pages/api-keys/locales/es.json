@@ -1,0 +1,21 @@
+{
+  "apiKeys.title": "Claves API",
+  "apiKeys.subtitle": "Gestiona las claves API para el acceso programático",
+  "apiKeys.create": "Crear clave API",
+  "apiKeys.createdBanner": "Clave API creada: {{name}}",
+  "apiKeys.copyWarning": "Copia esta clave ahora. No se volverá a mostrar.",
+  "apiKeys.dismiss": "Descartar",
+  "apiKeys.namePlaceholder": "Nombre de la clave (p. ej. CI/CD, herramienta CLI)",
+  "apiKeys.expiresPlaceholder": "Caduca en días (opcional, déjalo vacío para que no caduque)",
+  "apiKeys.colKeyPrefix": "Prefijo de la clave",
+  "apiKeys.colCreated": "Creada",
+  "apiKeys.colLastUsed": "Último uso",
+  "apiKeys.colExpires": "Caduca",
+  "apiKeys.empty": "No hay claves API. Crea una para habilitar el acceso programático.",
+  "apiKeys.never": "Nunca",
+  "apiKeys.noExpiry": "Sin caducidad",
+  "apiKeys.revokeConfirm": "¿Seguro que quieres revocar esta clave API? Esta acción no se puede deshacer.",
+  "apiKeys.revokeTitle": "Revocar clave API",
+  "apiKeys.loading": "Cargando claves API…",
+  "apiKeys.loadFailed": "Error al cargar las claves API: {{message}}"
+}

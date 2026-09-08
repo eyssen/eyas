@@ -1,0 +1,23 @@
+{
+  "name": "@eyas/docs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "EYAS user documentation \u2014 Astro Starlight (multi-language static site).",
+  "scripts": {
+    "dev": "astro dev --port 4321",
+    "start": "astro dev --port 4321",
+    "build": "astro build",
+    "preview": "astro preview --port 4321",
+    "skeleton": "bun scripts/generate-skeleton.mjs",
+    "catalog": "bun scripts/export-field-catalog.mjs",
+    "full-docs": "bun scripts/export-field-catalog.mjs && bun scripts/generate-full-docs.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.6",
+    "astro": "^7.1.6",
+    "sharp": "^0.35.0"
+  }
+}
