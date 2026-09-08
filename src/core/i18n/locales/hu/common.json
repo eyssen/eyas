@@ -1,0 +1,47 @@
+{
+  "app": { "name": "eYssen EYAS", "version": "1.0.0" },
+  "server": {
+    "starting": "Szerver indítása...",
+    "started": "Szerver elindult: {{host}}:{{port}}",
+    "stopping": "Szerver leállítása...",
+    "stopped": "Szerver leállt."
+  },
+  "module": {
+    "loading": "Modul betöltése: {{name}}",
+    "loaded": "Modul betöltve: {{name}}",
+    "disabled": "Modul letiltva: {{name}}"
+  },
+  "db": {
+    "connected": "Adatbázis csatlakozva: {{path}}",
+    "error": "Adatbázis hiba: {{message}}"
+  },
+  "config": {
+    "loaded": "Konfiguráció betöltve: {{path}}",
+    "invalid": "Érvénytelen konfiguráció: {{errors}}"
+  },
+  "documents": {
+    "title": "Dokumentumok",
+    "upload": "Feltöltés",
+    "dropzone": "Húzd ide a fájlokat vagy kattints a feltöltéshez",
+    "maxSize": "Max {{size}} MB fájlonként",
+    "attachments": "Mellékletek",
+    "attach": "Csatolás",
+    "detach": "Leválasztás",
+    "noDocuments": "Még nincsenek dokumentumok",
+    "syncStatus": {
+      "synced": "Szinkronizálva",
+      "pending": "Szinkronizálás...",
+      "error": "Szinkronizálási hiba",
+      "notConfigured": "Csak helyi"
+    },
+    "viewMode": {
+      "grid": "Rács",
+      "list": "Lista"
+    },
+    "errors": {
+      "tooLarge": "A fájl meghaladja a méretkorlátot",
+      "typeNotAllowed": "A fájltípus nem engedélyezett",
+      "uploadFailed": "Feltöltés sikertelen"
+    }
+  }
+}

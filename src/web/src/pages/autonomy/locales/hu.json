@@ -1,0 +1,19 @@
+{
+  "autonomy.title": "Autonómia",
+  "autonomy.subtitlePre": "Mennyire cselekedhet önállóan az asszisztens műveletosztályonként. A visszafordíthatatlan / kimenő műveletek ",
+  "autonomy.subtitlePost": " szinten zároltak, és nem emelhetők — ez egy biztonsági alsó korlát.",
+  "autonomy.level.1.label": "Értesítés",
+  "autonomy.level.1.hint": "Előbb kérdez",
+  "autonomy.level.2.label": "Jóváhagyás",
+  "autonomy.level.2.hint": "Javaslat + egykattintásos jóváhagyás",
+  "autonomy.level.3.label": "Automatikus",
+  "autonomy.level.3.hint": "Önálló + utólagos jelentés",
+  "autonomy.pendingApprovals": "Függő jóváhagyások",
+  "autonomy.nothingWaiting": "Semmi sem vár jóváhagyásra.",
+  "autonomy.approve": "Jóváhagyás",
+  "autonomy.reject": "Elutasítás",
+  "autonomy.group.reversible": "Visszafordítható",
+  "autonomy.group.locked": "Kimenő / visszafordíthatatlan (zárolt)",
+  "autonomy.parkedRun": "Erre váró futás",
+  "autonomy.resumeFailed": "Nem sikerült folytatni: {{reason}}"
+}

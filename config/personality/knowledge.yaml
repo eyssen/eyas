@@ -1,0 +1,7 @@
+# eYssen EYAS 1.0 — Knowledge Module Configuration
+knowledge:
+  default_space: general
+  max_page_versions: 50
+  ai_commands:
+    enabled: true
+    model: default

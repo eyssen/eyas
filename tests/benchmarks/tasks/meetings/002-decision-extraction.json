@@ -1,0 +1,25 @@
+{
+  "id": "meetings-002",
+  "category": "meetings",
+  "prompt": "From this architecture review transcript, extract a numbered list of DECISIONS made (not proposals, not open questions).",
+  "promptVariations": [
+    "Pull only the decisions from the architecture review transcript below.",
+    "Transcript attached. Produce a clean 'Decisions' list — explicit agreements only."
+  ],
+  "context": {
+    "transcript": "We debated whether to store agent memory in SQLite or Postgres. DECISION: stick with SQLite for v1; revisit at 10k tasks/day. Someone proposed moving the worker queue to Redis Streams — still open; needs a spike next sprint. DECISION: use Orama for search, not MiniSearch, because we need vector support. DECISION: ship the chat UI behind a feature flag for beta 3 rollout. Open question: who owns the migration from Turbo Repo to Nx — parked for another session."
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["decision"],
+    "mustNotMention": ["turbo repo to nx", "redis streams"],
+    "rubric": [
+      "Lists exactly the three explicit DECISION items (SQLite for v1, Orama, feature-flag rollout)",
+      "Excludes the two non-decisions (Redis Streams spike, Turbo->Nx ownership)",
+      "Numbered list format, one decision per line",
+      "Does not editorialize or add recommendations"
+    ]
+  },
+  "maxTokens": 2500,
+  "maxCostUsd": 0.03,
+  "maxDurationSec": 20
+}

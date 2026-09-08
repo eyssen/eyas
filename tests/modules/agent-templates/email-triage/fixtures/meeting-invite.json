@@ -1,0 +1,11 @@
+{
+  "id": "fixture-meeting-invite",
+  "from": "colleague@eyas.example",
+  "to": ["user@eyas.example"],
+  "subject": "Meeting invite: Quarterly planning review",
+  "body": "You are invited to the quarterly planning review on 2026-04-20 at 10:00. Please confirm attendance.\n\nBEGIN:VCALENDAR\nVERSION:2.0\n...",
+  "receivedAt": "2026-04-16T08:30:00+02:00",
+  "headers": {
+    "Content-Type": "multipart/mixed; boundary=xyz, text/calendar; method=REQUEST"
+  }
+}

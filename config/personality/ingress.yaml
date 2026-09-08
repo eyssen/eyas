@@ -1,0 +1,5 @@
+# eYssen EYAS 1.0 — Ingress Module Configuration
+ingress:
+  enabled: false
+  provider: cloudflare
+  token: "" # Set via secrets module

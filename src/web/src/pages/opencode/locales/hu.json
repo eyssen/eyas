@@ -1,0 +1,15 @@
+{
+  "opencode.title": "OpenCode",
+  "opencode.subtitle": "Opcionális MIT kódoló-motor sidecar. A chat kiosztja a feladatot; az élő TUI a beszélgetés termináljában nyílik.",
+  "opencode.empty": "Az OpenCode nem kész. Telepítsd a CLI-t, majd kérd az agenttől az opencode_status hívást.",
+  "opencode.available": "Kész",
+  "opencode.unavailable": "Nem kész",
+  "opencode.check.ok": "OK",
+  "opencode.check.missing": "Hiányzik",
+  "opencode.check.warn": "Figyelmeztetés",
+  "opencode.server": "Szerver",
+  "opencode.server.running": "Fut: {{url}} ({{version}})",
+  "opencode.server.stopped": "Session nyitásakor indul",
+  "opencode.pty": "POSIX PTY",
+  "opencode.help": "Telepítés: curl -fsSL https://opencode.ai/install | bash — vagy npm i -g opencode-ai. Ha nincs a PATH-on, állítsd be: EYAS_OPENCODE_BIN."
+}

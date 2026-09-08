@@ -1,0 +1,28 @@
+{
+  "id": "ops-002",
+  "category": "ops",
+  "prompt": "Increase the memory limit of the `odoo-web` Deployment in namespace `odoo-prod` from 1Gi to 2Gi. Provide the minimal kubectl patch AND the corresponding change in our Helm values file.",
+  "promptVariations": [
+    "Raise the `odoo-web` memory limit to 2Gi. Give me both an imperative patch and the Helm values edit.",
+    "Apply a memory limit bump on Deployment odoo-web (1Gi -> 2Gi) via kubectl and update Helm values accordingly."
+  ],
+  "context": {
+    "deployment": "odoo-web",
+    "namespace": "odoo-prod",
+    "valuesFile": "deploy/helm/odoo/values.yaml",
+    "currentLimit": "1Gi"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["kubectl", "patch", "2Gi"],
+    "mustNotMention": ["kubectl delete deployment"],
+    "rubric": [
+      "Provides a correct kubectl patch (JSON or strategic merge) touching only resources.limits.memory",
+      "Updates values.yaml with the same new limit for consistency",
+      "Notes that both changes should be committed so kubectl and Helm stay in sync",
+      "Does not suggest deleting or recreating the deployment"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 25
+}

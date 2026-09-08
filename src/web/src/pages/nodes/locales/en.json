@@ -1,0 +1,12 @@
+{
+  "nodes.title": "Remote Nodes",
+  "nodes.subtitle": "Manage remote EYAS node connections",
+  "nodes.count": "{{count}} nodes",
+  "nodes.addNode": "Add Node",
+  "nodes.editNode": "Edit Node",
+  "nodes.empty": "No remote nodes configured",
+  "nodes.lastSeen": "Last seen: {{time}}",
+  "nodes.host": "Host",
+  "nodes.type": "Type",
+  "nodes.saving": "Saving…"
+}

@@ -1,0 +1,61 @@
+EYAS {{ .Chart.AppVersion }} has been deployed as release "{{ .Release.Name }}"
+in namespace "{{ include "eyas.namespace" . }}".
+
+{{- $fullName := include "eyas.fullname" . -}}
+{{- $port := .Values.service.port }}
+
+Image:        {{ include "eyas.image" . }}
+Replicas:     {{ if .Values.autoscaling.enabled }}{{ .Values.autoscaling.minReplicas }}-{{ .Values.autoscaling.maxReplicas }} (HPA){{ else }}{{ .Values.replicaCount }}{{ end }}
+Service:      {{ .Values.service.type }} on port {{ $port }}
+Persistence:  {{ if .Values.persistence.data.enabled }}{{ .Values.persistence.data.size }} on {{ default "default" .Values.persistence.data.storageClass }}{{ else }}disabled (ephemeral){{ end }}
+
+--- Next steps ---
+
+1. Confirm pods are up:
+
+     kubectl get pods -n {{ include "eyas.namespace" . }} -l app.kubernetes.io/instance={{ .Release.Name }}
+
+2. Check readiness:
+
+     kubectl rollout status -n {{ include "eyas.namespace" . }} deployment/{{ $fullName }}
+
+{{- if .Values.ingress.enabled }}
+3. Access EYAS at:
+{{- range .Values.ingress.hosts }}
+{{- range .paths }}
+     {{ if $.Values.ingress.tls }}https{{ else }}http{{ end }}://{{ .host | default $.host }}{{ .path }}
+{{- end }}
+{{- end }}
+{{- else if eq .Values.service.type "LoadBalancer" }}
+3. Wait for an external IP:
+
+     kubectl get svc -n {{ include "eyas.namespace" . }} {{ $fullName }} -w
+
+{{- else }}
+3. Port-forward to access locally:
+
+     kubectl port-forward -n {{ include "eyas.namespace" . }} svc/{{ $fullName }} {{ $port }}:{{ $port }}
+
+   Then open http://localhost:{{ $port }}/web/health
+{{- end }}
+
+4. Tail the logs:
+
+     kubectl logs -n {{ include "eyas.namespace" . }} -l app.kubernetes.io/instance={{ .Release.Name }} -f --tail=200
+
+{{- if not (hasKey (index .Values.env.fromSecret 0 | default dict) "secretName") }}
+{{- else }}
+
+REMINDER: The following Secrets must exist in namespace "{{ include "eyas.namespace" . }}":
+{{- range .Values.env.fromSecret }}
+  - {{ .secretName }} (key: {{ .secretKey }}) → env {{ .name }}
+{{- end }}
+
+Create the master-key Secret (if you haven't already):
+
+  MASTER_KEY="$(openssl rand -base64 32)"
+  kubectl create secret generic eyas-master-key \
+    --namespace {{ include "eyas.namespace" . }} \
+    --from-literal=master-key="${MASTER_KEY}"
+
+{{- end }}

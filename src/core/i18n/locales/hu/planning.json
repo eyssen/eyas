@@ -1,0 +1,49 @@
+{
+  "title": "Interaktív tervezés",
+  "status": {
+    "pendingApproval": "Jóváhagyásra vár",
+    "approved": "Jóváhagyva",
+    "rejected": "Elutasítva",
+    "inProgress": "Folyamatban",
+    "completed": "Befejezve",
+    "failed": "Sikertelen"
+  },
+  "section": {
+    "goal": "Cél",
+    "originalRequest": "Eredeti kérés",
+    "steps": "Lépések",
+    "risks": "Kockázatok",
+    "rollback": "Visszagörgetés"
+  },
+  "step": {
+    "title": "Cím",
+    "description": "Leírás",
+    "successCriteria": "Sikeres befejezés feltétele",
+    "dependsOn": "Függőségek",
+    "status": {
+      "pending": "Várakozás",
+      "inProgress": "Folyamatban",
+      "done": "Kész",
+      "skipped": "Kihagyva",
+      "failed": "Sikertelen"
+    }
+  },
+  "risk": {
+    "severity": {
+      "low": "Alacsony",
+      "medium": "Közepes",
+      "high": "Magas"
+    },
+    "mitigation": "Megelőzés"
+  },
+  "action": {
+    "approve": "Terv jóváhagyása",
+    "reject": "Terv elutasítása",
+    "skipPlanning": "Tervezés kihagyása",
+    "regenerate": "Újragenerálás"
+  },
+  "complexity": {
+    "recommended": "Tervezés ajánlott (pontszám: {{score}})",
+    "notNeeded": "Egyszerű feladat — tervezés nem szükséges"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "login.signIn": "Iniciar sesión",
+  "login.subtitle": "Introduce tus credenciales para continuar",
+  "login.username": "Usuario",
+  "login.usernamePlaceholder": "admin",
+  "login.password": "Contraseña",
+  "login.signingIn": "Iniciando sesión…",
+  "login.invalidCredentials": "Credenciales no válidas",
+  "login.mascotAlt": "Asistente EYAS"
+}

@@ -1,0 +1,23 @@
+{
+  "research.newResearch": "Új kutatás",
+  "research.topicPlaceholder": "Add meg a kutatás témáját…",
+  "research.depth.shallow": "Felszínes (gyorsabb)",
+  "research.depth.deep": "Mély (alapos)",
+  "research.submit": "Kutatás",
+  "research.empty": "Még nincs kutatási jelentés",
+  "research.status.pending": "Függőben",
+  "research.status.searching": "Keresés",
+  "research.status.evaluating": "Értékelés",
+  "research.status.synthesizing": "Összegzés",
+  "research.status.complete": "Kész",
+  "research.status.error": "Hiba",
+  "research.selectPrompt": "Válassz egy jelentést, vagy indíts új kutatást",
+  "research.failedTitle": "A kutatás sikertelen",
+  "research.researching": "Kutatás folyamatban…",
+  "research.depthShort.shallow": "felszínes",
+  "research.depthShort.deep": "mély",
+  "research.reportDepth": "{{depth}} mélység",
+  "research.sourcesCount": "{{count}} forrás",
+  "research.sourcesHeading": "Források",
+  "research.relevant": "{{percent}}% releváns"
+}
