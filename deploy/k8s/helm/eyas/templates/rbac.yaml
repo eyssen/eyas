@@ -1,0 +1,37 @@
+{{/*
+EYAS does not require cluster-wide RBAC in the baseline deployment.
+We provision an (initially empty) Role + RoleBinding tied to the
+ServiceAccount so operators can append permissions without re-templating.
+*/}}
+{{- if .Values.serviceAccount.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ include "eyas.fullname" . }}
+  namespace: {{ include "eyas.namespace" . }}
+  labels:
+    {{- include "eyas.labels" . | nindent 4 }}
+rules:
+  # Read its own configmap for live reload (optional — safe minimum).
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames:
+      - {{ include "eyas.fullname" . }}-config
+    verbs: ["get", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ include "eyas.fullname" . }}
+  namespace: {{ include "eyas.namespace" . }}
+  labels:
+    {{- include "eyas.labels" . | nindent 4 }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ include "eyas.fullname" . }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ include "eyas.serviceAccountName" . }}
+    namespace: {{ include "eyas.namespace" . }}
+{{- end -}}

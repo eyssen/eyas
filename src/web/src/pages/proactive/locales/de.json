@@ -1,0 +1,19 @@
+{
+  "proactive.title": "Proaktives Dashboard",
+  "proactive.subtitle": "Aktive Warnungen, Erkenntnisse und gelernte Muster",
+  "proactive.priority.urgent": "Dringend",
+  "proactive.priority.high": "Hoch",
+  "proactive.priority.normal": "Normal",
+  "proactive.priority.low": "Niedrig",
+  "proactive.urgentCount": "{{count}} dringend",
+  "proactive.checkNow": "Jetzt prüfen",
+  "proactive.checking": "Wird geprüft…",
+  "proactive.activeAlerts": "Aktive Warnungen",
+  "proactive.loadingAlerts": "Warnungen werden geladen…",
+  "proactive.alertsError": "Warnungen konnten nicht geladen werden: {{message}}",
+  "proactive.allClear": "Alles klar — keine aktiven Warnungen",
+  "proactive.learnedLessons": "Gelernte Erkenntnisse",
+  "proactive.loadingLessons": "Erkenntnisse werden geladen…",
+  "proactive.noLessons": "Noch keine Erkenntnisse gelernt.",
+  "proactive.confidence": "{{value}} % Konfidenz"
+}

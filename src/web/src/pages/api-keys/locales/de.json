@@ -1,0 +1,21 @@
+{
+  "apiKeys.title": "API-Schlüssel",
+  "apiKeys.subtitle": "API-Schlüssel für programmatischen Zugriff verwalten",
+  "apiKeys.create": "API-Schlüssel erstellen",
+  "apiKeys.createdBanner": "API-Schlüssel erstellt: {{name}}",
+  "apiKeys.copyWarning": "Kopiere diesen Schlüssel jetzt. Er wird nicht erneut angezeigt.",
+  "apiKeys.dismiss": "Schließen",
+  "apiKeys.namePlaceholder": "Schlüsselname (z. B. CI/CD, CLI-Tool)",
+  "apiKeys.expiresPlaceholder": "Ablauf in Tagen (optional, leer lassen für kein Ablaufdatum)",
+  "apiKeys.colKeyPrefix": "Schlüsselpräfix",
+  "apiKeys.colCreated": "Erstellt",
+  "apiKeys.colLastUsed": "Zuletzt verwendet",
+  "apiKeys.colExpires": "Läuft ab",
+  "apiKeys.empty": "Keine API-Schlüssel. Erstelle einen für programmatischen Zugriff.",
+  "apiKeys.never": "Nie",
+  "apiKeys.noExpiry": "Kein Ablauf",
+  "apiKeys.revokeConfirm": "Möchtest du diesen API-Schlüssel wirklich widerrufen? Das kann nicht rückgängig gemacht werden.",
+  "apiKeys.revokeTitle": "API-Schlüssel widerrufen",
+  "apiKeys.loading": "API-Schlüssel werden geladen…",
+  "apiKeys.loadFailed": "API-Schlüssel konnten nicht geladen werden: {{message}}"
+}

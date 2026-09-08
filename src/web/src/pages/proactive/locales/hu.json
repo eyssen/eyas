@@ -1,0 +1,19 @@
+{
+  "proactive.title": "Proaktív irányítópult",
+  "proactive.subtitle": "Aktív riasztások, meglátások és tanult minták",
+  "proactive.priority.urgent": "Sürgős",
+  "proactive.priority.high": "Magas",
+  "proactive.priority.normal": "Normál",
+  "proactive.priority.low": "Alacsony",
+  "proactive.urgentCount": "{{count}} sürgős",
+  "proactive.checkNow": "Ellenőrzés most",
+  "proactive.checking": "Ellenőrzés…",
+  "proactive.activeAlerts": "Aktív riasztások",
+  "proactive.loadingAlerts": "Riasztások betöltése…",
+  "proactive.alertsError": "Nem sikerült betölteni a riasztásokat: {{message}}",
+  "proactive.allClear": "Minden rendben — nincs aktív riasztás",
+  "proactive.learnedLessons": "Tanult leckék",
+  "proactive.loadingLessons": "Leckék betöltése…",
+  "proactive.noLessons": "Még nincs tanult lecke.",
+  "proactive.confidence": "{{value}}% biztonság"
+}

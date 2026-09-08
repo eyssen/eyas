@@ -1,0 +1,25 @@
+{
+  "id": "heldout-coding-001",
+  "category": "coding",
+  "prompt": "The function `parseBool(v)` returns true for the literal string 'false' because it only checks truthiness. Fix it so common textual false values ('false', '0', 'no', 'off', '') return false.",
+  "promptVariations": [
+    "`parseBool` is broken — it returns true for 'false'. Patch it to handle common textual boolean values."
+  ],
+  "context": {
+    "file": "src/shared/parse-bool.ts",
+    "snippet": "export function parseBool(v: unknown): boolean { return Boolean(v) }"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["parsebool", "tolowercase"],
+    "mustNotMention": ["use a regex from user input"],
+    "rubric": [
+      "Handles the documented false string set case-insensitively",
+      "Leaves true values (anything else truthy) untouched",
+      "Preserves boolean-input pass-through",
+      "Adds a test suggestion with at least three false strings"
+    ]
+  },
+  "maxTokens": 2500,
+  "maxCostUsd": 0.03,
+  "maxDurationSec": 20
+}

@@ -1,0 +1,24 @@
+id: pvc-full
+kind: pvc-full
+matcher:
+  type: prometheus
+  fields:
+    alertname: KubePersistentVolumeFillingUp
+diagnosis_template: |
+  PersistentVolumeClaim in namespace {{namespace}} is filling up.
+  Alert summary: {{summary}}
+  Action plan:
+    1. Confirm volume usage via `kubectl exec` or Prometheus.
+    2. If application-controllable: rotate/delete old data.
+    3. Otherwise: propose a PVC resize via GitOps PR (see suggested_action).
+suggested_action:
+  action_type: gitops-pr
+  pr_path: "clusters/oke/{{namespace}}/pvc-resize.yaml"
+  pr_patch: |
+    --- a/clusters/oke/{{namespace}}/pvc-resize.yaml
+    +++ b/clusters/oke/{{namespace}}/pvc-resize.yaml
+    @@
+    -  storage: 50Gi
+    +  storage: 100Gi
+severity: critical
+requires_approval: true

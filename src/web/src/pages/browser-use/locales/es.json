@@ -1,0 +1,15 @@
+{
+  "browserUse.title": "Browser Use",
+  "browserUse.subtitle": "Sidecars CLI opcionales para autenticación persistente. No es Studio, no es Media, no son las herramientas Playwright headless.",
+  "browserUse.empty": "La CLI Python de Browser Use no está lista. Completa lo que falta y usa browser_use_exec. Prefiere Agent Browser cuando esa tarjeta esté Lista.",
+  "browserUse.available": "Listo",
+  "browserUse.unavailable": "No listo",
+  "browserUse.check.ok": "OK",
+  "browserUse.check.missing": "Falta",
+  "browserUse.check.warn": "Aviso",
+  "browserUse.recommended": "Recomendado",
+  "browserUse.lanes": "Páginas públicas: Playwright headless. Auth persistente / @e1: Agent Browser (recomendado). CLI Python heredada si ya está instalada. Escritorio: Manos.",
+  "browserUse.agentBrowser.title": "Agent Browser",
+  "browserUse.agentBrowser.empty": "La CLI agent-browser no está lista. Instala con npm i -g agent-browser y agent-browser install, o EYAS_AGENT_BROWSER_BIN.",
+  "browserUse.python.title": "Browser Use CLI (Python)"
+}

@@ -1,0 +1,23 @@
+id: certificate-renewal
+kind: certificate-expiring
+matcher:
+  type: prometheus
+  fields:
+    alertname: CertManagerCertificateExpiringSoon
+diagnosis_template: |
+  cert-manager reports a certificate expiring soon in namespace {{namespace}}.
+  Alert summary: {{summary}}
+  This runbook proposes a forced renewal via an annotation update.
+  A human operator MUST approve the PR before it is applied.
+suggested_action:
+  action_type: gitops-pr
+  pr_path: "clusters/oke/{{namespace}}/certificates.yaml"
+  pr_patch: |
+    --- a/clusters/oke/{{namespace}}/certificates.yaml
+    +++ b/clusters/oke/{{namespace}}/certificates.yaml
+    @@ metadata:
+    -  annotations: {}
+    +  annotations:
+    +    cert-manager.io/force-renewal: "true"
+severity: warning
+requires_approval: true

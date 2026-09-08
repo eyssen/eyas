@@ -1,0 +1,25 @@
+{
+  "id": "meetings-001",
+  "category": "meetings",
+  "prompt": "Summarize this engineering standup transcript into: (1) what shipped, (2) what's in progress, (3) blockers, (4) follow-ups with owners.",
+  "promptVariations": [
+    "Produce a structured summary of the standup transcript below.",
+    "Extract shipped / WIP / blockers / follow-ups from this standup."
+  ],
+  "context": {
+    "transcript": "Anna: Shipped the invoice-OCR endpoint yesterday; baseline 92% accuracy. Now on the retry queue work. Blocked on the Redis TLS cert from ops. Balazs: Merging the chat-history migration today; vitest suite green. Next: backport to the 0.8 branch. Cecile: Still on the webhook rate-limit story; stuck on clock-drift test flake. Will pair with Balazs this afternoon. Dora: Research complete on orama vs. minisearch — picking orama. PR for the module scaffold up for review."
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["shipped", "blockers"],
+    "mustNotMention": ["lorem"],
+    "rubric": [
+      "Correctly attributes items to Anna / Balazs / Cecile / Dora",
+      "Identifies the Redis TLS cert and the flaky clock-drift test as blockers",
+      "Produces a follow-up list with an explicit owner per item",
+      "Does not invent details not present in the transcript"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 25
+}

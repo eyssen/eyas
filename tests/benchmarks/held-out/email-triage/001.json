@@ -1,0 +1,29 @@
+{
+  "id": "heldout-email-001",
+  "category": "email-triage",
+  "prompt": "This email is an internal HR announcement about a new benefit. How should the agent handle it?",
+  "promptVariations": [
+    "Triage this HR announcement email and decide next action."
+  ],
+  "context": {
+    "email": {
+      "from": "hr@acme.example",
+      "subject": "New benefit: mental health days starting May",
+      "body": "Team, from May onward every employee gets two additional paid mental-health days per quarter, no questions asked. Full policy in the handbook."
+    }
+  },
+  "expectedOutcome": {
+    "action": "summarize-and-file",
+    "mustMentionKeywords": ["hr", "benefit"],
+    "mustNotMention": ["urgent", "reply-all"],
+    "rubric": [
+      "Classifies as internal HR informational, not urgent",
+      "Produces a one-line summary for the digest",
+      "Does NOT draft a reply-all",
+      "Files to an 'Internal announcements' folder or equivalent"
+    ]
+  },
+  "maxTokens": 2000,
+  "maxCostUsd": 0.02,
+  "maxDurationSec": 15
+}

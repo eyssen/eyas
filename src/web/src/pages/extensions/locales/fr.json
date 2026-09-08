@@ -1,0 +1,21 @@
+{
+  "extensions.title": "Extensions",
+  "extensions.subtitle": "Certains outils et packs de compétences n'ont pas pu être fournis avec EYAS en raison de restrictions de licence. Vous pouvez les installer ici : les packs à installation automatique sont téléchargés par EYAS avec votre consentement, tandis que les outils tiers doivent être téléchargés indépendamment depuis leur source d'origine, sous leurs licences respectives.",
+  "extensions.installedSuffix": "installées",
+  "extensions.installed": "Installé",
+  "extensions.github": "GitHub",
+  "extensions.install": "Installer",
+  "extensions.installing": "Installation…",
+  "extensions.enable": "Activer",
+  "extensions.disable": "Désactiver",
+  "extensions.skills": "{{count}} compétences",
+  "extensions.by": "par {{author}}",
+  "extensions.licenseNotice": "Avis de licence",
+  "extensions.acceptInstall": "Accepter et installer",
+  "extensions.setupGuide": "Guide de configuration",
+  "extensions.hideDetails": "Masquer les détails",
+  "extensions.autoInstallable": "Packs à installation automatique",
+  "extensions.thirdParty": "Outils tiers compatibles",
+  "extensions.loading": "Chargement des extensions…",
+  "extensions.loadError": "Échec du chargement des extensions : {{message}}"
+}

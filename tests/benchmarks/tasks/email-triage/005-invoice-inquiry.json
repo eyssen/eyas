@@ -1,0 +1,31 @@
+{
+  "id": "email-triage-005",
+  "category": "email-triage",
+  "prompt": "A vendor is asking about the status of invoice INV-2026-0412 that they sent three weeks ago. How should the agent handle this?",
+  "promptVariations": [
+    "Triage this vendor email about an outstanding invoice.",
+    "You received an invoice follow-up email from a supplier. Decide the correct next action."
+  ],
+  "context": {
+    "email": {
+      "from": "finance@acme-logistics.example",
+      "subject": "Follow-up: INV-2026-0412",
+      "body": "Hello, we submitted invoice INV-2026-0412 (EUR 12,400) on 25 March with NET30 terms. Could you please confirm receipt and expected payment date? Regards, Dora"
+    }
+  },
+  "expectedOutcome": {
+    "action": "route-to-finance",
+    "mustMentionKeywords": ["INV-2026-0412", "finance"],
+    "mustNotMention": ["pay immediately", "wire transfer"],
+    "rubric": [
+      "Correctly identifies this as a vendor invoice inquiry",
+      "Routes to the finance owner for status check, does not auto-confirm payment",
+      "Proposes a draft acknowledgement that buys time for lookup without committing to a date",
+      "Does NOT initiate or promise a payment transfer"
+    ]
+  },
+  "maxTokens": 2500,
+  "maxCostUsd": 0.03,
+  "maxDurationSec": 20,
+  "tags": ["finance"]
+}
