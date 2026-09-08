@@ -1,0 +1,23 @@
+{
+  "research.newResearch": "Nueva investigación",
+  "research.topicPlaceholder": "Introduce el tema de investigación…",
+  "research.depth.shallow": "Superficial (más rápida)",
+  "research.depth.deep": "Profunda (exhaustiva)",
+  "research.submit": "Investigar",
+  "research.empty": "Aún no hay informes de investigación",
+  "research.status.pending": "Pendiente",
+  "research.status.searching": "Buscando",
+  "research.status.evaluating": "Evaluando",
+  "research.status.synthesizing": "Sintetizando",
+  "research.status.complete": "Completa",
+  "research.status.error": "Error",
+  "research.selectPrompt": "Selecciona un informe o inicia una nueva investigación",
+  "research.failedTitle": "La investigación falló",
+  "research.researching": "Investigando…",
+  "research.depthShort.shallow": "superficial",
+  "research.depthShort.deep": "profunda",
+  "research.reportDepth": "profundidad {{depth}}",
+  "research.sourcesCount": "{{count}} fuentes",
+  "research.sourcesHeading": "Fuentes",
+  "research.relevant": "{{percent}} % relevante"
+}

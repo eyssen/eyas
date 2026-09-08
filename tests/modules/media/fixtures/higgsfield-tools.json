@@ -1,0 +1,6 @@
+[
+  { "name": "generate_image" },
+  { "name": "generate_video" },
+  { "name": "creations_wait" },
+  { "name": "account_balance" }
+]

@@ -1,0 +1,30 @@
+{
+  "id": "ops-001",
+  "category": "ops",
+  "prompt": "A Kubernetes pod `eyas-web-7d4` in namespace `eyas-prod` is in CrashLoopBackOff. `kubectl describe` shows OOMKilled. Propose a diagnostic plan and a short-term mitigation.",
+  "promptVariations": [
+    "Pod `eyas-web-7d4` keeps crashing with OOMKilled status. Outline diagnosis steps and an immediate fix.",
+    "Describe how to investigate and mitigate an OOMKilled CrashLoopBackOff for `eyas-web-7d4`."
+  ],
+  "context": {
+    "namespace": "eyas-prod",
+    "pod": "eyas-web-7d4",
+    "lastExitCode": 137,
+    "memoryLimit": "512Mi",
+    "recentDeploy": "2026-04-15T11:32Z"
+  },
+  "expectedOutcome": {
+    "action": "diagnose-and-mitigate",
+    "mustMentionKeywords": ["oomkilled", "memory", "limit"],
+    "mustNotMention": ["rm -rf", "kubectl delete namespace"],
+    "rubric": [
+      "Confirms OOMKilled correctly from exit code 137",
+      "Proposes inspecting kubectl top pod, logs, and any recent image/version change",
+      "Suggests a temporary increase of memory limit AND a pointer to root-cause (leak, new feature, dataset size)",
+      "Does NOT suggest destructive mitigations (delete namespace, force-delete pods without investigation)"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 30
+}

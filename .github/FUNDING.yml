@@ -1,0 +1,6 @@
+# Renders the "Sponsor" button on github.com/eyssen/eyas.
+#
+# This file lives in the DEV repo on purpose. The public repo's main branch is
+# replaced by a fresh orphan commit on every release, so anything created only
+# on the public side is erased by the next release push.
+github: [eyssen]

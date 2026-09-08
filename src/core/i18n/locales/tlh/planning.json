@@ -1,0 +1,49 @@
+{
+  "title": "jeS nab",
+  "status": {
+    "pendingApproval": "chaw' loS",
+    "approved": "chaw'ta'",
+    "rejected": "chaw'Qo'ta'",
+    "inProgress": "ta'taH",
+    "completed": "rIn",
+    "failed": "luj"
+  },
+  "section": {
+    "goal": "ngoQ",
+    "originalRequest": "wa'DIch tlhob",
+    "steps": "mIwmey",
+    "risks": "Qobmey",
+    "rollback": "chenHa'qa'"
+  },
+  "step": {
+    "title": "pong",
+    "description": "Del",
+    "successCriteria": "Qapla' chovnatlh",
+    "dependsOn": "poQ",
+    "status": {
+      "pending": "loS",
+      "inProgress": "ta'taH",
+      "done": "rIn",
+      "skipped": "mejta'",
+      "failed": "luj"
+    }
+  },
+  "risk": {
+    "severity": {
+      "low": "mach",
+      "medium": "bID",
+      "high": "tIn"
+    },
+    "mitigation": "Qob nge'"
+  },
+  "action": {
+    "approve": "nab yIchaw'",
+    "reject": "nab yIchaw'Qo'",
+    "skipPlanning": "nab yImej",
+    "regenerate": "yIchenqa'"
+  },
+  "complexity": {
+    "recommended": "nab qel (mI': {{score}})",
+    "notNeeded": "Qu' ngeD — nab poQbe'lu'"
+  }
+}
