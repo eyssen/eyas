@@ -1,0 +1,47 @@
+{
+  "app": { "name": "eYssen EYAS", "version": "1.0.0" },
+  "server": {
+    "starting": "Démarrage du serveur...",
+    "started": "Serveur démarré : {{host}}:{{port}}",
+    "stopping": "Arrêt du serveur...",
+    "stopped": "Serveur arrêté."
+  },
+  "module": {
+    "loading": "Chargement du module : {{name}}",
+    "loaded": "Module chargé : {{name}}",
+    "disabled": "Module désactivé : {{name}}"
+  },
+  "db": {
+    "connected": "Base de données connectée : {{path}}",
+    "error": "Erreur de base de données : {{message}}"
+  },
+  "config": {
+    "loaded": "Configuration chargée : {{path}}",
+    "invalid": "Configuration invalide : {{errors}}"
+  },
+  "documents": {
+    "title": "Documents",
+    "upload": "Téléverser",
+    "dropzone": "Déposez les fichiers ici ou cliquez pour téléverser",
+    "maxSize": "Max. {{size}} Mo par fichier",
+    "attachments": "Pièces jointes",
+    "attach": "Joindre",
+    "detach": "Détacher",
+    "noDocuments": "Aucun document pour le moment",
+    "syncStatus": {
+      "synced": "Synchronisé",
+      "pending": "Synchronisation...",
+      "error": "Erreur de synchronisation",
+      "notConfigured": "Local uniquement"
+    },
+    "viewMode": {
+      "grid": "Grille",
+      "list": "Liste"
+    },
+    "errors": {
+      "tooLarge": "Le fichier dépasse la limite de taille",
+      "typeNotAllowed": "Type de fichier non autorisé",
+      "uploadFailed": "Échec du téléversement"
+    }
+  }
+}

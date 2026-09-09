@@ -1,0 +1,21 @@
+{
+  "extensions.title": "Erweiterungen",
+  "extensions.subtitle": "Einige Tools und Skill-Pakete konnten aus Lizenzgründen nicht mit EYAS gebündelt werden. Du kannst sie hier installieren — automatisch installierbare Pakete lädt EYAS mit deiner Zustimmung herunter, während Drittanbieter-Tools eigenständig aus ihrer Originalquelle unter ihren jeweiligen Lizenzen heruntergeladen werden müssen.",
+  "extensions.installedSuffix": "installiert",
+  "extensions.installed": "Installiert",
+  "extensions.github": "GitHub",
+  "extensions.install": "Installieren",
+  "extensions.installing": "Wird installiert…",
+  "extensions.enable": "Aktivieren",
+  "extensions.disable": "Deaktivieren",
+  "extensions.skills": "{{count}} Skills",
+  "extensions.by": "von {{author}}",
+  "extensions.licenseNotice": "Lizenzhinweis",
+  "extensions.acceptInstall": "Akzeptieren & installieren",
+  "extensions.setupGuide": "Einrichtungsanleitung",
+  "extensions.hideDetails": "Details ausblenden",
+  "extensions.autoInstallable": "Automatisch installierbare Pakete",
+  "extensions.thirdParty": "Kompatible Drittanbieter-Tools",
+  "extensions.loading": "Erweiterungen werden geladen…",
+  "extensions.loadError": "Erweiterungen konnten nicht geladen werden: {{message}}"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "email-triage-003",
+  "category": "email-triage",
+  "prompt": "A calendar invite arrived for a project kickoff next Tuesday. How should the agent handle this?",
+  "promptVariations": [
+    "Decide how to triage this meeting invitation email.",
+    "You received a meeting invite for next week — what is the correct next action?"
+  ],
+  "context": {
+    "email": {
+      "from": "sara@partner-corp.example",
+      "subject": "Invitation: Q2 warehouse integration kickoff — Tue 21 Apr 10:00 CET",
+      "body": "Hi, please accept if you can attend. Agenda: 1) Scope walkthrough, 2) API access, 3) Timeline. Meeting link attached."
+    }
+  },
+  "expectedOutcome": {
+    "action": "propose-accept",
+    "mustMentionKeywords": ["tuesday", "calendar"],
+    "mustNotMention": ["delete", "spam"],
+    "rubric": [
+      "Identifies this as a meeting invite and checks the user's calendar for conflicts before auto-accepting",
+      "If no conflict is known, proposes acceptance; never auto-accepts without surfacing to the user",
+      "Extracts agenda items into a short note for the user",
+      "Does not classify the message as spam"
+    ]
+  },
+  "maxTokens": 2500,
+  "maxCostUsd": 0.03,
+  "maxDurationSec": 20
+}

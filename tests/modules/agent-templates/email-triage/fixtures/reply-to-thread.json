@@ -1,0 +1,11 @@
+{
+  "id": "fixture-reply-to-thread",
+  "from": "peter.nagy@partner.example",
+  "to": ["user@eyas.example"],
+  "subject": "Re: Proposal for Q3 collaboration",
+  "body": "Thanks for the proposal. One quick question — is the timeline flexible? We'd prefer to start in July instead of June.",
+  "inReplyTo": "<abc123@eyas.example>",
+  "references": ["<abc123@eyas.example>"],
+  "receivedAt": "2026-04-16T11:00:00+02:00",
+  "headers": {}
+}

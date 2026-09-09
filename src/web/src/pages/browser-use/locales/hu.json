@@ -1,0 +1,15 @@
+{
+  "browserUse.title": "Browser Use",
+  "browserUse.subtitle": "Opcionális CLI-sidecarek tartós belépéshez. Nem Stúdió, nem Média, nem a headless Playwright toolok.",
+  "browserUse.empty": "A Python Browser Use CLI nincs kész. Pótold a hiányzó darabokat, aztán a browser_use_exec. Ha az Agent Browser kártya Kész, azt részesítsd előnyben.",
+  "browserUse.available": "Kész",
+  "browserUse.unavailable": "Nem kész",
+  "browserUse.check.ok": "OK",
+  "browserUse.check.missing": "Hiányzik",
+  "browserUse.check.warn": "Figyelmeztetés",
+  "browserUse.recommended": "Ajánlott",
+  "browserUse.lanes": "Nyilvános oldal: headless Playwright. Tartós belépés / @e1: Agent Browser (ajánlott). Régi Python CLI, ha már telepítve van. Asztal: Kezek.",
+  "browserUse.agentBrowser.title": "Agent Browser",
+  "browserUse.agentBrowser.empty": "Az agent-browser CLI nincs kész. Telepítés: npm i -g agent-browser, majd agent-browser install, vagy EYAS_AGENT_BROWSER_BIN.",
+  "browserUse.python.title": "Browser Use CLI (Python)"
+}

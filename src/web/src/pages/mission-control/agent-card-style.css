@@ -1,0 +1,42 @@
+/* Part of eYssen. See LICENSE file for full copyright and licensing details. */
+
+/**
+ * Optional supplementary styles for Mission Control cards.
+ * The component ships with Tailwind utility classes; this file is kept
+ * minimal so consumers who aren't using Tailwind still get reasonable
+ * defaults when the stylesheet is imported.
+ */
+
+.mc-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.mc-totals {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .mc-totals {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.mc-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-right: 0.35rem;
+}
+
+.mc-status-running { background: rgb(16, 185, 129); }
+.mc-status-waiting { background: rgb(245, 158, 11); }
+.mc-status-paused  { background: rgb(56, 189, 248); }
+.mc-status-failed  { background: rgb(244, 63, 94); }
+.mc-status-completed { background: rgb(148, 163, 184); }
+.mc-status-cancelled { background: rgb(100, 116, 139); }
+.mc-status-idle      { background: rgb(148, 163, 184); }

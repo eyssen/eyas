@@ -1,0 +1,15 @@
+{
+  "browserUse.title": "Browser Use",
+  "browserUse.subtitle": "Optionale CLI-Sidecars für dauerhafte Anmeldung. Nicht Studio, nicht Media, nicht die headless-Playwright-Tools.",
+  "browserUse.empty": "Die Python-Browser-Use-CLI ist nicht bereit. Ergänze die fehlenden Teile, dann browser_use_exec. Bevorzuge Agent Browser, wenn diese Karte Bereit ist.",
+  "browserUse.available": "Bereit",
+  "browserUse.unavailable": "Nicht bereit",
+  "browserUse.check.ok": "OK",
+  "browserUse.check.missing": "Fehlt",
+  "browserUse.check.warn": "Warnung",
+  "browserUse.recommended": "Empfohlen",
+  "browserUse.lanes": "Öffentliche Seiten: headless Playwright. Dauerhafte Anmeldung / @e1: Agent Browser (empfohlen). Legacy-Python-CLI, falls bereits installiert. Desktop: Hände.",
+  "browserUse.agentBrowser.title": "Agent Browser",
+  "browserUse.agentBrowser.empty": "Die agent-browser-CLI ist nicht bereit. Installation: npm i -g agent-browser, dann agent-browser install, oder EYAS_AGENT_BROWSER_BIN.",
+  "browserUse.python.title": "Browser Use CLI (Python)"
+}

@@ -1,0 +1,12 @@
+{
+  "source": "manual",
+  "id": "issue-117",
+  "title": "Invoice PDF export crashes when line items contain unicode symbols",
+  "body": "Steps to reproduce: create an invoice with a line description containing an em-dash, then click Print. The server returns 500 and the logs show a UnicodeEncodeError deep inside the PDF renderer. Expected: the PDF renders correctly with the em-dash.",
+  "tags": ["bug", "regression", "pdf"],
+  "priority": "high",
+  "reporter": "qa-bot",
+  "url": "https://tracker.example.internal/issues/117",
+  "customer": "Acme Widgets Ltd",
+  "createdAt": 1744903200000
+}

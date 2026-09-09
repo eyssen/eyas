@@ -1,0 +1,15 @@
+{
+  "opencode.title": "OpenCode",
+  "opencode.subtitle": "MIT mIw jan optional. ja'chuq ngeH; TUI yIn ja'chuq QonoSDaq poS.",
+  "opencode.empty": "OpenCode ghuHbe'. CLI yIchel, vaj opencode_status.",
+  "opencode.available": "ghuH",
+  "opencode.unavailable": "ghuHbe'",
+  "opencode.check.ok": "lugh",
+  "opencode.check.missing": "Hutlh",
+  "opencode.check.warn": "ghuHmoH",
+  "opencode.server": "jan",
+  "opencode.server.running": "{{url}} Daq Qap ({{version}})",
+  "opencode.server.stopped": "Session poSpu'DI' tagh",
+  "opencode.pty": "POSIX PTY",
+  "opencode.help": "chel: curl -fsSL https://opencode.ai/install | bash — pagh npm i -g opencode-ai. PATHDaq Hutlhchugh EYAS_OPENCODE_BIN yIDel."
+}

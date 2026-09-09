@@ -1,0 +1,21 @@
+From: Frank <frank@example.com>
+To: alice@example.com
+Subject: Re: Hello world
+Date: Tue, 14 Apr 2026 14:00:00 +0000
+Message-ID: <reply-1@example.com>
+In-Reply-To: <simple-1@example.com>
+References: <simple-1@example.com>
+Content-Type: text/plain; charset=utf-8
+
+Thanks Alice, I agree.
+
+On Tue, 14 Apr 2026 10:00:00 +0000, Alice wrote:
+> Hello Bob,
+>
+> This is a plain text message.
+>
+> --
+> Alice
+
+Best,
+Frank

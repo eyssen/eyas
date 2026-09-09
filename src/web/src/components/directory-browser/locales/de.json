@@ -1,0 +1,12 @@
+{
+  "dirBrowser.title": "Ordner wählen",
+  "dirBrowser.description": "Ordner auf dem EYAS-Host. Wähle das Arbeitsverzeichnis des Agenten.",
+  "dirBrowser.up": "Hoch",
+  "dirBrowser.home": "Home",
+  "dirBrowser.select": "Diesen Ordner",
+  "dirBrowser.empty": "Keine Unterordner",
+  "dirBrowser.truncated": "Liste gekürzt",
+  "dirBrowser.loading": "Laden…",
+  "dirBrowser.error": "Ordner konnte nicht gelesen werden",
+  "dirBrowser.browse": "Durchsuchen…"
+}

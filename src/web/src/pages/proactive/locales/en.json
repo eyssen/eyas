@@ -1,0 +1,19 @@
+{
+  "proactive.title": "Proactive Dashboard",
+  "proactive.subtitle": "Active alerts, insights, and learned patterns",
+  "proactive.priority.urgent": "Urgent",
+  "proactive.priority.high": "High",
+  "proactive.priority.normal": "Normal",
+  "proactive.priority.low": "Low",
+  "proactive.urgentCount": "{{count}} urgent",
+  "proactive.checkNow": "Check Now",
+  "proactive.checking": "Checking…",
+  "proactive.activeAlerts": "Active Alerts",
+  "proactive.loadingAlerts": "Loading alerts…",
+  "proactive.alertsError": "Failed to load alerts: {{message}}",
+  "proactive.allClear": "All clear — no active alerts",
+  "proactive.learnedLessons": "Learned Lessons",
+  "proactive.loadingLessons": "Loading lessons…",
+  "proactive.noLessons": "No lessons learned yet.",
+  "proactive.confidence": "{{value}}% confidence"
+}
