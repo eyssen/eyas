@@ -1,0 +1,28 @@
+services:
+  eyas:
+    image: eyssen/eyas:latest
+    ports:
+      # Host port override: EYAS_PORT=3200 docker compose up -d
+      - "${EYAS_PORT:-3100}:3100"
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+    environment:
+      - EYAS_PORT=3100
+      - EYAS_HOST=0.0.0.0
+    env_file:
+      - path: .env
+        required: false
+    restart: unless-stopped
+
+  # Uncomment to enable local LLM support via Ollama
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   ports:
+  #     - "${OLLAMA_PORT:-11434}:11434"
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+  #   restart: unless-stopped
+
+# volumes:
+#   ollama_data:

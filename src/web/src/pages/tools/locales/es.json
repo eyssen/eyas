@@ -1,0 +1,17 @@
+{
+  "tools.title": "Herramientas",
+  "tools.subtitle": "Herramientas registradas disponibles para la ejecución de agentes",
+  "tools.countLabel": "herramientas",
+  "tools.requireApproval": "requieren aprobación",
+  "tools.searchPlaceholder": "Buscar herramientas…",
+  "tools.allCategories": "Todas las categorías",
+  "tools.allRiskTiers": "Todos los niveles de riesgo",
+  "tools.requiresApproval": "Requiere aprobación",
+  "tools.riskSuffix": "riesgo",
+  "tools.approvalRequired": "aprobación requerida",
+  "tools.showSchema": "Mostrar esquema",
+  "tools.hideSchema": "Ocultar esquema",
+  "tools.loading": "Cargando herramientas…",
+  "tools.loadError": "No se pudieron cargar las herramientas: {{error}}",
+  "tools.empty": "Aún no hay herramientas registradas."
+}

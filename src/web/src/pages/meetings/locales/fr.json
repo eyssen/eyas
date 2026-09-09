@@ -1,0 +1,13 @@
+{
+  "meetings.title": "Réunions",
+  "meetings.subtitle": "Enregistrements de réunions, transcriptions et actions",
+  "meetings.comingSoon": "Bientôt disponible",
+  "meetings.planned": "Planifié",
+  "meetings.developmentNote": "L'intégration des réunions est en cours de développement. Connectez votre fournisseur de réunions dans une prochaine mise à jour.",
+  "meetings.colTitle": "Titre",
+  "meetings.colDate": "Date",
+  "meetings.colDuration": "Durée",
+  "meetings.colParticipants": "Participants",
+  "meetings.durationMinutes": "{{n}} min",
+  "meetings.empty": "Aucune réunion enregistrée pour le moment"
+}

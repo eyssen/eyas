@@ -1,0 +1,26 @@
+{
+  "id": "coding-002",
+  "category": "coding",
+  "prompt": "Add an optional `timeoutMs` parameter (default 30000) to `fetchWithRetry(url, opts)`. If the fetch exceeds the timeout, abort and throw a TimeoutError.",
+  "promptVariations": [
+    "Extend `fetchWithRetry` with a `timeoutMs` option that aborts slow requests.",
+    "Please add configurable per-attempt timeout to `fetchWithRetry`, with a sensible default."
+  ],
+  "context": {
+    "file": "src/http/fetch-with-retry.ts",
+    "snippet": "export async function fetchWithRetry(url: string, opts: { retries: number } = { retries: 3 }): Promise<Response> {\n  // ... existing retry logic\n}"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["abortcontroller", "timeoutms"],
+    "mustNotMention": ["deasync", "sync-request"],
+    "rubric": [
+      "Uses AbortController with AbortSignal.timeout or setTimeout+abort",
+      "Default of 30000 ms is preserved if caller does not pass timeoutMs",
+      "Throws a distinct TimeoutError (not a generic Error)",
+      "Keeps retry semantics intact — timeout is per attempt, not total"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 30
+}

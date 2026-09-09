@@ -1,0 +1,15 @@
+{
+  "opencode.title": "OpenCode",
+  "opencode.subtitle": "Sidecar optionnel du moteur de code (MIT). Le chat délègue ; le TUI live s’ouvre dans le terminal de conversation.",
+  "opencode.empty": "OpenCode n’est pas prêt. Installez le CLI, puis demandez opencode_status.",
+  "opencode.available": "Prêt",
+  "opencode.unavailable": "Pas prêt",
+  "opencode.check.ok": "OK",
+  "opencode.check.missing": "Manquant",
+  "opencode.check.warn": "Avertissement",
+  "opencode.server": "Serveur",
+  "opencode.server.running": "Sur {{url}} ({{version}})",
+  "opencode.server.stopped": "Démarre à l’ouverture d’une session",
+  "opencode.pty": "PTY POSIX",
+  "opencode.help": "Installation : curl -fsSL https://opencode.ai/install | bash — ou npm i -g opencode-ai. Définir EYAS_OPENCODE_BIN s’il n’est pas dans le PATH."
+}

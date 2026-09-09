@@ -1,0 +1,12 @@
+{
+  "dirBrowser.title": "Mappa választása",
+  "dirBrowser.description": "Az EYAS gépének mappái. Válaszd ki, hol dolgozhat az ágens.",
+  "dirBrowser.up": "Fel",
+  "dirBrowser.home": "Otthon",
+  "dirBrowser.select": "Ezt a mappát",
+  "dirBrowser.empty": "Nincs almappa",
+  "dirBrowser.truncated": "A lista csonkítva",
+  "dirBrowser.loading": "Betöltés…",
+  "dirBrowser.error": "A mappa nem listázható",
+  "dirBrowser.browse": "Tallózás…"
+}

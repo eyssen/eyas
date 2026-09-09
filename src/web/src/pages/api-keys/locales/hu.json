@@ -1,0 +1,21 @@
+{
+  "apiKeys.title": "API-kulcsok",
+  "apiKeys.subtitle": "API-kulcsok kezelése programozott hozzáféréshez",
+  "apiKeys.create": "API-kulcs létrehozása",
+  "apiKeys.createdBanner": "API-kulcs létrehozva: {{name}}",
+  "apiKeys.copyWarning": "Másold ki most a kulcsot. Többé nem jelenik meg.",
+  "apiKeys.dismiss": "Bezárás",
+  "apiKeys.namePlaceholder": "Kulcs neve (pl. CI/CD, CLI-eszköz)",
+  "apiKeys.expiresPlaceholder": "Lejárat napokban (opcionális, hagyd üresen, ha nincs lejárat)",
+  "apiKeys.colKeyPrefix": "Kulcs-előtag",
+  "apiKeys.colCreated": "Létrehozva",
+  "apiKeys.colLastUsed": "Utoljára használva",
+  "apiKeys.colExpires": "Lejárat",
+  "apiKeys.empty": "Nincsenek API-kulcsok. Hozz létre egyet a programozott hozzáféréshez.",
+  "apiKeys.never": "Soha",
+  "apiKeys.noExpiry": "Nincs lejárat",
+  "apiKeys.revokeConfirm": "Biztosan visszavonod ezt az API-kulcsot? Ez nem vonható vissza.",
+  "apiKeys.revokeTitle": "API-kulcs visszavonása",
+  "apiKeys.loading": "API-kulcsok betöltése…",
+  "apiKeys.loadFailed": "Az API-kulcsok betöltése sikertelen: {{message}}"
+}

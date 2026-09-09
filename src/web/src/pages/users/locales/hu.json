@@ -1,0 +1,22 @@
+{
+  "users.title": "Felhasználók",
+  "users.subtitle": "Felhasználók és AI-agentek",
+  "users.newAgent": "Új agent",
+  "users.viewActive": "Aktív",
+  "users.viewArchived": "Archivált",
+  "users.colUsername": "Felhasználónév",
+  "users.colDisplayName": "Megjelenített név",
+  "users.colRole": "Szerepkör",
+  "users.colType": "Típus",
+  "users.colCreated": "Létrehozva",
+  "users.noUsers": "Nincsenek felhasználók",
+  "users.noArchived": "Nincsenek archivált felhasználók",
+  "users.typeAgent": "🤖 Agent",
+  "users.typeHuman": "👤 Ember",
+  "users.aiConfig": "AI-beállítás →",
+  "users.status.active": "aktív",
+  "users.status.archived": "archivált",
+  "users.archiveConfirm": "Archiválod a(z) „{{name}}” felhasználót? Később visszaállíthatod.",
+  "users.restoreTitle": "Felhasználó visszaállítása",
+  "users.archiveTitle": "Felhasználó archiválása"
+}

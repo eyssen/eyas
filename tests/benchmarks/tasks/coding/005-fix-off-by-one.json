@@ -1,0 +1,26 @@
+{
+  "id": "coding-005",
+  "category": "coding",
+  "prompt": "`paginate(items, pageSize, page)` currently returns the wrong slice when page === 1 (it skips the first item). Diagnose the off-by-one error and propose a fix.",
+  "promptVariations": [
+    "There's an off-by-one bug in `paginate`. Find it and fix it.",
+    "`paginate` drops the first element on the first page. Debug and patch."
+  ],
+  "context": {
+    "file": "src/shared/paginate.ts",
+    "snippet": "export function paginate<T>(items: T[], pageSize: number, page: number): T[] {\n  const start = page * pageSize\n  return items.slice(start, start + pageSize)\n}"
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["(page - 1)", "off-by-one"],
+    "mustNotMention": ["rewrite in rust"],
+    "rubric": [
+      "Correctly identifies `page * pageSize` as the bug (should be `(page - 1) * pageSize`)",
+      "Proposes the minimal one-line fix",
+      "Recommends at least one regression test covering page === 1",
+      "Notes whether pages are 0-indexed or 1-indexed to document the decision"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 30
+}

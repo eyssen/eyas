@@ -1,0 +1,25 @@
+id: pod-crashloop
+kind: pod-crashloop
+matcher:
+  type: k8s-event
+  fields:
+    reason: BackOff
+  regex: "*Back-off*restarting*failed*container*"
+  regex_target: summary
+diagnosis_template: |
+  Pod {{namespace}}/{{pod}} is in CrashLoopBackOff.
+  Reason: {{reason}}. Message: {{message}}
+  First checks: recent logs, image pull errors, env vars, resource limits.
+suggested_action:
+  action_type: kubectl
+  command: logs
+  args:
+    - "-n"
+    - "{{namespace}}"
+    - "{{pod}}"
+    - "--previous"
+    - "--tail=100"
+severity: warning
+# Read-only kubectl diagnostic (logs) — auto-runs; the executor's read-only
+# allow-list + arg sanitizer + ops.kubectl.enabled gate are the safety controls.
+requires_approval: false

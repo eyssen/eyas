@@ -1,0 +1,11 @@
+[
+  { "name": "create_video_agent" },
+  { "name": "get_video_agent_session" },
+  { "name": "stop_video_agent_session" },
+  { "name": "create_video" },
+  { "name": "get_video" },
+  { "name": "create_speech" },
+  { "name": "list_avatar_looks" },
+  { "name": "list_voices" },
+  { "name": "get_current_user" }
+]

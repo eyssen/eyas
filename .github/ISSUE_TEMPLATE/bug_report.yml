@@ -1,0 +1,69 @@
+name: Bug report
+description: Something behaves differently than it should
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not report security problems here — use
+        [private reporting](https://github.com/eyssen/eyas/security/advisories/new) instead.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you got instead.
+      placeholder: |
+        I dragged a card into the Review stage and expected the agent to pick it up.
+        Nothing happened; the card stayed unassigned.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Create a project of type …
+        2. Move a card to …
+        3. …
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of `eyas version`.
+      placeholder: 0.8.19-beta
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: Installed with
+      options:
+        - One-line installer (macOS / Linux)
+        - One-line installer (Windows)
+        - Bun (git clone)
+        - Docker
+        - Kubernetes
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: OS and runtime
+      placeholder: macOS 15.5, Bun 1.3.10
+    validations:
+      required: true
+  - type: input
+    id: provider
+    attributes:
+      label: AI engine in use
+      description: Which provider or CLI was configured when this happened.
+      placeholder: Claude Code CLI / Anthropic API / Ollama …
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log lines
+      description: From `data/eyas.log`. Check for keys before pasting.
+      render: text
