@@ -1,0 +1,211 @@
+{
+  "note": "Prompt 1 is plain text or the ACP slash command text \"/always-approve on\"; prompt 2 makes the fake model call read_file (a non-shell tool: shell ask rules still prompt under always-approve, so a shell probe cannot show the bypass). The requirements lock is [ui] disable_bypass_permissions_mode = true in <GROK_HOME>/requirements.toml.",
+  "control-no-command": {
+    "commandPromptResult": {
+      "stopReason": "end_turn",
+      "_meta": {
+        "sessionId": "01a0cb04-3735-7501-a822-7f5c5536d86c",
+        "requestId": "2eb4bcaa-418f-473e-b560-b5b0320e7364",
+        "promptId": "2eb4bcaa-418f-473e-b560-b5b0320e7364",
+        "totalTokens": 15,
+        "modelId": "grok-4.6",
+        "inputTokens": 10,
+        "outputTokens": 5,
+        "cachedReadTokens": 0,
+        "reasoningTokens": 0,
+        "usage": {
+          "inputTokens": 10,
+          "outputTokens": 5,
+          "totalTokens": 15,
+          "cachedReadTokens": 0,
+          "cacheCreationTokens": 0,
+          "reasoningTokens": 0,
+          "modelCalls": 1,
+          "apiDurationMs": 1,
+          "modelUsage": {
+            "eyas-spike": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "totalTokens": 15,
+              "cachedReadTokens": 0,
+              "cacheCreationTokens": 0,
+              "reasoningTokens": 0,
+              "modelCalls": 1,
+              "apiDurationMs": 1
+            }
+          },
+          "numTurns": 1
+        }
+      }
+    },
+    "commandPromptModelCalls": "unknown",
+    "commandUpdates": [
+      {
+        "sessionUpdate": "session_info_update",
+        "title": "EYAS spike"
+      }
+    ],
+    "probeUpdates": [
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_0",
+        "title": "read_file"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+        "kind": "read"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "status": "completed"
+      }
+    ],
+    "probePermissionRequests": 1,
+    "readRanWithoutPermission": false
+  },
+  "without-requirements-lock": {
+    "commandPromptResult": {
+      "stopReason": "end_turn",
+      "_meta": {
+        "sessionId": "01a0cb04-3e18-7821-a229-131245233694",
+        "requestId": "05971a70-9cc5-4e08-ae55-a13e5f4a777f",
+        "promptId": "05971a70-9cc5-4e08-ae55-a13e5f4a777f",
+        "totalTokens": 0,
+        "modelId": "grok-4.6"
+      }
+    },
+    "commandPromptModelCalls": 0,
+    "commandUpdates": [],
+    "probeUpdates": [
+      {
+        "sessionUpdate": "session_info_update",
+        "title": "EYAS spike"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_0",
+        "title": "read_file"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+        "kind": "read"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "status": "completed"
+      }
+    ],
+    "probePermissionRequests": 0,
+    "readRanWithoutPermission": true
+  },
+  "with-requirements-lock": {
+    "commandPromptResult": {
+      "stopReason": "end_turn",
+      "_meta": {
+        "sessionId": "01a0cb04-4569-7dc1-949e-13b7d31cd508",
+        "requestId": "7d131e6f-201a-4581-ba33-7219aba237c1",
+        "promptId": "7d131e6f-201a-4581-ba33-7219aba237c1",
+        "totalTokens": 0,
+        "modelId": "grok-4.6"
+      }
+    },
+    "commandPromptModelCalls": 0,
+    "commandUpdates": [],
+    "probeUpdates": [
+      {
+        "sessionUpdate": "session_info_update",
+        "title": "EYAS spike"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_0",
+        "title": "read_file"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+        "kind": "read"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "status": "completed"
+      }
+    ],
+    "probePermissionRequests": 0,
+    "readRanWithoutPermission": true
+  },
+  "command-not-leading": {
+    "commandPromptResult": {
+      "stopReason": "end_turn",
+      "_meta": {
+        "sessionId": "01a0cb04-4c84-7220-b737-e1774eac9357",
+        "requestId": "a4e2db1f-73cf-4b5d-807d-031c3c1003a0",
+        "promptId": "a4e2db1f-73cf-4b5d-807d-031c3c1003a0",
+        "totalTokens": 15,
+        "modelId": "grok-4.6",
+        "inputTokens": 10,
+        "outputTokens": 5,
+        "cachedReadTokens": 0,
+        "reasoningTokens": 0,
+        "usage": {
+          "inputTokens": 10,
+          "outputTokens": 5,
+          "totalTokens": 15,
+          "cachedReadTokens": 0,
+          "cacheCreationTokens": 0,
+          "reasoningTokens": 0,
+          "modelCalls": 1,
+          "apiDurationMs": 3,
+          "modelUsage": {
+            "eyas-spike": {
+              "inputTokens": 10,
+              "outputTokens": 5,
+              "totalTokens": 15,
+              "cachedReadTokens": 0,
+              "cacheCreationTokens": 0,
+              "reasoningTokens": 0,
+              "modelCalls": 1,
+              "apiDurationMs": 3
+            }
+          },
+          "numTurns": 1
+        }
+      }
+    },
+    "commandPromptModelCalls": "unknown",
+    "commandUpdates": [
+      {
+        "sessionUpdate": "session_info_update",
+        "title": "EYAS spike"
+      }
+    ],
+    "probeUpdates": [
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_0",
+        "title": "read_file"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+        "kind": "read"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "status": "completed"
+      }
+    ],
+    "probePermissionRequests": 1,
+    "readRanWithoutPermission": false
+  }
+}

@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>eYssen EYAS 1.0 — Technical Specification</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #030712;
+    --bg-surface: #0a0f1e;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.06);
+    --border-glow: rgba(99,102,241,0.3);
+    --text: #e2e8f0;
+    --text-dim: #64748b;
+    --text-bright: #f8fafc;
+    --accent: #6366f1;
+    --accent2: #22d3ee;
+    --accent3: #f97316;
+    --accent4: #10b981;
+    --accent5: #f43f5e;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  /* === LIGHT THEME === */
+  body.light {
+    --bg-deep: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-card: rgba(0,0,0,0.02);
+    --bg-card-hover: rgba(0,0,0,0.04);
+    --border: rgba(0,0,0,0.08);
+    --border-glow: rgba(99,102,241,0.3);
+    --text: #1e293b;
+    --text-dim: #64748b;
+    --text-bright: #0f172a;
+  }
+  body.light::before { opacity: 0.01; }
+  body.light .mesh-bg { opacity: 0.4; }
+  body.light .gradient {
+    background: linear-gradient(135deg, #4f46e5 0%, #0891b2 50%, #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  body.light .hero-grid {
+    background-image:
+      linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+  }
+  body.light .spec-content { background: rgba(0,0,0,0.03); }
+  body.light .spec-content pre { background: rgba(0,0,0,0.05); }
+  body.light .arch-tag { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); }
+  body.light .arch-tag:hover { background: rgba(0,0,0,0.07); border-color: rgba(0,0,0,0.15); }
+  body.light .tech-pill { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+  body.light .tech-pill:hover { border-color: rgba(0,0,0,0.15); }
+  body.light .remaining-card { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+  body.light .remaining-card:hover { border-color: var(--border-glow); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* === NOISE OVERLAY === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.3s;
+  }
+
+  /* === GRADIENT MESH BACKGROUND === */
+  .mesh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(34,211,238,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 50% 0%, rgba(249,115,22,0.04) 0%, transparent 50%);
+    transition: opacity 0.3s;
+  }
+
+  /* === LAYOUT === */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 6rem 0; position: relative; }
+
+  /* === SECTION DIVIDER === */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--border-glow) 50%, transparent 100%);
+    margin: 0;
+  }
+
+  /* === TYPOGRAPHY === */
+  h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; }
+  h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .subtitle { font-size: 1.2rem; color: var(--text-dim); font-weight: 300; max-width: 640px; }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 70%);
+  }
+
+  .hero h1 span.gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: inline-block;
+    max-width: fit-content;
+  }
+  .hero-tagline .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+    max-width: 700px;
+  }
+  .metric {
+    padding: 1.2rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+  .metric:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 30px rgba(99,102,241,0.1);
+    transform: translateY(-2px);
+  }
+  .metric-value {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-bright);
+  }
+  .metric-label { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.25rem; }
+
+  /* === GLASS CARD === */
+  .glass {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+  .glass:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-glow);
+    box-shadow: 0 8px 40px rgba(99,102,241,0.08);
+    transform: translateY(-3px);
+  }
+
+  /* === ARCHITECTURE LAYERS === */
+  .arch-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .arch-layer {
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .arch-layer:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 40px rgba(99,102,241,0.06);
+  }
+  .arch-layer::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+  .arch-layer.core::before { background: var(--accent); }
+  .arch-layer.modules::before { background: var(--accent2); }
+  .arch-layer.services::before { background: var(--accent4); }
+  .arch-layer.frontend::before { background: var(--accent3); }
+  .arch-layer.external::before { background: var(--accent5); }
+  .arch-layer.data::before { background: #eab308; }
+  .arch-layer.automation::before { background: #a855f7; }
+  .arch-layer.comm::before { background: var(--accent5); }
+
+  .arch-layer-title {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.5rem;
+  }
+  .arch-layer.core .arch-layer-title { color: var(--accent); }
+  .arch-layer.modules .arch-layer-title { color: var(--accent2); }
+  .arch-layer.services .arch-layer-title { color: var(--accent4); }
+  .arch-layer.frontend .arch-layer-title { color: var(--accent3); }
+  .arch-layer.external .arch-layer-title { color: var(--accent5); }
+  .arch-layer.data .arch-layer-title { color: #eab308; }
+  .arch-layer.automation .arch-layer-title { color: #a855f7; }
+  .arch-layer.comm .arch-layer-title { color: var(--accent5); }
+
+  .arch-layer-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .arch-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.3rem 0.7rem;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    color: var(--text-dim);
+    transition: all 0.2s;
+  }
+  .arch-tag:hover { color: var(--text); border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.07); }
+
+  /* === MODULE DETAIL GRID === */
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .detail-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .detail-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 12px 40px rgba(99,102,241,0.08);
+  }
+  .detail-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+  }
+  .detail-card:nth-child(1)::after { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .detail-card:nth-child(2)::after { background: linear-gradient(90deg, var(--accent2), var(--accent4)); }
+  .detail-card:nth-child(3)::after { background: linear-gradient(90deg, var(--accent3), var(--accent5)); }
+  .detail-card:nth-child(4)::after { background: linear-gradient(90deg, var(--accent4), var(--accent)); }
+  .detail-card:nth-child(5)::after { background: linear-gradient(90deg, var(--accent5), var(--accent3)); }
+  .detail-card:nth-child(6)::after { background: linear-gradient(90deg, var(--accent), var(--accent3)); }
+  .detail-card:nth-child(7)::after { background: linear-gradient(90deg, #a855f7, var(--accent2)); }
+  .detail-card:nth-child(8)::after { background: linear-gradient(90deg, #eab308, var(--accent4)); }
+  .detail-card:nth-child(9)::after { background: linear-gradient(90deg, var(--accent5), var(--accent)); }
+  .detail-card:nth-child(10)::after { background: linear-gradient(90deg, var(--accent2), #a855f7); }
+  .detail-card:nth-child(11)::after { background: linear-gradient(90deg, var(--accent4), #eab308); }
+  .detail-card:nth-child(12)::after { background: linear-gradient(90deg, var(--accent3), var(--accent2)); }
+  .detail-card:nth-child(13)::after { background: linear-gradient(90deg, var(--accent), var(--accent5)); }
+  .detail-card:nth-child(14)::after { background: linear-gradient(90deg, #a855f7, var(--accent3)); }
+  .detail-card:nth-child(15)::after { background: linear-gradient(90deg, var(--accent), #eab308); }
+  .detail-card:nth-child(16)::after { background: linear-gradient(90deg, var(--accent2), var(--accent5)); }
+  .detail-card:nth-child(17)::after { background: linear-gradient(90deg, var(--accent4), #a855f7); }
+  .detail-card:nth-child(18)::after { background: linear-gradient(90deg, var(--accent3), var(--accent)); }
+  .detail-card:nth-child(19)::after { background: linear-gradient(90deg, #eab308, var(--accent2)); }
+  .detail-card:nth-child(20)::after { background: linear-gradient(90deg, var(--accent5), var(--accent4)); }
+  .detail-card:nth-child(21)::after { background: linear-gradient(90deg, #a855f7, var(--accent)); }
+  .detail-card:nth-child(22)::after { background: linear-gradient(90deg, var(--accent), var(--accent4)); }
+  .detail-card:nth-child(23)::after { background: linear-gradient(90deg, var(--accent2), var(--accent3)); }
+  .detail-card:nth-child(24)::after { background: linear-gradient(90deg, var(--accent4), var(--accent5)); }
+  .detail-card:nth-child(25)::after { background: linear-gradient(90deg, var(--accent3), #a855f7); }
+
+  .detail-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .detail-card-icon {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .detail-card-header h3 {
+    font-size: 1.1rem;
+    color: var(--text-bright);
+    margin-bottom: 0;
+  }
+  .detail-card-header .detail-subtitle {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  .detail-card-body p {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .detail-card-body ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+  }
+  .detail-card-body ul li {
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .detail-card-body ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+  }
+
+  .detail-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+  .detail-tech-tag {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(99,102,241,0.1);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 4px;
+    color: var(--accent);
+  }
+  body.light .detail-tech-tag {
+    background: rgba(99,102,241,0.08);
+    border-color: rgba(99,102,241,0.15);
+  }
+
+  /* === ICON BACKGROUNDS === */
+  .icon-indigo { background: rgba(99,102,241,0.15); }
+  .icon-cyan { background: rgba(34,211,238,0.15); }
+  .icon-orange { background: rgba(249,115,22,0.15); }
+  .icon-green { background: rgba(16,185,129,0.15); }
+  .icon-rose { background: rgba(244,63,94,0.15); }
+  .icon-yellow { background: rgba(234,179,8,0.15); }
+  .icon-purple { background: rgba(168,85,247,0.15); }
+
+  /* === TECH STACK === */
+  .tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .tech-pill {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-dim);
+    transition: all 0.2s;
+  }
+  .tech-pill:hover { color: var(--text); border-color: rgba(255,255,255,0.15); }
+
+  /* === REMAINING GRID === */
+  .remaining-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .remaining-card {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .remaining-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(99,102,241,0.08);
+  }
+  .remaining-card h4 {
+    font-size: 0.95rem;
+    color: var(--text-bright);
+    margin-bottom: 0.4rem;
+  }
+  .remaining-card p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .remaining-card .remaining-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+  }
+  .tag-planned { background: rgba(234,179,8,0.15); color: #eab308; }
+  .tag-interface-ready { background: rgba(34,211,238,0.15); color: var(--accent2); }
+  .tag-future { background: rgba(168,85,247,0.15); color: #a855f7; }
+
+  /* === CATEGORY LABELS === */
+  .category-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-label:first-of-type { margin-top: 2rem; }
+
+  /* === FOOTER === */
+  footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  footer .brand {
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  /* === SCROLL ANIMATIONS === */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.8s ease forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* === LANGUAGE SWITCHER === */
+  .lang-switch {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 100;
+    display: flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+  }
+  .lang-btn {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: var(--accent);
+    color: white;
+  }
+  .lang-btn:hover:not(.active) { color: var(--text); }
+
+  /* === THEME TOGGLE === */
+  .theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 8.5rem;
+    z-index: 100;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 1.1rem;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s;
+    line-height: 1;
+  }
+  .theme-toggle:hover { border-color: var(--border-glow); }
+
+  [data-lang="hu"] .en { display: none; }
+  [data-lang="en"] .hu { display: none; }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .container { padding: 0 1.25rem; }
+    section { padding: 4rem 0; }
+    .hero-metrics { grid-template-columns: repeat(2, 1fr); }
+    .remaining-grid { grid-template-columns: 1fr; }
+    .detail-card { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body data-lang="hu">
+
+<div class="mesh-bg"></div>
+
+<!-- THEME TOGGLE -->
+<button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+  <span class="theme-icon">&#9788;</span>
+</button>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('hu')">HU</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <span class="label fade-in"><span class="hu">eYssen EYAS 0.8.1-beta &#8212; Technikai Specifikáció</span><span class="en">eYssen EYAS 0.8.1-beta &#8212; Technical Specification</span></span>
+    <h1 class="fade-in stagger-1">
+      <span class="hu"><span class="gradient">EYAS</span><br>Technikai<br>Specifikáció</span>
+      <span class="en"><span class="gradient">EYAS</span><br>Technical<br>Specification</span>
+    </h1>
+    <p class="subtitle fade-in stagger-2" style="margin-top: 1.5rem;">
+      <span class="hu">Autonóm AI ágens platform &#8212; moduláris architektúra, beágyazott adatbázis, multi-provider AI motor, 5 rétegű memória, proaktív asszisztens, önkiszolgáló security gate.</span>
+      <span class="en">Autonomous AI agent platform &#8212; modular architecture, embedded database, multi-provider AI engine, 5-tier memory, proactive assistant, self-service security gate.</span>
+    </p>
+    <div class="hero-tagline fade-in stagger-3">
+      <span style="color:var(--accent4)">$</span> eyas serve --port 3000 <span style="color:var(--accent4)">&#10003; ready</span><span class="cursor"></span>
+    </div>
+    <div class="hero-metrics fade-in stagger-4">
+      <div class="metric">
+        <div class="metric-value">36+</div>
+        <div class="metric-label"><span class="hu">Modul</span><span class="en">Modules</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">816</div>
+        <div class="metric-label"><span class="hu">Teszt</span><span class="en">Tests</span></div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">6</div>
+        <div class="metric-label">AI Providers</div>
+      </div>
+      <div class="metric">
+        <div class="metric-value">5</div>
+        <div class="metric-label"><span class="hu">Memória réteg</span><span class="en">Memory tiers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== OVERVIEW ==================== -->
+<section>
+  <div class="container">
+    <span class="label"><span class="hu">Áttekintés</span><span class="en">Overview</span></span>
+    <h2><span class="hu">Személyes AI <span style="color:var(--accent)">operációs rendszer</span></span><span class="en">Personal AI <span style="color:var(--accent)">operating system</span></span></h2>
+    <p class="subtitle" style="margin-bottom:1.5rem; max-width:800px;">
+      <span class="hu">Az EYAS nem egy sima chatbot. Ez egy teljes értékű személyes AI operációs rendszer, amely autonóm módon dolgozik: ágens csapatokat állít össze és orkesztrál párhuzamosan, vezérelheti a böngészőt és az asztalt, 5 rétegű memóriával tanul a tapasztalataiból. Minden beszélgetés egy feladat életciklust jelent &#8212; nem egyszerű üzenetváltást, hanem tervezést, végrehajtás-követést és lezárást.</span>
+      <span class="en">EYAS is not a simple chatbot. It is a fully-fledged personal AI operating system that works autonomously: assembling and orchestrating agent teams in parallel, controlling browser and desktop, learning from its experiences through 5-tier memory. Every conversation represents a task lifecycle &#8212; not simple messaging, but planning, execution tracking, and closure.</span>
+    </p>
+    <p class="subtitle" style="margin-bottom:1.5rem; max-width:800px;">
+      <span class="hu">Multi-provider architektúrája 7 AI provider-t támogat &#8212; Anthropic Claude, Claude Code, OpenAI GPT, Google Gemini, OpenRouter, Ollama és LM Studio (lokális). A 7 routing tier rendszer automatikusan dönt melyik modellt melyik feladathoz használja: keyword-alapú triage (0 költség) → tier kiválasztás → budget check → fallback lánc.</span>
+      <span class="en">Its multi-provider architecture supports 7 AI providers &#8212; Anthropic Claude, Claude Code, OpenAI GPT, Google Gemini, OpenRouter, Ollama, and LM Studio (local). The 7-tier routing system automatically decides which model to use: keyword-based triage (0 cost) → tier selection → budget check → fallback chain.</span>
+    </p>
+    <p class="subtitle" style="margin-bottom:2rem; max-width:800px;">
+      <span class="hu">Teljesen self-hosted, MIT licencelt, egyetlen processzben fut. Az adat és az irányítás mindig a tied marad. Nincs cloud-függőség &#8212; minden beágyazott: adatbázis (SQLite/WAL), keresés (Orama FTS+vektor), titkosítás (age/rage).</span>
+      <span class="en">Fully self-hosted, MIT licensed, runs in a single process. Data and control always remain yours. No cloud dependency &#8212; everything is embedded: database (SQLite/WAL), search (Orama FTS+vector), encryption (age/rage).</span>
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== CORE ARCHITECTURE ==================== -->
+<section>
+  <div class="container">
+    <span class="label"><span class="hu">Architektúra</span><span class="en">Architecture</span></span>
+    <h2><span class="hu">Moduláris <span style="color:var(--accent2)">rétegek</span></span><span class="en">Modular <span style="color:var(--accent2)">layers</span></span></h2>
+    <p class="subtitle" style="margin-bottom:1rem;">
+      <span class="hu">Minden funkcionalitás önálló modul, amely az eseménybuszon keresztül kommunikál. A modulok függőségeik alapján automatikusan töltődnek be.</span>
+      <span class="en">All functionality lives in standalone modules communicating via the event bus. Modules are auto-loaded based on their dependency graph.</span>
+    </p>
+
+    <div class="arch-layers">
+      <div class="arch-layer core">
+        <div class="arch-layer-title">Core / Base</div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">Bootstrap</span>
+          <span class="arch-tag">Config (YAML + Zod + Hot-Reload)</span>
+          <span class="arch-tag">DB (SQLite / WAL)</span>
+          <span class="arch-tag">EyasBus (EventEmitter)</span>
+          <span class="arch-tag">HTTP (Hono)</span>
+          <span class="arch-tag">WebSocket (real-time)</span>
+          <span class="arch-tag">SSE Streaming</span>
+          <span class="arch-tag">Logger (Pino)</span>
+          <span class="arch-tag">i18n (i18next)</span>
+          <span class="arch-tag">CLI (citty)</span>
+        </div>
+      </div>
+      <div class="arch-layer modules">
+        <div class="arch-layer-title"><span class="hu">Biztonság</span><span class="en">Security</span></div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">Auth (JWT)</span>
+          <span class="arch-tag">Permissions (CASL, 30 subjects, 5 roles)</span>
+          <span class="arch-tag">Secrets (age encryption)</span>
+          <span class="arch-tag">Security Gate (3-checkpoint)</span>
+          <span class="arch-tag">Audit (snapshots, rollback, diff)</span>
+          <span class="arch-tag">Privacy (PII scanner, policy engine)</span>
+        </div>
+      </div>
+      <div class="arch-layer services">
+        <div class="arch-layer-title">AI Engine</div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">Model Gateway</span>
+          <span class="arch-tag">Provider Submodules</span>
+          <span class="arch-tag">Context Builder</span>
+          <span class="arch-tag">Prompt Wizard</span>
+          <span class="arch-tag">RAG Pipeline</span>
+          <span class="arch-tag">Embedding Bridge</span>
+        </div>
+      </div>
+      <div class="arch-layer external">
+        <div class="arch-layer-title">Agent Framework</div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">Agent Registry</span>
+          <span class="arch-tag">Agent Runner (tool-use loop)</span>
+          <span class="arch-tag">Orchestrator</span>
+          <span class="arch-tag">Budget Engine</span>
+          <span class="arch-tag">Skills</span>
+          <span class="arch-tag">Spec Runner</span>
+          <span class="arch-tag">Sessions &amp; Messaging</span>
+        </div>
+      </div>
+      <div class="arch-layer data">
+        <div class="arch-layer-title"><span class="hu">Adatréteg</span><span class="en">Data Layer</span></div>
+        <div class="arch-layer-items">
+          <span class="arch-tag"><span class="hu">Memory (5 réteg)</span><span class="en">Memory (5-tier)</span></span>
+          <span class="arch-tag">Knowledge (wiki)</span>
+          <span class="arch-tag">Search (Orama FTS+vector)</span>
+          <span class="arch-tag">Documents</span>
+        </div>
+      </div>
+      <div class="arch-layer automation">
+        <div class="arch-layer-title"><span class="hu">Automatizálás</span><span class="en">Automation</span></div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">Scheduler (Croner)</span>
+          <span class="arch-tag">Self-Learning</span>
+          <span class="arch-tag">Forge</span>
+          <span class="arch-tag"><span class="hu">Proaktív Asszisztens</span><span class="en">Proactive Assistant</span></span>
+          <span class="arch-tag">Research (8-step deep)</span>
+          <span class="arch-tag">AI Observability</span>
+        </div>
+      </div>
+      <div class="arch-layer comm">
+        <div class="arch-layer-title"><span class="hu">Kommunikáció (8 csatorna)</span><span class="en">Communication (8 channels)</span></div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">Telegram (Grammy)</span>
+          <span class="arch-tag">Discord (discord.js)</span>
+          <span class="arch-tag">Slack (Socket Mode)</span>
+          <span class="arch-tag">WhatsApp (Cloud API)</span>
+          <span class="arch-tag">Signal (signal-cli)</span>
+          <span class="arch-tag">Email (IMAP/SMTP)</span>
+          <span class="arch-tag">MCP Server / Client</span>
+          <span class="arch-tag">A2A Protocol</span>
+          <span class="arch-tag">Channel Router</span>
+          <span class="arch-tag">Notifications</span>
+          <span class="arch-tag">Computer Use (Playwright)</span>
+          <span class="arch-tag">Ingress (Cloudflare Tunnel)</span>
+          <span class="arch-tag">Remote Node</span>
+        </div>
+      </div>
+      <div class="arch-layer frontend">
+        <div class="arch-layer-title">Frontend</div>
+        <div class="arch-layer-items">
+          <span class="arch-tag">React 19</span>
+          <span class="arch-tag">shadcn/ui</span>
+          <span class="arch-tag">Tailwind CSS</span>
+          <span class="arch-tag">TanStack Router</span>
+          <span class="arch-tag">Zustand</span>
+          <span class="arch-tag">Vite</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== MODULE DETAILS ==================== -->
+<section>
+  <div class="container">
+    <span class="label"><span class="hu">Modulok részletesen</span><span class="en">Module details</span></span>
+    <h2><span class="hu">25+ komponens, <span style="color:var(--accent3)">megvilágítva</span></span><span class="en">25+ components, <span style="color:var(--accent3)">illuminated</span></span></h2>
+    <p class="subtitle" style="margin-bottom:1rem;">
+      <span class="hu">Minden modul önállóan működik, eseménybuszon kommunikál, saját séma-migrációval és API endpointokkal rendelkezik.</span>
+      <span class="en">Each module operates independently, communicates via event bus, has its own schema migrations and API endpoints.</span>
+    </p>
+
+    <div class="detail-grid">
+
+      <!-- 1. Agent Framework -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-indigo">&#9670;</div>
+          <div>
+            <h3>Agent Framework</h3>
+            <div class="detail-subtitle"><span class="hu">Ágens definíciók és registry</span><span class="en">Agent definitions and registry</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Az ágensek SQLite-ban tárolódnak, YAML fájlokból (config/agents/) seedelhetők. A registry CRUD műveleteket, ki-/bekapcsolást és képesség-alapú keresést biztosít.</span>
+            <span class="en">Agents are stored in SQLite, seeded from YAML files in config/agents/. The registry provides CRUD operations, enable/disable toggling, and capability-based search.</span>
+          </p>
+          <ul>
+            <li><span class="hu">3 seed ágens: General Assistant (Sonnet), Code Reviewer (Opus), Researcher (Sonnet)</span><span class="en">3 seed agents: General Assistant (Sonnet), Code Reviewer (Opus), Researcher (Sonnet)</span></li>
+            <li><span class="hu">Ágens-szintű konfig: rendszer prompt, eszközlista, korlátozások, modell preferencia, maxTurns</span><span class="en">Per-agent config: system prompt, tools list, constraints, model preference, maxTurns</span></li>
+            <li><span class="hu">Képesség-alapú keresés: megtalálja a megfelelő ágenst képesség alapján</span><span class="en">Capability search: find the right agent by capability tag</span></li>
+            <li><span class="hu">YAML seed fájlok automatikus betöltése induláskor</span><span class="en">Automatic YAML seed file loading on startup</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">SQLite</span>
+            <span class="detail-tech-tag">Drizzle ORM</span>
+            <span class="detail-tech-tag">YAML Parser</span>
+            <span class="detail-tech-tag">Zod Validation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Agent Orchestrator -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#9671;</div>
+          <div>
+            <h3>Agent Orchestrator</h3>
+            <div class="detail-subtitle"><span class="hu">Team összeállítás és párhuzamos végrehajtás</span><span class="en">Team assembly and parallel execution</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">A feladat komplexitása alapján ágens-csapatot állít össze. Fázisokra bontja a munkát (terv &#8594; építés &#8594; review &#8594; merge), fázisokon belül párhuzamosan, fázisok között szekvenciálisan hajt végre.</span>
+            <span class="en">Assembles agent teams based on task complexity. Splits work into phases (plan &#8594; build &#8594; review &#8594; merge), executing in parallel within phases and sequentially between them.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Adaptív újratervezés: Product Owner ágens minden fázis után újraértékeli a tervet</span><span class="en">Adaptive re-planning: Product Owner agent re-evaluates the plan after each phase</span></li>
+            <li><span class="hu">Feladat-szintű modell routing: optimális AI modell feladattípusonként</span><span class="en">Per-task model routing: optimal AI model per task type (Opus for architecture, Haiku for lookups)</span></li>
+            <li><span class="hu">Konfliktusfeloldás: first-wins, merge, human-review stratégiák</span><span class="en">Conflict resolution: first-wins, merge, human-review strategies</span></li>
+            <li><span class="hu">Git worktree izoláció ágensenkét</span><span class="en">Git worktree isolation per agent</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Async Generators</span>
+            <span class="detail-tech-tag">Git Worktree</span>
+            <span class="detail-tech-tag">EyasBus Events</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2b. Conversation Pipeline -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#128172;</div>
+          <div>
+            <h3>Conversation Pipeline</h3>
+            <div class="detail-subtitle"><span class="hu">Teljes AI pipeline minden üzenethez</span><span class="en">Full AI pipeline for every message</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Minden felhasználói üzenet az Agent Runner pipeline-on halad keresztül &#8212; nem egyszerű AI chat. A pipeline automatikusan bevonja a memóriát, skill-eket, tool-okat és biztonsági kaput.</span>
+            <span class="en">Every user message flows through the Agent Runner pipeline &#8212; not a simple AI chat. The pipeline automatically engages memory, skills, tools, and the security gate.</span>
+          </p>
+          <ul>
+            <li><span class="hu"><strong>Memory Context Injection</strong>: working + episodic + vault + ancestry memória beillesztése a system prompt-ba (max 4000 token budget)</span><span class="en"><strong>Memory Context Injection</strong>: working + episodic + vault + ancestry memory injected into system prompt (max 4000 token budget)</span></li>
+            <li><span class="hu"><strong>Skill Matching</strong>: az utolsó üzenet alapján a top 3 releváns skill automatikus beillesztése <code>&lt;relevant-skills&gt;</code> blokkként</span><span class="en"><strong>Skill Matching</strong>: top 3 relevant skills auto-injected as <code>&lt;relevant-skills&gt;</code> block based on last message</span></li>
+            <li><span class="hu"><strong>Tool Execution Loop</strong>: max 10 turn tool-use kör &#8212; az összes regisztrált tool elérhető (memória, keresés, tudásbázis, dokumentumok, shell, böngésző, MCP eszközök)</span><span class="en"><strong>Tool Execution Loop</strong>: max 10 turn tool-use loop &#8212; all registered tools available (memory, search, knowledge, documents, shell, browser, MCP tools)</span></li>
+            <li><span class="hu"><strong>Security Gate</strong>: minden tool hívás kockázati szint alapján validálva (green/yellow/red), deny esetén az AI hibaüzenetet kap</span><span class="en"><strong>Security Gate</strong>: every tool call validated by risk tier (green/yellow/red), on deny the AI receives an error message</span></li>
+            <li><span class="hu"><strong>SSE Streaming</strong>: text, thinking, tool_use, tool_result, turn_complete, done, error események valós időben a frontendnek</span><span class="en"><strong>SSE Streaming</strong>: text, thinking, tool_use, tool_result, turn_complete, done, error events streamed in real-time to frontend</span></li>
+            <li><span class="hu"><strong>Extended Thinking</strong>: conversation-szintű thinking mód (Off / Low / Medium / High / Max), provider pass-through (Anthropic + Claude Code SDK), collapsible thinking blokk megjelenítés, első üzenet után read-only</span><span class="en"><strong>Extended Thinking</strong>: conversation-level thinking mode (Off / Low / Medium / High / Max), provider pass-through (Anthropic + Claude Code SDK), collapsible thinking block display, locked after first message</span></li>
+            <li><span class="hu"><strong>Markdown Rendering</strong>: Streamdown (Vercel) streaming-aware markdown renderelés &#8212; GFM táblázatok, syntax-highlighted code blokkok (Shiki CDN), copy/download gombok, félkész blokkok kezelése stream közben</span><span class="en"><strong>Markdown Rendering</strong>: Streamdown (Vercel) streaming-aware markdown rendering &#8212; GFM tables, syntax-highlighted code blocks (Shiki CDN), copy/download buttons, handles unterminated blocks during streaming</span></li>
+            <li><span class="hu"><strong>Multimodal</strong>: kép csatolmányok base64 kódolással, dokumentum linkelés</span><span class="en"><strong>Multimodal</strong>: image attachments via base64 encoding, document linking</span></li>
+            <li><span class="hu"><strong>Graceful Fallback</strong>: ha az agent modul nem elérhető, közvetlen gateway streaming működik eszközök nélkül</span><span class="en"><strong>Graceful Fallback</strong>: if agent module unavailable, direct gateway streaming works without tools</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Agent Runner</span>
+            <span class="detail-tech-tag">Context Builder v2</span>
+            <span class="detail-tech-tag">Skill Matcher</span>
+            <span class="detail-tech-tag">Security Gate</span>
+            <span class="detail-tech-tag">SSE Streaming</span>
+            <span class="detail-tech-tag">Tool Executor</span>
+            <span class="detail-tech-tag">Streamdown</span>
+            <span class="detail-tech-tag">Extended Thinking</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Tool/Skill Registry -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-orange">&#9881;</div>
+          <div>
+            <h3>Tool / Skill Registry</h3>
+            <div class="detail-subtitle"><span class="hu">15+ beépített eszköz, kockázati szintek</span><span class="en">15+ built-in tools, risk tiers</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">A létező modulokat wrapelő eszközök egységes felületen érhetők el. Három kockázati szint: zöld (olvasás), sárga (írás), piros (destruktív/külső). Minden eszközhasználat logolódik az adatbázisba.</span>
+            <span class="en">Tools wrapping existing modules are available through a unified interface. Three risk tiers: green (read-only), yellow (write), red (destructive/external). Every tool execution is logged to the database.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Kategóriák: memory, knowledge, search, documents, board, shell, browser, conversation, communication</span><span class="en">Categories: memory, knowledge, search, documents, board, shell, browser, conversation, communication</span></li>
+            <li><span class="hu">Eszköz végrehajtó: timeout (30s alapértelmezett), hibakezelés, végrehajtás naplózás</span><span class="en">Tool executor: timeout (30s default), error handling, execution logging to DB</span></li>
+            <li><span class="hu">Skill rendszer: Markdown fájlok YAML frontmatter-rel, automatikus kontextus-alapú illesztés</span><span class="en">Skill system: Markdown files with YAML frontmatter, auto-matching to task context</span></li>
+            <li><span class="hu">JSON Schema bemenet validáció minden eszköznél</span><span class="en">JSON Schema input validation on every tool</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Factory Pattern</span>
+            <span class="detail-tech-tag">ToolImplementation Interface</span>
+            <span class="detail-tech-tag">JSON Schema</span>
+            <span class="detail-tech-tag">Zod</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Spec Runner -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-green">&#9654;</div>
+          <div>
+            <h3>Spec Runner</h3>
+            <div class="detail-subtitle"><span class="hu">Git worktree izoláció és merge</span><span class="en">Git worktree isolation and merge</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Minden ágens saját git worktree-ben dolgozik &#8212; teljes izoláció a fő ágtól. Befejezéskor automatikusan merge-öl vissza, konfliktus esetén a beszélgetést értesíti.</span>
+            <span class="en">Every agent works in its own git worktree &#8212; fully isolated from the main branch. After completion, it automatically merges back; on conflict, it notifies the conversation.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Git worktree létrehozás ágensenkét (kód izoláció)</span><span class="en">Git worktree creation per agent (code isolation)</span></li>
+            <li><span class="hu">Eredmények merge-ölése a fő ágba ágens befejezése után</span><span class="en">Merge results back to main branch after agent completes</span></li>
+            <li><span class="hu">Automatikus worktree és ideiglenes branch takarítás</span><span class="en">Automatic cleanup of worktrees and temporary branches</span></li>
+            <li><span class="hu">Merge konfliktus kezelés (mentés a beszélgetésbe)</span><span class="en">Merge conflict handling (saved to conversation)</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">execFileSync</span>
+            <span class="detail-tech-tag">git worktree add/remove</span>
+            <span class="detail-tech-tag">Shell Injection Safe</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Agent Sessions & Messaging -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-rose">&#9993;</div>
+          <div>
+            <h3>Agent Sessions &amp; Messaging</h3>
+            <div class="detail-subtitle"><span class="hu">Munkamenet és ágensek közti kommunikáció</span><span class="en">Session tracking and inter-agent communication</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Minden ágens munkamenet követett: státusz, fordulók, tokenek, költség, eszközhasználatok. Az ágensek üzenhetnek egymásnak broadcast képességgel.</span>
+            <span class="en">Every agent session is tracked: status, turns, tokens, cost, tool calls. Agents can message each other with broadcast capability.</span>
+          </p>
+          <ul>
+            <li><span class="hu">agent_sessions tábla: státusz, fordulók, tokenek, költség, eszköz hívások</span><span class="en">agent_sessions table: status, turns, tokens, cost, tool calls</span></li>
+            <li><span class="hu">agent_messages tábla az ágensek közti kommunikációhoz</span><span class="en">agent_messages table for inter-agent communication</span></li>
+            <li><span class="hu">send_agent_message és read_agent_messages eszközök</span><span class="en">send_agent_message and read_agent_messages tools</span></li>
+            <li><span class="hu">Broadcast: felfedezések megosztása a teljes csapattal</span><span class="en">Broadcast: sharing discoveries across the entire team</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">SQLite</span>
+            <span class="detail-tech-tag">JSON Serialization</span>
+            <span class="detail-tech-tag">Session-based Messaging</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5b. Team Sessions -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#129309;</div>
+          <div>
+            <h3>Team Sessions</h3>
+            <div class="detail-subtitle"><span class="hu">Multi-agent team koordináció és megosztott memória</span><span class="en">Multi-agent team coordination and shared memory</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Provider-agnosztikus team session rendszer: fázis-alapú párhuzamos végrehajtás, kétrétegű team memória, real-time dashboard, és AgentGap self-improvement loop. Bármely provider (Anthropic, OpenAI, Ollama, Claude Code) használható akár vegyesen is.</span>
+            <span class="en">Provider-agnostic team session system: phase-based parallel execution, two-layer team memory, real-time dashboard, and AgentGap self-improvement loop. Any provider (Anthropic, OpenAI, Ollama, Claude Code) can be used, even mixed.</span>
+          </p>
+          <ul>
+            <li><span class="hu"><strong>team_sessions</strong> tábla: status lifecycle (proposing → running → paused → completed), config, token/cost tracking</span><span class="en"><strong>team_sessions</strong> table: status lifecycle (proposing → running → paused → completed), config, token/cost tracking</span></li>
+            <li><span class="hu"><strong>team_memory</strong>: system layer (orchestrator) + agent layer, role-based visibility, 5 kategória (finding/decision/blocker/question/fact)</span><span class="en"><strong>team_memory</strong>: system layer (orchestrator) + agent layer, role-based visibility, 5 categories (finding/decision/blocker/question/fact)</span></li>
+            <li><span class="hu"><strong>propose_team</strong> tool: LLM-alapú elemzés, AgentGap detektálás, interaktív kártya a chat-ben</span><span class="en"><strong>propose_team</strong> tool: LLM-based analysis, AgentGap detection, interactive card in chat</span></li>
+            <li><span class="hu"><strong>Checkpoint await/resume</strong>: race-safe pendingResumes Set pattern, fázisok közti jóváhagyás</span><span class="en"><strong>Checkpoint await/resume</strong>: race-safe pendingResumes Set pattern, inter-phase approval</span></li>
+            <li><span class="hu"><strong>MCP Tool Bridge</strong> (tervezett): EYAS tool-ok MCP-n keresztül az SDK-ba — egységes viselkedés minden provider-nél</span><span class="en"><strong>MCP Tool Bridge</strong> (planned): EYAS tools via MCP into SDK — uniform behavior across all providers</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">WebSocket Events</span>
+            <span class="detail-tech-tag">Zustand Store</span>
+            <span class="detail-tech-tag">Completion Queue</span>
+            <span class="detail-tech-tag">MCP Bridge</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Token Budget Engine -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-yellow">&#9733;</div>
+          <div>
+            <h3>Token Budget Engine</h3>
+            <div class="detail-subtitle"><span class="hu">Költségkezelés és throttling</span><span class="en">Cost management and throttling</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Minden ágens havi token budgettel rendelkezik. 4 riasztási szint, automatikus throttling keret túllépés esetén, havi reset az ütemezőtől.</span>
+            <span class="en">Every agent has a monthly token budget. 4 alert levels, automatic throttling when budget exceeded, monthly reset from the scheduler.</span>
+          </p>
+          <ul>
+            <li><span class="hu">4 szint: normál (&lt;80%), figyelmeztet (80-100%), túllépte (100-120%), kritikus (&gt;120%)</span><span class="en">4 levels: normal (&lt;80%), warning (80-100%), exceeded (100-120%), critical (&gt;120%)</span></li>
+            <li><span class="hu">Automatikus throttling budget túllépés esetén</span><span class="en">Automatic throttling when budget exceeded</span></li>
+            <li><span class="hu">Havi reset az ütemezőtől (cron)</span><span class="en">Monthly reset via scheduler (cron)</span></li>
+            <li><span class="hu">Dashboard: felhasznált/összesen, becsült havi, napi ráta</span><span class="en">Dashboard stats: used/total, projected monthly, daily rate</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">EyasBus Events</span>
+            <span class="detail-tech-tag">Cron-scheduled Reset</span>
+            <span class="detail-tech-tag">SQLite Aggregation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Security Gate -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-rose">&#9888;</div>
+          <div>
+            <h3>Security Gate</h3>
+            <div class="detail-subtitle"><span class="hu">3 ellenőrzőpontos biztonsági rendszer</span><span class="en">3-checkpoint security system</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">3 szekvenciális ellenőrzőpont minden ágens-művelet előtt. Deterministikus kapu, LLM biztonsági bíró és futásidei monitor. Rangsorolt kockázat-routing: zöld = kapu, sárga = kapu + bíró, piros = mind + emberi jóváhagyás.</span>
+            <span class="en">3 sequential checkpoints before every agent action. Deterministic gate, LLM security judge, and runtime monitor. Tiered risk routing: green = gate only, yellow = gate + judge, red = all + human approval.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Checkpoint 1 &#8212; Deterministikus kapu (&lt;5ms): regex tiltólista, támadási minták, rate limiting. Nincs LLM.</span><span class="en">Checkpoint 1 &#8212; Deterministic Gate (&lt;5ms): regex blocklist, attack patterns, rate limiting. No LLM.</span></li>
+            <li><span class="hu">Checkpoint 2 &#8212; LLM Biztonsági Bíró: külön AI kontextus (Haiku), sandwich prompt, fail-closed</span><span class="en">Checkpoint 2 &#8212; LLM Security Judge: separate AI context (Haiku), sandwich prompt, fail-closed</span></li>
+            <li><span class="hu">Checkpoint 3 &#8212; Futásidei Monitor: drift detektáló, token pazarlás észlelés, kumulatív kockázat pontozás</span><span class="en">Checkpoint 3 &#8212; Runtime Monitor: drift detection, token waste detection, cumulative risk scoring</span></li>
+            <li><span class="hu">Progresszív rate limiting: sorozat, óránkénti, napi korlátok</span><span class="en">Progressive rate limiting: streak, hourly, daily caps</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Pattern Matching</span>
+            <span class="detail-tech-tag">Claude Haiku</span>
+            <span class="detail-tech-tag">Session Monitoring</span>
+            <span class="detail-tech-tag">Fail-closed Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Scheduler -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-purple">&#9200;</div>
+          <div>
+            <h3>Scheduler</h3>
+            <div class="detail-subtitle"><span class="hu">Cron-alapú feladat ütemező</span><span class="en">Cron-based job scheduler</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Croner-alapú ütemező négyféle trigger típussal: cron, esemény (bus), webhook, manuális. Feladat láncok támogatása hibastrategiákkal.</span>
+            <span class="en">Croner-based scheduler with four trigger types: cron, event (bus), webhook, manual. Job chains support with error strategies.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Trigger típusok: cron, event (bus), webhook, manual</span><span class="en">Trigger types: cron, event (bus), webhook, manual</span></li>
+            <li><span class="hu">Feladat láncok: A&#8594;B&#8594;C, hibastrategiák (stop/skip/continue)</span><span class="en">Job chains: A&#8594;B&#8594;C with error strategies (stop/skip/continue)</span></li>
+            <li><span class="hu">Végrehajtás napló: időtartam, hiba követés</span><span class="en">Execution logging with duration and error tracking</span></li>
+            <li><span class="hu">Beépített: havi budget reset, napi tevékenység elemzés, heti tanulás</span><span class="en">Built-in: monthly budget reset, daily activity analysis, weekly learning</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Croner (MIT)</span>
+            <span class="detail-tech-tag">SQLite Job Tables</span>
+            <span class="detail-tech-tag">EyasBus Integration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Context Builder -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#9998;</div>
+          <div>
+            <h3>Context Builder</h3>
+            <div class="detail-subtitle"><span class="hu">5 kontextusforrás, token-budget kezelés</span><span class="en">5 context sources, token budget management</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">5 kontextusforrásból építi az ágens promptját: célfa, munka memória, epizodikus memória, vault/szemantikus, testvér felfedezések. Token-budget kezeléssel (~4 karakter/token becslés).</span>
+            <span class="en">Assembles the agent prompt from 5 context sources: goal ancestry, working memory, episodic memory, vault/semantic, sibling discoveries. With token budget management (~4 chars/token estimation).</span>
+          </p>
+          <ul>
+            <li><span class="hu">4 összeállítási stratégia: balanced, recency, relevance, minimal</span><span class="en">4 assembly strategies: balanced, recency, relevance, minimal</span></li>
+            <li><span class="hu">Kereszt-ágens megosztás: szülő célok lefelé propagálnak, testvérek broadcastolnak</span><span class="en">Cross-agent sharing: parent goals propagate down, siblings share broadcast memories</span></li>
+            <li><span class="hu">XML címkézés: &lt;goal-context&gt;, &lt;working-memory&gt;, &lt;relevant-memories&gt;, &lt;knowledge&gt;, &lt;sibling-discoveries&gt;</span><span class="en">XML-tagged output: &lt;goal-context&gt;, &lt;working-memory&gt;, &lt;relevant-memories&gt;, &lt;knowledge&gt;, &lt;sibling-discoveries&gt;</span></li>
+            <li><span class="hu">Beszélgetés-hierarchia bejárásával a kontextus építéshez</span><span class="en">Conversation hierarchy traversal for context building</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Memory Module</span>
+            <span class="detail-tech-tag">Conversation Hierarchy</span>
+            <span class="detail-tech-tag">Token Estimation</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. RAG Pipeline -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-green">&#9783;</div>
+          <div>
+            <h3>RAG Pipeline</h3>
+            <div class="detail-subtitle"><span class="hu">Embedding szolgáltatók és hibrid keresés</span><span class="en">Embedding providers and hybrid search</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Embedding szolgáltatók: Ollama (lokális, nomic-embed-text, 768 dim) + OpenAI (text-embedding-3-small, 1536 dim). Auto-detekció: először Ollama-t próbálja (ingyenes), visszaesik OpenAI-ra.</span>
+            <span class="en">Embedding providers: Ollama (local, nomic-embed-text, 768 dim) + OpenAI (text-embedding-3-small, 1536 dim). Auto-detection: tries Ollama first (free), falls back to OpenAI.</span>
+          </p>
+          <ul>
+            <li><span class="hu">EmbeddingBridge: kötegelt feldolgozás, szolgáltató absztrakció</span><span class="en">EmbeddingBridge: batch processing, provider abstraction</span></li>
+            <li><span class="hu">Integrálva a Context Builder-rel vektor-alapú memória keresre</span><span class="en">Integrated with Context Builder for vector-enhanced memory search</span></li>
+            <li><span class="hu">FTS5 (SQLite) + Orama (teljes szöveg + vektor) hibrid keresés</span><span class="en">FTS5 (SQLite) + Orama (full-text + vector) hybrid search</span></li>
+            <li><span class="hu">Float32Array embedding-ek tárolása és összehasonlítása</span><span class="en">Float32Array embeddings storage and comparison</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Ollama API</span>
+            <span class="detail-tech-tag">OpenAI Embeddings</span>
+            <span class="detail-tech-tag">Orama</span>
+            <span class="detail-tech-tag">FTS5</span>
+            <span class="detail-tech-tag">Float32Array</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. Proactive Assistant -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-orange">&#9889;</div>
+          <div>
+            <h3><span class="hu">Proaktív Asszisztens</span><span class="en">Proactive Assistant</span></h3>
+            <div class="detail-subtitle"><span class="hu">Feladat figyelés, lecke tanulás, bot végrehajtó</span><span class="en">Task monitoring, lesson learning, bot executor</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Három önálló képesség: feladat monitor (lejárt/megakadt beszélgetések), lecke tanuló (heti elemzés), és bot végrehajtó (automatikus feldolgozó bot_listen színpadokon).</span>
+            <span class="en">Three standalone capabilities: task monitor (overdue/stalled conversations), lesson learner (weekly analysis), and bot executor (automatically processes stages with bot_listen flag).</span>
+          </p>
+          <ul>
+            <li><span class="hu">Forrás adapter: feladat monitor (lejárt/megakadt beszélgetések)</span><span class="en">Source adapter: task monitor (overdue/stalled conversations)</span></li>
+            <li><span class="hu">Lecke tanuló: heti elemzés a lezárt beszélgetésekből, eszköz-használati minták</span><span class="en">Lesson learner: weekly analysis of closed conversations, tool usage patterns</span></li>
+            <li><span class="hu">Bot végrehajtó: bot_listen színpadokon automatikusan feldolgozza a várakozó beszélgetéseket</span><span class="en">Bot executor: watches stages with bot_listen flag, processes waiting conversations</span></li>
+            <li><span class="hu">Ütemezve: riasztások 5 percenként, leckék hetente (péntek 18:00), bot 10 percenként</span><span class="en">Scheduled: alerts every 5 min, lessons weekly (Friday 18:00), bot check every 10 min</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">SQL Queries</span>
+            <span class="detail-tech-tag">Scheduler Integration</span>
+            <span class="detail-tech-tag">Conversation Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Self-Learning -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-purple">&#9731;</div>
+          <div>
+            <h3>Self-Learning</h3>
+            <div class="detail-subtitle"><span class="hu">Tevékenység elemzés és hatékonysági riport</span><span class="en">Activity analysis and efficiency reporting</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Automatikus tevékenység-elemzés: ismétlődő minták, hiba minták, költség anomáliák. Minden ágens sikerarányt, modell routing optimalizálást és prompt hatékonyságot követ.</span>
+            <span class="en">Automatic activity analysis: recurring patterns, error patterns, cost anomalies. Tracks per-agent success rates, model routing optimization, and prompt effectiveness.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Tevékenység elemző: ismétlődő minták, hiba minták, költség anomáliák a tool_executions-ből</span><span class="en">Activity analyzer: recurring patterns, error patterns, cost anomalies from tool_executions</span></li>
+            <li><span class="hu">Végrehajtás tanuló: ágens sikerarányok, modell routing optimalizálás, prompt hatékonyság</span><span class="en">Execution learner: per-agent success rates, model routing optimization, prompt effectiveness</span></li>
+            <li><span class="hu">Skill generáló: új skill-eket javasol ismétlődő beszélgetési célokból</span><span class="en">Skill generator: suggests new skills from recurring conversation goals</span></li>
+            <li><span class="hu">Ütemezve: naponta 22:00, hetente hétfőn 9:00, havonta elsején 9:00</span><span class="en">Scheduled: daily 22:00, weekly Monday 9:00, monthly 1st 9:00</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">SQL Aggregation</span>
+            <span class="detail-tech-tag">Configurable Windows</span>
+            <span class="detail-tech-tag">Efficiency Reports</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. Forge — Unified Evolution -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#128296;</div>
+          <div>
+            <h3>Forge — Unified Evolution</h3>
+            <div class="detail-subtitle"><span class="hu">Egységes evolúciós rendszer — az agentek saját eszközeiket és tudásukat fejlesztik visszajelzések alapján</span><span class="en">Unified evolution system — agents improve their own tools and skills through structured feedback</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">A Forge modul az EYAS evolúciós motorja. Visszajelzéseket gyűjt (thumbs up/down, hibajelzés, sikerarány), javaslatokat generál tool leírások, sémák, promptok, viselkedés és kód módosítására, majd jóváhagyási workflow-n keresztül alkalmazza azokat. A Self-Learning modul táplálja adatokkal.</span>
+            <span class="en">The Forge module is EYAS's evolution engine. It collects feedback (thumbs up/down, error signals, success rates), generates proposals to modify tool descriptions, schemas, prompts, behavior, and code, then applies them through an approval workflow. The Self-Learning module feeds it with data.</span>
+          </p>
+          <ul>
+            <li><span class="hu"><strong>Pipeline:</strong> Observe → Forge → Adopt — visszajelzés gyűjtés, javaslat generálás, jóváhagyás és alkalmazás</span><span class="en"><strong>Pipeline:</strong> Observe → Forge → Adopt — feedback collection, proposal generation, approval and application</span></li>
+            <li><span class="hu"><strong>Scope-ok:</strong> <code>description</code>, <code>schema</code>, <code>prompt</code>, <code>behavior</code>, <code>code</code> — a javaslatok bármelyik aspektust érinthetik</span><span class="en"><strong>Scopes:</strong> <code>description</code>, <code>schema</code>, <code>prompt</code>, <code>behavior</code>, <code>code</code> — proposals can target any aspect</span></li>
+            <li><span class="hu"><strong>Jóváhagyási workflow:</strong> <code>pending</code> → <code>approved</code> / <code>rejected</code> — felhasználói döntés szükséges</span><span class="en"><strong>Approval workflow:</strong> <code>pending</code> → <code>approved</code> / <code>rejected</code> — user decision required</span></li>
+            <li><span class="hu"><strong>Self-Learning integráció:</strong> a Self-Learning modul tevékenység elemzése és mintafelismerése automatikusan feedback-et generál a Forge számára</span><span class="en"><strong>Self-Learning integration:</strong> the Self-Learning module's activity analysis and pattern detection automatically generates feedback for Forge</span></li>
+          </ul>
+          <strong>REST API:</strong>
+          <ul>
+            <li><code>GET /api/v1/forge/proposals</code> — <span class="hu">javaslatok listázása</span><span class="en">list proposals</span></li>
+            <li><code>POST /api/v1/forge/proposals/:id/approve</code> — <span class="hu">javaslat jóváhagyása</span><span class="en">approve proposal</span></li>
+            <li><code>POST /api/v1/forge/proposals/:id/reject</code> — <span class="hu">javaslat elutasítása</span><span class="en">reject proposal</span></li>
+            <li><code>POST /api/v1/forge/feedback</code> — <span class="hu">visszajelzés rögzítése</span><span class="en">record feedback</span></li>
+            <li><code>POST /api/v1/forge/scan</code> — <span class="hu">szkennelés indítása</span><span class="en">trigger scan</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Observe → Forge → Adopt</span>
+            <span class="detail-tech-tag">5 Scopes</span>
+            <span class="detail-tech-tag">Approval Workflow</span>
+            <span class="detail-tech-tag">REST API</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. Communication Channels -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-rose">&#9742;</div>
+          <div>
+            <h3>Communication Channels</h3>
+            <div class="detail-subtitle"><span class="hu">8 csatorna adapter, egységes Channel interfész</span><span class="en">8 channel adapters, unified Channel interface</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Egységes Channel interfész: connect, disconnect, send, reply, onMessage. A Channel Router regisztrálást, broadcast-ot és üzenet routing-ot biztosít. 8 csatorna adapter implementálva.</span>
+            <span class="en">Unified Channel interface: connect, disconnect, send, reply, onMessage. The Channel Router provides registration, broadcast, and message routing. 8 channel adapters implemented.</span>
+          </p>
+          <ul>
+            <li><span class="hu"><strong>Telegram</strong> — Grammy bot, DM párosítás (EYAS-XXXX kódok), gépelésjelző, fotó támogatás, inline billentyűzet</span><span class="en"><strong>Telegram</strong> — Grammy bot, DM pairing (EYAS-XXXX codes), typing indicators, photo support, inline keyboard</span></li>
+            <li><span class="hu"><strong>Discord</strong> — discord.js, üzenet és melléklet kezelés, embed + buttons</span><span class="en"><strong>Discord</strong> — discord.js, message &amp; attachment handling, embed + buttons</span></li>
+            <li><span class="hu"><strong>Slack</strong> — Socket Mode, thread támogatás, block kit</span><span class="en"><strong>Slack</strong> — Socket Mode, thread support, block kit</span></li>
+            <li><span class="hu"><strong>WhatsApp</strong> — Business Cloud API, webhook fogadás, média üzenetek</span><span class="en"><strong>WhatsApp</strong> — Business Cloud API, webhook receiver, media messages</span></li>
+            <li><span class="hu"><strong>Signal</strong> — signal-cli HTTP bridge, SSE stream fogadás</span><span class="en"><strong>Signal</strong> — signal-cli HTTP bridge, SSE stream reception</span></li>
+            <li><span class="hu"><strong>Email</strong> — IMAP poll (bejövő) + SMTP küldés (kimenő), HTML és plain text</span><span class="en"><strong>Email</strong> — IMAP poll (inbound) + SMTP send (outbound), HTML and plain text</span></li>
+            <li><span class="hu"><strong>MCP Server</strong>: HTTP JSON-RPC a /mcp/* útvonalakon, auth middleware, eszköz felfedezés és végrehajtás</span><span class="en"><strong>MCP Server</strong>: HTTP JSON-RPC at /mcp/*, auth middleware, tool discovery and execution</span></li>
+            <li><span class="hu"><strong>MCP Client</strong>: 3 transport (stdio/HTTP/SSE), DB perzisztencia, config/mcp.yaml, REST API (/api/v1/mcp/servers/*), tools+resources+prompts discovery, CRUD frontend, auto-connect</span><span class="en"><strong>MCP Client</strong>: 3 transports (stdio/HTTP/SSE), DB persistence, config/mcp.yaml, REST API (/api/v1/mcp/servers/*), tools+resources+prompts discovery, CRUD frontend, auto-connect</span></li>
+            <li><span class="hu"><strong>A2A</strong>: Agent-to-agent protokoll — JSON-RPC task delegation, agent card discovery</span><span class="en"><strong>A2A</strong>: Agent-to-agent protocol — JSON-RPC task delegation, agent card discovery</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Grammy (Telegram)</span>
+            <span class="detail-tech-tag">discord.js</span>
+            <span class="detail-tech-tag">Slack Socket Mode</span>
+            <span class="detail-tech-tag">WhatsApp Cloud API</span>
+            <span class="detail-tech-tag">signal-cli</span>
+            <span class="detail-tech-tag">IMAP/SMTP</span>
+            <span class="detail-tech-tag">JSON-RPC 2.0</span>
+            <span class="detail-tech-tag">Channel Interface</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 14. Computer Use (Browser) -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-yellow">&#9784;</div>
+          <div>
+            <h3>Computer Use (Browser)</h3>
+            <div class="detail-subtitle"><span class="hu">Böngésző vezérlés Playwright-tal</span><span class="en">Browser control with Playwright</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Playwright böngésző vezérlés 6 eszközzel: navigate, click, fill, screenshot, get_content, close. Munkamenet-kezelő: automatikus lejárás (5 perc), URL engedélyezési lista, headless mód.</span>
+            <span class="en">Playwright browser control with 6 tools: navigate, click, fill, screenshot, get_content, close. Session manager: auto-expire (5 min), URL allowlist, headless mode.</span>
+          </p>
+          <ul>
+            <li><span class="hu">6 eszköz: navigate, click, fill, screenshot, get_content, close</span><span class="en">6 tools: navigate, click, fill, screenshot, get_content, close</span></li>
+            <li><span class="hu">Munkamenet kezelő: automatikus lejárás (5 perc), URL engedélyezési lista</span><span class="en">Session manager: auto-expire (5 min), URL allowlist</span></li>
+            <li><span class="hu">Képernyőképek: data/screenshots/ könyvtár, base64 visszatérítés</span><span class="en">Screenshots: saved to data/screenshots/, returned as base64</span></li>
+            <li><span class="hu">Minden böngésző eszköz piros kockázati szint, requiresApproval</span><span class="en">All browser tools are red risk tier with requiresApproval</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Playwright (chromium)</span>
+            <span class="detail-tech-tag">Session Lifecycle</span>
+            <span class="detail-tech-tag">Peer Dependency</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 15. Audit Module -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-indigo">&#128209;</div>
+          <div>
+            <h3>Audit Module</h3>
+            <div class="detail-subtitle"><span class="hu">Akciónapló, pillanatképek, visszaállítás</span><span class="en">Action logging, snapshots, rollback</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Teljes audit trail: minden művelet logolva, pre-action pillanatképek, pont-idejű visszaállítás. Diff tracking és retention lifecycle kezelés.</span>
+            <span class="en">Full audit trail: every action logged, pre-action snapshots, point-in-time rollback. Diff tracking and retention lifecycle management.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Pre-action snapshot: eredeti adat mentése módosítás előtt (fájl, DB, config, git)</span><span class="en">Pre-action snapshots: original data saved before modification (file, DB, config, git)</span></li>
+            <li><span class="hu">Rollback: egyetlen action vagy időpontra visszaállítás</span><span class="en">Rollback: single action or point-in-time restore</span></li>
+            <li><span class="hu">Diff Tracker: fájl változások előtte/utána</span><span class="en">Diff Tracker: file changes before/after</span></li>
+            <li><span class="hu">Retention: Hot 30d &#8594; Warm 90d &#8594; Cold 365d</span><span class="en">Retention: Hot 30d &#8594; Warm 90d &#8594; Cold 365d</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">SQLite</span>
+            <span class="detail-tech-tag">JSON Snapshots</span>
+            <span class="detail-tech-tag">Diff Algorithm</span>
+            <span class="detail-tech-tag">Retention Policy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 16. Privacy Module -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-rose">&#128737;</div>
+          <div>
+            <h3>Privacy Module</h3>
+            <div class="detail-subtitle"><span class="hu">PII szkenner, magyar minták, policy motor</span><span class="en">PII scanner, Hungarian patterns, policy engine</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Pluggable PII szkenner lánc: Regex + NER + Custom. Magyar személyi minták (szem&#233;lyi szám, TAJ, adószám, IBAN). Policy motor: block/sanitize/warn/auto_local.</span>
+            <span class="en">Pluggable PII scanner chain: Regex + NER + Custom. Hungarian PII patterns (personal ID, TAJ, tax number, IBAN). Policy engine: block/sanitize/warn/auto_local.</span>
+          </p>
+          <ul>
+            <li><span class="hu">RegexScanner: beépített magyar + nemzetközi PII minták</span><span class="en">RegexScanner: built-in Hungarian + international PII patterns</span></li>
+            <li><span class="hu">NerScanner: opcionális Ollama/lokális NER modell (GLiNER-PII)</span><span class="en">NerScanner: optional Ollama/local NER model (GLiNER-PII)</span></li>
+            <li><span class="hu">CustomScanner: felhasználó-definiált YAML szabályok</span><span class="en">CustomScanner: user-defined YAML rules</span></li>
+            <li><span class="hu">Policy: auto_local (lokális motorra irányít), warn, block, sanitize</span><span class="en">Policy: auto_local (route to local engine), warn, block, sanitize</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Regex Patterns</span>
+            <span class="detail-tech-tag">NER Integration</span>
+            <span class="detail-tech-tag">YAML Policy</span>
+            <span class="detail-tech-tag">Audit Logging</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 17. Notifications Module -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#128276;</div>
+          <div>
+            <h3>Notifications</h3>
+            <div class="detail-subtitle"><span class="hu">Egységes routing, 3 csatorna, csendes órák</span><span class="en">Unified routing, 3 channels, quiet hours</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Központi értesítési rendszer: felhasználónkénti csatorna preferenciák, severity szűrés, csendes órák, rate limiting. 3 csatorna: WebSocket, Telegram, email.</span>
+            <span class="en">Central notification system: per-user channel preferences, severity filtering, quiet hours, rate limiting. 3 channels: WebSocket, Telegram, email.</span>
+          </p>
+          <ul>
+            <li><span class="hu">3 csatorna: WebSocket (valós idejű), Telegram, email</span><span class="en">3 channels: WebSocket (real-time), Telegram, email</span></li>
+            <li><span class="hu">Felhasználónkénti csatorna preferenciák (pl. critical &#8594; Telegram)</span><span class="en">Per-user channel preferences (e.g., critical &#8594; Telegram)</span></li>
+            <li><span class="hu">Csendes órák: csak critical értesítések jutnak át</span><span class="en">Quiet hours: only critical notifications pass through</span></li>
+            <li><span class="hu">Rate limiting: túl gyakori értesítések korlátozása</span><span class="en">Rate limiting: throttling too-frequent notifications</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">WebSocket</span>
+            <span class="detail-tech-tag">Grammy</span>
+            <span class="detail-tech-tag">Nodemailer</span>
+            <span class="detail-tech-tag">User Preferences</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 18. AI Observability -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-orange">&#128300;</div>
+          <div>
+            <h3>AI Observability</h3>
+            <div class="detail-subtitle"><span class="hu">Token trace, anomália-detektálás, minőségpontozás</span><span class="en">Token tracing, anomaly detection, quality scoring</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Token-szintű tracing: input context, tool calls, output per AI hívás. Anomália-detektálás 2&#963; küszöbbel. Automatikus + user feedback quality scoring. Költség dashboard recharts-szal.</span>
+            <span class="en">Token-level tracing: input context, tool calls, output per AI call. Anomaly detection with 2&#963; threshold. Automatic + user feedback quality scoring. Cost dashboard with recharts.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Token trace: teljes input/output naplózás per AI hívás</span><span class="en">Token trace: full input/output logging per AI call</span></li>
+            <li><span class="hu">Anomália-detektálás: költség kiugrások, hallucinációs minták (2&#963;)</span><span class="en">Anomaly detection: cost spikes, hallucination patterns (2&#963; threshold)</span></li>
+            <li><span class="hu">Quality scoring: automatikus (kis modell értékeli) + thumbs up/down</span><span class="en">Quality scoring: automatic (small model evaluates) + thumbs up/down</span></li>
+            <li><span class="hu">Költség dashboard: napi/heti/havi, modell eloszlás, cache hit rate</span><span class="en">Cost dashboard: daily/weekly/monthly, model distribution, cache hit rate</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">SQLite Traces</span>
+            <span class="detail-tech-tag">recharts</span>
+            <span class="detail-tech-tag">Statistical Analysis</span>
+            <span class="detail-tech-tag">EyasBus Events</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 19. Research Module -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-green">&#128269;</div>
+          <div>
+            <h3>Research Module</h3>
+            <div class="detail-subtitle"><span class="hu">8 lépéses deep research workflow</span><span class="en">8-step deep research workflow</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Teljes kutatási workflow: web keresés, forrás értékelés, kereszt-hivatkozás, riport generálás. Strukturált markdown kimenetek, memória integráció.</span>
+            <span class="en">Full research workflow: web search, source evaluation, cross-referencing, report generation. Structured markdown outputs, memory integration.</span>
+          </p>
+          <ul>
+            <li><span class="hu">8 lépés: kérdés elemzés &#8594; keresés &#8594; forrás értékelés &#8594; kinyerés &#8594; kereszt-hivatkozás &#8594; szintézis &#8594; riport &#8594; memória</span><span class="en">8 steps: question analysis &#8594; search &#8594; source evaluation &#8594; extraction &#8594; cross-referencing &#8594; synthesis &#8594; report &#8594; memory</span></li>
+            <li><span class="hu">Forrás megbízhatóság pontozás</span><span class="en">Source credibility scoring</span></li>
+            <li><span class="hu">Strukturált markdown riport generálás</span><span class="en">Structured markdown report generation</span></li>
+            <li><span class="hu">Automatikus memória integráció az eredményekhez</span><span class="en">Automatic memory integration for results</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Web Search APIs</span>
+            <span class="detail-tech-tag">Source Scoring</span>
+            <span class="detail-tech-tag">Markdown Generation</span>
+            <span class="detail-tech-tag">Memory Module</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 20. A2UI Components -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-purple">&#127912;</div>
+          <div>
+            <h3>A2UI Components</h3>
+            <div class="detail-subtitle"><span class="hu">7 strukturált widget típus</span><span class="en">7 structured widget types</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Agent-to-User Interface: az ágens strukturált JSON-t küld szöveg helyett. 7 widget típus, csatornánkénti adaptálás, graceful fallback.</span>
+            <span class="en">Agent-to-User Interface: agent sends structured JSON instead of text. 7 widget types, per-channel adaptation, graceful fallback.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Widget típusok: buttons, table, form, chart, progress, card, text</span><span class="en">Widget types: buttons, table, form, chart, progress, card, text</span></li>
+            <li><span class="hu">Csatorna adaptáció: Web UI &#8594; teljes widget, Telegram &#8594; inline keyboard, CLI &#8594; szöveges fallback</span><span class="en">Channel adaptation: Web UI &#8594; full widget, Telegram &#8594; inline keyboard, CLI &#8594; text fallback</span></li>
+            <li><span class="hu">Graceful fallback: nem támogatott widget &#8594; automatikus szöveges megjelenítés</span><span class="en">Graceful fallback: unsupported widget &#8594; automatic text rendering</span></li>
+            <li><span class="hu">Univerzális JSON formátum minden csatornára</span><span class="en">Universal JSON format across all channels</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">JSON Schema</span>
+            <span class="detail-tech-tag">React Components</span>
+            <span class="detail-tech-tag">Channel Adapters</span>
+            <span class="detail-tech-tag">Fallback Renderer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 21. A2A Protocol -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-cyan">&#129309;</div>
+          <div>
+            <h3>A2A Protocol</h3>
+            <div class="detail-subtitle"><span class="hu">Google Agent-to-Agent protokoll</span><span class="en">Google Agent-to-Agent protocol</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Google A2A protokoll implementáció: agent card felfedezés, JSON-RPC szerver és kliens, feladat delegáció más AI rendszerek felé.</span>
+            <span class="en">Google A2A protocol implementation: agent card discovery, JSON-RPC server and client, task delegation to other AI systems.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Agent Card: /.well-known/agent-card.json &#8212; képességek, skill-ek, API leírás</span><span class="en">Agent Card: /.well-known/agent-card.json &#8212; capabilities, skills, API description</span></li>
+            <li><span class="hu">JSON-RPC szerver: bejövő feladat-kérések fogadása más ágensektől</span><span class="en">JSON-RPC server: accepting incoming task requests from other agents</span></li>
+            <li><span class="hu">Kliens: távoli ágensek felfedezése és feladat delegáció</span><span class="en">Client: remote agent discovery and task delegation</span></li>
+            <li><span class="hu">Eszközök: a2a_discover, a2a_delegate, a2a_status</span><span class="en">Tools: a2a_discover, a2a_delegate, a2a_status</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">JSON-RPC 2.0</span>
+            <span class="detail-tech-tag">Agent Card Spec</span>
+            <span class="detail-tech-tag">Task Lifecycle</span>
+            <span class="detail-tech-tag">Hono Routes</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 22. CLI Interface -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-green">&#128187;</div>
+          <div>
+            <h3>CLI Interface</h3>
+            <div class="detail-subtitle"><span class="hu">Parancssori eszköztár citty-vel</span><span class="en">Command-line toolkit with citty</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Teljes CLI a rendszer kezeléséhez: szerver indítás, rendszer diagnosztika, konfiguráció kezelés, modul menedzsment. A citty framework biztosítja a parancs parsolást.</span>
+            <span class="en">Full CLI for system management: server startup, system diagnostics, configuration management, module management. The citty framework provides command parsing.</span>
+          </p>
+          <ul>
+            <li><code>eyas serve</code> &#8212; <span class="hu">HTTP szerver indítása konfigurálható porttal</span><span class="en">Start HTTP server with configurable port</span></li>
+            <li><code>eyas doctor</code> &#8212; <span class="hu">rendszer állapot ellenőrzés, dependency check</span><span class="en">System health check, dependency verification</span></li>
+            <li><code>eyas status</code> &#8212; <span class="hu">futó példány állapota</span><span class="en">Running instance status</span></li>
+            <li><code>eyas config</code> / <code>module</code> / <code>version</code> &#8212; <span class="hu">kezelés és információ</span><span class="en">Management and info</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">citty (MIT)</span>
+            <span class="detail-tech-tag">Sub-commands</span>
+            <span class="detail-tech-tag">Colored Output</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 23. Docker & Kubernetes -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-orange">&#128051;</div>
+          <div>
+            <h3>Docker &amp; Kubernetes</h3>
+            <div class="detail-subtitle"><span class="hu">Konténerizáció és orkesztráció</span><span class="en">Containerization and orchestration</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Multi-stage Dockerfile, docker-compose (Ollama GPU profillal), K8s manifestek: deployment, service, PVC, configmap, secret, ingress.</span>
+            <span class="en">Multi-stage Dockerfile, docker-compose (with Ollama GPU profile), K8s manifests: deployment, service, PVC, configmap, secret, ingress.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Multi-stage Docker build, Alpine-alapú, ~80MB image, non-root user</span><span class="en">Multi-stage Docker build, Alpine-based, ~80MB image, non-root user</span></li>
+            <li><span class="hu">docker-compose: dev és prod konfiguráció, Ollama GPU profil</span><span class="en">docker-compose: dev and prod config, Ollama GPU profile</span></li>
+            <li><span class="hu">K8s manifestek: Deployment, Service, PVC, ConfigMap, Secret, Ingress</span><span class="en">K8s manifests: Deployment, Service, PVC, ConfigMap, Secret, Ingress</span></li>
+            <li><span class="hu">SecurityContext: runAsNonRoot, readOnlyRootFilesystem</span><span class="en">SecurityContext: runAsNonRoot, readOnlyRootFilesystem</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Dockerfile</span>
+            <span class="detail-tech-tag">docker-compose</span>
+            <span class="detail-tech-tag">K8s YAML</span>
+            <span class="detail-tech-tag">Health Checks</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24. Disaster Recovery -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-rose">&#9851;</div>
+          <div>
+            <h3>Disaster Recovery</h3>
+            <div class="detail-subtitle"><span class="hu">Backup és restore</span><span class="en">Backup and restore</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">Lokális tar.gz backup/restore, path traversal védelem, audit rollback integráció.</span>
+            <span class="en">Local tar.gz backup/restore, path traversal protection, audit rollback integration.</span>
+          </p>
+          <ul>
+            <li><span class="hu">Teljes rendszer mentés tar.gz formátumban</span><span class="en">Full system backup in tar.gz format</span></li>
+            <li><span class="hu">Path traversal védelem a restore során</span><span class="en">Path traversal protection during restore</span></li>
+            <li><span class="hu">Audit rollback integráció: egyetlen action visszaállítás</span><span class="en">Audit rollback integration: single action restore</span></li>
+            <li><span class="hu">Konfigurálható backup ütemezés a Scheduler-en keresztül</span><span class="en">Configurable backup scheduling via Scheduler</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">tar.gz</span>
+            <span class="detail-tech-tag">Path Validation</span>
+            <span class="detail-tech-tag">Scheduler Integration</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 25. WebSocket & Streaming -->
+      <div class="detail-card">
+        <div class="detail-card-header">
+          <div class="detail-card-icon icon-purple">&#9889;</div>
+          <div>
+            <h3>WebSocket &amp; Streaming</h3>
+            <div class="detail-subtitle"><span class="hu">Valós idejű kommunikáció és AI streaming</span><span class="en">Real-time communication and AI streaming</span></div>
+          </div>
+        </div>
+        <div class="detail-card-body">
+          <p>
+            <span class="hu">WebSocket a board szinkronhoz, agent progress-hez és valós idejű értesítésekhez. SSE token-by-token AI válasz renderelés, cancel támogatás.</span>
+            <span class="en">WebSocket for board sync, agent progress, and real-time notifications. SSE token-by-token AI response rendering with cancel support.</span>
+          </p>
+          <ul>
+            <li><span class="hu">WebSocket: board valós idejű szinkron, agent progress, chat</span><span class="en">WebSocket: board real-time sync, agent progress, chat</span></li>
+            <li><span class="hu">SSE streaming: token-by-token AI válasz megjelenítés</span><span class="en">SSE streaming: token-by-token AI response rendering</span></li>
+            <li><span class="hu">Cancel támogatás: folyamatban lévő AI válasz megszakítása</span><span class="en">Cancel support: interrupt in-progress AI response</span></li>
+            <li><span class="hu">Config hot-reload: fs.watch + debounce, élő frissítés</span><span class="en">Config hot-reload: fs.watch + debounce, live updates</span></li>
+          </ul>
+          <div class="detail-tech">
+            <span class="detail-tech-tag">Hono WebSocket</span>
+            <span class="detail-tech-tag">Server-Sent Events</span>
+            <span class="detail-tech-tag">fs.watch</span>
+            <span class="detail-tech-tag">AbortController</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== EXTENSIONS ==================== -->
+<section>
+  <div class="container">
+    <span class="label"><span class="hu">Bővítmények</span><span class="en">Extensions</span></span>
+    <h2><span class="hu">Opcionális <span style="color:var(--accent3)">bővítmények</span></span><span class="en">Optional <span style="color:var(--accent3)">extensions</span></span></h2>
+    <p class="subtitle"><span class="hu">Egyes eszközök és skill csomagok licencelési okok miatt nem kerülhettek be az EYAS-ba. A Settings &gt; Extensions oldalon telepítheted őket — az automatikus csomagokat az EYAS tölti le a jóváhagyásoddal, a harmadik féltől származó eszközöket pedig az eredeti forrásukból kell letöltened, az adott licence feltételei szerint.</span><span class="en">Some tools and skill packs could not be bundled with EYAS due to licensing restrictions. You can install them from Settings &gt; Extensions — auto-install packs are downloaded by EYAS with your consent, while third-party tools must be downloaded independently from their original source under their respective licenses.</span></p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+      <div>
+        <h3 style="font-size:1.1rem; margin-bottom:1rem;">📦 <span class="hu">Automatikusan telepíthető</span><span class="en">Auto-installable</span></h3>
+        <table style="width:100%; font-size:0.85rem;">
+          <tr><td>🦊 Odoo 18 Skills</td><td style="color:var(--accent4)">LGPL-3.0</td></tr>
+          <tr><td>📄 Pandoc</td><td style="color:var(--accent4)">GPL-2.0</td></tr>
+          <tr><td>🛡️ ClamAV</td><td style="color:var(--accent4)">GPL-2.0</td></tr>
+          <tr><td>🔍 Semgrep</td><td style="color:var(--accent4)">LGPL-2.1</td></tr>
+          <tr><td>📊 LibreOffice</td><td style="color:var(--accent4)">LGPL-3.0</td></tr>
+        </table>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;"><span class="hu">Külön processzként futnak, nem linkelődnek az EYAS-ba.</span><span class="en">Run as separate processes, not linked into EYAS.</span></p>
+      </div>
+      <div>
+        <h3 style="font-size:1.1rem; margin-bottom:1rem;">🔗 <span class="hu">Harmadik féltől</span><span class="en">Third-party</span></h3>
+        <table style="width:100%; font-size:0.85rem;">
+          <tr><td>🎨 Drawbridge</td><td style="color:var(--error, #ef4444)">Proprietary</td></tr>
+          <tr><td>📈 Grafana</td><td style="color:var(--error, #ef4444)">AGPL-3.0</td></tr>
+          <tr><td>🖼️ Stable Diffusion</td><td style="color:var(--error, #ef4444)">AGPL-3.0</td></tr>
+        </table>
+        <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.5rem;"><span class="hu">Az eredeti forrásukból kell letölteni.</span><span class="en">Must be downloaded from their original source.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== TECH STACK ==================== -->
+<section>
+  <div class="container">
+    <span class="label">Tech Stack</span>
+    <h2><span class="hu">Technológiai <span style="color:var(--accent4)">verem</span></span><span class="en">Technology <span style="color:var(--accent4)">stack</span></span></h2>
+    <p class="subtitle" style="margin-bottom:1rem;">
+      <span class="hu">Minden függőség MIT-kompatibilis (MIT, BSD-2, BSD-3, ISC, Apache-2.0). Nincs GPL, LGPL, AGPL, SSPL.</span>
+      <span class="en">All dependencies are MIT-compatible (MIT, BSD-2, BSD-3, ISC, Apache-2.0). No GPL, LGPL, AGPL, SSPL.</span>
+    </p>
+
+    <div class="category-label">Runtime &amp; Language</div>
+    <div class="tech-grid">
+      <span class="tech-pill">Bun 1.x (primary)</span>
+      <span class="tech-pill">Node.js 22+ (fallback)</span>
+      <span class="tech-pill">TypeScript 5.9+ strict</span>
+      <span class="tech-pill">ESM modules</span>
+    </div>
+
+    <div class="category-label">Backend</div>
+    <div class="tech-grid">
+      <span class="tech-pill">Hono (HTTP + WS)</span>
+      <span class="tech-pill">Drizzle ORM</span>
+      <span class="tech-pill">bun:sqlite / better-sqlite3</span>
+      <span class="tech-pill">Orama (FTS + vector)</span>
+      <span class="tech-pill">CASL (permissions)</span>
+      <span class="tech-pill">Croner (cron)</span>
+      <span class="tech-pill">Pino (logging)</span>
+      <span class="tech-pill">Zod (validation)</span>
+      <span class="tech-pill">age/rage (encryption)</span>
+      <span class="tech-pill">i18next</span>
+      <span class="tech-pill">Grammy (Telegram)</span>
+      <span class="tech-pill">discord.js</span>
+      <span class="tech-pill">Slack Socket Mode</span>
+      <span class="tech-pill">signal-cli HTTP bridge</span>
+      <span class="tech-pill">citty (CLI)</span>
+      <span class="tech-pill">recharts</span>
+      <span class="tech-pill">Vitest (816 tests)</span>
+    </div>
+
+    <div class="category-label">AI Providers (6)</div>
+    <div class="tech-grid">
+      <span class="tech-pill">Anthropic (Claude)</span>
+      <span class="tech-pill">Claude Code</span>
+      <span class="tech-pill">OpenAI (GPT)</span>
+      <span class="tech-pill">Google (Gemini)</span>
+      <span class="tech-pill">OpenRouter</span>
+      <span class="tech-pill">Ollama (local, auto-detect)</span>
+    </div>
+
+    <div class="category-label">Frontend</div>
+    <div class="tech-grid">
+      <span class="tech-pill">Vite</span>
+      <span class="tech-pill">React 19</span>
+      <span class="tech-pill">shadcn/ui</span>
+      <span class="tech-pill">Tailwind CSS</span>
+      <span class="tech-pill">TanStack Router</span>
+      <span class="tech-pill">Zustand</span>
+      <span class="tech-pill">react-i18next</span>
+    </div>
+
+    <div class="category-label"><span class="hu">Opcionális / Deploy</span><span class="en">Optional / Deploy</span></div>
+    <div class="tech-grid">
+      <span class="tech-pill">Playwright (browser control)</span>
+      <span class="tech-pill">Plate (rich-text editor)</span>
+      <span class="tech-pill">MCP (JSON-RPC 2.0)</span>
+      <span class="tech-pill">A2A Protocol (Google)</span>
+      <span class="tech-pill">Docker (multi-stage)</span>
+      <span class="tech-pill">Kubernetes</span>
+      <span class="tech-pill">Cloudflare Tunnel</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== REMAINING ==================== -->
+<section>
+  <div class="container">
+    <span class="label"><span class="hu">Hátralévő feladatok</span><span class="en">What's remaining</span></span>
+    <h2><span class="hu">Még <span style="color:var(--accent5)">megvalósítandó</span></span><span class="en">Still to be <span style="color:var(--accent5)">implemented</span></span></h2>
+    <p class="subtitle" style="margin-bottom:1rem;">
+      <span class="hu">Ezek az elemek az architektúrában már specifikálva vannak, de még nem készültek el. Az interfészek és a framework legtöbb esetben már kész.</span>
+      <span class="en">These items are already specified in the architecture but not yet implemented. Interfaces and framework are ready in most cases.</span>
+    </p>
+
+    <div class="remaining-grid">
+
+      <div class="remaining-card">
+        <h4>WhatsApp Channel Adapter</h4>
+        <p><span class="hu">Business Cloud API integráció: média üzenet küldés/fogadás, webhook validáció, rate limiting.</span><span class="en">Business Cloud API integration: media message send/receive, webhook validation, rate limiting.</span></p>
+        <span class="remaining-tag tag-planned"><span class="hu">Tervezve</span><span class="en">Planned</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4>Signal Channel Adapter</h4>
+        <p><span class="hu">signal-cli HTTP bridge: SSE fogadás, csoport üzenetek, titkosított melléklet kezelés.</span><span class="en">signal-cli HTTP bridge: SSE reception, group messages, encrypted attachment handling.</span></p>
+        <span class="remaining-tag tag-planned"><span class="hu">Tervezve</span><span class="en">Planned</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4>create-eyas CLI</h4>
+        <p><span class="hu">Egyetlen <code>bunx create-eyas my-project</code> parancs: interaktív scaffolding wizard (projekt név, AI provider, modulok), <code>bun install</code> + <code>bun start</code>. Nincs globális telepítés szükséges.</span><span class="en">Single <code>bunx create-eyas my-project</code> command: interactive scaffolding wizard (project name, AI provider, module selection), <code>bun install</code> + <code>bun start</code>. No global installation needed.</span></p>
+        <span class="remaining-tag tag-planned"><span class="hu">Tervezve</span><span class="en">Planned</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4><span class="hu">Integrációs tesztek</span><span class="en">Integration Tests</span></h4>
+        <p><span class="hu">createTestContext helper szükséges, Vitest framework kész. 816 unit teszt fut.</span><span class="en">createTestContext helper needed, Vitest framework ready. 816 unit tests passing.</span></p>
+        <span class="remaining-tag tag-planned"><span class="hu">Tervezve</span><span class="en">Planned</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4>Desktop App</h4>
+        <p><span class="hu">Electron/Tauri wrapper a React frontend köré.</span><span class="en">Electron/Tauri wrapper for the React frontend.</span></p>
+        <span class="remaining-tag tag-future"><span class="hu">Jövőbeli</span><span class="en">Future</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4>Mobile App</h4>
+        <p><span class="hu">React Native shell.</span><span class="en">React Native shell.</span></p>
+        <span class="remaining-tag tag-future"><span class="hu">Jövőbeli</span><span class="en">Future</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4>S3 / Remote Backup</h4>
+        <p><span class="hu">Lokális tar.gz backup kész. S3/Backblaze B2 távoli backup és automatikus restore teszt szükséges.</span><span class="en">Local tar.gz backup done. S3/Backblaze B2 remote backup and automated restore testing needed.</span></p>
+        <span class="remaining-tag tag-planned"><span class="hu">Tervezve</span><span class="en">Planned</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4><span class="hu">Hangvezérlés</span><span class="en">Voice Control</span></h4>
+        <p><span class="hu">Voice Wake és Talk Mode natív alkalmazást igényel (macOS/iOS/Android). Web UI SSE/WS kész.</span><span class="en">Voice Wake and Talk Mode requires native app (macOS/iOS/Android). Web UI SSE/WS ready.</span></p>
+        <span class="remaining-tag tag-future"><span class="hu">Jövőbeli</span><span class="en">Future</span></span>
+      </div>
+
+      <div class="remaining-card">
+        <h4>Multi-instance (NATS)</h4>
+        <p><span class="hu">Provider pattern kész (LocalBus default). NATS bekapcsolható konfigból, implementáció szükséges.</span><span class="en">Provider pattern ready (LocalBus default). NATS can be enabled from config, implementation needed.</span></p>
+        <span class="remaining-tag tag-interface-ready"><span class="hu">Interfész kész</span><span class="en">Interface Ready</span></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="container">
+    <p class="brand">eYssen EYAS 0.8.1-beta</p>
+    <p>Built with TypeScript. Open source. Owned by you.</p>
+    <p style="margin-top:0.5rem; font-size:0.7rem; color:var(--text-dim);">&#169; 1997&#8211;2026 eYssen. <span class="hu">Minden jog fenntartva.</span><span class="en">All rights reserved.</span></p>
+  </div>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.setAttribute('data-lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+  });
+}
+
+function toggleTheme() {
+  document.body.classList.toggle('light');
+  updateThemeIcon();
+  localStorage.setItem('eyas-theme', document.body.classList.contains('light') ? 'light' : 'dark');
+}
+
+function updateThemeIcon() {
+  var btn = document.querySelector('.theme-icon');
+  if (document.body.classList.contains('light')) {
+    btn.textContent = '\u263D';
+  } else {
+    btn.textContent = '\u2600';
+  }
+}
+
+if (localStorage.getItem('eyas-theme') === 'light') {
+  document.body.classList.add('light');
+}
+updateThemeIcon();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+{
+  "grokVersion": "1.0.40",
+  "channel": "unknown",
+  "cwd": "<PROJECT>",
+  "projectRoot": null,
+  "projectTrusted": false,
+  "projectInstructions": [
+    {
+      "path": "<HOME>/.grok/Agents.md",
+      "scope": "global",
+      "fileType": "agents_md",
+      "sizeBytes": 63,
+      "approxTokens": 15
+    },
+    {
+      "path": "<HOME>/.grok/rules/x.md",
+      "scope": "global",
+      "fileType": "rules",
+      "sizeBytes": 60,
+      "approxTokens": 15
+    },
+    {
+      "path": "<HOME>/.claude/Claude.md",
+      "scope": "global",
+      "fileType": "agents_md",
+      "sizeBytes": 64,
+      "approxTokens": 16,
+      "vendor": "claude",
+      "compatibilityStatus": "enabled"
+    }
+  ],
+  "permissions": {
+    "sources": [
+      "<HOME>/.claude/settings.json (settings)"
+    ],
+    "loaded": 4,
+    "skipped": [],
+    "mcpServerAllowlist": [],
+    "mcpLockdownSources": [],
+    "mcpManagedServersOnly": "off",
+    "marketplaceAllowlist": [],
+    "marketplaceLockdownSources": [],
+    "managedMarketplaces": [],
+    "managedSettingsPath": "/Library/Application Support/ClaudeCode/managed-settings.json",
+    "managedSettingsExists": false,
+    "managedSettingsActive": false,
+    "claudeBypassLockAdvisory": false
+  },
+  "loginPolicy": {
+    "disableApiKeyAuth": null,
+    "forceLoginTeamUuid": null,
+    "apiKeyAuthDisabled": false
+  },
+  "hooks": [
+    {
+      "event": "session_start",
+      "hookType": "command",
+      "target": "echo grok-home-hook >> '<ROOT>/markers/grok-home-hook'",
+      "source": {
+        "type": "user",
+        "path": "<HOME>/.grok/hooks"
+      },
+      "matcher": null
+    },
+    {
+      "event": "session_start",
+      "hookType": "command",
+      "target": "echo claude-home-session-hook >> '<ROOT>/markers/claude-home-session-hook'",
+      "source": {
+        "type": "user",
+        "path": "<HOME>/.claude"
+      },
+      "matcher": null,
+      "vendor": "claude",
+      "compatibilityStatus": "enabled"
+    },
+    {
+      "event": "stop",
+      "hookType": "command",
+      "target": "echo claude-home-stop-hook >> '<ROOT>/markers/claude-home-stop-hook'",
+      "source": {
+        "type": "user",
+        "path": "<HOME>/.claude"
+      },
+      "matcher": null,
+      "vendor": "claude",
+      "compatibilityStatus": "enabled"
+    }
+  ],
+  "skills": [
+    {
+      "name": "eyas-sentinel-shared-skill",
+      "description": "EYAS-SENTINEL-agents-home-skill-c80d9a949c04",
+      "source": {
+        "type": "user",
+        "path": "<HOME>/.agents/skills/eyas-sentinel-shared-skill/SKILL.md"
+      },
+      "userInvocable": true
+    },
+    {
+      "name": "eyas-sentinel-skill",
+      "description": "EYAS-SENTINEL-claude-home-skill-c80d9a949c04",
+      "source": {
+        "type": "user",
+        "path": "<HOME>/.claude/skills/eyas-sentinel-skill/SKILL.md"
+      },
+      "userInvocable": true,
+      "vendor": "claude",
+      "compatibilityStatus": "enabled"
+    }
+  ],
+  "agents": [
+    {
+      "name": "general-purpose",
+      "description": "General purpose agent for multi-step tasks.",
+      "source": {
+        "type": "builtin"
+      }
+    },
+    {
+      "name": "explore",
+      "description": "Fast, read-only agent specialized for codebase exploration.",
+      "source": {
+        "type": "builtin"
+      }
+    },
+    {
+      "name": "plan",
+      "description": "Software architect for planning implementation strategies.",
+      "source": {
+        "type": "builtin"
+      }
+    },
+    {
+      "name": "eyas-sentinel-agent",
+      "description": "EYAS-SENTINEL-claude-home-agent-c80d9a949c04",
+      "source": {
+        "type": "user",
+        "path": "<HOME>/.claude/agents/eyas-sentinel-agent.md"
+      }
+    }
+  ],
+  "plugins": [],
+  "marketplaces": [],
+  "mcpServers": [
+    {
+      "name": "eyas-sentinel-claude-home",
+      "transport": "stdio",
+      "target": "/bin/sh",
+      "source": {
+        "type": "claudeJson",
+        "path": "<HOME>/.claude.json"
+      },
+      "compatibilityStatus": "enabled",
+      "vendor": "claude"
+    },
+    {
+      "name": "eyas-sentinel-grok-project",
+      "transport": "stdio",
+      "target": "/bin/sh",
+      "source": {
+        "type": "configToml",
+        "path": "<HOME>/.grok/config.toml"
+      }
+    },
+    {
+      "name": "eyas-sentinel-grok-home",
+      "transport": "stdio",
+      "target": "/bin/sh",
+      "source": {
+        "type": "configToml",
+        "path": "<HOME>/.grok/config.toml"
+      }
+    },
+    {
+      "name": "eyas-sentinel-claude-project",
+      "transport": "stdio",
+      "target": "/bin/sh",
+      "source": {
+        "type": "mcpJson",
+        "path": "<PROJECT>/.mcp.json"
+      }
+    }
+  ],
+  "lspServers": [],
+  "configSources": {
+    "layers": [
+      {
+        "role": "user",
+        "path": "<HOME>/.grok/config.toml"
+      },
+      {
+        "role": "project",
+        "path": "<PROJECT>/.grok/config.toml"
+      }
+    ]
+  },
+  "externalCompat": {
+    "remoteSettingsLoaded": false,
+    "cells": [
+      {
+        "vendor": "cursor",
+        "surface": "skills",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "cursor",
+        "surface": "rules",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "cursor",
+        "surface": "agents",
+        "enabled": true,
+        "source": "default"
+      },
+      {
+        "vendor": "cursor",
+        "surface": "mcps",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "cursor",
+        "surface": "hooks",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "cursor",
+        "surface": "sessions",
+        "enabled": true,
+        "source": "default"
+      },
+      {
+        "vendor": "claude",
+        "surface": "skills",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "claude",
+        "surface": "rules",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "claude",
+        "surface": "agents",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "claude",
+        "surface": "mcps",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "claude",
+        "surface": "hooks",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "claude",
+        "surface": "sessions",
+        "enabled": true,
+        "source": "config"
+      },
+      {
+        "vendor": "codex",
+        "surface": "sessions",
+        "enabled": true,
+        "source": "default"
+      }
+    ]
+  }
+}

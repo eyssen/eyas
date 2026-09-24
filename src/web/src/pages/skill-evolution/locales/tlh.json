@@ -1,0 +1,22 @@
+{
+  "skillEvolution.title": "laH choH",
+  "skillEvolution.subtitle": "lo' pabmey moj De'wI' yab laH wIvmey yIbej",
+  "skillEvolution.status.pending": "loS",
+  "skillEvolution.status.approved": "chaw'",
+  "skillEvolution.status.rejected": "qIl",
+  "skillEvolution.stat.avgConfidence": "motlh Hon",
+  "skillEvolution.searchPlaceholder": "wIvmey yInej…",
+  "skillEvolution.filter.all": "Hoch",
+  "skillEvolution.sessions": "{{count}} ja'chuq",
+  "skillEvolution.approve": "yIchaw'",
+  "skillEvolution.reject": "yIqIl",
+  "skillEvolution.showDetails": "De' yI'ang",
+  "skillEvolution.hideDetails": "De' yISo'",
+  "skillEvolution.reasoning": "meq",
+  "skillEvolution.suggestedContent": "laH ghItlh chup",
+  "skillEvolution.created": "chu'lu': {{date}}",
+  "skillEvolution.reviewed": "bejlu': {{date}}",
+  "skillEvolution.loading": "wIvmey tagh…",
+  "skillEvolution.loadError": "wIvmey luj: {{message}}",
+  "skillEvolution.empty": "laH choH wIv pagh. lo' pabmey moj pat laH chu' chup 'e' ta'."
+}

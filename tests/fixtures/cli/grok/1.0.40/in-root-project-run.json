@@ -1,0 +1,6 @@
+{
+  "projectMcpOrHookRan": [],
+  "permissionRequests": 1,
+  "sentinelsInModelRequests": [],
+  "note": "cwd = in-root project with AGENTS.md, CLAUDE.md, .grok/config.toml (MCP + allow rules), .grok/hooks and .mcp.json. The folder is never trusted."
+}

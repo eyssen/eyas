@@ -1,0 +1,13 @@
+{
+  "privacy.channel.refused": "Az üzeneted nem került továbbításra: olyan adatot tartalmaz, amelyet az adatvédelmi szabályzat nem enged AI-modellnek elküldeni ({{types}}). Semmit nem tároltunk el. Kérlek, küldd el újra ezek nélkül az adatok nélkül.",
+  "privacy.type.email": "E-mail-cím",
+  "privacy.type.phone": "Telefonszám",
+  "privacy.type.iban": "IBAN",
+  "privacy.type.bank_account": "Bankszámlaszám",
+  "privacy.type.credit_card": "Bankkártyaszám",
+  "privacy.type.ssn": "Amerikai társadalombiztosítási szám (SSN)",
+  "privacy.type.personal_id": "Személyazonosító igazolvány száma",
+  "privacy.type.tax_number": "Adószám",
+  "privacy.type.taj_number": "TAJ-szám",
+  "privacy.type.custom": "Egyéni minta: {{type}}"
+}

@@ -1,0 +1,31 @@
+{
+  "note": "Files under the EYAS GROK_HOME after one isolated turn (session ids and the URL-encoded cwd replaced).",
+  "paths": [
+    "sessions/<ENC_CWD>/",
+    "sessions/<ENC_CWD>/<SESSION_ID>/",
+    "sessions/<ENC_CWD>/<SESSION_ID>/announcement_state.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/chat_history.jsonl",
+    "sessions/<ENC_CWD>/<SESSION_ID>/chat_history.jsonl.lock",
+    "sessions/<ENC_CWD>/<SESSION_ID>/events.jsonl",
+    "sessions/<ENC_CWD>/<SESSION_ID>/prompt_context.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/resources_state.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/rewind_points.jsonl",
+    "sessions/<ENC_CWD>/<SESSION_ID>/rewind_points.jsonl.lock",
+    "sessions/<ENC_CWD>/<SESSION_ID>/signals.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/subagents/",
+    "sessions/<ENC_CWD>/<SESSION_ID>/subagents/<SESSION_ID>/",
+    "sessions/<ENC_CWD>/<SESSION_ID>/subagents/<SESSION_ID>/meta.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/subagents/<SESSION_ID>/output.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/summary.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/summary.json.lock",
+    "sessions/<ENC_CWD>/<SESSION_ID>/system_prompt.txt",
+    "sessions/<ENC_CWD>/<SESSION_ID>/terminal/",
+    "sessions/<ENC_CWD>/<SESSION_ID>/terminal/call_main_3.log",
+    "sessions/<ENC_CWD>/<SESSION_ID>/title_refresh_idx",
+    "sessions/<ENC_CWD>/<SESSION_ID>/tool_definitions.json",
+    "sessions/<ENC_CWD>/<SESSION_ID>/updates.jsonl",
+    "sessions/<ENC_CWD>/<SESSION_ID>/updates.jsonl.lock",
+    "sessions/<ENC_CWD>/<SESSION_ID>/usage.json",
+    "sessions/<ENC_CWD>/prompt_history.jsonl"
+  ]
+}

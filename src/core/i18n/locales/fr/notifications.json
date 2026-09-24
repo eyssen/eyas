@@ -1,0 +1,65 @@
+{
+  "title": "Notifications",
+  "settings": {
+    "title": "Paramètres de notification",
+    "description": "Choisissez les événements et les canaux pour lesquels vous souhaitez être notifié.",
+    "minSeverity": "Sévérité minimale",
+    "severity": {
+      "info": "Info",
+      "warning": "Avertissement",
+      "error": "Erreur",
+      "critical": "Critique"
+    },
+    "eventPattern": "Modèle d'événement",
+    "eventPatternHelp": "Ex. `budget.*`, `agent.task.completed`, ou `*` pour tous les événements",
+    "channel": "Canal",
+    "channelOptions": {
+      "web": "Dans l'application (WebSocket)",
+      "email": "E-mail",
+      "telegram": "Telegram",
+      "webhook": "Webhook (HTTP)"
+    },
+    "deliveryMode": "Mode de livraison",
+    "deliveryModes": {
+      "immediate": "Immédiat",
+      "batched": "Groupé (digest)"
+    },
+    "deliveryHelp": "En mode groupé, les canaux webhook et e-mail regroupent les notifications dans une fenêtre de digest de 5 minutes.",
+    "quietHours": "Heures de silence",
+    "quietFrom": "De",
+    "quietTo": "À",
+    "quietHelp": "Les notifications de sévérité critique ignorent les heures de silence.",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "addPreference": "Ajouter une préférence"
+  },
+  "webhook": {
+    "title": "Cible webhook",
+    "url": "URL",
+    "urlHelp": "Uniquement les URL http(s). Les hôtes loopback et de métadonnées (169.254.x.x) sont bloqués.",
+    "secret": "Secret partagé (HMAC)",
+    "secretHelp": "Lorsqu'il est défini, chaque charge utile reçoit un en-tête `X-EYAS-Signature: sha256=...`.",
+    "headers": "En-têtes personnalisés",
+    "enabled": "Activé",
+    "test": "Envoyer un test",
+    "saved": "Webhook enregistré",
+    "deleted": "Webhook supprimé",
+    "invalidUrl": "URL invalide ou bloquée"
+  },
+  "retry": {
+    "title": "File de relance",
+    "pending": "En attente",
+    "failed": "Échoué (lettre morte)",
+    "disabled": "Inactif"
+  },
+  "list": {
+    "empty": "Aucune notification",
+    "markAllRead": "Tout marquer comme lu",
+    "markRead": "Lu",
+    "unreadCount": "{{count}} non lues"
+  },
+  "errors": {
+    "saveFailed": "Échec de l'enregistrement de la préférence",
+    "rateLimited": "Trop de notifications envoyées cette heure-ci"
+  }
+}

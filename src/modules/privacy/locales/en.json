@@ -1,0 +1,13 @@
+{
+  "privacy.channel.refused": "Your message was not delivered: it contains values the privacy policy does not allow to be sent to an AI model ({{types}}). Nothing was stored. Please send it again without these values.",
+  "privacy.type.email": "Email address",
+  "privacy.type.phone": "Phone number",
+  "privacy.type.iban": "IBAN",
+  "privacy.type.bank_account": "Bank account number",
+  "privacy.type.credit_card": "Card number",
+  "privacy.type.ssn": "US Social Security number",
+  "privacy.type.personal_id": "Personal ID card number",
+  "privacy.type.tax_number": "Tax number",
+  "privacy.type.taj_number": "TAJ number",
+  "privacy.type.custom": "Custom pattern: {{type}}"
+}

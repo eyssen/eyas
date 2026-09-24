@@ -1,0 +1,18 @@
+{
+  "artifacts.loading": "chen ghItlh tagh…",
+  "artifacts.producedBy": "chenmoHwI':",
+  "artifacts.session": "vum poH:",
+  "artifacts.created": "chenmoHta':",
+  "artifacts.updated": "choHta':",
+  "artifacts.consumedBy": "lo'wI':",
+  "artifacts.versions": "mIwmey:",
+  "artifacts.payload": "De' (v{{version}})",
+  "artifacts.referencedBy": "tu'wI' ({{count}})",
+
+  "artifacts.kind.prd": "PRD",
+  "artifacts.kind.design-doc": "chen ghItlh",
+  "artifacts.kind.task-list": "Qu' tetlh",
+  "artifacts.kind.code-diff": "ngoq pIm",
+  "artifacts.kind.test-plan": "chov nab",
+  "artifacts.kind.deploy-manifest": "ngeH tetlh"
+}

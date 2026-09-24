@@ -1,0 +1,21 @@
+{
+  "extensions.title": "chelmeH janmey",
+  "extensions.subtitle": "chaw' pabmo' 'op jan 'ej laH boq EYAS tlhejlaHbe'. naDev Dachel laH — vum'egh chel boqmey EYAS ngeH, SoH chaw'taHvIS, 'ach latlh janmey HalDajvo' SoH ngeHnIS, chaw'Daj pabtaHvIS.",
+  "extensions.installedSuffix": "chelta'",
+  "extensions.installed": "chelta'",
+  "extensions.github": "GitHub",
+  "extensions.install": "yIchel",
+  "extensions.installing": "cheltaH…",
+  "extensions.enable": "yIchu'",
+  "extensions.disable": "yImev",
+  "extensions.skills": "{{count}} laHmey",
+  "extensions.by": "vo' {{author}}",
+  "extensions.licenseNotice": "chaw' QIn",
+  "extensions.acceptInstall": "yIlaj 'ej yIchel",
+  "extensions.setupGuide": "chu' paq",
+  "extensions.hideDetails": "De' yISo'",
+  "extensions.autoInstallable": "vum'egh chel boqmey",
+  "extensions.thirdParty": "latlh janmey lI'laHbogh",
+  "extensions.loading": "chelmeH janmey tagh…",
+  "extensions.loadError": "chelmeH janmey tagh Qagh: {{message}}"
+}

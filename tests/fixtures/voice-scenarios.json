@@ -1,0 +1,154 @@
+[
+  {
+    "id": "owner-dm-solo",
+    "description": "Owner DM — only owner participant",
+    "channelContext": {
+      "channelType": "telegram",
+      "conversationKind": "owner-dm",
+      "participants": [
+        { "id": "owner-1", "type": "owner" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "internal",
+    "expectedReasonContains": "owner DM"
+  },
+  {
+    "id": "owner-plus-team-member",
+    "description": "Group conversation with owner + team member only",
+    "channelContext": {
+      "channelType": "slack",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "dev-1", "type": "team-member" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "internal",
+    "expectedReasonContains": "team-members"
+  },
+  {
+    "id": "owner-plus-known-contact",
+    "description": "Group with owner + known external contact",
+    "channelContext": {
+      "channelType": "email",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "client-a", "type": "known-contact" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "external",
+    "expectedReasonContains": "external participant"
+  },
+  {
+    "id": "owner-plus-unknown-external",
+    "description": "Group with owner + unknown external party",
+    "channelContext": {
+      "channelType": "email",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "stranger", "type": "unknown-external" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "external",
+    "expectedReasonContains": "external participant"
+  },
+  {
+    "id": "outbound-proactive-owner",
+    "description": "Outbound proactive message to owner — still internal",
+    "channelContext": {
+      "channelType": "telegram",
+      "conversationKind": "owner-dm",
+      "participants": [
+        { "id": "owner-1", "type": "owner" }
+      ],
+      "origin": "outbound-proactive"
+    },
+    "expectedScope": "internal",
+    "expectedReasonContains": "owner DM"
+  },
+  {
+    "id": "multi-team-members",
+    "description": "Internal team channel — multiple team members, no externals",
+    "channelContext": {
+      "channelType": "slack",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "dev-1", "type": "team-member" },
+        { "id": "dev-2", "type": "team-member" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "internal",
+    "expectedReasonContains": "team-members"
+  },
+  {
+    "id": "broadcast-public",
+    "description": "Public channel broadcast — external by nature",
+    "channelContext": {
+      "channelType": "twitter",
+      "conversationKind": "broadcast",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "follower-1", "type": "unknown-external" },
+        { "id": "follower-2", "type": "unknown-external" }
+      ],
+      "origin": "outbound-proactive"
+    },
+    "expectedScope": "external",
+    "expectedReasonContains": "external participant"
+  },
+  {
+    "id": "team-only-no-owner",
+    "description": "Team member group without owner — still internal (all team)",
+    "channelContext": {
+      "channelType": "slack",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "dev-1", "type": "team-member" },
+        { "id": "dev-2", "type": "team-member" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "internal",
+    "expectedReasonContains": "team-members"
+  },
+  {
+    "id": "mixed-large-group",
+    "description": "Large group with both team members and external contacts",
+    "channelContext": {
+      "channelType": "email",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "dev-1", "type": "team-member" },
+        { "id": "client-a", "type": "known-contact" },
+        { "id": "stranger", "type": "unknown-external" }
+      ],
+      "origin": "inbound"
+    },
+    "expectedScope": "external",
+    "expectedReasonContains": "external participant"
+  },
+  {
+    "id": "outbound-proactive-external",
+    "description": "Proactive outreach to known external contact",
+    "channelContext": {
+      "channelType": "email",
+      "conversationKind": "group",
+      "participants": [
+        { "id": "owner-1", "type": "owner" },
+        { "id": "client-b", "type": "known-contact" }
+      ],
+      "origin": "outbound-proactive"
+    },
+    "expectedScope": "external",
+    "expectedReasonContains": "external participant"
+  }
+]

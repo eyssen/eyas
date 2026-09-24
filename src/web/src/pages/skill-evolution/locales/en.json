@@ -1,0 +1,22 @@
+{
+  "skillEvolution.title": "Skill Evolution",
+  "skillEvolution.subtitle": "Review AI-suggested skill candidates based on usage patterns",
+  "skillEvolution.status.pending": "Pending",
+  "skillEvolution.status.approved": "Approved",
+  "skillEvolution.status.rejected": "Rejected",
+  "skillEvolution.stat.avgConfidence": "Avg Confidence",
+  "skillEvolution.searchPlaceholder": "Search candidates…",
+  "skillEvolution.filter.all": "All",
+  "skillEvolution.sessions": "{{count}} sessions",
+  "skillEvolution.approve": "Approve",
+  "skillEvolution.reject": "Reject",
+  "skillEvolution.showDetails": "Show details",
+  "skillEvolution.hideDetails": "Hide details",
+  "skillEvolution.reasoning": "Reasoning",
+  "skillEvolution.suggestedContent": "Suggested Skill Content",
+  "skillEvolution.created": "Created: {{date}}",
+  "skillEvolution.reviewed": "Reviewed: {{date}}",
+  "skillEvolution.loading": "Loading candidates…",
+  "skillEvolution.loadError": "Failed to load candidates: {{message}}",
+  "skillEvolution.empty": "No skill evolution candidates yet. The system will suggest new skills based on your usage patterns."
+}

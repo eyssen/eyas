@@ -1,0 +1,26 @@
+{
+  "note": "Present = the literal name occurs in the binary.",
+  "envNamesPresent": {
+    "OPENCODE_CONFIG": true,
+    "OPENCODE_CONFIG_CONTENT": true,
+    "OPENCODE_CONFIG_DIR": true,
+    "OPENCODE_PERMISSION": true,
+    "OPENCODE_DISABLE_CLAUDE_CODE": true,
+    "OPENCODE_DISABLE_CLAUDE_CODE_PROMPT": true,
+    "OPENCODE_DISABLE_CLAUDE_CODE_SKILLS": true,
+    "OPENCODE_DISABLE_EXTERNAL_SKILLS": true,
+    "OPENCODE_DISABLE_PROJECT_CONFIG": true,
+    "OPENCODE_DISABLE_AUTOUPDATE": true,
+    "OPENCODE_DISABLE_SHARE": true,
+    "OPENCODE_DISABLE_MODELS_FETCH": true,
+    "OPENCODE_DISABLE_DEFAULT_PLUGINS": true,
+    "OPENCODE_DISABLE_LSP_DOWNLOAD": true,
+    "OPENCODE_AUTH_CONTENT": true,
+    "OPENCODE_SERVER_PASSWORD": true,
+    "OPENCODE_SERVER_USERNAME": true,
+    "OPENCODE_PURE": true,
+    "OPENCODE_DB": true,
+    "OPENCODE_MODELS_PATH": true,
+    "OPENCODE_MODELS_URL": true
+  }
+}

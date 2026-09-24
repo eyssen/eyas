@@ -1,0 +1,13 @@
+{
+  "meetings.title": "Besprechungen",
+  "meetings.subtitle": "Besprechungsaufzeichnungen, Transkripte und Aufgaben",
+  "meetings.comingSoon": "Demnächst",
+  "meetings.planned": "Geplant",
+  "meetings.developmentNote": "Die Besprechungsintegration ist in Entwicklung. Verbinde deinen Besprechungsanbieter in einem zukünftigen Update.",
+  "meetings.colTitle": "Titel",
+  "meetings.colDate": "Datum",
+  "meetings.colDuration": "Dauer",
+  "meetings.colParticipants": "Teilnehmer",
+  "meetings.durationMinutes": "{{n}} Min.",
+  "meetings.empty": "Noch keine Besprechungen aufgezeichnet"
+}

@@ -1,0 +1,12 @@
+{
+  "nodes.title": "hopbogh Daqmey",
+  "nodes.subtitle": "hopbogh EYAS Daq rar yISeH",
+  "nodes.count": "{{count}} Daq",
+  "nodes.addNode": "Daq yIchel",
+  "nodes.editNode": "Daq yIchoH",
+  "nodes.empty": "hopbogh Daq SeHlu'be'",
+  "nodes.lastSeen": "Qav tu': {{time}}",
+  "nodes.host": "juH",
+  "nodes.type": "Segh",
+  "nodes.saving": "toDtaH…"
+}

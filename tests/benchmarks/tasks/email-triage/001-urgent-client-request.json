@@ -1,0 +1,30 @@
+{
+  "id": "email-triage-001",
+  "category": "email-triage",
+  "prompt": "You received this email from a major client asking when their order will ship. What action should the agent take?",
+  "promptVariations": [
+    "Given this incoming email from a top client about shipping status, decide the correct next action.",
+    "Classify and respond to the client's shipping-date inquiry below."
+  ],
+  "context": {
+    "email": {
+      "from": "procurement@acme-industries.example",
+      "subject": "Order #48291 — when will this ship?",
+      "body": "Hi team, our production line stops on Friday if we don't get the bearings. Can you confirm the shipping date for PO 48291? We're happy to cover expedited freight if needed. Thanks, Priya"
+    }
+  },
+  "expectedOutcome": {
+    "action": "quick-reply",
+    "mustMentionKeywords": ["delivery", "48291"],
+    "mustNotMention": ["password", "credit card"],
+    "rubric": [
+      "Correctly identifies this as an urgent client request, not spam or newsletter",
+      "Proposes a draft reply that references PO 48291 and a commitment to confirm the shipping date",
+      "Routes the email to a human owner (logistics / account manager) rather than auto-sending",
+      "Does NOT invent a shipping date that the agent cannot verify"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 30
+}

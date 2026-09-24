@@ -1,0 +1,17 @@
+{
+  "tools.title": "janmey",
+  "tools.subtitle": "ghoqwI' ta'vaD tetlh janmey",
+  "tools.countLabel": "janmey",
+  "tools.requireApproval": "chaw' nIS",
+  "tools.searchPlaceholder": "janmey yInej…",
+  "tools.allCategories": "Hoch Seghmey",
+  "tools.allRiskTiers": "Hoch Qob mI'",
+  "tools.requiresApproval": "chaw' nIS",
+  "tools.riskSuffix": "Qob",
+  "tools.approvalRequired": "chaw' nIS",
+  "tools.showSchema": "pat yI'ang",
+  "tools.hideSchema": "pat yISo'",
+  "tools.loading": "janmey tagh…",
+  "tools.loadError": "janmey luj: {{error}}",
+  "tools.empty": "jan pagh tetlh."
+}

@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EYAS Forge — Unified Evolution System</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-deep: #030712;
+    --bg-surface: #0a0f1e;
+    --bg-card: rgba(255,255,255,0.03);
+    --bg-card-hover: rgba(255,255,255,0.06);
+    --border: rgba(255,255,255,0.06);
+    --border-glow: rgba(99,102,241,0.3);
+    --text: #e2e8f0;
+    --text-dim: #64748b;
+    --text-bright: #f8fafc;
+    --accent: #6366f1;
+    --accent2: #22d3ee;
+    --accent3: #f97316;
+    --accent4: #10b981;
+    --accent5: #f43f5e;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg-deep);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* === NOISE OVERLAY === */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* === GRADIENT MESH BACKGROUND === */
+  .mesh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 20%, rgba(99,102,241,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 90% 80%, rgba(34,211,238,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 50% 0%, rgba(249,115,22,0.04) 0%, transparent 50%);
+  }
+
+  /* === LAYOUT === */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 6rem 0; position: relative; }
+
+  /* === SECTION DIVIDER === */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--border-glow) 50%, transparent 100%);
+    margin: 0;
+  }
+
+  /* === TYPOGRAPHY === */
+  h1 { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; }
+  h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 1rem; }
+  h3 { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+  .label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .subtitle { font-size: 1.2rem; color: var(--text-dim); font-weight: 300; max-width: 640px; }
+
+  /* === HERO === */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 70%);
+  }
+
+  .hero h1 span.gradient {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-top: 2rem;
+    padding: 1rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: inline-block;
+    max-width: fit-content;
+  }
+  .hero-tagline .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--accent);
+    margin-left: 4px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* === GLASS CARD === */
+  .glass {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+  .glass:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-glow);
+    box-shadow: 0 8px 40px rgba(99,102,241,0.08);
+    transform: translateY(-3px);
+  }
+
+  /* === COMPARISON TABLE === */
+  .comparison-wrap { overflow-x: auto; margin-top: 2rem; }
+  .comparison {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  .comparison th, .comparison td {
+    padding: 0.8rem 1.2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .comparison th {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+  .comparison th:first-child, .comparison td:first-child {
+    text-align: left;
+    font-weight: 500;
+  }
+  .comparison th.eyas {
+    color: var(--accent);
+    position: relative;
+  }
+  .comparison th.eyas::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  .comparison th.hermes {
+    color: var(--accent3);
+    position: relative;
+  }
+  .comparison th.hermes::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent3);
+  }
+  .comparison .yes { color: var(--accent4); font-weight: 600; }
+  .comparison .no { color: var(--text-dim); }
+  .comparison .partial { color: var(--accent3); }
+  .comparison tr:hover td { background: rgba(255,255,255,0.02); }
+  .comparison td.highlight {
+    background: rgba(99,102,241,0.06);
+  }
+
+  /* === PIPELINE === */
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+    margin-top: 2rem;
+    position: relative;
+  }
+  .pipeline-step {
+    padding: 1.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .pipeline-step:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 30px rgba(99,102,241,0.1);
+    transform: translateY(-2px);
+  }
+  .pipeline-step .step-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .pipeline-step h4 {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .pipeline-step p {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+  .pipeline-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+  }
+  @media (max-width: 900px) {
+    .pipeline-arrow { transform: rotate(90deg); }
+  }
+
+  /* === SCOPE TAGS === */
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .scope-card {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .scope-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(99,102,241,0.08);
+  }
+  .scope-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+  }
+  .scope-card.scope-description::before { background: var(--accent4); }
+  .scope-card.scope-schema::before { background: #3b82f6; }
+  .scope-card.scope-prompt::before { background: #eab308; }
+  .scope-card.scope-behavior::before { background: var(--accent3); }
+  .scope-card.scope-code::before { background: var(--accent5); }
+
+  .scope-card .scope-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+  .scope-card h3 { font-size: 0.95rem; color: var(--text-bright); }
+  .scope-card p { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.3rem; line-height: 1.5; }
+  .scope-card .scope-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    margin-top: 0.75rem;
+  }
+  .scope-description .scope-tag { background: rgba(16,185,129,0.15); color: var(--accent4); }
+  .scope-schema .scope-tag { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .scope-prompt .scope-tag { background: rgba(234,179,8,0.15); color: #eab308; }
+  .scope-behavior .scope-tag { background: rgba(249,115,22,0.15); color: var(--accent3); }
+  .scope-code .scope-tag { background: rgba(244,63,94,0.15); color: var(--accent5); }
+
+  /* === DIFFERENTIATOR GRID === */
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .diff-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+  .diff-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--border-glow);
+    box-shadow: 0 8px 40px rgba(99,102,241,0.08);
+    transform: translateY(-3px);
+  }
+  .diff-card .diff-icon { font-size: 1.5rem; margin-bottom: 1rem; display: block; }
+  .diff-card h3 { color: var(--text-bright); margin-bottom: 0.5rem; }
+  .diff-card p { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; }
+
+  /* === API REFERENCE === */
+  .api-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .api-item {
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+  }
+  .api-item:hover {
+    border-color: var(--border-glow);
+    box-shadow: 0 0 20px rgba(99,102,241,0.06);
+  }
+  .api-method {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 3.5rem;
+    text-align: center;
+  }
+  .api-method.get { background: rgba(16,185,129,0.15); color: var(--accent4); }
+  .api-method.post { background: rgba(99,102,241,0.15); color: var(--accent); }
+  .api-path {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--text-bright);
+    word-break: break-all;
+  }
+  .api-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+
+  /* === SCROLL ANIMATIONS === */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.8s ease forwards;
+  }
+  @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* === FOOTER === */
+  footer {
+    padding: 4rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+  footer .brand {
+    font-size: 1rem;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .container { padding: 0 1.25rem; }
+    section { padding: 4rem 0; }
+    .diff-grid { grid-template-columns: 1fr; }
+    .scope-grid { grid-template-columns: 1fr 1fr; }
+    .pipeline { grid-template-columns: 1fr; }
+    .pipeline-arrow { transform: rotate(90deg); }
+  }
+
+  /* === LANGUAGE SWITCHER === */
+  .lang-switch {
+    position: fixed;
+    top: 1.5rem;
+    right: 2rem;
+    z-index: 100;
+    display: flex;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+  }
+  .lang-btn {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-btn.active {
+    background: var(--accent);
+    color: white;
+  }
+  .lang-btn:hover:not(.active) { color: var(--text); }
+
+  [data-lang="hu"] .en { display: none; }
+  [data-lang="en"] .hu { display: none; }
+</style>
+</head>
+<body data-lang="hu">
+
+<div class="mesh-bg"></div>
+
+<!-- LANGUAGE SWITCHER -->
+<div class="lang-switch">
+  <button class="lang-btn active" onclick="setLang('hu')">HU</button>
+  <button class="lang-btn" onclick="setLang('en')">EN</button>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <span class="label fade-in">
+      <span class="hu">eYssen EYAS &mdash; Evolucio Rendszer</span>
+      <span class="en">eYssen EYAS &mdash; Evolution System</span>
+    </span>
+    <h1 class="fade-in stagger-1">
+      Forge &mdash; <span class="gradient">Unified Evolution</span>
+    </h1>
+    <p class="subtitle fade-in stagger-2" style="margin-top: 1.5rem;">
+      <span class="hu">Az agentek maguk fejlesztik eszk&ouml;zeiket &eacute;s tud&aacute;sukat</span>
+      <span class="en">Agents improve their own tools and skills through reasoning</span>
+    </p>
+    <div class="hero-tagline fade-in stagger-3">
+      <span style="color:var(--accent4)">$</span> Observe &rarr; Forge &rarr; Adopt<span class="cursor"></span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== SECTION 1: WHAT IS FORGE? ==================== -->
+<section>
+  <div class="container">
+    <span class="label">
+      <span class="hu">Bevezet&eacute;s</span>
+      <span class="en">Introduction</span>
+    </span>
+    <h2>
+      <span class="hu">Mi az a Forge?</span>
+      <span class="en">What is Forge?</span>
+    </h2>
+    <p class="subtitle" style="margin-bottom: 2rem;">
+      <span class="hu">
+        A Forge egy h&aacute;romf&aacute;zis&uacute; pipeline, amely folyamatosan &eacute;s aut&oacute;noman jav&iacute;tja az EYAS agensek
+        eszk&ouml;zeit, skilljeit &eacute;s promptjait &mdash; emberi kontroll mellett.
+      </span>
+      <span class="en">
+        Forge is a three-phase pipeline that continuously and autonomously improves EYAS agents'
+        tools, skills, and prompts &mdash; under human control.
+      </span>
+    </p>
+
+    <!-- 3-Phase Pipeline Intro -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+      <div class="glass">
+        <h3 style="color: var(--accent4);">
+          <span style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;">Phase 1</span><br>
+          Observe
+        </h3>
+        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 0.75rem;">
+          <span class="hu">
+            Struktur&aacute;lt visszajelz&eacute;s minden eszk&ouml;z- &eacute;s skill-haszn&aacute;lat ut&aacute;n.
+            Hasznos volt? Volt s&uacute;rl&oacute;d&aacute;s? Van jobb megk&ouml;zel&iacute;t&eacute;s?
+          </span>
+          <span class="en">
+            Structured feedback after every tool and skill usage.
+            Was it useful? Was there friction? Is there a better approach?
+          </span>
+        </p>
+      </div>
+      <div class="glass">
+        <h3 style="color: var(--accent);">
+          <span style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;">Phase 2</span><br>
+          Forge
+        </h3>
+        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 0.75rem;">
+          <span class="hu">
+            Agens-vez&eacute;relt elemz&eacute;s: s&uacute;rl&oacute;d&aacute;si mint&aacute;k aggreg&aacute;l&aacute;sa, jav&iacute;t&aacute;si javaslatok gener&aacute;l&aacute;sa,
+            tesztel&eacute;s sandbox k&ouml;rnyezetben.
+          </span>
+          <span class="en">
+            Agent-driven analysis: aggregate friction patterns, generate improvement proposals,
+            test in sandbox environment.
+          </span>
+        </p>
+      </div>
+      <div class="glass">
+        <h3 style="color: var(--accent3);">
+          <span style="font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;">Phase 3</span><br>
+          Adopt
+        </h3>
+        <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 0.75rem;">
+          <span class="hu">
+            A felhaszn&aacute;l&oacute; j&oacute;v&aacute;hagyja, a v&aacute;ltoz&aacute;s &eacute;les&iacute;t&eacute;sre ker&uuml;l, az agens mem&oacute;ri&aacute;ja
+            r&ouml;gz&iacute;ti a &bdquo;mi&eacute;rt&rdquo;-et.
+          </span>
+          <span class="en">
+            User approves, the change is applied, the agent's memory records the "why".
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <!-- 5 Evolution Scopes -->
+    <h3 style="margin-top: 4rem; margin-bottom: 0.5rem; color: var(--text-bright);">
+      <span class="hu">5 evolucio hat&oacute;k&ouml;r</span>
+      <span class="en">5 Evolution Scopes</span>
+    </h3>
+    <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 1rem;">
+      <span class="hu">A Forge k&uuml;l&ouml;nb&ouml;z&odblac; m&eacute;lys&eacute;gben m&oacute;dos&iacute;thatja az eszk&ouml;z&ouml;ket &eacute;s skilleket &mdash; a le&iacute;r&aacute;st&oacute;l a k&oacute;dig.</span>
+      <span class="en">Forge can modify tools and skills at varying depths &mdash; from descriptions to code.</span>
+    </p>
+    <div class="scope-grid">
+      <div class="scope-card scope-description">
+        <span class="scope-icon">&#128196;</span>
+        <h3>Description</h3>
+        <p>
+          <span class="hu">Eszk&ouml;z/skill le&iacute;r&aacute;sok pontosabbra hangol&aacute;sa</span>
+          <span class="en">Fine-tuning tool/skill descriptions for clarity</span>
+        </p>
+        <span class="scope-tag">Low risk</span>
+      </div>
+      <div class="scope-card scope-schema">
+        <span class="scope-icon">&#128203;</span>
+        <h3>Schema</h3>
+        <p>
+          <span class="hu">Input valid&aacute;ci&oacute;, param&eacute;terek m&oacute;dos&iacute;t&aacute;sa</span>
+          <span class="en">Input validation, parameter adjustments</span>
+        </p>
+        <span class="scope-tag">Medium risk</span>
+      </div>
+      <div class="scope-card scope-prompt">
+        <span class="scope-icon">&#128172;</span>
+        <h3>Prompt</h3>
+        <p>
+          <span class="hu">Agens rendszer-prompt szekci&oacute;k finomhangol&aacute;sa</span>
+          <span class="en">Agent system prompt section refinement</span>
+        </p>
+        <span class="scope-tag">Medium risk</span>
+      </div>
+      <div class="scope-card scope-behavior">
+        <span class="scope-icon">&#9881;</span>
+        <h3>Behavior</h3>
+        <p>
+          <span class="hu">Skill tartalom, elj&aacute;r&aacute;sok, l&eacute;p&eacute;sek m&oacute;dos&iacute;t&aacute;sa</span>
+          <span class="en">Skill content, procedures, step modifications</span>
+        </p>
+        <span class="scope-tag">High risk</span>
+      </div>
+      <div class="scope-card scope-code">
+        <span class="scope-icon">&#128187;</span>
+        <h3>Code</h3>
+        <p>
+          <span class="hu">Tool execute() logika &aacute;t&iacute;r&aacute;sa</span>
+          <span class="en">Tool execute() logic rewrite</span>
+        </p>
+        <span class="scope-tag">Critical</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== SECTION 2: PIPELINE DIAGRAM ==================== -->
+<section>
+  <div class="container">
+    <span class="label">Pipeline</span>
+    <h2>
+      <span class="hu">Hogyan m&#369;k&ouml;dik?</span>
+      <span class="en">How It Works</span>
+    </h2>
+    <p class="subtitle" style="margin-bottom: 1rem;">
+      <span class="hu">Minden eszk&ouml;z- &eacute;s skill-haszn&aacute;lat v&eacute;gig halad a pipeline-on.</span>
+      <span class="en">Every tool and skill usage flows through the pipeline.</span>
+    </p>
+
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <span class="step-icon">&#128295;</span>
+        <h4>
+          <span class="hu">Haszn&aacute;lat</span>
+          <span class="en">Tool Usage</span>
+        </h4>
+        <p>
+          <span class="hu">Az agens megh&iacute;v egy eszk&ouml;zt vagy skillt</span>
+          <span class="en">Agent invokes a tool or skill</span>
+        </p>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-step">
+        <span class="step-icon">&#128221;</span>
+        <h4>Feedback</h4>
+        <p>
+          <span class="hu">Struktur&aacute;lt visszajelz&eacute;s r&ouml;gz&iacute;t&eacute;se</span>
+          <span class="en">Structured feedback recorded</span>
+        </p>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-step">
+        <span class="step-icon">&#128269;</span>
+        <h4>
+          <span class="hu">Felismer&eacute;s</span>
+          <span class="en">Detection</span>
+        </h4>
+        <p>
+          <span class="hu">S&uacute;rl&oacute;d&aacute;si minta azonos&iacute;t&aacute;sa</span>
+          <span class="en">Friction pattern identified</span>
+        </p>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-step">
+        <span class="step-icon">&#9889;</span>
+        <h4>
+          <span class="hu">Javaslat</span>
+          <span class="en">Proposal</span>
+        </h4>
+        <p>
+          <span class="hu">Jav&iacute;t&aacute;si javaslat gener&aacute;l&aacute;sa</span>
+          <span class="en">Improvement proposal generated</span>
+        </p>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-step">
+        <span class="step-icon">&#9989;</span>
+        <h4>
+          <span class="hu">J&oacute;v&aacute;hagy&aacute;s</span>
+          <span class="en">Approval</span>
+        </h4>
+        <p>
+          <span class="hu">Felhaszn&aacute;l&oacute;i enged&eacute;lyez&eacute;s</span>
+          <span class="en">User approval required</span>
+        </p>
+      </div>
+      <div class="pipeline-arrow">&rarr;</div>
+      <div class="pipeline-step">
+        <span class="step-icon">&#128640;</span>
+        <h4>
+          <span class="hu">Alkalmaz&aacute;s</span>
+          <span class="en">Applied</span>
+        </h4>
+        <p>
+          <span class="hu">V&aacute;ltoz&aacute;s &eacute;les&iacute;tve + mem&oacute;ria friss&iacute;tve</span>
+          <span class="en">Change deployed + memory updated</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== SECTION 3: COMPARISON ==================== -->
+<section>
+  <div class="container">
+    <span class="label">
+      <span class="hu">&Ouml;sszehasonl&iacute;t&aacute;s</span>
+      <span class="en">Comparison</span>
+    </span>
+    <h2>Forge vs. Hermes Agent</h2>
+    <p class="subtitle" style="margin-bottom: 1rem;">
+      <span class="hu">
+        K&eacute;t alapvet&odblac;en k&uuml;l&ouml;nb&ouml;z&odblac; megk&ouml;zel&iacute;t&eacute;s az AI fejl&odblac;d&eacute;s&eacute;re &mdash; r&eacute;szletes
+        &ouml;sszehasonl&iacute;t&aacute;s.
+      </span>
+      <span class="en">
+        Two fundamentally different approaches to AI evolution &mdash; a detailed comparison.
+      </span>
+    </p>
+
+    <div class="comparison-wrap">
+      <table class="comparison">
+        <thead>
+          <tr>
+            <th>
+              <span class="hu">Szempont</span>
+              <span class="en">Aspect</span>
+            </th>
+            <th class="eyas">EYAS Forge</th>
+            <th class="hermes">Hermes Agent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Megk&ouml;zel&iacute;t&eacute;s</span>
+                <span class="en">Approach</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Agens-alap&uacute; &eacute;rvel&eacute;s</span>
+              <span class="en">Agent-based reasoning</span>
+            </td>
+            <td>
+              <span class="hu">Genetikus algoritmus (GEPA)</span>
+              <span class="en">Genetic algorithm (GEPA)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Id&odblac;z&iacute;t&eacute;s</span>
+                <span class="en">When</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Folyamatos, val&oacute;s idej&#369;</span>
+              <span class="en">Continuous, real-time</span>
+            </td>
+            <td>
+              <span class="hu">Offline batch pipeline</span>
+              <span class="en">Offline batch pipeline</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Architekt&uacute;ra</span>
+                <span class="en">Architecture</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Be&eacute;p&iacute;tett modul</span>
+              <span class="en">Built-in module</span>
+            </td>
+            <td>
+              <span class="hu">K&uuml;l&ouml;n repo</span>
+              <span class="en">Separate repository</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Tanul&aacute;s</span>
+                <span class="en">Learning</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Meg&eacute;rt&eacute;s &rarr; Hipot&eacute;zis &rarr; K&iacute;s&eacute;rlet</span>
+              <span class="en">Understanding &rarr; Hypothesis &rarr; Experiment</span>
+            </td>
+            <td>
+              <span class="hu">Vak mut&aacute;ci&oacute; &rarr; Szelecci&oacute;</span>
+              <span class="en">Blind mutation &rarr; Selection</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Hat&oacute;k&ouml;r</span>
+                <span class="en">Scope</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Skillek + Eszk&ouml;z&ouml;k + Promptok + K&oacute;d</span>
+              <span class="en">Skills + Tools + Prompts + Code</span>
+            </td>
+            <td>
+              <span class="hu">Csak skillek (Tier 1-4 tervben)</span>
+              <span class="en">Skills only (Tier 1-4 planned)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Feedback</strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Struktur&aacute;lt (hasznos / s&uacute;rl&oacute;d&aacute;s / javaslat)</span>
+              <span class="en">Structured (useful / friction / suggestion)</span>
+            </td>
+            <td>
+              <span class="hu">Bin&aacute;ris (sikeres / sikertelen)</span>
+              <span class="en">Binary (pass / fail fitness)</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Tesztel&eacute;s</span>
+                <span class="en">Testing</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Sandbox besz&eacute;lget&eacute;s deleg&aacute;l&aacute;ssal</span>
+              <span class="en">Sandbox conversation via delegation</span>
+            </td>
+            <td>
+              <span class="hu">Szintetikus eval dataset-ek</span>
+              <span class="en">Synthetic eval datasets</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">J&oacute;v&aacute;hagy&aacute;s</span>
+                <span class="en">Approval</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">In-app UI indokl&aacute;ssal</span>
+              <span class="en">In-app UI with reasoning</span>
+            </td>
+            <td>
+              <span class="hu">PR-alap&uacute; review</span>
+              <span class="en">PR-based review</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">Mem&oacute;ria</span>
+                <span class="en">Memory</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Agens-szint&#369; epizodikus mem&oacute;ria</span>
+              <span class="en">Agent-scoped episodic memory</span>
+            </td>
+            <td>
+              <span class="hu">Flat file t&aacute;rol&aacute;s</span>
+              <span class="en">Flat file storage</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <strong>
+                <span class="hu">K&ouml;lts&eacute;g</span>
+                <span class="en">Cost</span>
+              </strong>
+            </td>
+            <td class="highlight">
+              <span class="hu">Alacsony (megl&eacute;v&odblac; agensek)</span>
+              <span class="en">Low (uses existing agents)</span>
+            </td>
+            <td>
+              <span class="hu">~$2-10 / optimaliz&aacute;l&aacute;si futtat&aacute;s</span>
+              <span class="en">~$2-10 per optimization run</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== SECTION 4: KEY DIFFERENTIATORS ==================== -->
+<section>
+  <div class="container">
+    <span class="label">
+      <span class="hu">El&odblac;ny&ouml;k</span>
+      <span class="en">Advantages</span>
+    </span>
+    <h2>
+      <span class="hu">Legfontosabb megk&uuml;l&ouml;nb&ouml;ztet&odblac; jegyek</span>
+      <span class="en">Key Differentiators</span>
+    </h2>
+
+    <div class="diff-grid">
+      <div class="diff-card">
+        <span class="diff-icon">&#129504;</span>
+        <h3>Agent Intelligence</h3>
+        <p>
+          <span class="hu">
+            Az agens &eacute;rti, MI&Eacute;RT nem m&#369;k&ouml;d&ouml;tt valami &mdash; nem csak azt, HOGY nem m&#369;k&ouml;d&ouml;tt.
+            Az &eacute;rvel&eacute;s-alap&uacute; megk&ouml;zel&iacute;t&eacute;s c&eacute;lzott jav&iacute;t&aacute;sokat tesz lehet&odblac;v&eacute;.
+          </span>
+          <span class="en">
+            The agent understands WHY something failed &mdash; not just that it failed.
+            Reasoning-based approach enables targeted improvements.
+          </span>
+        </p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">&#9201;</span>
+        <h3>Real-time</h3>
+        <p>
+          <span class="hu">
+            A visszajelz&eacute;s folyamatosan gy&#369;lik, nem batch-ben. Amint mintaz&aacute;k jelennek meg,
+            azonnal javaslat k&eacute;sz&uuml;l.
+          </span>
+          <span class="en">
+            Feedback is collected continuously, not batched. As soon as patterns emerge,
+            proposals are generated immediately.
+          </span>
+        </p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">&#128279;</span>
+        <h3>Unified</h3>
+        <p>
+          <span class="hu">
+            Ugyanaz a pipeline kezeli a skilleket &Eacute;S az eszk&ouml;z&ouml;ket. Nem k&uuml;l&ouml;n rendszer,
+            nem k&uuml;l&ouml;n workflow.
+          </span>
+          <span class="en">
+            Same pipeline handles skills AND tools. No separate system, no separate workflow.
+          </span>
+        </p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">&#129514;</span>
+        <h3>Sandbox Testing</h3>
+        <p>
+          <span class="hu">
+            A javaslatok izol&aacute;lt besz&eacute;lget&eacute;sekben tesztel&odblac;dnek deleg&aacute;l&aacute;ssal,
+            miel&odblac;tt &eacute;lesbe ker&uuml;ln&eacute;nek.
+          </span>
+          <span class="en">
+            Proposals are tested in isolated conversations via delegation
+            before going live.
+          </span>
+        </p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">&#128024;</span>
+        <h3>Memory-Backed</h3>
+        <p>
+          <span class="hu">
+            Minden fejl&odblac;d&eacute;si d&ouml;nt&eacute;s az agens epizodikus mem&oacute;ri&aacute;j&aacute;ban t&aacute;rol&oacute;dik.
+            Az agens &bdquo;eml&eacute;kszik&rdquo;, mi&eacute;rt v&aacute;ltozott valami.
+          </span>
+          <span class="en">
+            Every evolution decision is stored in the agent's episodic memory.
+            The agent "remembers" why something changed.
+          </span>
+        </p>
+      </div>
+      <div class="diff-card">
+        <span class="diff-icon">&#128274;</span>
+        <h3>User Control</h3>
+        <p>
+          <span class="hu">
+            Minden v&aacute;ltoz&aacute;s j&oacute;v&aacute;hagy&aacute;st ig&eacute;nyel. Teljes &aacute;tl&aacute;that&oacute;s&aacute;g:
+            l&aacute;tod az indokot, a diff-et, &eacute;s a teszt eredm&eacute;nyeket.
+          </span>
+          <span class="en">
+            Every change requires approval. Full transparency:
+            you see the reasoning, the diff, and the test results.
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== SECTION 5: API REFERENCE ==================== -->
+<section>
+  <div class="container">
+    <span class="label">API Reference</span>
+    <h2>
+      <span class="hu">Forge v&eacute;gpontok</span>
+      <span class="en">Forge Endpoints</span>
+    </h2>
+    <p class="subtitle" style="margin-bottom: 1rem;">
+      <span class="hu">Minden v&eacute;gpont a <code style="font-family:var(--mono); color:var(--accent);">/api/v1/forge</code> prefix alatt &eacute;rhet&odblac; el.</span>
+      <span class="en">All endpoints are available under the <code style="font-family:var(--mono); color:var(--accent);">/api/v1/forge</code> prefix.</span>
+    </p>
+
+    <div class="api-list">
+      <div class="api-item">
+        <span class="api-method get">GET</span>
+        <div>
+          <div class="api-path">/api/v1/forge/proposals</div>
+          <div class="api-desc">
+            <span class="hu">Jav&iacute;t&aacute;si javaslatok list&aacute;z&aacute;sa</span>
+            <span class="en">List improvement proposals</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-item">
+        <span class="api-method get">GET</span>
+        <div>
+          <div class="api-path">/api/v1/forge/proposals/:id</div>
+          <div class="api-desc">
+            <span class="hu">Javaslat r&eacute;szletei (indokol&aacute;s, diff, teszt eredm&eacute;nyek)</span>
+            <span class="en">Proposal detail (reasoning, diff, test results)</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-item">
+        <span class="api-method post">POST</span>
+        <div>
+          <div class="api-path">/api/v1/forge/proposals/:id/approve</div>
+          <div class="api-desc">
+            <span class="hu">Javaslat j&oacute;v&aacute;hagy&aacute;sa &eacute;s alkalmaz&aacute;sa</span>
+            <span class="en">Approve and apply proposal</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-item">
+        <span class="api-method post">POST</span>
+        <div>
+          <div class="api-path">/api/v1/forge/proposals/:id/reject</div>
+          <div class="api-desc">
+            <span class="hu">Javaslat elutas&iacute;t&aacute;sa</span>
+            <span class="en">Reject proposal</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-item">
+        <span class="api-method post">POST</span>
+        <div>
+          <div class="api-path">/api/v1/forge/feedback</div>
+          <div class="api-desc">
+            <span class="hu">Visszajelz&eacute;s r&ouml;gz&iacute;t&eacute;se eszk&ouml;z/skill haszn&aacute;latr&oacute;l</span>
+            <span class="en">Record feedback on tool/skill usage</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-item">
+        <span class="api-method post">POST</span>
+        <div>
+          <div class="api-path">/api/v1/forge/scan</div>
+          <div class="api-desc">
+            <span class="hu">Manu&aacute;lis elemz&eacute;s ind&iacute;t&aacute;sa</span>
+            <span class="en">Trigger manual analysis scan</span>
+          </div>
+        </div>
+      </div>
+      <div class="api-item">
+        <span class="api-method post">POST</span>
+        <div>
+          <div class="api-path">/api/v1/forge/proposals/:id/test</div>
+          <div class="api-desc">
+            <span class="hu">Sandbox k&iacute;s&eacute;rlet ind&iacute;t&aacute;sa</span>
+            <span class="en">Start sandbox experiment</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <div class="container">
+    <p class="brand">eYssen EYAS &mdash; Forge</p>
+    <p>
+      <span class="hu">Agyalap&uacute; evolucio, emberi kontrolllal.</span>
+      <span class="en">Reasoning-based evolution, under human control.</span>
+    </p>
+    <p style="margin-top:0.5rem; font-size:0.7rem; color:var(--text-dim);">MIT License &mdash; &#169; 1997&ndash;2026 eYssen. <span class="hu">Minden jog fenntartva.</span><span class="en">All rights reserved.</span></p>
+  </div>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.body.setAttribute('data-lang', lang);
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.trim() === lang.toUpperCase());
+  });
+}
+</script>
+
+</body>
+</html>

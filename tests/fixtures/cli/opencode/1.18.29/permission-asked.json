@@ -1,0 +1,110 @@
+{
+  "note": "permission.asked events captured from GET /event while the local fake model called read (in-root), bash (ls) and read (a vault file outside the workspace). Each was answered \"once\". Read patterns are the absolute path without its leading slash.",
+  "events": [
+    {
+      "id": "evt_0caffd7ea0024XC9Si2Tfkuqqz",
+      "type": "permission.asked",
+      "properties": {
+        "id": "per_0caffd7ea001WGtjl6Jb99jqx3",
+        "sessionID": "ses_f35002a4dffefwQzdzN0fQMj0c",
+        "permission": "read",
+        "patterns": [
+          "<ROOT_WITHOUT_LEADING_SLASH>/project/probe-opencode.txt"
+        ],
+        "metadata": {},
+        "always": [
+          "*"
+        ],
+        "tool": {
+          "messageID": "msg_0caffd690001THaNJ55YA6EtDy",
+          "callID": "call_oc_0"
+        }
+      }
+    },
+    {
+      "id": "evt_0caffd84a0020dJG9KqfIPX3Xz",
+      "type": "permission.asked",
+      "properties": {
+        "id": "per_0caffd84a00176Tj0luBwR2m4c",
+        "sessionID": "ses_f35002a4dffefwQzdzN0fQMj0c",
+        "permission": "bash",
+        "patterns": [
+          "ls"
+        ],
+        "metadata": {
+          "command": "ls"
+        },
+        "always": [
+          "ls *"
+        ],
+        "tool": {
+          "messageID": "msg_0caffd827001zxV4NfVPppCggB",
+          "callID": "call_oc_1"
+        }
+      }
+    },
+    {
+      "id": "evt_0caffd867002azjQmyfHA2TciL",
+      "type": "permission.asked",
+      "properties": {
+        "id": "per_0caffd867001ek81CYzzbhq9TV",
+        "sessionID": "ses_f35002a4dffefwQzdzN0fQMj0c",
+        "permission": "external_directory",
+        "patterns": [
+          "<HOME>/Documents/EyasSentinelVault/99_Meta/ai-memory/*"
+        ],
+        "metadata": {
+          "filepath": "<HOME>/Documents/EyasSentinelVault/99_Meta/ai-memory/MEMORY.md",
+          "parentDir": "<HOME>/Documents/EyasSentinelVault/99_Meta/ai-memory"
+        },
+        "always": [
+          "<HOME>/Documents/EyasSentinelVault/99_Meta/ai-memory/*"
+        ],
+        "tool": {
+          "messageID": "msg_0caffd859001bhoIjRg6AyGmnL",
+          "callID": "call_oc_2"
+        }
+      }
+    },
+    {
+      "id": "evt_0caffd868003dq5PvtidX3i5c4",
+      "type": "permission.asked",
+      "properties": {
+        "id": "per_0caffd8680022kd9NlIakImd0y",
+        "sessionID": "ses_f35002a4dffefwQzdzN0fQMj0c",
+        "permission": "read",
+        "patterns": [
+          "<ROOT_WITHOUT_LEADING_SLASH>/home/Documents/EyasSentinelVault/99_Meta/ai-memory/MEMORY.md"
+        ],
+        "metadata": {},
+        "always": [
+          "*"
+        ],
+        "tool": {
+          "messageID": "msg_0caffd859001bhoIjRg6AyGmnL",
+          "callID": "call_oc_2"
+        }
+      }
+    }
+  ],
+  "eventTypesSeen": [
+    "catalog.updated",
+    "integration.updated",
+    "message.part.delta",
+    "message.part.updated",
+    "message.updated",
+    "permission.asked",
+    "permission.replied",
+    "plugin.added",
+    "reference.updated",
+    "server.connected",
+    "session.created",
+    "session.diff",
+    "session.idle",
+    "session.status",
+    "session.updated"
+  ],
+  "serverUnsecuredWarning": true,
+  "messageStatus": 200,
+  "deleteSessionStatus": 200
+}

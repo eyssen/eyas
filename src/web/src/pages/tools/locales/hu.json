@@ -1,0 +1,17 @@
+{
+  "tools.title": "Eszközök",
+  "tools.subtitle": "Az agentek által használható regisztrált eszközök",
+  "tools.countLabel": "eszköz",
+  "tools.requireApproval": "jóváhagyást igényel",
+  "tools.searchPlaceholder": "Eszközök keresése…",
+  "tools.allCategories": "Minden kategória",
+  "tools.allRiskTiers": "Minden kockázati szint",
+  "tools.requiresApproval": "Jóváhagyást igényel",
+  "tools.riskSuffix": "kockázat",
+  "tools.approvalRequired": "jóváhagyás szükséges",
+  "tools.showSchema": "Séma megjelenítése",
+  "tools.hideSchema": "Séma elrejtése",
+  "tools.loading": "Eszközök betöltése…",
+  "tools.loadError": "Nem sikerült betölteni az eszközöket: {{error}}",
+  "tools.empty": "Még nincs regisztrált eszköz."
+}

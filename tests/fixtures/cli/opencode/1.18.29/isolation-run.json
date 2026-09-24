@@ -1,0 +1,61 @@
+{
+  "note": "The spike answered \"once\" to every permission.asked, so the vault sentinel reaching the fake model is expected; what matters is that each read, bash and out-of-workspace access asked first.",
+  "permissionAsked": [
+    {
+      "permission": "read",
+      "patterns": [
+        "<ROOT_WITHOUT_LEADING_SLASH>/project/probe-opencode.txt"
+      ],
+      "always": [
+        "*"
+      ]
+    },
+    {
+      "permission": "bash",
+      "patterns": [
+        "ls"
+      ],
+      "always": [
+        "ls *"
+      ]
+    },
+    {
+      "permission": "external_directory",
+      "patterns": [
+        "<HOME>/Documents/EyasSentinelVault/99_Meta/ai-memory/*"
+      ],
+      "always": [
+        "<HOME>/Documents/EyasSentinelVault/99_Meta/ai-memory/*"
+      ]
+    },
+    {
+      "permission": "read",
+      "patterns": [
+        "<ROOT_WITHOUT_LEADING_SLASH>/home/Documents/EyasSentinelVault/99_Meta/ai-memory/MEMORY.md"
+      ],
+      "always": [
+        "*"
+      ]
+    }
+  ],
+  "markersFired": [],
+  "sentinelsInModelRequests": [
+    "EYAS-SENTINEL-vault-note"
+  ],
+  "hostileHomeWrites": {
+    "topLevel": [
+      ".npm"
+    ],
+    "count": 33,
+    "npmRegistryRequests": [
+      "https://registry.npmjs.org/@opencode-ai%2fplugin",
+      "https://registry.npmjs.org/@opentui%2fcore",
+      "https://registry.npmjs.org/@types%2femscripten",
+      "https://registry.npmjs.org/web-tree-sitter"
+    ],
+    "note": "Written into HOME although every XDG_* dir points into the EYAS home."
+  },
+  "serverUnsecuredWarning": true,
+  "messageStatus": 200,
+  "deleteSessionStatus": 200
+}

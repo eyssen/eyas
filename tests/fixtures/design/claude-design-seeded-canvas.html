@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+<!-- REAL output from the Claude Design helper (seed-canvas.mjs), reduced to the
+     state block. The ~2.4 MB editor payload is deliberately not checked in —
+     the importer only ever reads this script element, and the fixture's value
+     is that the JSON below was produced by the other tool, not by us. -->
+<meta charset="utf-8">
+</head>
+<body>
+<script type="application/json" id="appifact-doc">
+{"title":"EYAS Interop Check","content":{"files":{"Main.dc.html":"\u003c!doctype html>\n\u003chtml>\n\u003chead>\n  \u003cmeta charset=\"utf-8\">\n  \u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n  \u003cstyle>\n    body { margin: 0; font-family: Georgia, 'Times New Roman', serif; }\n    a { color: #0a2540; } a:hover { color: #06182a; }\n  \u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 20px; padding: 56px; background: #ffffff\">\n  \u003ch1 style=\"margin: 0; font-size: 44px; line-height: 1.05; color: {{accent}}\">Interop check\u003c/h1>\n  \u003cp style=\"margin: 0; max-width: 52ch; color: #5b6472\">Authored by EYAS, seeded by the Claude Design helper.\u003c/p>\n  \u003cdiv style=\"display: flex; gap: 12px\">\n    \u003csc-for list=\"{{chips}}\" as=\"chip\" hint-placeholder-count=\"3\">\n      \u003cbutton onClick=\"{{chip.pick}}\" style=\"padding: 10px 16px; border-radius: 8px; border: 1px solid #dde2e9; background: {{chip.bg}}\">{{chip.label}}\u003c/button>\n    \u003c/sc-for>\n  \u003c/div>\n\u003c/div>\n\u003c/x-dc>\n\u003cscript data-dc-script data-props='{\"accent\":{\"editor\":\"color\",\"default\":\"#0a2540\"}}'>\nclass Component extends DCLogic {\n  renderVals() {\n    var self = this\n    var picked = this.state.picked\n    return {\n      accent: this.props.accent ?? '#0a2540',\n      chips: ['One', 'Two', 'Three'].map(function (label) {\n        return { label: label, bg: picked === label ? '#eef1f6' : '#ffffff', pick: function () { self.setState({ picked: label }) } }\n      }),\n    }\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n","Notes.dc.html":"\u003c!doctype html>\n\u003chtml>\n\u003chead>\n  \u003cmeta charset=\"utf-8\">\n  \u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\u003cstyle>body { margin: 0; font-family: system-ui, sans-serif; }\u003c/style>\u003c/helmet>\n\u003cdiv style=\"padding: 40px\">\u003ch2 style=\"margin: 0\">Second artboard\u003c/h2>\u003c/div>\n\u003c/x-dc>\n\u003c/body>\n\u003c/html>\n","canvas.json":"{\n  \"artboards\": [\n    {\n      \"file\": \"Main.dc.html\",\n      \"x\": 0,\n      \"y\": 0,\n      \"w\": 880,\n      \"h\": 420\n    },\n    {\n      \"file\": \"Notes.dc.html\",\n      \"x\": 980,\n      \"y\": 0,\n      \"w\": 560,\n      \"h\": 300\n    }\n  ],\n  \"annotations\": [\n    {\n      \"id\": \"brief-1\",\n      \"x\": 0,\n      \"y\": -140,\n      \"w\": 300,\n      \"text\": \"Round-trip proof\",\n      \"color\": \"blue\"\n    }\n  ],\n  \"launch\": {\n    \"view\": \"canvas\"\n  }\n}"}},"comments":[]}
+</script>
+</body>
+</html>

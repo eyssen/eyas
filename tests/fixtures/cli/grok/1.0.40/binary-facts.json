@@ -1,0 +1,65 @@
+{
+  "note": "Present = the literal string occurs in the binary. Presence is not proof of behaviour; documented names are in docsExtractedTo.",
+  "envNamesPresent": {
+    "GROK_HOME": true,
+    "GROK_MEMORY": true,
+    "GROK_CLAUDE_SKILLS_ENABLED": true,
+    "GROK_CLAUDE_RULES_ENABLED": true,
+    "GROK_CLAUDE_AGENTS_ENABLED": true,
+    "GROK_CLAUDE_MCPS_ENABLED": true,
+    "GROK_CLAUDE_HOOKS_ENABLED": true,
+    "GROK_CLAUDE_SESSIONS_ENABLED": true,
+    "GROK_CURSOR_SKILLS_ENABLED": true,
+    "GROK_CURSOR_RULES_ENABLED": true,
+    "GROK_CURSOR_AGENTS_ENABLED": true,
+    "GROK_CURSOR_MCPS_ENABLED": true,
+    "GROK_CURSOR_HOOKS_ENABLED": true,
+    "GROK_TELEMETRY_ENABLED": true,
+    "GROK_TELEMETRY_TRACE_UPLOAD": true,
+    "GROK_SESSION_SEARCH": true,
+    "GROK_REMEMBER_TOOL_APPROVALS": true,
+    "GROK_DISABLE_AUTOUPDATER": true,
+    "GROK_STORAGE_MODE": true,
+    "GROK_FOLDER_TRUST": true,
+    "GROK_SANDBOX": true,
+    "GROK_SANDBOX_AUTO_ALLOW_BASH": true,
+    "GROK_SUBAGENTS": true,
+    "GROK_WEB_FETCH": true,
+    "GROK_CONFIG": true,
+    "GROK_CONFIG_PATH": true,
+    "GROK_XAI_API_BASE_URL": true,
+    "GROK_CLI_CHAT_PROXY_BASE_URL": true,
+    "GROK_MODELS_BASE_URL": true,
+    "GROK_DEFAULT_SELECTED_PERMISSION": true,
+    "XAI_API_KEY": true
+  },
+  "sandbox": {
+    "env": [
+      "GROK_SANDBOX",
+      "GROK_SANDBOX_AUTO_ALLOW_BASH"
+    ],
+    "config": [
+      "sandbox.profile",
+      "sandbox.auto_allow_bash"
+    ],
+    "builtInProfiles": [
+      "off",
+      "workspace",
+      "devbox",
+      "read-only",
+      "strict"
+    ],
+    "customProfiles": "<GROK_HOME>/sandbox.toml [profiles.<name>] extends/deny/read_write (docs 18-sandbox.md)",
+    "refusesSymlinkedGrokHome": true
+  },
+  "docsExtractedTo": "<GROK_HOME>/docs/user-guide (written on first launch)",
+  "storageMode": {
+    "env": "GROK_STORAGE_MODE",
+    "documented": false,
+    "observed": "With API-key auth against the local fake and the variable unset, grok made no sync or writeback request (see model-requests.json). Its effect under grok.com sign-in is unverified: the live lane signs grok in with an API key only (a grok.com device sign-in cannot run unattended)."
+  },
+  "folderTrust": {
+    "env": "GROK_FOLDER_TRUST",
+    "configKey": "none: [folder_trust] in config.toml is an unknown key in 1.0.40; trust is on by default and recorded in <GROK_HOME>/trusted_folders.toml"
+  }
+}
