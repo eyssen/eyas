@@ -1,0 +1,5 @@
+{
+  "command": "opencode auth list",
+  "credentialsFile": "<EYAS_HOMES>/opencode/data/opencode/auth.json",
+  "resolvesTo": "$XDG_DATA_HOME/opencode/auth.json"
+}

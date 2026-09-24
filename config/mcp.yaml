@@ -1,0 +1,78 @@
+# EYAS MCP Server Configuration
+# External MCP servers extending EYAS with additional tools.
+#
+# All servers use stdio transport (spawn local process).
+# Set enabled: false to disable without removing config.
+# API keys: use ${VAR} syntax — resolved from process.env at startup.
+# Default fallback: ${VAR:-default_value}
+#
+# Setup: clone each repo into data/mcp-servers/, run npm install && npm run build
+#   git clone https://github.com/Szotasz/billingo-mcp.git data/mcp-servers/billingo-mcp
+#   cd data/mcp-servers/billingo-mcp && npm install && npm run build
+
+servers:
+  # ─── connectors.hu — hosted business API gateway (NAV, Billingo, Wise, fal.ai, …) ──────
+  # Unified MCP over HTTP. Prefer this when you have a connectors.hu account;
+  # individual local servers below remain available as offline alternatives.
+  # Env: CONNECTORS_HU_URL (e.g. https://api.connectors.hu/mcp), CONNECTORS_HU_TOKEN
+  - name: connectors-hu
+    transport: http
+    url: "${CONNECTORS_HU_URL:-https://api.connectors.hu/mcp}"
+    env:
+      AUTHORIZATION: "Bearer ${CONNECTORS_HU_TOKEN}"
+    enabled: false
+
+  # ─── Billingo — Hungarian invoicing API v3 ──────
+  # 35+ tools: documents, partners, products, payments, bank accounts, spending
+  # Setup: git clone + npm install + npm run build
+  # Env: BILLINGO_API_KEY (from https://app.billingo.hu/api-key)
+  - name: billingo
+    transport: stdio
+    command: node
+    args: ["data/mcp-servers/billingo-mcp/dist/cli.js"]
+    env:
+      BILLINGO_API_KEY: "${BILLINGO_API_KEY}"
+    enabled: false
+
+  # ─── NAV Online Invoice — Hungarian tax authority API v3.0 ──────
+  # Tools: query_taxpayer, query_invoice_data/digest/chain, manage_invoice, manage_annulment
+  # Setup: git clone + npm install + npm run build
+  # Env: NAV_LOGIN, NAV_PASSWORD, NAV_TAX_NUMBER, NAV_SIGNATURE_KEY, NAV_EXCHANGE_KEY, NAV_ENV
+  - name: nav-online-invoice
+    transport: stdio
+    command: node
+    args: ["data/mcp-servers/nav-online-invoice-mcp/dist/cli.js"]
+    env:
+      NAV_LOGIN: "${NAV_LOGIN}"
+      NAV_PASSWORD: "${NAV_PASSWORD}"
+      NAV_TAX_NUMBER: "${NAV_TAX_NUMBER}"
+      NAV_SIGNATURE_KEY: "${NAV_SIGNATURE_KEY}"
+      NAV_EXCHANGE_KEY: "${NAV_EXCHANGE_KEY}"
+      NAV_ENV: "${NAV_ENV:-test}"
+    enabled: false
+
+  # ─── Wise (TransferWise) — international payments API ──────
+  # Tools: profiles, balances, exchange rates, recipients, transfers
+  # Setup: git clone + npm install + npm run build
+  # Env: WISE_API_TOKEN (from https://wise.com/settings/api-tokens)
+  - name: wise
+    transport: stdio
+    command: node
+    args: ["data/mcp-servers/wise-mcp/dist/cli.js"]
+    env:
+      WISE_API_TOKEN: "${WISE_API_TOKEN}"
+    enabled: false
+
+  # ─── fal.ai — generative AI models (image, video, audio, 3D) ──────
+  # Tools: generate_image, edit_image, generate_video, generate_audio, generate_3d,
+  #        remove_background, upscale_image, run_model, list_models
+  # Setup: git clone + pip install -r requirements.txt
+  # Env: FAL_KEY (from https://fal.ai/dashboard)
+  - name: fal-ai
+    transport: stdio
+    command: python
+    args: ["-m", "fal_mcp_server"]
+    env:
+      FAL_KEY: "${FAL_KEY}"
+      PYTHONPATH: "data/mcp-servers/fal-ai-mcp-server"
+    enabled: false

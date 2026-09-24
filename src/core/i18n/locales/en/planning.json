@@ -1,0 +1,49 @@
+{
+  "title": "Interactive planning",
+  "status": {
+    "pendingApproval": "Pending approval",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "inProgress": "In progress",
+    "completed": "Completed",
+    "failed": "Failed"
+  },
+  "section": {
+    "goal": "Goal",
+    "originalRequest": "Original request",
+    "steps": "Steps",
+    "risks": "Risks",
+    "rollback": "Rollback"
+  },
+  "step": {
+    "title": "Title",
+    "description": "Description",
+    "successCriteria": "Success criteria",
+    "dependsOn": "Depends on",
+    "status": {
+      "pending": "Pending",
+      "inProgress": "In progress",
+      "done": "Done",
+      "skipped": "Skipped",
+      "failed": "Failed"
+    }
+  },
+  "risk": {
+    "severity": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    },
+    "mitigation": "Mitigation"
+  },
+  "action": {
+    "approve": "Approve plan",
+    "reject": "Reject plan",
+    "skipPlanning": "Skip planning",
+    "regenerate": "Regenerate"
+  },
+  "complexity": {
+    "recommended": "Planning recommended (score: {{score}})",
+    "notNeeded": "Simple task — planning not required"
+  }
+}

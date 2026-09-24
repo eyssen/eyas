@@ -1,0 +1,145 @@
+{
+  "binaryVersion": "2.1.280",
+  "sdkVersion": "0.2.89",
+  "verifiedAt": "2026-09-22",
+  "variant": "control",
+  "localFakeModel": true,
+  "options": {
+    "settingSources": [
+      "user",
+      "project",
+      "local"
+    ]
+  },
+  "turn": "user prompt -> Bash tool_use (echo EYAS-SPIKE-CANARY) -> text \"NONE\" (canUseTool allows; Claude Code auto-approves a read-only echo without asking)",
+  "nonModelEgress": "cachedGrowthBookFeatures in ~/.claude.json was refreshed from the vendor feature-flag service (not a model call, not routed through ANTHROPIC_BASE_URL)",
+  "permissionAsks": [],
+  "messageTypes": [
+    "system:hook_started",
+    "system:hook_response",
+    "system:init",
+    "assistant",
+    "user",
+    "result:success"
+  ],
+  "sinkRequests": [
+    "HEAD /api/hello",
+    "POST /v1/messages",
+    "POST /v1/messages",
+    "POST /v1/messages"
+  ],
+  "hostWrites": {
+    "added": [
+      ".claude/projects/<PROJECT_SLUG>/63e1fdea-9763-4ad5-9d36-e956231294da.jsonl",
+      ".claude/session-env/63e1fdea-9763-4ad5-9d36-e956231294da",
+      "Library",
+      "Library/Caches",
+      "Library/Caches/claude-cli-nodejs",
+      "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>",
+      "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-home",
+      "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-home/2026-09-22T21-22-35-163Z.jsonl",
+      "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-project",
+      "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-project/2026-09-22T21-22-35-163Z.jsonl"
+    ],
+    "modified": [
+      ".claude.json"
+    ],
+    "removed": []
+  },
+  "hostWriteDetails": [
+    {
+      "path": ".claude/projects/<PROJECT_SLUG>/63e1fdea-9763-4ad5-9d36-e956231294da.jsonl",
+      "change": "added",
+      "type": "file",
+      "bytes": 152725
+    },
+    {
+      "path": ".claude/session-env/63e1fdea-9763-4ad5-9d36-e956231294da",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library/Caches",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library/Caches/claude-cli-nodejs",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-home",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-home/2026-09-22T21-22-35-163Z.jsonl",
+      "change": "added",
+      "type": "file",
+      "bytes": 754
+    },
+    {
+      "path": "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-project",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": "Library/Caches/claude-cli-nodejs/<PROJECT_SLUG>/mcp-logs-eyas-sentinel-claude-project/2026-09-22T21-22-35-163Z.jsonl",
+      "change": "added",
+      "type": "file",
+      "bytes": 754
+    },
+    {
+      "path": ".claude.json",
+      "change": "modified",
+      "type": "file",
+      "bytes": 40352
+    }
+  ],
+  "claudeJsonTopLevelKeys": {
+    "added": [],
+    "changed": [
+      "cachedGrowthBookFeatures",
+      "cachedGrowthBookFeaturesAt"
+    ],
+    "removed": []
+  },
+  "contentBearingWrites": [
+    ".claude/projects/<PROJECT_SLUG>/63e1fdea-9763-4ad5-9d36-e956231294da.jsonl"
+  ],
+  "canaryInHostFiles": [
+    ".claude/projects/<PROJECT_SLUG>/63e1fdea-9763-4ad5-9d36-e956231294da.jsonl"
+  ],
+  "markersFired": [
+    "claude-home-mcp",
+    "claude-home-session-hook",
+    "claude-home-stop-hook",
+    "claude-project-hook",
+    "claude-project-mcp"
+  ],
+  "sentinelsInModelRequests": [
+    "EYAS-SENTINEL-claude-home-md",
+    "EYAS-SENTINEL-project-claude-md",
+    "EYAS-SENTINEL-claude-project-memory",
+    "EYAS-SENTINEL-claude-home-agent",
+    "EYAS-SENTINEL-claude-home-skill"
+  ]
+}

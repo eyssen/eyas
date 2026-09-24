@@ -1,0 +1,474 @@
+[
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_0",
+    "title": "read_file",
+    "rawInputKeys": [
+      "target_file",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_0",
+    "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+    "kind": "read",
+    "locations": [
+      {
+        "path": "<ROOT>/workspaces/conv-1/probe.txt",
+        "line": 2
+      }
+    ],
+    "rawInputKeys": [
+      "variant",
+      "target_file",
+      "offset",
+      "limit"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_0",
+    "kind": "read",
+    "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "allow once",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "reject once",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "fs/read_text_file",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "path": "<ROOT>/workspaces/conv-1/probe.txt"
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_0",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_1",
+    "title": "list_dir",
+    "rawInputKeys": [
+      "target_directory"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_1",
+    "title": "List `<ROOT>/workspaces/conv-1`",
+    "kind": "other",
+    "locations": [
+      {
+        "path": "<ROOT>/workspaces/conv-1"
+      }
+    ],
+    "rawInputKeys": [
+      "variant",
+      "target_directory"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_1",
+    "kind": "other",
+    "title": "List `<ROOT>/workspaces/conv-1`",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "allow once",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "reject once",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_1",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_2",
+    "title": "grep",
+    "rawInputKeys": [
+      "pattern",
+      "path"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_2",
+    "title": "PROBE",
+    "kind": "search",
+    "locations": [],
+    "rawInputKeys": [
+      "variant",
+      "pattern",
+      "path",
+      "glob",
+      "-i",
+      "type",
+      "multiline"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_2",
+    "kind": "search",
+    "title": "PROBE",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "allow once",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "reject once",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_2",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_3",
+    "title": "run_terminal_command",
+    "rawInputKeys": [
+      "command",
+      "description"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_3",
+    "title": "Execute `ls`",
+    "kind": "execute",
+    "locations": [],
+    "rawInputKeys": [
+      "variant",
+      "command",
+      "description",
+      "is_background"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_3",
+    "kind": "execute",
+    "title": "Execute `ls`",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "Yes, proceed",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "No, and tell Grok what to do differently",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_3",
+    "status": "in_progress"
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_3",
+    "status": "in_progress"
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_3",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_4",
+    "title": "write",
+    "rawInputKeys": [
+      "file_path",
+      "content"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_4",
+    "title": "Write `<ROOT>/workspaces/conv-1/spike-out.txt`",
+    "kind": "edit",
+    "locations": [
+      {
+        "path": "<ROOT>/workspaces/conv-1/spike-out.txt"
+      }
+    ],
+    "rawInputKeys": [
+      "variant",
+      "file_path",
+      "content"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_4",
+    "kind": "edit",
+    "title": "Write `<ROOT>/workspaces/conv-1/spike-out.txt`",
+    "options": [
+      {
+        "kind": "allow_always",
+        "name": "Yes, allow all edits during this session",
+        "optionId": "allow-edits-session"
+      },
+      {
+        "kind": "allow_once",
+        "name": "Yes",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "No, and tell Grok what to do differently",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "fs/read_text_file",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "path": "<ROOT>/workspaces/conv-1/spike-out.txt"
+  },
+  {
+    "event": "fs/write_text_file",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "path": "<ROOT>/workspaces/conv-1/spike-out.txt"
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_4",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_5",
+    "title": "search_tool",
+    "rawInputKeys": [
+      "query"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_5",
+    "title": "Search tools: \"eyas spike ping\"",
+    "kind": "other",
+    "locations": [],
+    "rawInputKeys": [
+      "variant",
+      "query",
+      "limit"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_5",
+    "kind": "other",
+    "title": "Search tools: \"eyas spike ping\"",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "allow once",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "reject once",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_5",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_6",
+    "title": "use_tool",
+    "rawInputKeys": [
+      "tool_name",
+      "tool_input"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_6",
+    "title": "eyas__spike_ping",
+    "kind": "other",
+    "locations": [],
+    "rawInputKeys": [
+      "variant",
+      "tool_name",
+      "tool_input"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_6",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_7",
+    "title": "spawn_subagent",
+    "rawInputKeys": [
+      "prompt",
+      "description",
+      "background"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_7",
+    "title": "Spike subagent",
+    "kind": "other",
+    "locations": [],
+    "rawInputKeys": [
+      "variant",
+      "prompt",
+      "description",
+      "run_in_background",
+      "task_id"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_7",
+    "kind": "other",
+    "title": "Spike subagent",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "Yes, send once",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "No, and tell Grok what to do differently",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "tool_call",
+    "sessionId": "01a0cb04-25c4-7ab2-b585-ab32de6bfc79",
+    "toolCallId": "call_sub_0",
+    "title": "read_file",
+    "rawInputKeys": [
+      "target_file"
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-25c4-7ab2-b585-ab32de6bfc79",
+    "toolCallId": "call_sub_0",
+    "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+    "kind": "read",
+    "locations": [
+      {
+        "path": "<ROOT>/workspaces/conv-1/probe.txt"
+      }
+    ],
+    "rawInputKeys": [
+      "variant",
+      "target_file"
+    ]
+  },
+  {
+    "event": "session/request_permission",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_sub_0",
+    "kind": "read",
+    "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+    "options": [
+      {
+        "kind": "allow_once",
+        "name": "allow once",
+        "optionId": "allow-once"
+      },
+      {
+        "kind": "reject_once",
+        "name": "reject once",
+        "optionId": "reject-once"
+      }
+    ]
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-25c4-7ab2-b585-ab32de6bfc79",
+    "toolCallId": "call_sub_0",
+    "status": "completed"
+  },
+  {
+    "event": "tool_call_update",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCallId": "call_main_7",
+    "status": "completed"
+  },
+  {
+    "event": "fs/read_text_file",
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "path": "<ROOT>/workspaces/conv-1/spike-out.txt"
+  }
+]

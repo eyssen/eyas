@@ -1,0 +1,16 @@
+{
+  "note": "ACP session/new supplied two MCP servers (eyas, intruder); cwd = in-root project with its own .grok/config.toml and .mcp.json servers. `started` lists which ones actually spawned.",
+  "no-allowlist": {
+    "sessionNewOk": true,
+    "started": [
+      "acp-eyas",
+      "acp-intruder"
+    ]
+  },
+  "allowlist-eyas": {
+    "sessionNewOk": true,
+    "started": [
+      "acp-eyas"
+    ]
+  }
+}

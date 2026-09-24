@@ -1,0 +1,39 @@
+{
+  "current": {
+    "method": "POST",
+    "path": "/permission/{requestID}/reply",
+    "body": {
+      "reply": "once | always | reject",
+      "message": "optional string"
+    }
+  },
+  "legacy": {
+    "method": "POST",
+    "path": "/session/{sessionID}/permissions/{permissionID}",
+    "body": {
+      "response": "once | always | reject"
+    }
+  },
+  "v2": {
+    "method": "POST",
+    "path": "/api/session/{sessionID}/permission/{requestID}/reply",
+    "body": {
+      "reply": "once | always | reject",
+      "message": "optional string"
+    }
+  },
+  "list": {
+    "method": "GET",
+    "path": "/permission"
+  },
+  "deleteSession": {
+    "method": "DELETE",
+    "path": "/session/{sessionID}"
+  },
+  "eventStream": {
+    "method": "GET",
+    "path": "/event",
+    "askedEvent": "permission.asked",
+    "repliedEvent": "permission.replied"
+  }
+}

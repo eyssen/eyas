@@ -1,0 +1,26 @@
+{
+  "rows": [
+    { "id": "r1", "kind": "memory",  "folder": "alpha",          "target": "vault.semantic", "importable": true,  "selectedByDefault": true  },
+    { "id": "r2", "kind": "memory",  "folder": "alpha/deep",     "target": "vault.semantic", "importable": true,  "selectedByDefault": true  },
+    { "id": "r3", "kind": "code",    "folder": "alpha/src",      "target": "vault.semantic", "importable": true,  "selectedByDefault": false },
+    { "id": "r4", "kind": "noise",   "folder": "alpha",          "target": "none",           "importable": false, "selectedByDefault": false },
+    { "id": "r5", "kind": "session", "folder": "bravo",          "target": "episodic",       "importable": true,  "selectedByDefault": true  },
+    { "id": "r6", "kind": "memory",  "folder": "alpha-2",        "target": "vault.semantic", "importable": true,  "selectedByDefault": true  },
+    { "id": "r7", "kind": "rule",    "folder": ".",              "target": "workspace.agents","importable": true, "selectedByDefault": true  }
+  ],
+  "cases": [
+    { "name": "default base follows the scan",            "wire": { "base": "default", "groups": [], "rows": [] },                                                   "expect": { "r1": true, "r2": true, "r3": false, "r4": false, "r5": true, "r6": true, "r7": true } },
+    { "name": "all base ticks every importable row",      "wire": { "base": "all", "groups": [], "rows": [] },                                                       "expect": { "r1": true, "r2": true, "r3": true, "r4": false, "r5": true, "r6": true, "r7": true } },
+    { "name": "none base unticks everything",             "wire": { "base": "none", "groups": [], "rows": [] },                                                      "expect": { "r1": false, "r2": false, "r3": false, "r4": false, "r5": false, "r6": false, "r7": false } },
+    { "name": "folder group matches the subtree only",    "wire": { "base": "default", "groups": [{ "folder": "alpha", "selected": false }], "rows": [] },          "expect": { "r1": false, "r2": false, "r3": false, "r4": false, "r5": true, "r6": true, "r7": true } },
+    { "name": "kind group",                               "wire": { "base": "none", "groups": [{ "kind": "memory", "selected": true }], "rows": [] },               "expect": { "r1": true, "r2": true, "r3": false, "r4": false, "r5": false, "r6": true, "r7": false } },
+    { "name": "kind and folder together",                 "wire": { "base": "none", "groups": [{ "kind": "memory", "folder": "alpha/deep", "selected": true }], "rows": [] }, "expect": { "r1": false, "r2": true, "r3": false, "r4": false, "r5": false, "r6": false, "r7": false } },
+    { "name": "last matching group wins",                 "wire": { "base": "default", "groups": [{ "folder": "alpha", "selected": false }, { "folder": "alpha/deep", "selected": true }], "rows": [] }, "expect": { "r1": false, "r2": true, "r3": false, "r4": false, "r5": true, "r6": true, "r7": true } },
+    { "name": "later broader group shadows earlier deeper one", "wire": { "base": "default", "groups": [{ "folder": "alpha/deep", "selected": true }, { "folder": "alpha", "selected": false }], "rows": [] }, "expect": { "r1": false, "r2": false, "r3": false, "r4": false, "r5": true, "r6": true, "r7": true } },
+    { "name": "row override beats groups",                "wire": { "base": "none", "groups": [{ "folder": "alpha", "selected": false }], "rows": [{ "candidateId": "r3", "selected": true }] }, "expect": { "r1": false, "r2": false, "r3": true, "r4": false, "r5": false, "r6": false, "r7": false } },
+    { "name": "importable gate beats everything",         "wire": { "base": "all", "groups": [{ "kind": "noise", "selected": true }], "rows": [{ "candidateId": "r4", "selected": true }] }, "expect": { "r1": true, "r2": true, "r3": true, "r4": false, "r5": true, "r6": true, "r7": true } },
+    { "name": "root folder group matches everything",     "wire": { "base": "default", "groups": [{ "folder": ".", "selected": false }], "rows": [] },              "expect": { "r1": false, "r2": false, "r3": false, "r4": false, "r5": false, "r6": false, "r7": false } },
+    { "name": "target-only row keeps the resolved selection", "wire": { "base": "default", "groups": [], "rows": [{ "candidateId": "r1", "target": "vault.procedural" }] }, "expect": { "r1": true, "r2": true, "r3": false, "r4": false, "r5": true, "r6": true, "r7": true }, "targets": { "r1": "vault.procedural", "r2": "vault.semantic" } }
+  ],
+  "legacy": { "input": [{ "candidateId": "r3" }, { "candidateId": "r1", "target": "vault.procedural" }], "expect": { "r1": true, "r2": false, "r3": true, "r4": false, "r5": false, "r6": false, "r7": false }, "targets": { "r1": "vault.procedural" } }
+}

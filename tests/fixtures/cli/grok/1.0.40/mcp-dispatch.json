@@ -1,0 +1,7 @@
+{
+  "note": "MCP tools of the ACP-supplied server are not in the model function list; the model reaches them through search_tool, then use_tool.",
+  "searchToolResultMentionsTool": true,
+  "searchToolResultExcerpt": "{\n  \"results\": [\n    {\n      \"server\": \"eyas\",\n      \"tools\": [\n        {\n          \"tool_name\": \"eyas__spike_ping\",\n          \"description\": \"EYAS spike ping\",\n          \"score\": 1.2431977987289429,\n          \"input_schema\": {\n            \"type\": \"object\",\n            \"properties\": {}\n          }\n        }\n      ]\n    }\n  ],\n  \"total_hidden_tools\": 1,\n  \"status\": \"ready\",\n  \"note\": null\n}",
+  "useToolPermissionAsked": false,
+  "useToolResultExcerpt": "pong"
+}

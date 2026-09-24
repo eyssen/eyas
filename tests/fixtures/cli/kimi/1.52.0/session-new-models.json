@@ -1,0 +1,12 @@
+{
+  "_comment": "DERIVED, not recorded: no kimi binary on the spike host. The session/new `models` state kimi-cli 1.52.0 builds (acp/server.py new_session → _expand_llm_models, _ModelIDConv) for a config.toml whose [models] table holds: kimi-code/kimi-for-coding (the Kimi Code sign-in's managed key; derive_model_capabilities adds 'thinking' for kimi-for-coding, so both variants), k2.6 (capabilities ['thinking']: both variants), k2-thinking (model name contains 'thinking': always-thinking, only the ',thinking' id) and moonshot-v1-8k (no thinking capability: only the plain id). currentModelId is default_model plus ',thinking' when default_thinking is true.",
+  "currentModelId": "kimi-code/kimi-for-coding,thinking",
+  "availableModels": [
+    { "modelId": "kimi-code/kimi-for-coding", "name": "kimi-for-coding" },
+    { "modelId": "kimi-code/kimi-for-coding,thinking", "name": "kimi-for-coding (thinking)" },
+    { "modelId": "k2.6", "name": "kimi-k2.6" },
+    { "modelId": "k2.6,thinking", "name": "kimi-k2.6 (thinking)" },
+    { "modelId": "k2-thinking,thinking", "name": "kimi-k2-thinking" },
+    { "modelId": "moonshot-v1-8k", "name": "moonshot-v1-8k" }
+  ]
+}

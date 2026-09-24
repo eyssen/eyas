@@ -1,0 +1,15 @@
+{
+  "browserUse.title": "Browser Use",
+  "browserUse.subtitle": "CLI sidecar optional. yIn lI' taH. mIw pa' 'oHbe', Media 'oHbe', Playwright jan 'oHbe'.",
+  "browserUse.empty": "Python Browser Use CLI ghuHbe'. Hutlh tIchel, vaj browser_use_exec. Agent Browser ghuH chugh, vetlh yImaS.",
+  "browserUse.available": "ghuH",
+  "browserUse.unavailable": "ghuHbe'",
+  "browserUse.check.ok": "lugh",
+  "browserUse.check.missing": "Hutlh",
+  "browserUse.check.warn": "ghuHmoH",
+  "browserUse.recommended": "qel",
+  "browserUse.lanes": "pagh lI' naw': Playwright jan chIm. yIn lI' / @e1: Agent Browser (qel). Python CLI ngugh. desktop latlh: ghopDu'.",
+  "browserUse.agentBrowser.title": "Agent Browser",
+  "browserUse.agentBrowser.empty": "agent-browser CLI ghuHbe'. npm i -g agent-browser 'ej agent-browser install, pagh EYAS_AGENT_BROWSER_BIN.",
+  "browserUse.python.title": "Browser Use CLI (Python)"
+}

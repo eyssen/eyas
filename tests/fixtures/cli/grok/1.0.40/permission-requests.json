@@ -1,0 +1,315 @@
+[
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_0",
+      "kind": "read",
+      "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+      "rawInput": {
+        "variant": "ReadFile",
+        "target_file": "<ROOT>/workspaces/conv-1/probe.txt",
+        "offset": 2,
+        "limit": 2
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "read_file",
+          "kind": "read",
+          "namespace": "grok_build",
+          "label": "Read",
+          "read_only": true,
+          "input": {
+            "path": "<ROOT>/workspaces/conv-1/probe.txt",
+            "offset": 2,
+            "limit": 2
+          }
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "allow once",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "reject once",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_1",
+      "kind": "other",
+      "title": "List `<ROOT>/workspaces/conv-1`",
+      "rawInput": {
+        "variant": "ListDir",
+        "target_directory": "<ROOT>/workspaces/conv-1"
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "list_dir",
+          "kind": "list",
+          "namespace": "grok_build",
+          "label": "List Files",
+          "read_only": true,
+          "input": {
+            "directory": "<ROOT>/workspaces/conv-1"
+          }
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "allow once",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "reject once",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_2",
+      "kind": "search",
+      "title": "PROBE",
+      "rawInput": {
+        "variant": "Grep",
+        "pattern": "PROBE",
+        "path": "<ROOT>/workspaces/conv-1",
+        "glob": null,
+        "-i": false,
+        "type": null,
+        "multiline": false
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "grep",
+          "kind": "search",
+          "namespace": "grok_build",
+          "label": "Search",
+          "read_only": true,
+          "input": {
+            "pattern": "PROBE",
+            "path": "<ROOT>/workspaces/conv-1"
+          }
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "allow once",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "reject once",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_3",
+      "kind": "execute",
+      "title": "Execute `ls`",
+      "rawInput": {
+        "variant": "Bash",
+        "command": "ls",
+        "description": "List files",
+        "is_background": false
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "run_terminal_command",
+          "kind": "execute",
+          "namespace": "grok_build",
+          "label": "Run Command",
+          "read_only": false,
+          "input": {
+            "command": "ls",
+            "description": "List files"
+          }
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "Yes, proceed",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "No, and tell Grok what to do differently",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_4",
+      "kind": "edit",
+      "title": "Write `<ROOT>/workspaces/conv-1/spike-out.txt`",
+      "rawInput": {
+        "variant": "Write",
+        "file_path": "<ROOT>/workspaces/conv-1/spike-out.txt",
+        "content": "spike\n"
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "write",
+          "kind": "write",
+          "namespace": "opencode",
+          "label": "Write",
+          "read_only": false,
+          "input": {
+            "path": "<ROOT>/workspaces/conv-1/spike-out.txt"
+          }
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-edits-session",
+        "name": "Yes, allow all edits during this session",
+        "kind": "allow_always"
+      },
+      {
+        "optionId": "allow-once",
+        "name": "Yes",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "No, and tell Grok what to do differently",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_5",
+      "kind": "other",
+      "title": "Search tools: \"eyas spike ping\"",
+      "rawInput": {
+        "variant": "SearchTool",
+        "query": "eyas spike ping",
+        "limit": 5
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "search_tool",
+          "kind": "search_tool",
+          "namespace": "grok_build",
+          "label": "Search Tools",
+          "read_only": false
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "allow once",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "reject once",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_main_7",
+      "kind": "other",
+      "title": "Spike subagent",
+      "rawInput": {
+        "variant": "Task",
+        "prompt": "EYAS-SPIKE-SUBAGENT: read probe.txt",
+        "description": "Spike subagent",
+        "run_in_background": false,
+        "task_id": null
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "spawn_subagent",
+          "kind": "task",
+          "namespace": "grok_build",
+          "label": "Subagent",
+          "read_only": false
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "Yes, send once",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "No, and tell Grok what to do differently",
+        "kind": "reject_once"
+      }
+    ]
+  },
+  {
+    "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+    "toolCall": {
+      "toolCallId": "call_sub_0",
+      "kind": "read",
+      "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+      "rawInput": {
+        "variant": "ReadFile",
+        "target_file": "<ROOT>/workspaces/conv-1/probe.txt"
+      },
+      "_meta": {
+        "x.ai/tool": {
+          "version": 1,
+          "name": "read_file",
+          "kind": "read",
+          "namespace": "grok_build",
+          "label": "Read",
+          "read_only": true,
+          "input": {
+            "path": "<ROOT>/workspaces/conv-1/probe.txt"
+          }
+        }
+      }
+    },
+    "options": [
+      {
+        "optionId": "allow-once",
+        "name": "allow once",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "reject-once",
+        "name": "reject once",
+        "kind": "reject_once"
+      }
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "note": "MCP lifecycle for the ACP-supplied \"eyas\" server, from <GROK_HOME>/sessions/<ENC_CWD>/<SESSION_ID>/events.jsonl.",
+  "events": [
+    {
+      "type": "mcp_config_resolved",
+      "servers": [
+        {
+          "name": "eyas",
+          "transport": "stdio",
+          "source": "local"
+        }
+      ]
+    },
+    {
+      "type": "mcp_server_starting",
+      "server": "eyas"
+    },
+    {
+      "type": "mcp_server_connected",
+      "server": "eyas",
+      "tools": [
+        "spike_ping"
+      ]
+    },
+    {
+      "type": "mcp_init_completed",
+      "succeeded": 1,
+      "failed": 0
+    },
+    {
+      "type": "mcp_tool_call_started",
+      "server": "eyas"
+    },
+    {
+      "type": "mcp_tool_call_completed",
+      "server": "eyas"
+    }
+  ]
+}

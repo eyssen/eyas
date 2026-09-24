@@ -1,0 +1,133 @@
+{
+  "binaryVersion": "2.1.281",
+  "verifiedAt": "2026-09-24",
+  "scope": "Free lane on macOS: API-key auth against a local fake model on 127.0.0.1 (auth status, the init-only isolation probe, model discovery, full turns with Read, Bash and Write). Seeded from the A1 spike on 2.1.280 (tests/fixtures/cli/claude-code/2.1.280). The login token refresh of a real sign-in is only observed by the paid canary; a Linux host may add its own cache paths.",
+  "claudeJsonKeys": [
+    "cachedExperimentData",
+    "cachedExperimentFeatures",
+    "cachedGrowthBookFeatures",
+    "cachedGrowthBookFeaturesAt",
+    "firstStartTime",
+    "firstStartVersion",
+    "hasResetAutoModeOptInForDefaultOffer",
+    "machineID",
+    "migrationVersion",
+    "opusProMigrationComplete",
+    "pluginUsage",
+    "seenNotifications",
+    "sonnet1m45MigrationComplete",
+    "userID"
+  ],
+  "entries": [
+    {
+      "glob": ".claude.json",
+      "rule": "claude-json",
+      "reason": "Startup and bookkeeping state: first start, migrations, the feature-flag cache, plugin usage counters. Only the top-level keys in claudeJsonKeys may be added or changed; any other key, or a removed one, fails."
+    },
+    {
+      "glob": ".claude.json.lock",
+      "rule": "lock",
+      "reason": "The lock folder around ~/.claude.json writes. `claude auth status` (EYAS's sign-in check) exits without removing it; the next Claude Code run that writes ~/.claude.json clears it as stale, so a later run may remove it (live lane, 2.1.281)."
+    },
+    {
+      "glob": ".claude/backups",
+      "rule": "dir",
+      "reason": "Folder of Claude Code's ~/.claude.json backups."
+    },
+    {
+      "glob": ".claude/backups/.claude.json.backup.*",
+      "rule": "claude-json-backup",
+      "reason": "Copy of the previous ~/.claude.json taken before Claude Code rewrites it; it may hold only keys the file already had or listed bookkeeping keys."
+    },
+    {
+      "glob": ".claude/sessions",
+      "rule": "empty-dir",
+      "reason": "Running-session registry folder; it must be empty once the process exited."
+    },
+    {
+      "glob": ".claude/session-env",
+      "rule": "dir",
+      "reason": "Folder of per-session environment folders."
+    },
+    {
+      "glob": ".claude/session-env/*",
+      "rule": "empty-dir",
+      "reason": "An empty per-session folder (A1 spike, full turn). A file inside it is content and fails."
+    },
+    {
+      "glob": ".claude/shell-snapshots",
+      "rule": "dir",
+      "reason": "Folder of login-shell snapshots taken for the Bash tool."
+    },
+    {
+      "glob": ".claude/shell-snapshots/*",
+      "rule": "bookkeeping-file",
+      "reason": "Snapshot of the login shell's functions, aliases and options; it must contain no conversation content (no canary, no sentinel)."
+    },
+    {
+      "glob": ".claude/seed-admin",
+      "rule": "empty-dir",
+      "reason": "An empty folder Claude Code 2.1.281 creates at start (live lane)."
+    },
+    {
+      "glob": ".claude/.cc-writes",
+      "rule": "empty-dir",
+      "reason": "An empty folder Claude Code 2.1.281 creates when a tool runs (live lane)."
+    },
+    {
+      "glob": ".claude/bridge-spawn",
+      "rule": "empty-dir",
+      "reason": "An empty folder Claude Code 2.1.281 creates when a tool runs (live lane)."
+    },
+    {
+      "glob": ".config",
+      "rule": "dir",
+      "reason": "The XDG config folder, created when the host has none (the parent of the one below)."
+    },
+    {
+      "glob": ".config/anthropic",
+      "rule": "empty-dir",
+      "reason": "An empty folder Claude Code 2.1.281 creates at start (live lane)."
+    },
+    {
+      "glob": ".npm",
+      "rule": "dir",
+      "reason": "npm's folder: Claude Code runs `npm root --global` at start (its install-location check)."
+    },
+    {
+      "glob": ".npm/_logs",
+      "rule": "dir",
+      "reason": "npm's log folder (npm keeps the ten newest)."
+    },
+    {
+      "glob": ".npm/_logs/*-debug-*.log",
+      "rule": "bookkeeping-file",
+      "reason": "npm's own log of `npm root --global`: the command, npm and runtime versions, the working folder. No conversation content."
+    },
+    {
+      "glob": "Library",
+      "rule": "dir",
+      "reason": "macOS user Library folder (the parent of the cache below)."
+    },
+    {
+      "glob": "Library/Caches",
+      "rule": "dir",
+      "reason": "macOS user cache folder."
+    },
+    {
+      "glob": "Library/Caches/bun",
+      "rule": "dir",
+      "reason": "Bun's transpiler cache, written when the `npm` Claude Code starts runs on Bun (a PATH whose `node` is Bun, as under `bun run`)."
+    },
+    {
+      "glob": "Library/Caches/bun/**",
+      "rule": "cache",
+      "reason": "Bun's transpiler cache entries (compiled npm code). No conversation content."
+    },
+    {
+      "glob": ".claude/.credentials.json",
+      "rule": "credential",
+      "reason": "Login token refresh on a host without a keychain. Never read, never content-checked."
+    }
+  ]
+}

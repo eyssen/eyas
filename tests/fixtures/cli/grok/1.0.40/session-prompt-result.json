@@ -1,0 +1,206 @@
+[
+  {
+    "text": "EYAS-SPIKE-MAIN run the probe",
+    "result": {
+      "stopReason": "end_turn",
+      "_meta": {
+        "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+        "requestId": "8fda24b0-b7f7-4061-aff4-48bb7f879ae7",
+        "promptId": "8fda24b0-b7f7-4061-aff4-48bb7f879ae7",
+        "totalTokens": 15,
+        "modelId": "grok-4.6",
+        "inputTokens": 10,
+        "outputTokens": 5,
+        "cachedReadTokens": 0,
+        "reasoningTokens": 0,
+        "usage": {
+          "inputTokens": 110,
+          "outputTokens": 55,
+          "totalTokens": 165,
+          "cachedReadTokens": 0,
+          "cacheCreationTokens": 0,
+          "reasoningTokens": 0,
+          "modelCalls": 11,
+          "apiDurationMs": 45,
+          "modelUsage": {
+            "eyas-spike": {
+              "inputTokens": 110,
+              "outputTokens": 55,
+              "totalTokens": 165,
+              "cachedReadTokens": 0,
+              "cacheCreationTokens": 0,
+              "reasoningTokens": 0,
+              "modelCalls": 11,
+              "apiDurationMs": 45
+            }
+          },
+          "numTurns": 9
+        }
+      }
+    },
+    "updates": [
+      {
+        "sessionUpdate": "session_info_update",
+        "title": "EYAS spike"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_0",
+        "title": "read_file"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+        "kind": "read"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_0",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_1",
+        "title": "list_dir"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_1",
+        "title": "List `<ROOT>/workspaces/conv-1`",
+        "kind": "other"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_1",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_2",
+        "title": "grep"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_2",
+        "title": "PROBE",
+        "kind": "search"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_2",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_3",
+        "title": "run_terminal_command"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_3",
+        "title": "Execute `ls`",
+        "kind": "execute"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_3",
+        "status": "in_progress"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_3",
+        "status": "in_progress"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_3",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_4",
+        "title": "write"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_4",
+        "title": "Write `<ROOT>/workspaces/conv-1/spike-out.txt`",
+        "kind": "edit"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_4",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_5",
+        "title": "search_tool"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_5",
+        "title": "Search tools: \"eyas spike ping\"",
+        "kind": "other"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_5",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_6",
+        "title": "use_tool"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_6",
+        "title": "eyas__spike_ping",
+        "kind": "other"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_6",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_main_7",
+        "title": "spawn_subagent"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_7",
+        "title": "Spike subagent",
+        "kind": "other"
+      },
+      {
+        "sessionUpdate": "user_message_chunk"
+      },
+      {
+        "sessionUpdate": "tool_call",
+        "toolCallId": "call_sub_0",
+        "title": "read_file"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_sub_0",
+        "title": "Read `<ROOT>/workspaces/conv-1/probe.txt`",
+        "kind": "read"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_sub_0",
+        "status": "completed"
+      },
+      {
+        "sessionUpdate": "tool_call_update",
+        "toolCallId": "call_main_7",
+        "status": "completed"
+      }
+    ],
+    "permissionRequests": 8
+  }
+]

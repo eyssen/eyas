@@ -1,0 +1,20 @@
+{
+  "path": "sessions/<ENC_CWD>/<SESSION_ID>/system_prompt.txt",
+  "systemPromptOverride": "EYAS-SPIKE-NONCE-7f3a EYAS spike system prompt.",
+  "atSessionNew": {
+    "exists": true,
+    "bytes": 9048,
+    "containsNonce": false
+  },
+  "atFirstModelRequest": {
+    "exists": true,
+    "bytes": 47,
+    "containsNonce": true
+  },
+  "afterPrompts": {
+    "exists": true,
+    "bytes": 47,
+    "containsNonce": true
+  },
+  "note": "atSessionNew: read immediately after session/new returned. atFirstModelRequest: read by the fake model server when the first turn request arrived. afterPrompts: after the turn finished."
+}

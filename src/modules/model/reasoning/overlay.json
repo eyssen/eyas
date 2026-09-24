@@ -1,0 +1,491 @@
+{
+  "version": 1,
+  "updated": "2026-09-24",
+  "rows": [
+    {
+      "id": "anthropic-fable-mythos-5",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-(?:fable|mythos)-5(?:[-.]1)?(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "xhigh", "max"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "adaptive", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": true },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-opus-5-5",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-opus-5[-.]5(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "xhigh", "max"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "adaptive", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": true },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-opus-5",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-opus-5(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "high", "canDisable": true, "thinking": "default-on", "thinkingParam": "adaptive", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": true },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md (footnote 2: disabled only at effort <= high)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-opus-4-7-4-8",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-opus-4[-.][78](?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "high", "canDisable": true, "thinking": "default-off", "thinkingParam": "adaptive", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": true },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-sonnet-5",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-sonnet-5(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "high", "canDisable": true, "thinking": "default-on", "thinkingParam": "adaptive", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": true },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-opus-sonnet-4-6",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-(?:opus|sonnet)-4[-.]6(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "max"], "defaultLevel": "high", "canDisable": true, "thinking": "default-off", "thinkingParam": "adaptive", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md (xhigh/max availability lists)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-mythos-preview",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-mythos-preview(?:-(?:\\d{8}|latest))?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "max"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "adaptive", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-opus-4-5",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-opus-4[-.]5(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high"], "defaultLevel": "high", "canDisable": true, "thinking": "default-off", "thinkingParam": "budget", "budget": { "min": 1024 }, "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md (supportedModels lists claude-opus-4-5-20251101) ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "anthropic-budget-only",
+      "match": { "providers": ["anthropic", "claude-code"], "model": "^(?:[\\w.-]+/)*claude-(?:haiku-4[-.]5|sonnet-4[-.]5|opus-4[-.]1|sonnet-4|opus-4)(?:-(?:\\d{8}|latest))?(?:\\[1m\\])?$" },
+      "capability": { "kind": "budget", "levels": ["none", "minimal", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "budget", "budget": { "min": 1024 }, "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.claude.com/docs/en/build-with-claude/effort.md (not in supportedModels) ; https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting.md (budget_tokens >= 1024 and < max_tokens)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-6-astra",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-6-astra(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "xhigh", "max"], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra ; https://developers.openai.com/api/docs/guides/reasoning",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-5-6",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5\\.6(?:-(?:sol|terra|luna))?(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "medium", "canDisable": true, "thinking": "default-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol ; https://developers.openai.com/api/docs/models",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-5-5",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5\\.5(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "medium", "canDisable": true, "thinking": "default-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.5",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-5-4",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5\\.4(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-5-4-mini-nano",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5\\.4-(?:mini|nano)(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini ; https://developers.openai.com/api/docs/models/gpt-5.4-nano (reasoning.effort none (default), low, medium, high, xhigh; Chat Completions supported; snapshots -2026-03-17)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-5-2",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5\\.2(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.2 (reasoning.effort none (default), low, medium, high, xhigh; Chat Completions supported; snapshot gpt-5.2-2025-12-11)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-gpt-5-1",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5\\.1(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "openai@6.33.0 resources/shared.d.ts:179-193 (ReasoningEffort doc comment)",
+      "verified": "2026-09-22",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "openai-gpt-5-pro",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5-pro(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "openai@6.33.0 resources/shared.d.ts:190 (gpt-5-pro defaults to and only supports high)",
+      "verified": "2026-09-22",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "openai-gpt-5",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*gpt-5(?:-mini|-nano)?(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://developers.openai.com/api/docs/models/gpt-5 ; openai@6.33.0 resources/shared.d.ts:188-189",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openai-o-series",
+      "match": { "providers": ["openai"], "model": "^(?:[\\w.-]+/)*o(?:1|3|3-mini|4-mini)(?:-\\d{4}-\\d{2}-\\d{2})?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": true, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "openai@6.33.0 resources/shared.d.ts:138 (reasoning: gpt-5 and o-series models only), :179-193 (models before gpt-5.1 default to medium and do not support none; xhigh only after gpt-5.1-codex-max) ; resources/chat/completions/completions.d.ts:1292-1301 (max_tokens is not compatible with o-series models)",
+      "verified": "2026-09-23",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "openrouter-claude-4-6",
+      "match": { "providers": ["openrouter"], "model": "^anthropic/claude-(?:opus|sonnet)-4[.-]6(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "max"], "defaultLevel": "high", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://openrouter.ai/docs/guides/guides/evaluate-and-optimize/model-migrations/claude-4-6 (reasoning.effort maps to output_config.effort with adaptive thinking; none disables; minimal maps to low) ; https://platform.claude.com/docs/en/build-with-claude/effort.md (no xhigh on 4.6)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-6-astra",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-6-astra(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "xhigh", "max"], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-6",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.6(?:-(?:sol|terra|luna))?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "medium", "canDisable": true, "thinking": "default-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-5",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.5(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "medium", "canDisable": true, "thinking": "default-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.5 ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-4",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.4(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4 ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-5-pro",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.5-pro(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["medium", "high", "xhigh"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.5-pro (reasoning.effort medium, high (default), xhigh; Responses API only, so reachable through OpenRouter, not the openai provider) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-4-pro",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.4-pro(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["medium", "high", "xhigh"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-pro (reasoning.effort medium (default), high, xhigh; Responses API only, so reachable through OpenRouter, not the openai provider) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-4-mini-nano",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.4-(?:mini|nano)(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini ; https://developers.openai.com/api/docs/models/gpt-5.4-nano (reasoning.effort none (default), low, medium, high, xhigh) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-2-5-3-codex",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.[23]-codex(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "xhigh"], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.3-codex ; https://developers.openai.com/api/docs/models/gpt-5.2-codex (reasoning effort low, medium, high, xhigh; no default stated; Responses API only, so reachable through OpenRouter, not the openai provider) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-2-pro",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.2-pro(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["medium", "high", "xhigh"], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.2-pro (reasoning.effort medium, high, xhigh; no default stated; Responses API only, so reachable through OpenRouter, not the openai provider) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-2",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.2(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high", "xhigh"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.2 (reasoning.effort none (default), low, medium, high, xhigh) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-1",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5\\.1(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["none", "low", "medium", "high"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "openai@6.33.0 resources/shared.d.ts:179-193 ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "openrouter-openai-gpt-5-pro",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5-pro(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "openai@6.33.0 resources/shared.d.ts:190 ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "openrouter-openai-gpt-5",
+      "match": { "providers": ["openrouter"], "model": "^openai/gpt-5(?:-mini|-nano)?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://developers.openai.com/api/docs/models/gpt-5 ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-openai-o-series",
+      "match": { "providers": ["openrouter"], "model": "^openai/o(?:1|3|3-mini|4-mini)(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": true, "reasoningVisible": "hidden", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "openai@6.33.0 resources/shared.d.ts:138 (reasoning: gpt-5 and o-series models only), :179-193 (models before gpt-5.1 default to medium and do not support none; xhigh only after gpt-5.1-codex-max) ; resources/chat/completions/completions.d.ts:1292-1301 (max_tokens is not compatible with o-series models) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side)",
+      "verified": "2026-09-23",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "openrouter-gemini-3-1-pro",
+      "match": { "providers": ["openrouter"], "model": "^google/gemini-3\\.1-pro(?:-preview)?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side); effort maps to thinkingLevel, xhigh to high",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-gemini-3-flash",
+      "match": { "providers": ["openrouter"], "model": "^google/gemini-3-flash(?:-preview)?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side); effort maps to thinkingLevel, xhigh to high",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-gemini-3-8-3-7-flash",
+      "match": { "providers": ["openrouter"], "model": "^google/gemini-3\\.[78]-flash(?:-preview)?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table; minimal returns an error) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side); effort maps to thinkingLevel, xhigh to high",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-gemini-3-6-3-5-flash",
+      "match": { "providers": ["openrouter"], "model": "^google/gemini-3\\.[56]-flash(?:-preview)?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side); effort maps to thinkingLevel, xhigh to high",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "openrouter-gemini-3-x-flash-lite",
+      "match": { "providers": ["openrouter"], "model": "^google/gemini-3\\.[15]-flash-lite(?:-preview)?(?::[a-z-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "minimal", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table) ; https://openrouter.ai/docs/guides/best-practices/reasoning-tokens (unified reasoning.effort, mapped onto the upstream model server-side); effort maps to thinkingLevel, xhigh to high",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-3-8-3-7-flash",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-3\\.[78]-flash(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table; minimal returns an error)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-3-6-3-5-flash",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-3\\.[56]-flash(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-3-1-pro",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-3\\.1-pro(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table; thinking cannot be disabled)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-3-1-flash-lite-image",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-3\\.1-flash-lite-image(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "high"], "defaultLevel": "minimal", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-3-x-flash-lite",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-3\\.[15]-flash-lite(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "minimal", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-3-flash",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-3-flash(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "effort", "levels": ["minimal", "low", "medium", "high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (thinking level table)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-2-5-pro",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-2\\.5-pro(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "budget", "levels": ["minimal", "low", "medium", "high", "xhigh", "max"], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "budget", "budget": { "min": 128, "max": 32768 }, "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (budget table: 128-32768, dynamic default, cannot be disabled)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-2-5-flash",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-2\\.5-flash(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "budget", "levels": ["none", "minimal", "low", "medium", "high", "xhigh", "max"], "defaultLevel": null, "canDisable": true, "thinking": "default-on", "thinkingParam": "budget", "budget": { "min": 0, "max": 24576 }, "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (budget table: 0-24576, 0 disables, dynamic default)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "gemini-2-5-flash-lite",
+      "match": { "providers": ["gemini"], "model": "^(?:[\\w.-]+/)*gemini-2\\.5-flash-lite(?:-(?:preview|latest|exp|\\d{3})(?:-[\\w-]+)?)?$" },
+      "capability": { "kind": "budget", "levels": ["none", "minimal", "low", "medium", "high", "xhigh", "max"], "defaultLevel": "none", "canDisable": true, "thinking": "default-off", "thinkingParam": "budget", "budget": { "min": 512, "max": 24576 }, "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://ai.google.dev/gemini-api/docs/generate-content/thinking (budget table: 512-24576, no thinking by default, 0 disables)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "xai-grok-4-7-4-6",
+      "match": { "providers": ["xai"], "model": "^(?:[\\w.-]+/)*grok-4\\.[67](?:-latest)?$" },
+      "capability": { "kind": "none", "levels": [], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://docs.x.ai/docs/guides/reasoning (reasoning cannot be disabled; reasoning.effort is documented for the Responses API only) ; https://docs.x.ai/docs/api-reference (Chat Completions, the wire EYAS uses for xAI, documents no effort parameter, so EYAS sends none)",
+      "verified": "2026-09-23",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "xai-grok-4-5",
+      "match": { "providers": ["xai"], "model": "^(?:[\\w.-]+/)*grok-4\\.5(?:-latest)?$" },
+      "capability": { "kind": "none", "levels": [], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://docs.x.ai/docs/guides/reasoning (reasoning cannot be disabled; reasoning.effort is documented for the Responses API only) ; https://docs.x.ai/docs/api-reference (Chat Completions, the wire EYAS uses for xAI, documents no effort parameter, so EYAS sends none)",
+      "verified": "2026-09-23",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "xai-grok-3-mini",
+      "match": { "providers": ["xai"], "model": "^(?:[\\w.-]+/)*grok-3-mini(?:-fast)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "high"], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://docs.oracle.com/en-us/iaas/Content/generative-ai/xai-grok-3-mini.htm ; https://docs.oracle.com/en-us/iaas/Content/generative-ai/xai-grok-3-mini-fast.htm (reasoning_effort low | high through the API, no default stated; raw thinking traces accessible; grok-3-mini and grok-3-mini-fast are the same model). Retirement: deprecated 2026-05-15, retired 2026-08-15 on that host, and absent from https://docs.x.ai/docs/models — kept so a configured id still gets its verified control and reasoning-model wire",
+      "verified": "2026-09-24",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "ollama-gpt-oss",
+      "match": { "providers": ["ollama"], "model": "^(?:[\\w.-]+/)*gpt-oss(?::[\\w.-]+)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "medium", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "clampPolicy": "server",
+      "source": "https://docs.ollama.com/capabilities/thinking (gpt-oss requires think 'low' | 'medium' | 'high' and ignores true/false; /api/show reports thinking values low/medium/high with default medium; the trace returns in message.thinking). clampPolicy server: an Ollama server that reports only the 'thinking' capability (no thinking values) proves that a control exists, and these levels win over its generic on/off",
+      "verified": "2026-09-23",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "lmstudio-no-control",
+      "match": { "providers": ["lmstudio"], "model": ".*" },
+      "capability": { "kind": "none", "levels": [], "defaultLevel": null, "canDisable": false, "thinking": "n/a", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "hidden", "displayParam": false },
+      "source": "https://lmstudio.ai/docs/developer/openai-compat/chat-completions (the OpenAI-compatible chat endpoint EYAS uses documents no reasoning parameter, so EYAS sends none) ; https://lmstudio.ai/docs/developer/rest/list (capabilities.reasoning allowed_options/default: LM Studio's own setting, recorded for display only)",
+      "verified": "2026-09-23",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "grok-cli-grok-4-7-4-6",
+      "match": { "providers": ["grok-cli"], "model": "^(?:grok-cli-)?grok-4\\.[67](?:-build(?:-fast)?)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high", "xhigh"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "grok CLI 1.0.40 --help (--reasoning-effort) and ACP session/set_config_option reasoning_effort; per-model reasoning_efforts from the CLI model list (cli-chat-proxy.grok.com/v1/models)",
+      "verified": "2026-09-22",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "grok-cli-grok-4-5",
+      "match": { "providers": ["grok-cli"], "model": "^(?:grok-cli-)?grok-4\\.5(?:-build(?:-fast)?)?$" },
+      "capability": { "kind": "effort", "levels": ["low", "medium", "high"], "defaultLevel": "high", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": false, "reasoningVisible": "summary", "displayParam": false },
+      "source": "grok CLI 1.0.40 --help and ACP session/set_config_option reasoning_effort; per-model reasoning_efforts from the CLI model list (cli-chat-proxy.grok.com/v1/models)",
+      "verified": "2026-09-22",
+      "evidence": "verified-sdk"
+    },
+    {
+      "id": "kimi-k3",
+      "match": { "providers": ["kimi"], "model": "^(?:[\\w.-]+/)*kimi-k3$" },
+      "capability": { "kind": "effort", "levels": ["low", "high", "max"], "defaultLevel": "max", "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.kimi.ai/docs/api/models-overview.md (reasoning_effort low|high|max, default max; temperature fixed)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "kimi-k2-7-code",
+      "match": { "providers": ["kimi"], "model": "^(?:[\\w.-]+/)*kimi-k2\\.7-code(?:-highspeed)?$" },
+      "capability": { "kind": "none", "levels": [], "defaultLevel": null, "canDisable": false, "thinking": "always-on", "thinkingParam": "none", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.kimi.ai/docs/api/models-overview.md (thinking always on; reasoning_effort not supported; temperature fixed)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    },
+    {
+      "id": "kimi-k2-6",
+      "match": { "providers": ["kimi"], "model": "^(?:[\\w.-]+/)*kimi-k2\\.6$" },
+      "capability": { "kind": "toggle", "levels": ["none", "high"], "defaultLevel": "high", "canDisable": true, "thinking": "default-on", "thinkingParam": "none", "samplingLocked": true, "reasoningVisible": "summary", "displayParam": false },
+      "source": "https://platform.kimi.ai/docs/api/models-overview.md (thinking enabled by default, can be disabled; temperature fixed per mode)",
+      "verified": "2026-09-22",
+      "evidence": "verified-docs"
+    }
+  ]
+}

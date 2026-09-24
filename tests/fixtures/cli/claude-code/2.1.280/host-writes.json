@@ -1,0 +1,109 @@
+{
+  "binaryVersion": "2.1.280",
+  "sdkVersion": "0.2.89",
+  "verifiedAt": "2026-09-22",
+  "scope": "init-only (no user message): query() in streaming-input mode, initializationResult() + mcpServerStatus(), then close",
+  "options": {
+    "persistSession": false,
+    "settingSources": [],
+    "strictMcpConfig": true,
+    "enableFileCheckpointing": false,
+    "mcpServers": {}
+  },
+  "envKeys": [
+    "ANTHROPIC_API_KEY",
+    "ANTHROPIC_BASE_URL",
+    "CLAUDE_AGENT_SDK_CLIENT_APP",
+    "CLAUDE_CODE_DISABLE_AUTO_MEMORY",
+    "CLAUDE_CODE_DISABLE_CLAUDE_MDS",
+    "CLAUDE_SECURESTORAGE_CONFIG_DIR",
+    "DISABLE_AUTOUPDATER",
+    "HOME",
+    "PATH",
+    "SHELL",
+    "TMPDIR",
+    "USER"
+  ],
+  "authMode": "dummy ANTHROPIC_API_KEY against the local fake; secure storage redirected (the operator keychain login is not used)",
+  "modelRequestSent": false,
+  "sinkRequests": [
+    "HEAD /api/hello"
+  ],
+  "hostWrites": {
+    "added": [
+      ".claude/backups",
+      ".claude/backups/.claude.json.backup.1790112148991",
+      ".claude/sessions"
+    ],
+    "modified": [
+      ".claude.json"
+    ],
+    "removed": []
+  },
+  "hostWriteDetails": [
+    {
+      "path": ".claude/backups",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": ".claude/backups/.claude.json.backup.1790112148991",
+      "change": "added",
+      "type": "file",
+      "bytes": 293
+    },
+    {
+      "path": ".claude/sessions",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": ".claude.json",
+      "change": "modified",
+      "type": "file",
+      "bytes": 40229
+    }
+  ],
+  "claudeJsonTopLevelKeys": {
+    "added": [
+      "cachedExperimentData",
+      "cachedExperimentFeatures",
+      "cachedGrowthBookFeatures",
+      "cachedGrowthBookFeaturesAt",
+      "firstStartTime",
+      "firstStartVersion",
+      "hasResetAutoModeOptInForDefaultOffer",
+      "machineID",
+      "migrationVersion",
+      "opusProMigrationComplete",
+      "pluginUsage",
+      "seenNotifications",
+      "sonnet1m45MigrationComplete",
+      "userID"
+    ],
+    "changed": [],
+    "removed": []
+  },
+  "contentBearingWrites": [],
+  "markersFired": [],
+  "init": {
+    "currentPermissionMode": "default",
+    "commands": [],
+    "agents": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "account": {
+      "tokenSource": "none",
+      "apiKeySource": "ANTHROPIC_API_KEY",
+      "apiProvider": "firstParty"
+    },
+    "analyticsDisabled": false,
+    "mcpServerStatus": []
+  }
+}

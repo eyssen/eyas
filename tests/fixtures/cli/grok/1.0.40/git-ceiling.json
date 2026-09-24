@@ -1,0 +1,13 @@
+{
+  "note": "cwd = <ROOT>/gitparent/workspaces/conv-2 inside a git work tree at <ROOT>/gitparent; the ceiling is <ROOT>/gitparent/workspaces.",
+  "without-ceiling": {
+    "inspectProjectRoot": "<ROOT>/gitparent/",
+    "sessionIsGitRepo": true,
+    "sessionGitRoot": "<ROOT>/gitparent"
+  },
+  "with-ceiling": {
+    "inspectProjectRoot": "<ROOT>/gitparent/",
+    "sessionIsGitRepo": true,
+    "sessionGitRoot": "<ROOT>/gitparent"
+  }
+}

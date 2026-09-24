@@ -1,0 +1,9 @@
+{
+  "id": "fixture-internal-announcement",
+  "from": "hr@eyas.example",
+  "to": ["all-staff@eyas.example"],
+  "subject": "Office closed on Monday for holiday",
+  "body": "Hi everyone,\n\nJust a reminder that the office will be closed on Monday for the national holiday. Have a great long weekend!\n\n— HR",
+  "receivedAt": "2026-04-14T10:00:00+02:00",
+  "headers": {}
+}

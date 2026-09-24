@@ -1,0 +1,17 @@
+{
+  "tools.title": "Outils",
+  "tools.subtitle": "Outils enregistrés disponibles pour l'exécution des agents",
+  "tools.countLabel": "outils",
+  "tools.requireApproval": "nécessitent une approbation",
+  "tools.searchPlaceholder": "Rechercher des outils…",
+  "tools.allCategories": "Toutes les catégories",
+  "tools.allRiskTiers": "Tous les niveaux de risque",
+  "tools.requiresApproval": "Nécessite une approbation",
+  "tools.riskSuffix": "risque",
+  "tools.approvalRequired": "approbation requise",
+  "tools.showSchema": "Afficher le schéma",
+  "tools.hideSchema": "Masquer le schéma",
+  "tools.loading": "Chargement des outils…",
+  "tools.loadError": "Échec du chargement des outils : {{error}}",
+  "tools.empty": "Aucun outil enregistré pour le moment."
+}

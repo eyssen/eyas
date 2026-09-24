@@ -1,0 +1,147 @@
+# eYssen EYAS 1.0 — Default Configuration
+
+server:
+  host: "0.0.0.0"
+  # 3100 — not 3000 (Grafana / CRA / Next.js often bind :3000)
+  port: 3100
+
+database:
+  path: "data/sqlite/eyas.db"
+
+log:
+  level: "info"
+  pretty: true
+
+i18n:
+  defaultLanguage: "en"
+  fallbackLanguage: "en"
+  # Time zone of the date and time EYAS tells the model, as an IANA name
+  # (e.g. "America/New_York", "UTC"). Unset: the server's own zone (the TZ
+  # environment variable, else the operating system setting).
+  # timezone: "UTC"
+
+modules:
+  disabled: []
+
+autonomy:
+  # When false, agents may not modify their own IDENTITY.md directly;
+  # they must use forge_propose_identity_change instead.
+  identitySelfUpdate: true
+
+security:
+  # Memory outside EYAS. EYAS reads and writes memory only through its own
+  # stores, so model tools may neither read nor write another tool's memory.
+  # Protected without any setting: the Claude Code, Grok, Codex, Gemini, Kimi,
+  # Cursor, Windsurf and OpenCode folders in the home directory, Obsidian
+  # vaults (found by their .obsidian folder or Obsidian's vault list), and any
+  # folder named ai-memory. List further stores here as absolute paths (a
+  # leading ~ is expanded); everything under a listed folder is protected.
+  # EYAS's own data folder is private as well, except the conversation
+  # workspaces, Studio projects and browser downloads. The security gate
+  # refuses reads and writes of all of these on every tool call it checks,
+  # for every model; the refusals are listed under Security events. Read at
+  # start; entries that are not absolute paths are ignored with a warning.
+  foreignMemoryPaths: []
+  # Kernel file sandbox for the CLI providers' own tools (shell, file tools):
+  # macOS Seatbelt, Linux bubblewrap (bwrap; Claude Code also needs socat).
+  # auto: a CLI turn with tools runs inside it where one is available;
+  # otherwise it runs without it and the chat shows a notice once per
+  # conversation. A Claude Code command that asks to run outside the sandbox
+  # always waits for a human approval.
+  # required: a CLI turn with tools is refused before the CLI starts when no
+  # sandbox is available (Kimi Code CLI has none, so its turns with tools are
+  # always refused), and no Claude Code command may leave the sandbox.
+  # There is no 'off'. Any other value is a configuration error: EYAS does
+  # not start. Tool-less background calls are never refused for lack of one.
+  cliSandbox: auto
+
+model:
+  # CLI turn timeouts (Claude Code, Grok, Kimi), in milliseconds. A CLI turn
+  # is stopped only when the CLI goes quiet: idleTimeoutMs while no tool is
+  # running, toolTimeoutMs while one is (a specialist or a long build). There
+  # is no fixed limit on the whole turn; Stop still ends it at any time.
+  cli:
+    idleTimeoutMs: 600000
+    toolTimeoutMs: 1200000
+
+memory:
+  # Gates deterministic fact extraction only: 'v2' always extracts, 'legacy'
+  # extracts while l0.extractInLegacy is on (the default). L0 capture below
+  # runs under both, and recall is always the layered v2 recall, whichever
+  # value is set.
+  engine: legacy
+  # Recall embeds locally on every install, whatever chat provider answers:
+  # multilingual-e5-small when its weights load (data/models), else a hashed
+  # stem embedder. The 'embedding' routing tier (Routing & budget) feeds only
+  # the legacy vault/episodic search index, never recall, so memory is never
+  # sent to a provider's embedding API to be recalled. `eyas doctor` shows
+  # which embedder recall uses.
+  # L(-1)/L0 raw capture — every persisted message is kept verbatim (zstd,
+  # content-addressed). Tool results and model reasoning are opt-in; tool
+  # results are capped at 8 KB.
+  l0:
+    enabled: true
+    # One switch for the output of every tool an agent run calls, whatever the
+    # model: EYAS tools (also when a CLI calls them over the bridge) and the
+    # CLIs' own built-in tools (Claude Code, Grok, Kimi), OpenCode's tools
+    # inside an opencode_run task and the OpenCode terminal panel's output.
+    # Refused or cancelled calls are not recorded. Off for a reason: a captured tool result (its
+    # output plus the first 2,048 characters of its arguments) is stored
+    # verbatim and unredacted, and nothing scans or encrypts it at rest —
+    # run_command's stdout, read_file's contents, browser_fill values and
+    # browser_totp's one-time code included. It is never recalled or quoted
+    # into a prompt: no recall block, memory_search, memory_expand, Memory page
+    # search or conversation summary shows a recorded call's text. Only its
+    # output shapes the topics and names EYAS extracts from the conversation;
+    # the arguments are kept with the record and never extracted or indexed.
+    captureToolResults: false
+    # Model reasoning ("thinking"), one row per model call, kept for audit
+    # only: never turned into facts, never recalled. Verbatim and unredacted.
+    captureThinking: false
+    toolResultMaxBytes: 8192
+    idleFlushMinutes: 30
+    chunkTokens: 8000
+    extractInLegacy: true
+  capture:
+    # A durable fact learned in a conversation is written to the vault without
+    # anyone asking. This attaches a SMALL MODEL CALL to turns whose user
+    # message is at least `minUserChars` long — set `enabled: false` to stop it.
+    enabled: true
+    minUserChars: 40
+    maxPerConversation: 20
+  index:
+    # Characters of recalled memory attached to each message: standing notes
+    # first (one line of about 100 characters each), then notes retrieved for
+    # the message, then the full text of the best matches. 2400 (~600 tokens)
+    # is the size for a model with a 100k-token context window; larger windows
+    # get more (up to 2.5x from 250k tokens), smaller ones less. The value is
+    # read on every turn, but from the configuration loaded at startup, so a
+    # change here or in local.yaml needs a restart. To recall more, set
+    # memory.index.budgetChars in local.yaml.
+    budgetChars: 2400
+  recall:
+    # Notes, episodic rows and skills tagged `contains-secrets` (files the importer
+    # found credentials in, stored verbatim) are hidden from the recalled-memory
+    # block and memory search. Set true to let the model see them.
+    includeSecrets: false
+
+skills:
+  # OWNER-REVIEWABLE POLICY (see src/modules/skills/classify-skill.ts). Thresholds
+  # for the dead-skill classifier; the *shape* of the rule lives in code.
+  classify:
+    graceDays: 30
+    neverUsedDays: 90
+    dormantDays: 180
+    timeExemptSources: ['user']
+  # Extra markdown skill directories scanned after config/skills on every
+  # start. Imported files win on id collision. Empty here — list paths in
+  # local.yaml. Another tool's own folders (~/.claude, ~/.agents, …) are
+  # skipped: import those once with Data port.
+  importRoots: []
+
+agent:
+  # Extra markdown persona directories (YAML frontmatter + body = prompt).
+  # Empty here — list paths in local.yaml. Content is never in src/.
+  # Another tool's own folders are skipped (use Data port); an agent edited
+  # or deleted in EYAS is never overwritten by its file.
+  importRoots: []

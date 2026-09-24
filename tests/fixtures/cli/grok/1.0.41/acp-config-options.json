@@ -1,0 +1,783 @@
+{
+  "note": "Recorded zero-cost with grok 1.0.41 through the EYAS grok-cli launch profile (acp-profiles.ts): EYAS-owned temp home, allowlisted env, every URL (--xai-api-base-url, --cli-chat-proxy-base-url, GROK_*_BASE_URL) pointed at a local fake on 127.0.0.1 with a dummy XAI_API_KEY. The fake /models endpoint served modelsEndpoint below. Only initialize, session/new and session/set_config_option were sent: no session/prompt, and the fake saw no model request (requests). Session id and paths redacted.",
+  "version": "grok 1.0.41 (4220f3b224a6)",
+  "requests": [
+    "GET /models",
+    "GET /api-key",
+    "GET /"
+  ],
+  "modelsEndpoint": {
+    "shape": "OpenAI list {object, data[]} with grok catalog fields",
+    "rows": [
+      {
+        "id": "grok-4.7",
+        "supports_reasoning_effort": true,
+        "reasoning_effort": "high",
+        "reasoning_efforts": [
+          "xhigh",
+          "high(default)",
+          "medium",
+          "low"
+        ]
+      },
+      {
+        "id": "grok-4.6",
+        "supports_reasoning_effort": true,
+        "reasoning_effort": "high",
+        "reasoning_efforts": [
+          "xhigh",
+          "high(default)",
+          "medium",
+          "low"
+        ]
+      },
+      {
+        "id": "grok-4.5",
+        "supports_reasoning_effort": true,
+        "reasoning_effort": "high",
+        "reasoning_efforts": [
+          "high(default)",
+          "medium",
+          "low"
+        ]
+      },
+      {
+        "id": "grok-code-fast",
+        "supports_reasoning_effort": false
+      }
+    ]
+  },
+  "initialize": {
+    "agentInfo": null,
+    "_meta": {
+      "agentVersion": "1.0.41"
+    }
+  },
+  "sessionNew": {
+    "sessionId": "<SESSION>",
+    "models": {
+      "currentModelId": "grok-4.7",
+      "availableModels": [
+        {
+          "modelId": "grok-4.7",
+          "name": "Grok 4.7",
+          "_meta": {
+            "totalContextTokens": 500000,
+            "agentType": "grok-build-plan",
+            "supportsReasoningEffort": true,
+            "reasoningEffort": "high",
+            "reasoningEfforts": [
+              {
+                "id": "xhigh",
+                "value": "xhigh",
+                "label": "xhigh",
+                "description": null,
+                "default": false
+              },
+              {
+                "id": "high",
+                "value": "high",
+                "label": "high",
+                "description": null,
+                "default": true
+              },
+              {
+                "id": "medium",
+                "value": "medium",
+                "label": "medium",
+                "description": null,
+                "default": false
+              },
+              {
+                "id": "low",
+                "value": "low",
+                "label": "low",
+                "description": null,
+                "default": false
+              }
+            ]
+          }
+        },
+        {
+          "modelId": "grok-4.6",
+          "name": "Grok 4.6",
+          "_meta": {
+            "totalContextTokens": 500000,
+            "agentType": "grok-build-plan",
+            "supportsReasoningEffort": true,
+            "reasoningEffort": "high",
+            "reasoningEfforts": [
+              {
+                "id": "xhigh",
+                "value": "xhigh",
+                "label": "xhigh",
+                "description": null,
+                "default": false
+              },
+              {
+                "id": "high",
+                "value": "high",
+                "label": "high",
+                "description": null,
+                "default": true
+              },
+              {
+                "id": "medium",
+                "value": "medium",
+                "label": "medium",
+                "description": null,
+                "default": false
+              },
+              {
+                "id": "low",
+                "value": "low",
+                "label": "low",
+                "description": null,
+                "default": false
+              }
+            ]
+          }
+        },
+        {
+          "modelId": "grok-4.5",
+          "name": "Grok 4.5",
+          "_meta": {
+            "totalContextTokens": 500000,
+            "agentType": "grok-build-plan",
+            "supportsReasoningEffort": true,
+            "reasoningEffort": "high",
+            "reasoningEfforts": [
+              {
+                "id": "high",
+                "value": "high",
+                "label": "high",
+                "description": null,
+                "default": true
+              },
+              {
+                "id": "medium",
+                "value": "medium",
+                "label": "medium",
+                "description": null,
+                "default": false
+              },
+              {
+                "id": "low",
+                "value": "low",
+                "label": "low",
+                "description": null,
+                "default": false
+              }
+            ]
+          }
+        },
+        {
+          "modelId": "grok-code-fast",
+          "name": "Grok Code Fast",
+          "_meta": {
+            "totalContextTokens": 256000,
+            "agentType": "grok-build-plan"
+          }
+        }
+      ]
+    },
+    "configOptions": [
+      {
+        "id": "model",
+        "name": "Model",
+        "category": "model",
+        "type": "select",
+        "currentValue": "grok-4.7",
+        "options": [
+          {
+            "value": "grok-4.7",
+            "name": "Grok 4.7"
+          },
+          {
+            "value": "grok-4.6",
+            "name": "Grok 4.6"
+          },
+          {
+            "value": "grok-4.5",
+            "name": "Grok 4.5"
+          },
+          {
+            "value": "grok-code-fast",
+            "name": "Grok Code Fast"
+          }
+        ]
+      },
+      {
+        "id": "reasoning_effort",
+        "name": "Reasoning Effort",
+        "category": "thought_level",
+        "type": "select",
+        "currentValue": "high",
+        "options": [
+          {
+            "value": "xhigh",
+            "name": "xhigh"
+          },
+          {
+            "value": "high",
+            "name": "high"
+          },
+          {
+            "value": "medium",
+            "name": "medium"
+          },
+          {
+            "value": "low",
+            "name": "low"
+          }
+        ]
+      }
+    ]
+  },
+  "setConfigOption": [
+    {
+      "label": "effort xhigh (value object)",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "reasoning_effort",
+        "value": {
+          "value": "xhigh"
+        }
+      },
+      "error": {
+        "code": -32602,
+        "message": "Invalid params",
+        "data": "data did not match any variant of untagged enum SessionConfigOptionValue at line 1 column 108"
+      },
+      "notifications": []
+    },
+    {
+      "label": "effort low (plain string)",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "reasoning_effort",
+        "value": "low"
+      },
+      "result": {
+        "configOptions": [
+          {
+            "id": "model",
+            "name": "Model",
+            "category": "model",
+            "type": "select",
+            "currentValue": "grok-4.7",
+            "options": [
+              {
+                "value": "grok-4.7",
+                "name": "Grok 4.7"
+              },
+              {
+                "value": "grok-4.6",
+                "name": "Grok 4.6"
+              },
+              {
+                "value": "grok-4.5",
+                "name": "Grok 4.5"
+              },
+              {
+                "value": "grok-code-fast",
+                "name": "Grok Code Fast"
+              }
+            ]
+          },
+          {
+            "id": "reasoning_effort",
+            "name": "Reasoning Effort",
+            "category": "thought_level",
+            "type": "select",
+            "currentValue": "low",
+            "options": [
+              {
+                "value": "xhigh",
+                "name": "xhigh"
+              },
+              {
+                "value": "high",
+                "name": "high"
+              },
+              {
+                "value": "medium",
+                "name": "medium"
+              },
+              {
+                "value": "low",
+                "name": "low"
+              }
+            ]
+          }
+        ]
+      },
+      "notifications": [
+        {
+          "sessionUpdate": "config_option_update",
+          "configOptions": [
+            {
+              "id": "model",
+              "name": "Model",
+              "category": "model",
+              "type": "select",
+              "currentValue": "grok-4.7",
+              "options": [
+                {
+                  "value": "grok-4.7",
+                  "name": "Grok 4.7"
+                },
+                {
+                  "value": "grok-4.6",
+                  "name": "Grok 4.6"
+                },
+                {
+                  "value": "grok-4.5",
+                  "name": "Grok 4.5"
+                },
+                {
+                  "value": "grok-code-fast",
+                  "name": "Grok Code Fast"
+                }
+              ]
+            },
+            {
+              "id": "reasoning_effort",
+              "name": "Reasoning Effort",
+              "category": "thought_level",
+              "type": "select",
+              "currentValue": "low",
+              "options": [
+                {
+                  "value": "xhigh",
+                  "name": "xhigh"
+                },
+                {
+                  "value": "high",
+                  "name": "high"
+                },
+                {
+                  "value": "medium",
+                  "name": "medium"
+                },
+                {
+                  "value": "low",
+                  "name": "low"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "model grok-4.5",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "model",
+        "value": "grok-4.5"
+      },
+      "result": {
+        "configOptions": [
+          {
+            "id": "model",
+            "name": "Model",
+            "category": "model",
+            "type": "select",
+            "currentValue": "grok-4.5",
+            "options": [
+              {
+                "value": "grok-4.7",
+                "name": "Grok 4.7"
+              },
+              {
+                "value": "grok-4.6",
+                "name": "Grok 4.6"
+              },
+              {
+                "value": "grok-4.5",
+                "name": "Grok 4.5"
+              },
+              {
+                "value": "grok-code-fast",
+                "name": "Grok Code Fast"
+              }
+            ]
+          },
+          {
+            "id": "reasoning_effort",
+            "name": "Reasoning Effort",
+            "category": "thought_level",
+            "type": "select",
+            "currentValue": "low",
+            "options": [
+              {
+                "value": "high",
+                "name": "high"
+              },
+              {
+                "value": "medium",
+                "name": "medium"
+              },
+              {
+                "value": "low",
+                "name": "low"
+              }
+            ]
+          }
+        ]
+      },
+      "notifications": [
+        {
+          "sessionUpdate": "config_option_update",
+          "configOptions": [
+            {
+              "id": "model",
+              "name": "Model",
+              "category": "model",
+              "type": "select",
+              "currentValue": "grok-4.5",
+              "options": [
+                {
+                  "value": "grok-4.7",
+                  "name": "Grok 4.7"
+                },
+                {
+                  "value": "grok-4.6",
+                  "name": "Grok 4.6"
+                },
+                {
+                  "value": "grok-4.5",
+                  "name": "Grok 4.5"
+                },
+                {
+                  "value": "grok-code-fast",
+                  "name": "Grok Code Fast"
+                }
+              ]
+            },
+            {
+              "id": "reasoning_effort",
+              "name": "Reasoning Effort",
+              "category": "thought_level",
+              "type": "select",
+              "currentValue": "low",
+              "options": [
+                {
+                  "value": "high",
+                  "name": "high"
+                },
+                {
+                  "value": "medium",
+                  "name": "medium"
+                },
+                {
+                  "value": "low",
+                  "name": "low"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "effort xhigh on grok-4.5",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "reasoning_effort",
+        "value": "xhigh"
+      },
+      "error": {
+        "code": -32602,
+        "message": "Invalid params",
+        "data": "unknown reasoning_effort value"
+      },
+      "notifications": []
+    },
+    {
+      "label": "effort minimal on grok-4.5",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "reasoning_effort",
+        "value": "minimal"
+      },
+      "error": {
+        "code": -32602,
+        "message": "Invalid params",
+        "data": "unknown reasoning_effort value"
+      },
+      "notifications": []
+    },
+    {
+      "label": "model grok-code-fast",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "model",
+        "value": "grok-code-fast"
+      },
+      "result": {
+        "configOptions": [
+          {
+            "id": "model",
+            "name": "Model",
+            "category": "model",
+            "type": "select",
+            "currentValue": "grok-code-fast",
+            "options": [
+              {
+                "value": "grok-4.7",
+                "name": "Grok 4.7"
+              },
+              {
+                "value": "grok-4.6",
+                "name": "Grok 4.6"
+              },
+              {
+                "value": "grok-4.5",
+                "name": "Grok 4.5"
+              },
+              {
+                "value": "grok-code-fast",
+                "name": "Grok Code Fast"
+              }
+            ]
+          }
+        ]
+      },
+      "notifications": [
+        {
+          "sessionUpdate": "config_option_update",
+          "configOptions": [
+            {
+              "id": "model",
+              "name": "Model",
+              "category": "model",
+              "type": "select",
+              "currentValue": "grok-code-fast",
+              "options": [
+                {
+                  "value": "grok-4.7",
+                  "name": "Grok 4.7"
+                },
+                {
+                  "value": "grok-4.6",
+                  "name": "Grok 4.6"
+                },
+                {
+                  "value": "grok-4.5",
+                  "name": "Grok 4.5"
+                },
+                {
+                  "value": "grok-code-fast",
+                  "name": "Grok Code Fast"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "effort high on grok-code-fast",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "reasoning_effort",
+        "value": "high"
+      },
+      "error": {
+        "code": -32602,
+        "message": "Invalid params",
+        "data": "unknown reasoning_effort value"
+      },
+      "notifications": []
+    },
+    {
+      "label": "model unknown",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "model",
+        "value": "grok-9-nope"
+      },
+      "error": {
+        "code": -32602,
+        "message": "Invalid params",
+        "data": "unknown model id"
+      },
+      "notifications": []
+    },
+    {
+      "label": "model grok-4.7",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "model",
+        "value": "grok-4.7"
+      },
+      "result": {
+        "configOptions": [
+          {
+            "id": "model",
+            "name": "Model",
+            "category": "model",
+            "type": "select",
+            "currentValue": "grok-4.7",
+            "options": [
+              {
+                "value": "grok-4.7",
+                "name": "Grok 4.7"
+              },
+              {
+                "value": "grok-4.6",
+                "name": "Grok 4.6"
+              },
+              {
+                "value": "grok-4.5",
+                "name": "Grok 4.5"
+              },
+              {
+                "value": "grok-code-fast",
+                "name": "Grok Code Fast"
+              }
+            ]
+          },
+          {
+            "id": "reasoning_effort",
+            "name": "Reasoning Effort",
+            "category": "thought_level",
+            "type": "select",
+            "currentValue": "high",
+            "options": [
+              {
+                "value": "xhigh",
+                "name": "xhigh"
+              },
+              {
+                "value": "high",
+                "name": "high"
+              },
+              {
+                "value": "medium",
+                "name": "medium"
+              },
+              {
+                "value": "low",
+                "name": "low"
+              }
+            ]
+          }
+        ]
+      },
+      "notifications": [
+        {
+          "sessionUpdate": "config_option_update",
+          "configOptions": [
+            {
+              "id": "model",
+              "name": "Model",
+              "category": "model",
+              "type": "select",
+              "currentValue": "grok-4.7",
+              "options": [
+                {
+                  "value": "grok-4.7",
+                  "name": "Grok 4.7"
+                },
+                {
+                  "value": "grok-4.6",
+                  "name": "Grok 4.6"
+                },
+                {
+                  "value": "grok-4.5",
+                  "name": "Grok 4.5"
+                },
+                {
+                  "value": "grok-code-fast",
+                  "name": "Grok Code Fast"
+                }
+              ]
+            },
+            {
+              "id": "reasoning_effort",
+              "name": "Reasoning Effort",
+              "category": "thought_level",
+              "type": "select",
+              "currentValue": "high",
+              "options": [
+                {
+                  "value": "xhigh",
+                  "name": "xhigh"
+                },
+                {
+                  "value": "high",
+                  "name": "high"
+                },
+                {
+                  "value": "medium",
+                  "name": "medium"
+                },
+                {
+                  "value": "low",
+                  "name": "low"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "unknown option",
+      "params": {
+        "sessionId": "<SESSION>",
+        "configId": "nope",
+        "value": "x"
+      },
+      "error": {
+        "code": -32602,
+        "message": "Invalid params",
+        "data": "unknown config option: nope"
+      },
+      "notifications": []
+    }
+  ],
+  "modelFlag": [
+    {
+      "argv": "--model grok-4.5",
+      "currentModelId": "grok-4.5",
+      "configOptions": [
+        {
+          "id": "model",
+          "currentValue": "grok-4.5"
+        },
+        {
+          "id": "reasoning_effort",
+          "currentValue": "high"
+        }
+      ]
+    },
+    {
+      "argv": "--model grok-9-nope",
+      "currentModelId": "grok-4.7",
+      "configOptions": [
+        {
+          "id": "model",
+          "currentValue": "grok-4.7"
+        },
+        {
+          "id": "reasoning_effort",
+          "currentValue": "high"
+        }
+      ],
+      "finding": "an --model the CLI does not offer is ignored silently: the session runs the CLI default"
+    }
+  ],
+  "findings": [
+    "session/set_config_option takes value as a plain string; the documented {\"value\": \"...\"} object is rejected (-32602, untagged enum SessionConfigOptionValue).",
+    "The response is the complete option list, mirrored by a config_option_update session/update.",
+    "Switching the model keeps the current reasoning_effort when the new model offers it (grok-4.7 low -> grok-4.5 low); a model without reasoning control has no reasoning_effort option, and setting one is refused (unknown reasoning_effort value).",
+    "A value the model does not offer (xhigh or minimal on grok-4.5) is refused with -32602 unknown reasoning_effort value; the session keeps its value.",
+    "Per-model effort lists and defaults are also in session/new models.availableModels[]._meta (supportsReasoningEffort, reasoningEffort, reasoningEfforts[].default).",
+    "Model switches with set_config_option (no leader) write nothing to $GROK_HOME/config.toml: no default_model is persisted.",
+    "grok 1.0.41 agent stdio removes $GROK_HOME/requirements.toml at startup and appends [marketplace] default_skills_installs_purged = true to config.toml (inspect --json still reports the lock before the agent starts)."
+  ]
+}

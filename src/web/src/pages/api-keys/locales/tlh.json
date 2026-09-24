@@ -1,0 +1,21 @@
+{
+  "apiKeys.title": "API peghmey",
+  "apiKeys.subtitle": "mIwmeH naw'vaD API peghmey tISeH",
+  "apiKeys.create": "API pegh yIchu'",
+  "apiKeys.createdBanner": "API pegh chenmoHlu': {{name}}",
+  "apiKeys.copyWarning": "DaH pegh yIqon. cha'logh cha'be'lu'.",
+  "apiKeys.dismiss": "yImev",
+  "apiKeys.namePlaceholder": "pegh pong (chov: CI/CD, CLI jan)",
+  "apiKeys.expiresPlaceholder": "jajmeyDaq poH Dor (chaw'lu', chImchugh poH Dorbe')",
+  "apiKeys.colKeyPrefix": "pegh tlhop",
+  "apiKeys.colCreated": "chenmoHlu'",
+  "apiKeys.colLastUsed": "Qav lo'",
+  "apiKeys.colExpires": "poH Dor",
+  "apiKeys.empty": "API pegh tu'lu'be'. mIwmeH naw' chu'meH wa' yIchenmoH.",
+  "apiKeys.never": "not",
+  "apiKeys.noExpiry": "poH Dor tu'lu'be'",
+  "apiKeys.revokeConfirm": "API peghvam DaQaw''a'? qaSqa'laHbe'.",
+  "apiKeys.revokeTitle": "API pegh yIQaw'",
+  "apiKeys.loading": "API peghmey tagh…",
+  "apiKeys.loadFailed": "API peghmey tagh luj: {{message}}"
+}

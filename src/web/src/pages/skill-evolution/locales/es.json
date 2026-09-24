@@ -1,0 +1,22 @@
+{
+  "skillEvolution.title": "Evolución de habilidades",
+  "skillEvolution.subtitle": "Revisa candidatos de habilidades sugeridos por la IA según los patrones de uso",
+  "skillEvolution.status.pending": "Pendiente",
+  "skillEvolution.status.approved": "Aprobado",
+  "skillEvolution.status.rejected": "Rechazado",
+  "skillEvolution.stat.avgConfidence": "Confianza media",
+  "skillEvolution.searchPlaceholder": "Buscar candidatos…",
+  "skillEvolution.filter.all": "Todos",
+  "skillEvolution.sessions": "{{count}} sesiones",
+  "skillEvolution.approve": "Aprobar",
+  "skillEvolution.reject": "Rechazar",
+  "skillEvolution.showDetails": "Mostrar detalles",
+  "skillEvolution.hideDetails": "Ocultar detalles",
+  "skillEvolution.reasoning": "Razonamiento",
+  "skillEvolution.suggestedContent": "Contenido de habilidad sugerido",
+  "skillEvolution.created": "Creado: {{date}}",
+  "skillEvolution.reviewed": "Revisado: {{date}}",
+  "skillEvolution.loading": "Cargando candidatos…",
+  "skillEvolution.loadError": "No se pudieron cargar los candidatos: {{message}}",
+  "skillEvolution.empty": "Aún no hay candidatos de evolución de habilidades. El sistema sugerirá nuevas habilidades según tus patrones de uso."
+}

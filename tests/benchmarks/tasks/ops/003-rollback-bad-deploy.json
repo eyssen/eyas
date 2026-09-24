@@ -1,0 +1,28 @@
+{
+  "id": "ops-003",
+  "category": "ops",
+  "prompt": "We just deployed `odoo-web:v2026.04.15-12` to production and users are reporting 500 errors. Give the safe rollback procedure using kubectl rollout.",
+  "promptVariations": [
+    "Prod is broken after the last deploy. Walk me through rolling `odoo-web` back.",
+    "Need an emergency rollback for the odoo-web Deployment. Steps please."
+  ],
+  "context": {
+    "deployment": "odoo-web",
+    "namespace": "odoo-prod",
+    "currentRevision": 42,
+    "previousRevision": 41
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["kubectl rollout", "undo"],
+    "mustNotMention": ["kubectl delete", "drop database"],
+    "rubric": [
+      "Uses `kubectl rollout undo` (not delete / recreate)",
+      "References rollout history to confirm the target revision",
+      "Recommends watching rollout status and readiness after rollback",
+      "Mentions capturing logs and a short post-mortem before retrying"
+    ]
+  },
+  "maxTokens": 3000,
+  "maxCostUsd": 0.04,
+  "maxDurationSec": 25
+}

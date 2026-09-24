@@ -1,0 +1,75 @@
+{
+  "provenance": {
+    "kind": "transcribed",
+    "note": "POST /api/show answers, reduced to the fields EYAS reads (capabilities, thinking). The capability names are Ollama's own constants; the gpt-oss thinking object is the documented example; the qwen3 on/off values follow the documented boolean form ('values can contain booleans for on/off controls'); the '@legacy-server' entries are servers that report the 'thinking' capability without a thinking object. Transcribed from the sources, not captured from a live server (no Ollama server was running on the dev host); replace with a live capture (free: /api/show loads no weights) when one is taken.",
+    "sources": [
+      "https://github.com/ollama/ollama/blob/main/types/model/capability.go (completion, tools, insert, vision, embedding, thinking, image, audio)",
+      "https://docs.ollama.com/capabilities/thinking (/api/show thinking: { values: [low, medium, high], default: medium } for gpt-oss; booleans for on/off controls)",
+      "https://github.com/ollama/ollama/blob/main/server/routes.go (a truthy think on a model without the thinking capability is rejected with HTTP 400)"
+    ],
+    "verified": "2026-09-23"
+  },
+  "responses": {
+    "gpt-oss:20b": {
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ],
+      "thinking": {
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "medium"
+      }
+    },
+    "qwen3:8b": {
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ],
+      "thinking": {
+        "values": [
+          true,
+          false
+        ],
+        "default": true
+      }
+    },
+    "qwen3:8b@legacy-server": {
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ]
+    },
+    "gpt-oss:20b@legacy-server": {
+      "capabilities": [
+        "completion",
+        "tools",
+        "thinking"
+      ]
+    },
+    "llama3.2:latest": {
+      "capabilities": [
+        "completion",
+        "tools"
+      ]
+    },
+    "llava:13b": {
+      "capabilities": [
+        "completion",
+        "vision"
+      ]
+    },
+    "old-server-model": {
+      "license": "…",
+      "details": {
+        "family": "llama"
+      }
+    }
+  }
+}

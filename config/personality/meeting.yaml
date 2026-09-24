@@ -1,0 +1,5 @@
+# eYssen EYAS 1.0 — Meeting Module Configuration
+meeting:
+  enabled: false
+  provider: fireflies
+  api_key: "" # Set via secrets module

@@ -1,0 +1,65 @@
+{
+  "title": "Értesítések",
+  "settings": {
+    "title": "Értesítési beállítások",
+    "description": "Konfiguráld, hogy milyen eseményekről és melyik csatornán keresztül szeretnél értesülni.",
+    "minSeverity": "Minimum súlyosság",
+    "severity": {
+      "info": "Információ",
+      "warning": "Figyelmeztetés",
+      "error": "Hiba",
+      "critical": "Kritikus"
+    },
+    "eventPattern": "Esemény minta",
+    "eventPatternHelp": "Pl. `budget.*`, `agent.task.completed`, vagy `*` minden eseményre",
+    "channel": "Csatorna",
+    "channelOptions": {
+      "web": "Webes értesítés",
+      "email": "E-mail",
+      "telegram": "Telegram",
+      "webhook": "Webhook (HTTP)"
+    },
+    "deliveryMode": "Kézbesítési mód",
+    "deliveryModes": {
+      "immediate": "Azonnali",
+      "batched": "Csoportosított (digest)"
+    },
+    "deliveryHelp": "Csoportosított módban a webhook és e-mail csatornán az értesítések egy 5 perces ablakban összevonva kerülnek kiküldésre.",
+    "quietHours": "Csendes órák",
+    "quietFrom": "Kezdet",
+    "quietTo": "Vége",
+    "quietHelp": "Kritikus súlyosságú értesítések ezen órákban is átmennek.",
+    "save": "Mentés",
+    "delete": "Törlés",
+    "addPreference": "Új beállítás"
+  },
+  "webhook": {
+    "title": "Webhook cél",
+    "url": "URL",
+    "urlHelp": "Csak HTTPS URL-ek engedélyezettek. Helyi (loopback, 169.254.x.x) címek tiltva.",
+    "secret": "Titkos kulcs (HMAC)",
+    "secretHelp": "Ha megadod, minden payload kap `X-EYAS-Signature: sha256=...` fejlécet.",
+    "headers": "Egyéni fejlécek",
+    "enabled": "Aktív",
+    "test": "Teszt küldés",
+    "saved": "Webhook elmentve",
+    "deleted": "Webhook törölve",
+    "invalidUrl": "Érvénytelen vagy blokkolt URL"
+  },
+  "retry": {
+    "title": "Újrapróbálkozási sor",
+    "pending": "Várakozó",
+    "failed": "Sikertelen (dead letter)",
+    "disabled": "Nem aktív"
+  },
+  "list": {
+    "empty": "Nincsenek értesítéseid",
+    "markAllRead": "Mindet olvasottnak jelöl",
+    "markRead": "Olvasott",
+    "unreadCount": "{{count}} olvasatlan"
+  },
+  "errors": {
+    "saveFailed": "A beállítás mentése sikertelen",
+    "rateLimited": "Túl sok értesítés küldve ebben az órában"
+  }
+}

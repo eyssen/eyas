@@ -1,0 +1,127 @@
+{
+  "version": "1.52.0",
+  "verified": false,
+  "derivedFrom": "kimi-cli 1.52.0 wheel (PyPI) source; the kimi binary is not installed on the spike host",
+  "shareDir": {
+    "env": "KIMI_SHARE_DIR",
+    "default": "~/.kimi",
+    "source": "kimi_cli/share.py get_share_dir()"
+  },
+  "configFile": {
+    "path": "<share>/config.toml",
+    "source": "kimi_cli/config.py get_config_file()"
+  },
+  "configKeys": {
+    "default_model": {
+      "type": "string",
+      "default": "",
+      "note": "must name an entry of [models] (validator), else load fails"
+    },
+    "default_thinking": {
+      "type": "boolean",
+      "default": false
+    },
+    "default_yolo": {
+      "type": "boolean",
+      "default": false,
+      "note": "auto-approve; app.py: yolo = flag or config.default_yolo"
+    },
+    "merge_all_available_skills": {
+      "type": "boolean",
+      "default": true,
+      "note": "merges ~/.kimi, ~/.claude and ~/.codex skill dirs"
+    },
+    "telemetry": {
+      "type": "boolean",
+      "default": true
+    },
+    "hooks": {
+      "type": "list",
+      "note": "hook definitions live in config.toml"
+    },
+    "extra_skill_dirs": {
+      "type": "list"
+    }
+  },
+  "acpEntry": {
+    "argv": [
+      "acp"
+    ],
+    "earlyReturn": "kimi_cli/cli/__init__.py main callback: `if ctx.invoked_subcommand is not None: return`, so options before `acp` (--model, --thinking) are ignored",
+    "configLocation": "set_model asserts the default config location and rewrites <share>/config.toml via save_config (default_model, default_thinking)"
+  },
+  "sessionNew": {
+    "modes": "always [{id:\"default\"}], currentModeId \"default\" (not a yolo signal)",
+    "authCheck": "session/new calls _check_auth() first"
+  },
+  "permissions": {
+    "requestPermissionOptions": [
+      {
+        "optionId": "approve",
+        "kind": "allow_once"
+      },
+      {
+        "optionId": "approve_for_session",
+        "kind": "allow_always"
+      },
+      {
+        "optionId": "reject",
+        "kind": "reject_once"
+      }
+    ],
+    "toolCallInRequest": "ToolCallUpdate {toolCallId, title, content}; no kind",
+    "toolsThatAsk": [
+      "file write",
+      "file replace",
+      "shell",
+      "background task"
+    ],
+    "toolsThatNeverAsk": "file read, glob, grep, web search/fetch (no ask rules exist)",
+    "fsDelegation": "with client fs capabilities, reads go to fs/read_text_file and writes to fs/write_text_file (ACPKaos)",
+    "terminalDelegation": "shell runs through the client terminal only when the client advertises terminal"
+  },
+  "sessionDir": {
+    "path": "<share>/sessions/<md5(work_dir)>/",
+    "source": "kimi_cli/metadata.py WorkDirMeta.sessions_dir"
+  },
+  "projectInstructions": "AGENTS.md (or agents.md) and .kimi/AGENTS.md from the nearest .git root down to the work dir are ALWAYS loaded (no trust gate); without .git only the work dir itself",
+  "skills": {
+    "user": [
+      "~/.config/agents/skills",
+      "~/.agents/skills",
+      "~/.kimi/skills",
+      "~/.claude/skills",
+      "~/.codex/skills"
+    ],
+    "project": [
+      "<work_dir>/.agents/skills",
+      "<work_dir>/.kimi/skills",
+      "<work_dir>/.claude/skills",
+      "<work_dir>/.codex/skills"
+    ]
+  },
+  "mcpConfig": {
+    "path": "<share>/mcp.json"
+  },
+  "login": {
+    "argv": [
+      "login",
+      "--json"
+    ],
+    "flow": "device authorization: POST <oauth host>/api/oauth/device_authorization; polls the token endpoint every interval seconds; restarts when the code expires",
+    "jsonEvents": [
+      "{\"type\":\"info\",...}",
+      "{\"type\":\"verification_url\",\"message\":\"Verification URL: <url>\",\"data\":{\"verification_url\":\"<url>\",\"user_code\":\"<code>\"}}",
+      "{\"type\":\"waiting\",...}",
+      "{\"type\":\"error\",...}"
+    ],
+    "opensBrowser": "webbrowser.open(url) unless it fails; set BROWSER to a no-op on a server",
+    "credentials": "<share>/credentials/<key>.json (file storage; keyring is deprecated)",
+    "deviceId": "<share>/device_id"
+  },
+  "autoUpdate": {
+    "env": "KIMI_CLI_NO_AUTO_UPDATE",
+    "note": "checked by the shell UI"
+  },
+  "hostBinary": "not installed"
+}
