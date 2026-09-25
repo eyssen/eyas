@@ -1,0 +1,22 @@
+{
+  "users.title": "lo'wI'pu'",
+  "users.subtitle": "lo'wI'pu' 'ej AI ghoqwI'pu'",
+  "users.newAgent": "ghoqwI' chu'",
+  "users.viewActive": "QaptaH",
+  "users.viewArchived": "pollu'",
+  "users.colUsername": "lo' pong",
+  "users.colDisplayName": "cha' pong",
+  "users.colRole": "patlh",
+  "users.colType": "Segh",
+  "users.colCreated": "chenmoHlu'",
+  "users.noUsers": "lo'wI' tu'lu'be'",
+  "users.noArchived": "pollu'bogh lo'wI' tu'lu'be'",
+  "users.typeAgent": "🤖 ghoqwI'",
+  "users.typeHuman": "👤 Human",
+  "users.aiConfig": "AI SeH →",
+  "users.status.active": "QaptaH",
+  "users.status.archived": "pollu'",
+  "users.archiveConfirm": "lo'wI' \"{{name}}\" Dapol'a'? ghIq DapolHa'laH.",
+  "users.restoreTitle": "lo'wI' yIcheghmoH",
+  "users.archiveTitle": "lo'wI' yIpol"
+}

@@ -1,0 +1,179 @@
+// Part of eYssen. See LICENSE file for full copyright and licensing details.
+
+import { useEffect, useRef, useState } from 'react'
+import { Terminal } from '@xterm/xterm'
+import { FitAddon } from '@xterm/addon-fit'
+import { WebLinksAddon } from '@xterm/addon-web-links'
+import { api } from '@/lib/api'
+import { cn } from '@/lib/utils'
+import { noticeText, parseTurnNotice } from '@/pages/conversations/turn-notices'
+import { terminalFrameErrorText, terminalOpenErrorText, terminalSocketErrorText } from './terminal-errors'
+import '@xterm/xterm/css/xterm.css'
+
+interface CreateSessionResponse {
+  id: string
+  wsPath: string
+  pid: number
+  cols: number
+  rows: number
+  /** For an OpenCode TUI: stored folders the server left out (folderRefused), and why. */
+  notices?: unknown[]
+}
+
+/** The localized lines of the session's notices; unknown ones are dropped, never shown raw. */
+export function terminalNoticeLines(notices: unknown): string[] {
+  if (!Array.isArray(notices)) return []
+  return notices
+    .map(parseTurnNotice)
+    .map((n) => (n ? noticeText(n) : null))
+    .filter((line): line is string => typeof line === 'string')
+}
+
+interface WebTerminalProps {
+  conversationId: string
+  /**
+   * The conversation's stored folders. Never sent: the server reads them
+   * from the conversation itself (and opens the terminal in the first
+   * allowed one). A change reopens the terminal in the new folders.
+   */
+  workingDirectories?: unknown
+  className?: string
+}
+
+function cssColor(name: string, fallback: string): string {
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+  return v || fallback
+}
+
+function openTerminalSocket(wsPath: string, token: string): WebSocket {
+  const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+  return new WebSocket(`${protocol}//${window.location.host}${wsPath}?token=${encodeURIComponent(token)}`)
+}
+
+export function WebTerminal({ conversationId, workingDirectories, className }: WebTerminalProps) {
+  const hostRef = useRef<HTMLDivElement | null>(null)
+  const termRef = useRef<Terminal | null>(null)
+  const fitRef = useRef<FitAddon | null>(null)
+  const wsRef = useRef<WebSocket | null>(null)
+  const rafRef = useRef<number | null>(null)
+  const pendingRef = useRef('')
+  const [error, setError] = useState<string | null>(null)
+  const [notices, setNotices] = useState<string[]>([])
+
+  useEffect(() => {
+    const host = hostRef.current
+    if (!host) return
+    let cancelled = false
+
+    const term = new Terminal({
+      cursorBlink: true,
+      fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace',
+      fontSize: 13,
+      theme: {
+        background: cssColor('--background', '#0b0b0f'),
+        foreground: cssColor('--foreground', '#e8e8ed'),
+        cursor: cssColor('--foreground', '#e8e8ed'),
+      },
+      scrollback: 4_000,
+    })
+    const fit = new FitAddon()
+    term.loadAddon(fit)
+    term.loadAddon(new WebLinksAddon())
+    term.open(host)
+    fit.fit()
+    termRef.current = term
+    fitRef.current = fit
+
+    const flush = () => {
+      rafRef.current = null
+      const chunk = pendingRef.current
+      if (!chunk) return
+      pendingRef.current = ''
+      term.write(chunk)
+    }
+
+    const enqueue = (data: string) => {
+      pendingRef.current += data
+      if (rafRef.current == null) {
+        rafRef.current = window.requestAnimationFrame(flush)
+      }
+    }
+
+    const onResize = () => {
+      fit.fit()
+      const ws = wsRef.current
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify({ type: 'resize', cols: term.cols, rows: term.rows }))
+      }
+    }
+    const ro = new ResizeObserver(onResize)
+    ro.observe(host)
+
+    void (async () => {
+      try {
+        const session = await api.post<CreateSessionResponse>('/opencode/sessions', {
+          conversationId,
+          kind: 'tui',
+          cols: term.cols,
+          rows: term.rows,
+        })
+        if (cancelled) return
+        // A refused folder is never the terminal's folder: say which and why.
+        setNotices(terminalNoticeLines(session.notices))
+        const { token } = await api.post<{ token: string }>('/auth/ws-token')
+        if (cancelled) return
+        const ws = openTerminalSocket(session.wsPath, token)
+        wsRef.current = ws
+        ws.onmessage = (ev) => {
+          try {
+            const frame = JSON.parse(String(ev.data)) as { type?: string; data?: string; message?: string; code?: string }
+            if (frame.type === 'output' && typeof frame.data === 'string') enqueue(frame.data)
+            else if (frame.type === 'error') setError(terminalFrameErrorText(frame))
+          } catch {
+            enqueue(String(ev.data))
+          }
+        }
+        ws.onerror = () => setError(terminalSocketErrorText())
+        ws.onclose = () => {
+          if (!cancelled) enqueue('\r\n[disconnected]\r\n')
+        }
+        term.onData((data) => {
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ type: 'input', data }))
+          }
+        })
+      } catch (err) {
+        // A 403 is the terminal right (manage OpenCode): say so in the user's language.
+        if (!cancelled) setError(terminalOpenErrorText(err))
+      }
+    })()
+
+    return () => {
+      cancelled = true
+      ro.disconnect()
+      if (rafRef.current != null) window.cancelAnimationFrame(rafRef.current)
+      try { wsRef.current?.close() } catch { /* gone */ }
+      wsRef.current = null
+      term.dispose()
+      termRef.current = null
+    }
+  }, [conversationId, workingDirectories])
+
+  return (
+    <div className={cn('relative h-full min-h-0 w-full bg-background', className)}>
+      <div ref={hostRef} className="h-full w-full" />
+      {notices.length > 0 && (
+        <div role="status" className="absolute inset-x-0 top-0 px-3 py-2 text-xs text-muted-foreground bg-background/90 border-b border-border space-y-1">
+          {notices.map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
+      )}
+      {error && (
+        <div className="absolute inset-x-0 bottom-0 px-3 py-2 text-xs text-destructive bg-background/90 border-t border-border">
+          {error}
+        </div>
+      )}
+    </div>
+  )
+}

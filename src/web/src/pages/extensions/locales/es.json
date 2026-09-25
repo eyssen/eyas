@@ -1,0 +1,21 @@
+{
+  "extensions.title": "Extensiones",
+  "extensions.subtitle": "Algunas herramientas y paquetes de habilidades no se pudieron incluir con EYAS por restricciones de licencia. Puedes instalarlos aquí: los paquetes de instalación automática los descarga EYAS con tu consentimiento, mientras que las herramientas de terceros deben descargarse de forma independiente desde su fuente original bajo sus respectivas licencias.",
+  "extensions.installedSuffix": "instaladas",
+  "extensions.installed": "Instalado",
+  "extensions.github": "GitHub",
+  "extensions.install": "Instalar",
+  "extensions.installing": "Instalando…",
+  "extensions.enable": "Activar",
+  "extensions.disable": "Desactivar",
+  "extensions.skills": "{{count}} habilidades",
+  "extensions.by": "por {{author}}",
+  "extensions.licenseNotice": "Aviso de licencia",
+  "extensions.acceptInstall": "Aceptar e instalar",
+  "extensions.setupGuide": "Guía de configuración",
+  "extensions.hideDetails": "Ocultar detalles",
+  "extensions.autoInstallable": "Paquetes de instalación automática",
+  "extensions.thirdParty": "Herramientas de terceros compatibles",
+  "extensions.loading": "Cargando extensiones…",
+  "extensions.loadError": "No se pudieron cargar las extensiones: {{message}}"
+}

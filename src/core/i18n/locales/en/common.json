@@ -1,0 +1,47 @@
+{
+  "app": { "name": "eYssen EYAS", "version": "1.0.0" },
+  "server": {
+    "starting": "Starting server...",
+    "started": "Server started: {{host}}:{{port}}",
+    "stopping": "Stopping server...",
+    "stopped": "Server stopped."
+  },
+  "module": {
+    "loading": "Loading module: {{name}}",
+    "loaded": "Module loaded: {{name}}",
+    "disabled": "Module disabled: {{name}}"
+  },
+  "db": {
+    "connected": "Database connected: {{path}}",
+    "error": "Database error: {{message}}"
+  },
+  "config": {
+    "loaded": "Configuration loaded: {{path}}",
+    "invalid": "Invalid configuration: {{errors}}"
+  },
+  "documents": {
+    "title": "Documents",
+    "upload": "Upload",
+    "dropzone": "Drop files here or click to upload",
+    "maxSize": "Max {{size}} MB per file",
+    "attachments": "Attachments",
+    "attach": "Attach",
+    "detach": "Detach",
+    "noDocuments": "No documents yet",
+    "syncStatus": {
+      "synced": "Synced",
+      "pending": "Syncing...",
+      "error": "Sync error",
+      "notConfigured": "Local only"
+    },
+    "viewMode": {
+      "grid": "Grid",
+      "list": "List"
+    },
+    "errors": {
+      "tooLarge": "File exceeds size limit",
+      "typeNotAllowed": "File type not allowed",
+      "uploadFailed": "Upload failed"
+    }
+  }
+}

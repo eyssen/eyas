@@ -1,0 +1,65 @@
+{
+  "title": "ghuHmey",
+  "settings": {
+    "title": "ghuH SeHmey",
+    "description": "wanI'mey He je DamaSbogh yIwIv.",
+    "minSeverity": "rambe' mach",
+    "severity": {
+      "info": "De'",
+      "warning": "ghuH",
+      "error": "Qagh",
+      "critical": "potlhqu'"
+    },
+    "eventPattern": "wanI' mIw",
+    "eventPatternHelp": "chov: `budget.*`, `agent.task.completed`, pagh `*` wanI' Hoch",
+    "channel": "He",
+    "channelOptions": {
+      "web": "EYAS qoD (WebSocket)",
+      "email": "jabbI'ID",
+      "telegram": "Telegram",
+      "webhook": "Webhook (HTTP)"
+    },
+    "deliveryMode": "ngeH mIw",
+    "deliveryModes": {
+      "immediate": "DaH",
+      "batched": "ghom (tetlh)"
+    },
+    "deliveryHelp": "ghom mIwDaq Webhook jabbI'ID He je ghuHmey vagh tup poHDaq ghommoHlu'.",
+    "quietHours": "tam poHmey",
+    "quietFrom": "vo'",
+    "quietTo": "Daq",
+    "quietHelp": "potlhqu' ghuHmey tam poHmey mej.",
+    "save": "toD",
+    "delete": "Qaw'",
+    "addPreference": "maS chu'"
+  },
+  "webhook": {
+    "title": "Webhook DoS",
+    "url": "URL",
+    "urlHelp": "http(s) URL neH. loopback metadata je (169.254.x.x) juHmey Qotlhlu'.",
+    "secret": "laj pegh (HMAC)",
+    "secretHelp": "lISchugh, Hoch ngeH `X-EYAS-Signature: sha256=...` nach ghaj.",
+    "headers": "le' nachmey",
+    "enabled": "Qap",
+    "test": "toy' yIngeH",
+    "saved": "Webhook toDlu'",
+    "deleted": "Webhook Qaw'lu'",
+    "invalidUrl": "URL lughbe' pagh Qotlhlu'"
+  },
+  "retry": {
+    "title": "nIDqa' tetlh",
+    "pending": "loS",
+    "failed": "luj (Hegh QIn)",
+    "disabled": "Qapbe'"
+  },
+  "list": {
+    "empty": "ghuHmey Hutlh",
+    "markAllRead": "Hoch yIlaDta'",
+    "markRead": "laD",
+    "unreadCount": "{{count}} laDlu'be'"
+  },
+  "errors": {
+    "saveFailed": "maS toD luj",
+    "rateLimited": "repvam ghuHmey ngeHlu' 'Iq"
+  }
+}

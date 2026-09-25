@@ -1,0 +1,13 @@
+[
+  { "name": "search_models" },
+  { "name": "get_model_schema" },
+  { "name": "get_pricing" },
+  { "name": "search_docs" },
+  { "name": "run_model" },
+  { "name": "submit_job" },
+  { "name": "check_job" },
+  { "name": "get_job_result" },
+  { "name": "cancel_job" },
+  { "name": "upload_file" },
+  { "name": "recommend_model" }
+]

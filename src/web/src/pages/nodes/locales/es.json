@@ -1,0 +1,12 @@
+{
+  "nodes.title": "Nodos remotos",
+  "nodes.subtitle": "Gestiona las conexiones de nodos EYAS remotos",
+  "nodes.count": "{{count}} nodos",
+  "nodes.addNode": "Añadir nodo",
+  "nodes.editNode": "Editar nodo",
+  "nodes.empty": "No hay nodos remotos configurados",
+  "nodes.lastSeen": "Visto por última vez: {{time}}",
+  "nodes.host": "Host",
+  "nodes.type": "Tipo",
+  "nodes.saving": "Guardando…"
+}

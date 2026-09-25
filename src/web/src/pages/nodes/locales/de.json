@@ -1,0 +1,12 @@
+{
+  "nodes.title": "Remote-Knoten",
+  "nodes.subtitle": "Remote-EYAS-Knotenverbindungen verwalten",
+  "nodes.count": "{{count}} Knoten",
+  "nodes.addNode": "Knoten hinzufügen",
+  "nodes.editNode": "Knoten bearbeiten",
+  "nodes.empty": "Keine Remote-Knoten konfiguriert",
+  "nodes.lastSeen": "Zuletzt gesehen: {{time}}",
+  "nodes.host": "Host",
+  "nodes.type": "Typ",
+  "nodes.saving": "Wird gespeichert…"
+}

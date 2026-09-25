@@ -1,0 +1,19 @@
+{
+  "proactive.title": "ghuH jIH Daq",
+  "proactive.subtitle": "ghuHmey taH, Sov, ghojta' mIwmey je",
+  "proactive.priority.urgent": "pay'",
+  "proactive.priority.high": "jen",
+  "proactive.priority.normal": "motlh",
+  "proactive.priority.low": "puj",
+  "proactive.urgentCount": "{{count}} pay'",
+  "proactive.checkNow": "DaH yIbej",
+  "proactive.checking": "bejtaH…",
+  "proactive.activeAlerts": "ghuHmey taH",
+  "proactive.loadingAlerts": "ghuHmey tagh…",
+  "proactive.alertsError": "ghuHmey taghlaHbe': {{message}}",
+  "proactive.allClear": "Qapla' — ghuH taH tu'lu'be'",
+  "proactive.learnedLessons": "ghojta' QeDmey",
+  "proactive.loadingLessons": "QeDmey tagh…",
+  "proactive.noLessons": "ghojta' QeD tu'lu'be' wej.",
+  "proactive.confidence": "{{value}}% Har"
+}

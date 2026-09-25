@@ -1,0 +1,17 @@
+{
+  "tools.title": "Tools",
+  "tools.subtitle": "Registered tools available for agent execution",
+  "tools.countLabel": "tools",
+  "tools.requireApproval": "require approval",
+  "tools.searchPlaceholder": "Search tools…",
+  "tools.allCategories": "All categories",
+  "tools.allRiskTiers": "All risk tiers",
+  "tools.requiresApproval": "Requires approval",
+  "tools.riskSuffix": "risk",
+  "tools.approvalRequired": "approval required",
+  "tools.showSchema": "Show schema",
+  "tools.hideSchema": "Hide schema",
+  "tools.loading": "Loading tools…",
+  "tools.loadError": "Failed to load tools: {{error}}",
+  "tools.empty": "No tools registered yet."
+}

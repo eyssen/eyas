@@ -1,0 +1,12 @@
+{
+  "nodes.title": "Nœuds distants",
+  "nodes.subtitle": "Gérez les connexions des nœuds EYAS distants",
+  "nodes.count": "{{count}} nœuds",
+  "nodes.addNode": "Ajouter un nœud",
+  "nodes.editNode": "Modifier le nœud",
+  "nodes.empty": "Aucun nœud distant configuré",
+  "nodes.lastSeen": "Dernière activité : {{time}}",
+  "nodes.host": "Hôte",
+  "nodes.type": "Type",
+  "nodes.saving": "Enregistrement…"
+}

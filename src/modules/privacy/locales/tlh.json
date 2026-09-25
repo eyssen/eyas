@@ -1,0 +1,13 @@
+{
+  "privacy.channel.refused": "QIn ngeHlu'be': AI model ngeHmeH pegh chut botbogh De' ngaS ({{types}}). pagh pollu'. De'vetlh Hutlhbogh QIn yIngeHqa'.",
+  "privacy.type.email": "QIn Daq",
+  "privacy.type.phone": "ghogh mI'",
+  "privacy.type.iban": "IBAN",
+  "privacy.type.bank_account": "Huch pol mI'",
+  "privacy.type.credit_card": "Huch 'echlet mI'",
+  "privacy.type.ssn": "SSN mI'",
+  "privacy.type.personal_id": "ngu'meH 'echlet mI'",
+  "privacy.type.tax_number": "Huch DIlmeH mI'",
+  "privacy.type.taj_number": "TAJ mI'",
+  "privacy.type.custom": "mIw DIchenmoHbogh: {{type}}"
+}

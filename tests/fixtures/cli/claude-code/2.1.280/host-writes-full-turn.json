@@ -1,0 +1,79 @@
+{
+  "binaryVersion": "2.1.280",
+  "sdkVersion": "0.2.89",
+  "verifiedAt": "2026-09-22",
+  "variant": "isolated",
+  "localFakeModel": true,
+  "options": {
+    "persistSession": false,
+    "settingSources": [],
+    "strictMcpConfig": true,
+    "enableFileCheckpointing": false,
+    "mcpServers": {}
+  },
+  "turn": "user prompt -> Bash tool_use (echo EYAS-SPIKE-CANARY) -> text \"NONE\" (canUseTool allows; Claude Code auto-approves a read-only echo without asking)",
+  "nonModelEgress": "cachedGrowthBookFeatures in ~/.claude.json was refreshed from the vendor feature-flag service (not a model call, not routed through ANTHROPIC_BASE_URL)",
+  "permissionAsks": [],
+  "messageTypes": [
+    "system:init",
+    "assistant",
+    "user",
+    "result:success"
+  ],
+  "sinkRequests": [
+    "HEAD /api/hello",
+    "POST /v1/messages",
+    "POST /v1/messages",
+    "POST /v1/messages"
+  ],
+  "hostWrites": {
+    "added": [
+      ".claude/session-env",
+      ".claude/session-env/0cdc58f6-8d8d-4973-8043-f01d57edd0df",
+      ".claude/shell-snapshots"
+    ],
+    "modified": [
+      ".claude.json"
+    ],
+    "removed": []
+  },
+  "hostWriteDetails": [
+    {
+      "path": ".claude/session-env",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": ".claude/session-env/0cdc58f6-8d8d-4973-8043-f01d57edd0df",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": ".claude/shell-snapshots",
+      "change": "added",
+      "type": "dir",
+      "bytes": 0
+    },
+    {
+      "path": ".claude.json",
+      "change": "modified",
+      "type": "file",
+      "bytes": 40352
+    }
+  ],
+  "claudeJsonTopLevelKeys": {
+    "added": [],
+    "changed": [
+      "cachedGrowthBookFeatures",
+      "cachedGrowthBookFeaturesAt",
+      "pluginUsage"
+    ],
+    "removed": []
+  },
+  "contentBearingWrites": [],
+  "canaryInHostFiles": [],
+  "markersFired": [],
+  "sentinelsInModelRequests": []
+}

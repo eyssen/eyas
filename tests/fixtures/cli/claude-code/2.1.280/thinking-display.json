@@ -1,0 +1,28 @@
+{
+  "cliVersion": "2.1.280",
+  "verified": true,
+  "readAt": "2026-09-24",
+  "derivedFrom": "the Claude Code 2.1.280 binary's embedded JS (VERSION:\"2.1.280\"), read as text; the 2.1.281 binary carries the same option",
+  "option": {
+    "flag": "--thinking-display <display>",
+    "description": "How thinking content appears in the response",
+    "choices": ["summarized", "omitted", "highlights"],
+    "hidden": true,
+    "excerpt": ".addOption(new J(\"--thinking-display <display>\",\"How thinking content appears in the response\").choices(THe).hideHelp()) ; THe=[\"summarized\",\"omitted\",\"highlights\"]"
+  },
+  "displayResolver": {
+    "note": "An explicit display (the flag) wins. showThinkingSummaries is read only for an interactive session; a non-interactive session (EYAS's SDK queries, stream-json output) gets no display unless the flag is given, and a text/json one gets 'omitted'. So the flag is the only way EYAS can ask this runtime for summarized thinking.",
+    "excerpt": "function yQt(){return Ye().showThinkingSummaries??!1}function v_r({explicitDisplay:e,isNonInteractive:n,outputFormat:r,verbose:s}){if(e)return e;if(!n)return yQt()?\"summarized\":void 0;if(C_r({isNonInteractive:n,outputFormat:r,verbose:s}))return\"omitted\";return}function C_r({isNonInteractive:e,outputFormat:n,verbose:r}){return e&&(n===\"text\"||n===\"json\"&&!r)}"
+  },
+  "setting": {
+    "key": "showThinkingSummaries",
+    "description": "Request API-side thinking summaries and show them in the conversation and in the transcript view (ctrl+o). Set explicitly to override the default for your install.",
+    "effectInSdkSessions": "none (interactive only, see displayResolver)"
+  },
+  "sdkBundledCli": {
+    "version": "2.1.89",
+    "hasThinkingDisplayFlag": false,
+    "showThinkingSummaries": "interactive sessions only: it withholds the redact-thinking-2026-02-12 beta header; no display parameter exists, so nothing EYAS can set asks this runtime for thinking text",
+    "excerpt": "if(Y&&iCq(q)&&!g7()&&Z7().showThinkingSummaries!==!0)K.push(WM8) ; WM8=\"redact-thinking-2026-02-12\" ; function g7(){return!Z8.isInteractive}"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "privacy.channel.refused": "Votre message n’a pas été transmis : il contient des données que la politique de confidentialité interdit d’envoyer à un modèle d’IA ({{types}}). Rien n’a été enregistré. Renvoyez-le sans ces données.",
+  "privacy.type.email": "Adresse e-mail",
+  "privacy.type.phone": "Numéro de téléphone",
+  "privacy.type.iban": "IBAN",
+  "privacy.type.bank_account": "Numéro de compte bancaire",
+  "privacy.type.credit_card": "Numéro de carte",
+  "privacy.type.ssn": "Numéro de sécurité sociale américain",
+  "privacy.type.personal_id": "Numéro de carte d’identité",
+  "privacy.type.tax_number": "Numéro fiscal",
+  "privacy.type.taj_number": "Numéro TAJ",
+  "privacy.type.custom": "Motif personnalisé : {{type}}"
+}

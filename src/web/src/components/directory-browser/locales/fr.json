@@ -1,0 +1,12 @@
+{
+  "dirBrowser.title": "Choisir un dossier",
+  "dirBrowser.description": "Dossiers de l’hôte EYAS. Choisissez où l’agent peut travailler.",
+  "dirBrowser.up": "Haut",
+  "dirBrowser.home": "Accueil",
+  "dirBrowser.select": "Utiliser ce dossier",
+  "dirBrowser.empty": "Aucun sous-dossier",
+  "dirBrowser.truncated": "Liste tronquée",
+  "dirBrowser.loading": "Chargement…",
+  "dirBrowser.error": "Impossible de lister ce dossier",
+  "dirBrowser.browse": "Parcourir…"
+}

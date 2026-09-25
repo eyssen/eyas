@@ -1,0 +1,22 @@
+{
+  "skillEvolution.title": "Készség-evolúció",
+  "skillEvolution.subtitle": "Használati minták alapján javasolt AI-készségjelöltek áttekintése",
+  "skillEvolution.status.pending": "Függőben",
+  "skillEvolution.status.approved": "Jóváhagyva",
+  "skillEvolution.status.rejected": "Elutasítva",
+  "skillEvolution.stat.avgConfidence": "Átlagos biztonság",
+  "skillEvolution.searchPlaceholder": "Jelöltek keresése…",
+  "skillEvolution.filter.all": "Mind",
+  "skillEvolution.sessions": "{{count}} munkamenet",
+  "skillEvolution.approve": "Jóváhagyás",
+  "skillEvolution.reject": "Elutasítás",
+  "skillEvolution.showDetails": "Részletek megjelenítése",
+  "skillEvolution.hideDetails": "Részletek elrejtése",
+  "skillEvolution.reasoning": "Indoklás",
+  "skillEvolution.suggestedContent": "Javasolt készségtartalom",
+  "skillEvolution.created": "Létrehozva: {{date}}",
+  "skillEvolution.reviewed": "Felülvizsgálva: {{date}}",
+  "skillEvolution.loading": "Jelöltek betöltése…",
+  "skillEvolution.loadError": "Nem sikerült betölteni a jelölteket: {{message}}",
+  "skillEvolution.empty": "Még nincs készség-evolúciós jelölt. A rendszer a használati mintáid alapján fog új készségeket javasolni."
+}

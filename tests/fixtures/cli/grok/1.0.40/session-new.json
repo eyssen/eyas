@@ -1,0 +1,56 @@
+{
+  "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+  "models": {
+    "currentModelId": "grok-4.6",
+    "availableModels": [
+      {
+        "modelId": "grok-4.6",
+        "name": "grok-4.6",
+        "_meta": {
+          "totalContextTokens": 256000,
+          "agentType": "grok-build-plan"
+        }
+      }
+    ]
+  },
+  "configOptions": [
+    {
+      "id": "model",
+      "name": "Model",
+      "category": "model",
+      "type": "select",
+      "currentValue": "grok-4.6",
+      "options": [
+        {
+          "value": "grok-4.6",
+          "name": "grok-4.6"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "currentWorkingDirectory": "<ROOT>/workspaces/conv-1",
+    "codebaseIndexed": [],
+    "isGitRepo": false,
+    "gitRoot": null,
+    "showNonGitWarning": false,
+    "feedbackEnabled": true,
+    "x.ai/sessionConfig": {
+      "options": [
+        {
+          "id": "grok-4.6",
+          "category": "model",
+          "label": "grok-4.6",
+          "selected": true
+        }
+      ]
+    },
+    "x.ai/sessionDetail": {
+      "sessionId": "01a0cb04-23d6-7c00-abb9-36a786d56289",
+      "kind": "build",
+      "cwd": "<ROOT>/workspaces/conv-1",
+      "currentModelId": "grok-4.6"
+    },
+    "x.ai/memoryMode": "legacy"
+  }
+}

@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: eyas-config
+  labels:
+    app: eyas
+data:
+  default.yaml: |
+    # eYssen EYAS 1.0 — Default Configuration (K8s)
+
+    server:
+      host: "0.0.0.0"
+      port: 3100
+
+    database:
+      path: "data/sqlite/eyas.db"
+
+    log:
+      level: "info"
+      pretty: false
+
+    i18n:
+      defaultLanguage: "en"
+      fallbackLanguage: "en"
+
+    modules:
+      disabled: []

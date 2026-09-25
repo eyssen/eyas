@@ -1,0 +1,13 @@
+{
+  "privacy.channel.refused": "Deine Nachricht wurde nicht zugestellt: Sie enthält Angaben, die laut Datenschutzrichtlinie nicht an ein KI-Modell gesendet werden dürfen ({{types}}). Es wurde nichts gespeichert. Bitte sende sie ohne diese Angaben erneut.",
+  "privacy.type.email": "E-Mail-Adresse",
+  "privacy.type.phone": "Telefonnummer",
+  "privacy.type.iban": "IBAN",
+  "privacy.type.bank_account": "Kontonummer",
+  "privacy.type.credit_card": "Kartennummer",
+  "privacy.type.ssn": "US-Sozialversicherungsnummer",
+  "privacy.type.personal_id": "Personalausweisnummer",
+  "privacy.type.tax_number": "Steuernummer",
+  "privacy.type.taj_number": "TAJ-Nummer",
+  "privacy.type.custom": "Eigenes Muster: {{type}}"
+}

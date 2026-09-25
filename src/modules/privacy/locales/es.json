@@ -1,0 +1,13 @@
+{
+  "privacy.channel.refused": "Tu mensaje no se ha entregado: contiene datos que la política de privacidad no permite enviar a un modelo de IA ({{types}}). No se ha guardado nada. Vuelve a enviarlo sin estos datos.",
+  "privacy.type.email": "Correo electrónico",
+  "privacy.type.phone": "Número de teléfono",
+  "privacy.type.iban": "IBAN",
+  "privacy.type.bank_account": "Número de cuenta bancaria",
+  "privacy.type.credit_card": "Número de tarjeta",
+  "privacy.type.ssn": "Número de la Seguridad Social de EE. UU.",
+  "privacy.type.personal_id": "Número del documento de identidad",
+  "privacy.type.tax_number": "Número fiscal",
+  "privacy.type.taj_number": "Número TAJ",
+  "privacy.type.custom": "Patrón personalizado: {{type}}"
+}

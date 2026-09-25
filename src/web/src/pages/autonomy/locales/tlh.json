@@ -1,0 +1,20 @@
+{
+  "autonomy.title": "nIteb vang",
+  "autonomy.subtitlePre": "QaHwI' nIteb vanglaH 'e' chaw', Qu' Segh Hoch. cheghlaHbe' / Hur Qu'mey ngaQ ",
+  "autonomy.subtitlePost": " 'ej ghurlaHbe' — Hub bIng.",
+  "autonomy.level.1.label": "ghuH",
+  "autonomy.level.1.hint": "pa' yIyu'",
+  "autonomy.level.2.label": "chaw'",
+  "autonomy.level.2.hint": "chup + wa' yuv chaw'",
+  "autonomy.level.3.label": "auto",
+  "autonomy.level.3.hint": "nIteb vang + ret ja'",
+  "autonomy.pendingApprovals": "chaw' loS",
+  "autonomy.nothingWaiting": "chaw' loS tu'lu'be'.",
+  "autonomy.approve": "chaw'",
+  "autonomy.reject": "lajbe'",
+  "autonomy.group.reversible": "cheghlaH",
+  "autonomy.group.locked": "Hur / cheghlaHbe' (ngaQ)",
+  "autonomy.parkedRun": "Qu'vam loS",
+  "autonomy.reason.unsandboxedShell": "kernel teywI' Hung Hur Qap 'e' tlhob shell ra'. ghot neH chaw'laH; chaw'lu'chugh, wa'logh Hung Hutlh Qap ra'vam neH.",
+  "autonomy.resumeFailed": "taHqa'laHbe': {{reason}}"
+}

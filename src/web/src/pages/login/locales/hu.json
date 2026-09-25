@@ -1,0 +1,10 @@
+{
+  "login.signIn": "Bejelentkezés",
+  "login.subtitle": "Add meg az adataidat a folytatáshoz",
+  "login.username": "Felhasználónév",
+  "login.usernamePlaceholder": "admin",
+  "login.password": "Jelszó",
+  "login.signingIn": "Bejelentkezés…",
+  "login.invalidCredentials": "Hibás belépési adatok",
+  "login.mascotAlt": "EYAS asszisztens"
+}

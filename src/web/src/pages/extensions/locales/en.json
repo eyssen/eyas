@@ -1,0 +1,21 @@
+{
+  "extensions.title": "Extensions",
+  "extensions.subtitle": "Some tools and skill packs could not be bundled with EYAS due to licensing restrictions. You can install them here — auto-install packs are downloaded by EYAS with your consent, while third-party tools must be downloaded independently from their original source under their respective licenses.",
+  "extensions.installedSuffix": "installed",
+  "extensions.installed": "Installed",
+  "extensions.github": "GitHub",
+  "extensions.install": "Install",
+  "extensions.installing": "Installing…",
+  "extensions.enable": "Enable",
+  "extensions.disable": "Disable",
+  "extensions.skills": "{{count}} skills",
+  "extensions.by": "by {{author}}",
+  "extensions.licenseNotice": "License Notice",
+  "extensions.acceptInstall": "Accept & Install",
+  "extensions.setupGuide": "Setup guide",
+  "extensions.hideDetails": "Hide details",
+  "extensions.autoInstallable": "Auto-installable Packs",
+  "extensions.thirdParty": "Third-Party Compatible Tools",
+  "extensions.loading": "Loading extensions…",
+  "extensions.loadError": "Failed to load extensions: {{message}}"
+}

@@ -1,0 +1,35 @@
+{
+  "envVar": "OPENCODE_PERMISSION",
+  "value": "JSON; a PermissionConfig: \"ask\" | \"allow\" | \"deny\" for everything, or an object per permission key",
+  "keys": [
+    "read",
+    "edit",
+    "glob",
+    "grep",
+    "list",
+    "bash",
+    "task",
+    "external_directory",
+    "todowrite",
+    "question",
+    "webfetch",
+    "websearch",
+    "lsp",
+    "doom_loop",
+    "skill"
+  ],
+  "additionalKeysAllowed": true,
+  "patternKeys": [
+    "read",
+    "edit",
+    "glob",
+    "grep",
+    "list",
+    "bash",
+    "task",
+    "external_directory",
+    "lsp",
+    "skill"
+  ],
+  "patternForm": "{ \"<glob pattern>\": \"ask\" | \"allow\" | \"deny\" } (PermissionObjectConfig; wildcard patterns such as \"*\" or \"git *\")"
+}

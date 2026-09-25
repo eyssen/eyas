@@ -1,0 +1,22 @@
+{
+  "users.title": "Utilisateurs",
+  "users.subtitle": "Utilisateurs et agents IA",
+  "users.newAgent": "Nouvel agent",
+  "users.viewActive": "Actifs",
+  "users.viewArchived": "Archivés",
+  "users.colUsername": "Identifiant",
+  "users.colDisplayName": "Nom affiché",
+  "users.colRole": "Rôle",
+  "users.colType": "Type",
+  "users.colCreated": "Créé",
+  "users.noUsers": "Aucun utilisateur",
+  "users.noArchived": "Aucun utilisateur archivé",
+  "users.typeAgent": "🤖 Agent",
+  "users.typeHuman": "👤 Humain",
+  "users.aiConfig": "Config. IA →",
+  "users.status.active": "actif",
+  "users.status.archived": "archivé",
+  "users.archiveConfirm": "Archiver l'utilisateur « {{name}} » ? Vous pourrez le restaurer plus tard.",
+  "users.restoreTitle": "Restaurer l'utilisateur",
+  "users.archiveTitle": "Archiver l'utilisateur"
+}

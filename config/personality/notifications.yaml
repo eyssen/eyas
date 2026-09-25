@@ -1,0 +1,18 @@
+notifications:
+  enabled: true
+  rate_limit: 20 # per hour per user
+  default_preferences:
+    - event_pattern: "*"
+      channel: web
+      min_severity: info
+    - event_pattern: "*.critical"
+      channel: telegram
+      min_severity: critical
+  built_in_events:
+    - budget.warning
+    - budget.exceeded
+    - agent.team.completed
+    - agent.team.failed
+    - scheduler.job.failed
+    - board.task.assigned
+    - security.gate.blocked

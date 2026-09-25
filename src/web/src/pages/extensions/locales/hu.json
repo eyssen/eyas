@@ -1,0 +1,21 @@
+{
+  "extensions.title": "Bővítmények",
+  "extensions.subtitle": "Néhány eszközt és készségcsomagot licencelési korlátozások miatt nem lehetett az EYAS-szal együtt csomagolni. Itt telepítheted őket — az automatikusan telepíthető csomagokat az EYAS a hozzájárulásoddal tölti le, míg a harmadik féltől származó eszközöket az eredeti forrásból, a saját licencük alatt kell külön letölteni.",
+  "extensions.installedSuffix": "telepítve",
+  "extensions.installed": "Telepítve",
+  "extensions.github": "GitHub",
+  "extensions.install": "Telepítés",
+  "extensions.installing": "Telepítés…",
+  "extensions.enable": "Bekapcsolás",
+  "extensions.disable": "Kikapcsolás",
+  "extensions.skills": "{{count}} készség",
+  "extensions.by": "készítő: {{author}}",
+  "extensions.licenseNotice": "Licencközlemény",
+  "extensions.acceptInstall": "Elfogadás és telepítés",
+  "extensions.setupGuide": "Telepítési útmutató",
+  "extensions.hideDetails": "Részletek elrejtése",
+  "extensions.autoInstallable": "Automatikusan telepíthető csomagok",
+  "extensions.thirdParty": "Harmadik féltől származó kompatibilis eszközök",
+  "extensions.loading": "Bővítmények betöltése…",
+  "extensions.loadError": "Nem sikerült betölteni a bővítményeket: {{message}}"
+}

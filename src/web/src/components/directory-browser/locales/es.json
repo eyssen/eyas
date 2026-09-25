@@ -1,0 +1,12 @@
+{
+  "dirBrowser.title": "Elegir carpeta",
+  "dirBrowser.description": "Carpetas del host EYAS. Elige dónde puede trabajar el agente.",
+  "dirBrowser.up": "Arriba",
+  "dirBrowser.home": "Inicio",
+  "dirBrowser.select": "Usar esta carpeta",
+  "dirBrowser.empty": "Sin subcarpetas",
+  "dirBrowser.truncated": "Lista recortada",
+  "dirBrowser.loading": "Cargando…",
+  "dirBrowser.error": "No se pudo listar la carpeta",
+  "dirBrowser.browse": "Examinar…"
+}

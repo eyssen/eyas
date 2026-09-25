@@ -1,0 +1,12 @@
+{
+  "dirBrowser.title": "Choose folder",
+  "dirBrowser.description": "Folders on the EYAS host. Select the directory the agent may work in.",
+  "dirBrowser.up": "Up",
+  "dirBrowser.home": "Home",
+  "dirBrowser.select": "Use this folder",
+  "dirBrowser.empty": "No subfolders",
+  "dirBrowser.truncated": "List truncated",
+  "dirBrowser.loading": "Loading…",
+  "dirBrowser.error": "Could not list this folder",
+  "dirBrowser.browse": "Browse…"
+}

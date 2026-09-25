@@ -1,0 +1,50 @@
+# EYAS Privacy Policy — seed
+#
+# This file seeds the privacy policy. It is re-imported whenever it changes,
+# without a restart, until the policy is first saved in Privacy → Policy;
+# from then on the saved policy is used and edits here are ignored (with a
+# warning in the log). A missing or invalid file never resets the policy:
+# the last good policy stays and the error is logged with the file's path.
+#
+# The legacy format (scanners / rules / custom_patterns) is still accepted:
+# for each type the first matching rule decides, 'sanitize' becomes 'mask',
+# 'auto_local' becomes 'mask' (with a warning) and 'ner' is ignored.
+#
+# Actions, per detected type:
+#   off   — ignored
+#   warn  — counted and logged; the text is left as is
+#   mask  — replaced with [TYPE] when the text leaves EYAS for a remote model
+#   block — masked the same way on the way out (a model call is never stopped
+#           because of it); the strictest class, used to refuse new messages
+# Memory notes written to the vault are masked with the same rules
+# (dates are kept; mask- and block-class values are replaced).
+
+privacy:
+  enabled: true
+
+  # Every built-in type; a type left out keeps its built-in default.
+  actions:
+    email: mask
+    phone: mask
+    iban: block
+    bank_account: block
+    tax_number: block
+    personal_id: block
+    credit_card: block
+    ssn: block
+    taj_number: warn
+
+  # Your own patterns. Each is matched within a single line; 'type' is a
+  # lower-case slug and becomes the placeholder ([INTERNAL_PROJECT]).
+  customPatterns:
+    - name: "internal_project"
+      regex: "PROJECT-[A-Z]{3}-\\d+"
+      type: "internal_project"
+      action: warn
+
+  # Hosts that count as this machine besides loopback (localhost, 127.x, ::1):
+  # a model endpoint on one of these receives text unmasked. Hostnames or IP
+  # addresses only (no scheme or port), at most 32.
+  localHosts: []
+
+  audit: true  # Record privacy events on the event bus / audit log

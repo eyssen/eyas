@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "login",
+    "--device-auth"
+  ],
+  "stdoutBytes": 0,
+  "stderrBytes": 261,
+  "promptStream": "stderr",
+  "containsAnsi": true,
+  "urlPattern": "https://accounts.x.ai/oauth2/device?user_code=<CODE>",
+  "verificationUrlSeen": true,
+  "userCodeLineSeen": true,
+  "waitingLine": true,
+  "exit": {
+    "code": null,
+    "signal": "SIGTERM",
+    "note": "killed by the spike after the code was printed; the device code was never confirmed"
+  },
+  "credentialFilesAfterKill": []
+}

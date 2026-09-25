@@ -1,0 +1,29 @@
+{
+  "id": "research-001",
+  "category": "research",
+  "prompt": "Compare `orama` and `minisearch` for in-process full-text search in a Node/Bun app: API ergonomics, bundle size, vector support, and MIT-compat license.",
+  "promptVariations": [
+    "Produce a short side-by-side of Orama vs. MiniSearch for embedded search.",
+    "Evaluate Orama and MiniSearch as FTS engines for a TypeScript backend — which would you pick and why?"
+  ],
+  "context": {
+    "constraints": [
+      "MIT-compatible license only",
+      "Must run in-process on Bun/Node 22+",
+      "Optional vector/embedding support preferred"
+    ]
+  },
+  "expectedOutcome": {
+    "mustMentionKeywords": ["orama", "minisearch", "license"],
+    "mustNotMention": ["elasticsearch", "meilisearch server"],
+    "rubric": [
+      "Covers all four dimensions (API, bundle size, vectors, license) with specifics",
+      "Cites that Orama supports hybrid vector search and MiniSearch does not (as of 2025)",
+      "Confirms both are MIT (or Apache-2.0) so either meets the EYAS license constraint",
+      "Makes a recommendation grounded in the stated constraints, not a coin flip"
+    ]
+  },
+  "maxTokens": 4000,
+  "maxCostUsd": 0.05,
+  "maxDurationSec": 40
+}
